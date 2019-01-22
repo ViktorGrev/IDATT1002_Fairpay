@@ -1,4 +1,4 @@
-package myapp.dao;
+package myapp.repo;
 
 import myapp.data.MyEntity;
 
@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * DataAccessObject for the MyEntity-entity
+ * Repository for the MyEntity-entity
  *
  * @author nilstes
  */
-public class MyEntityDao {
+public class MyEntityRepo {
 
     /**
      * Get object with given id

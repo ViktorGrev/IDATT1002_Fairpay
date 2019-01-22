@@ -1,6 +1,6 @@
 package myapp.view;
 
-import myapp.dao.MyEntityDao;
+import myapp.repo.MyEntityRepo;
 import myapp.data.MyEntity;
 
 import java.awt.GridLayout;
@@ -25,7 +25,7 @@ public class MyWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new GridLayout(1, 1, 1, 1));
   
-		MyEntityDao dao = new MyEntityDao();
+		MyEntityRepo dao = new MyEntityRepo();
 		MyEntity object = dao.getMyEntity("id");
   
         add(new JLabel(object.getName()));
