@@ -18,7 +18,7 @@ generatepdf:
     paths:
      - wiki.pdf  # Vi gjør fila tilgjengelig som en nedlastbar artefakt (CI/CD -> Pipelines, deretter ikon helt til høyre for bygget). Fila kalles wiki.pdf.
   only: 
-    - web  # Only web gjør at vi kun kjører pipeline når en trykker på knappen "Run pipeline"
+    - web  # Only web gjør at vi kun kjører denne delen av pipeline når en trykker på knappen "Run pipeline"
 
 
 pages:
