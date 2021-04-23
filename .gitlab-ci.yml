@@ -1,6 +1,6 @@
 generatepdf:
   image: ubuntu  # vi kjører dette i en docker container, som kjører Ubuntu Linux
-#  stage: test # her kan man ha med hvilken stage den skal kjøres i
+  stage: deploy # vi kjører den parallelt med å publisere javadoc til Pages
   script:
     - apt-get update  # apt-get er en pakkehåndterer som kan laste ned og installere pakker på linux-system
     - apt-get install -y wget  # installerer et tool som heter "wget", som kan fyre av HTML-requester på kommandolinja
