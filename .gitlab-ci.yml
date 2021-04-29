@@ -14,7 +14,7 @@ generatepdf:
     - export my_url="${CI_PROJECT_URL:8}" # Fjerner https:// fra URLen
     - export final_url="https://gitlab-ci-token:$CI_JOB_TOKEN@$my_url"  # Bruker CI-token for å omgå krav til brukernavn/passord
     - git clone "$final_url.wiki.git"  # hver eneste gitlab-wiki ligger i et eget repo, og kan klones med git som man kloner andre prosjekter
-    - gwtc $CI_PROJECT_TITLE.wiki  # NB! DERSOM DENNE FEILER, ERSTATT MED NAVNET PÅ REPOET (enkelte gitlab-instanser ser ut til å gi denne feil verdi for gruppeprosjekter)
+    - gwtc $CI_PROJECT_NAME.wiki  # NB! DERSOM DENNE FEILER, ERSTATT MED NAVNET PÅ REPOET (enkelte gitlab-instanser ser ut til å gi denne feil verdi for gruppeprosjekter)
     - wkhtmltopdf documentation.html wiki.pdf  # Dette konverterer fra HTML til PDF
   artifacts:
     paths:
