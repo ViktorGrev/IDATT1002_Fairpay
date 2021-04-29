@@ -23,6 +23,8 @@ generatepdf:
     - web  # Only web gjør at vi kun kjører denne delen av pipeline når en trykker på knappen "Run pipeline"
 
 
+# NB! Javadoc genereres IKKE under bygging av prosjektet. Man må kjøre javadoc lokalt og legge til katalogen (med navnet "javadoc")
+# til roten av prosjektet. Ellers vil denne delen feile.
 pages:
   stage: deploy
   script:
