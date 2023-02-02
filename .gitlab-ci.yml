@@ -62,9 +62,12 @@ generatepdf:
 pages:
   stage: rollout
   script:
+    - mvn clean package
+    - mvn javadoc:javadoc
     - mkdir .public
-    - cp -r javadoc/* .public
-    - mv .public public
+    - cp -rf target/site/apidocs/* .public
+    - cp -rf target/jacoco/* .public
+    - mv -f .public public
   artifacts:
     paths:
       - public
