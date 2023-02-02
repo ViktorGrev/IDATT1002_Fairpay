@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - package
+  - rollout
 
 build:
   stage: build
@@ -30,7 +31,7 @@ package:
 
 generatepdf:
   image: ubuntu:20.04  # vi kjører dette i en docker container, som kjører Ubuntu Linux
-  stage: deploy # vi kjører den parallelt med å publisere javadoc til Pages
+  stage: rollout # vi kjører den parallelt med å publisere javadoc til Pages
   script:
     - apt-get update  # apt-get er en pakkehåndterer som kan laste ned og installere pakker på linux-system
     - apt-get install -y wget  # installerer et tool som heter "wget", som kan fyre av HTML-requester på kommandolinja
@@ -56,7 +57,7 @@ generatepdf:
 # NB! Javadoc genereres IKKE under bygging av prosjektet. Man må kjøre javadoc lokalt og legge til katalogen (med navnet "javadoc")
 # til roten av prosjektet. Ellers vil denne delen feile.
 pages:
-  stage: deploy
+  stage: rollout
   script:
     - mkdir .public
     - cp -r javadoc/* .public
