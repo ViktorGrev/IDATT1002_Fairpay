@@ -1,9 +1,9 @@
-package myapp.view;
+package no.ntnu.idatt1002.demo.view;
 
-import myapp.repo.MyEntityRepo;
-import myapp.data.MyEntity;
+import no.ntnu.idatt1002.demo.repo.MyEntityRepo;
+import no.ntnu.idatt1002.demo.data.MyEntity;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -17,7 +17,6 @@ public class MyWindow extends JFrame {
      * Constructor for window
      *
      * @param  title  Title ow the window
-     * @return      the image at the specified URL
      * @see         Image
      */
     public MyWindow(String title) {

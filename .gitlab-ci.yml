@@ -1,3 +1,30 @@
+image: maven:eclipse-temurin
+
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+
+build:
+  stage: build
+  script:
+    - mvn compile
+
+test:
+  stage: test
+  script:
+    - mvn clean test
+
+package:
+  stage: package
+  script:
+    - mvn clean package
+  artifacts:
+    paths:
+      - target/idatt2002demo-1.0-SNAPSHOT-jar-with-dependencies.jar
+
 generatepdf:
   image: ubuntu:20.04  # vi kjører dette i en docker container, som kjører Ubuntu Linux
   stage: deploy # vi kjører den parallelt med å publisere javadoc til Pages
@@ -35,4 +62,4 @@ pages:
     paths:
     - public
   only:
-  - master
+  - web

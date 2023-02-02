@@ -1,6 +1,6 @@
-package myapp;
+package no.ntnu.idatt1002.demo;
 
-import myapp.view.MyWindow;
+import no.ntnu.idatt1002.demo.view.MyWindow;
 
 /**
  * Use this class to start the application

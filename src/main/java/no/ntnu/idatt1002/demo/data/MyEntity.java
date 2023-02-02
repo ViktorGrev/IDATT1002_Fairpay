@@ -1,4 +1,4 @@
-package myapp.data;
+package no.ntnu.idatt1002.demo.data;
 
 import java.util.Date;
 import java.util.List;
