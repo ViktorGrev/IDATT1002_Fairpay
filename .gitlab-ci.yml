@@ -20,6 +20,9 @@ test:
       - target/surefire-reports/
     reports:
       junit: target/surefire-reports/TEST-no.ntnu.idatt1002.demo.repo.MyEntityRepoTest.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: target/jacoco/coverage-reports/jacoco.xml
 
 package:
   stage: package
