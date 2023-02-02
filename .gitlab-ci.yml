@@ -21,9 +21,9 @@ package:
   stage: package
   script:
     - mvn clean package
-  artifacts:
-    paths:
-      - target/idatt2002demo-1.0-SNAPSHOT-jar-with-dependencies.jar
+#  artifacts:
+#    paths:
+#      - target/idatt2002demo-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 generatepdf:
   image: ubuntu:20.04  # vi kjører dette i en docker container, som kjører Ubuntu Linux
