@@ -16,6 +16,9 @@ test:
   stage: test
   script:
     - mvn clean test
+  artifacts:
+    reports:
+      junit: target/surefire-reports/TEST-no.ntnu.idatt1002.demo.repo.MyEntityRepoTest.xml
 
 package:
   stage: package
