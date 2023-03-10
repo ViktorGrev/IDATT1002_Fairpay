@@ -1,18 +1,33 @@
 package no.ntnu.idatt1002.demo;
 
-import no.ntnu.idatt1002.demo.view.MyWindow;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
-/**
- * Use this class to start the application
- * @author nilstes
- */
-public class MyApp {
+public class MyApp extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-    /**
-     * Main method for my application
-     */
-    public static void main(String[] args) throws Exception {
-        MyWindow window = new MyWindow("The Window");
-        window.setVisible(true);
-   }  
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        primaryStage.setTitle("JavaFX App");
+
+        MenuBar menuBar = new MenuBar();
+
+        VBox vBox = new VBox(menuBar);
+
+        Scene scene = new Scene(vBox, 960, 600);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }
+
+
+
