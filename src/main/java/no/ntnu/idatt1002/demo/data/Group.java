@@ -5,8 +5,8 @@ import no.ntnu.idatt1002.demo.data.person.Member;
 import java.util.HashMap;
 
 public class Group {
-  HashMap<Member.getId(),Member> gruop = new HashMap<Member.getId(),Member>();
-  private int groupId;
+  HashMap<Long,Member> group = new HashMap<Long,Member>();
+  private final int groupId;
   private String groupName;
 
 
@@ -16,23 +16,17 @@ public class Group {
   }
 
   public boolean addMember(Member member) {
-    if (group.books.entrySet().stream()
-            .filter(e -> (member.getId).equals(e.getValue()))
-            .map(group.Entry::getKey)
-            .findFirst()){
+    if (group.containsKey(member.getPersonId())){
       return false;
     } else {
-      group.put(member.getId(), member);
+      group.put(member.getPersonId(), member);
       return true;
     }
   }
 
   public boolean removeMember(Member member) {
-    if(group.books.entrySet().stream()
-            .filter(e -> (member.getId).equals(e.getValue()))
-            .map(group.Entry::getKey)
-            .findFirst()){
-      group.remove(member.getId());
+    if(group.containsKey(member.getPersonId())){
+      group.remove(member.getPersonId());
       return true;
     } else {
       return false;
@@ -41,10 +35,6 @@ public class Group {
 
   public int getGroupId() {
     return groupId;
-  }
-
-  public void setGroupId(int groupId) {
-    this.groupId = groupId;
   }
 
   public String getGroupName() {
