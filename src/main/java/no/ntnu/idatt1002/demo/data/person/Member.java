@@ -8,6 +8,10 @@ public final class Member {
     private final Date joinDate;
 
     public Member(long personId, Date joinDate) {
+        if(personId < 0)
+            throw new IllegalArgumentException("Person id cannot be negative");
+        if(joinDate == null)
+            throw new IllegalArgumentException("Join date cannot be null");
         this.personId = personId;
         this.joinDate = joinDate;
     }
