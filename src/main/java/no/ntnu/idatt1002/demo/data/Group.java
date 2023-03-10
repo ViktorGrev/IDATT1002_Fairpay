@@ -41,6 +41,10 @@ public class Group {
     return groupName;
   }
 
+  public HashMap<Long, Member> getGroup() {
+    return group;
+  }
+
   public void setGroupName(String groupName) {
     this.groupName = groupName;
   }
