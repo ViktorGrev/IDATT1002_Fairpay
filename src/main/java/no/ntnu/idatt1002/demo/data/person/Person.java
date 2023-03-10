@@ -13,6 +13,16 @@ public final class Person {
     private final Budget budget;
 
     private Person(String username, String password, Date registerDate, long phoneNumber, Budget budget) {
+        if(username == null || username.isBlank())
+            throw new IllegalArgumentException("Username cannot be null or empty");
+        if(password == null || password.isBlank())
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        if(registerDate == null)
+            throw new IllegalArgumentException("Register date cannot be null");
+        if(phoneNumber < 0)
+            throw new IllegalArgumentException("Phone number cannot be negative");
+        if(budget == null)
+            throw new IllegalArgumentException("Budget cannot be null");
         this.username = username;
         this.password = password;
         this.registerDate = registerDate;
