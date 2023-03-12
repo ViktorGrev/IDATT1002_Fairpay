@@ -7,9 +7,19 @@ import java.util.List;
 
 public interface PersonDAO {
 
+    /**
+     * Adds a person.
+     * @param   person the person
+     * @return  true if the person was added
+     */
     boolean add(Person person);
 
-    Person find(int personId);
+    /**
+     * Finds a person with the given ID.
+     * @param   id the id
+     * @return  a person with the given ID or null if no one has the ID
+     */
+    Person find(int id);
 
-    List<Person> find(Collection<Integer> personIds);
+    List<Person> find(Collection<Integer> ids);
 }
