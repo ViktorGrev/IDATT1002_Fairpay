@@ -1,0 +1,40 @@
+package no.ntnu.idatt1002.demo.dao;
+
+import no.ntnu.idatt1002.demo.dao.sqlite.SQLitePersonDAO;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+public final class Database {
+
+    public static final Logger logger = Logger.getLogger(Database.class.getSimpleName());
+    private static final Map<Class<?>, DAO> daoMap = new HashMap<>();
+
+    private static void setup() {
+        for(DAO dao : daoMap.values()) {
+            logger.info("Loading " + dao.getClass().getSimpleName());
+            dao.setup();
+        }
+    }
+
+    public static PersonDAO getPersonDAO() {
+        return getDAO(PersonDAO.class);
+    }
+
+    private static void registerDAO(Class<?> daoClass, DAO dao) {
+        logger.info("Registering implementation " + dao.getClass().getSimpleName() + " for " + daoClass.getSimpleName());
+        daoMap.put(daoClass, dao);
+    }
+
+    private static <T> T getDAO(Class<T> daoClass) {
+        if(!daoMap.containsKey(daoClass))
+            throw new IllegalArgumentException(daoClass.getSimpleName() + " is not a registered DAO");
+        return daoClass.cast(daoMap.get(daoClass));
+    }
+
+    static {
+        registerDAO(PersonDAO.class, new SQLitePersonDAO());
+        setup();
+    }
+}
