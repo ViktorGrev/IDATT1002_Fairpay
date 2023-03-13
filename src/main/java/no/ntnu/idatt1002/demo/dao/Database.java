@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.demo.dao;
 
-import no.ntnu.idatt1002.demo.dao.sqlite.SQLitePersonDAO;
+import no.ntnu.idatt1002.demo.dao.sqlite.SQLiteUserDAO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +18,8 @@ public final class Database {
         }
     }
 
-    public static PersonDAO getPersonDAO() {
-        return getDAO(PersonDAO.class);
+    public static UserDAO getUserDAO() {
+        return getDAO(UserDAO.class);
     }
 
     private static void registerDAO(Class<?> daoClass, DAO dao) {
@@ -34,7 +34,7 @@ public final class Database {
     }
 
     static {
-        registerDAO(PersonDAO.class, new SQLitePersonDAO());
+        registerDAO(UserDAO.class, new SQLiteUserDAO());
         setup();
     }
 }

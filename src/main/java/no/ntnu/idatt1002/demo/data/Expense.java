@@ -5,26 +5,26 @@ import java.util.Date;
 
 public class Expense {
 
-    private final long personId;
+    private final long userId;
     private final ExpenseType type;
     private final String name;
     private final BigDecimal amount;
     private final Date date;
 
-    public Expense(ExpenseType type, BigDecimal amount, long personId) {
-        this(personId, type, null, amount);
+    public Expense(ExpenseType type, BigDecimal amount, long userId) {
+        this(userId, type, null, amount);
     }
 
-    public Expense(long personId, ExpenseType type, String name, BigDecimal amount) {
-        this.personId = personId;
+    public Expense(long userId, ExpenseType type, String name, BigDecimal amount) {
+        this.userId = userId;
         this.type = type;
         this.name = name;
         this.amount = amount;
         this.date = new Date();
     }
 
-    public long getPersonId() {
-        return personId;
+    public long getUserId() {
+        return userId;
     }
 
     public ExpenseType getType() {
@@ -45,33 +45,5 @@ public class Expense {
 
     public Date getDate() {
         return date;
-    }
-
-    public static class Builder {
-
-        private long personId;
-        private ExpenseType type;
-        private String name;
-        private BigDecimal amount;
-
-        public void personId(long personId) {
-            this.personId = personId;
-        }
-
-        public void type(ExpenseType type) {
-            this.type = type;
-        }
-
-        public void name(String name) {
-            this.name = name;
-        }
-
-        public void amount(BigDecimal amount) {
-            this.amount = amount;
-        }
-
-        public Expense build() {
-            return new Expense(personId, type, name, amount);
-        }
     }
 }

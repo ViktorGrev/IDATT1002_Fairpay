@@ -1,20 +1,20 @@
 package no.ntnu.idatt1002.demo.dao.sqlite;
 
-import no.ntnu.idatt1002.demo.dao.PersonDAO;
+import no.ntnu.idatt1002.demo.dao.UserDAO;
 import no.ntnu.idatt1002.demo.data.Budget;
-import no.ntnu.idatt1002.demo.data.person.Person;
+import no.ntnu.idatt1002.demo.data.user.User;
 
 import java.sql.*;
 import java.util.Collection;
 import java.util.List;
 
-public final class SQLitePersonDAO extends SQLiteDAO implements PersonDAO {
+public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
 
     // Implementation test
 
-    private static final String CREATE_PERSONS = """
-                CREATE TABLE IF NOT EXISTS persons (
-            	personId integer PRIMARY KEY AUTOINCREMENT,
+    private static final String CREATE_USERS = """
+                CREATE TABLE IF NOT EXISTS users (
+            	userId integer PRIMARY KEY AUTOINCREMENT,
             	username text(16) UNIQUE NOT NULL,
             	password text(60) NOT NULL,
             	registerDate integer NOT NULL,
@@ -26,22 +26,19 @@ public final class SQLitePersonDAO extends SQLiteDAO implements PersonDAO {
     public void setup() {
         try(Connection connection = getConnection();
             Statement statement = connection.createStatement()) {
-            statement.execute(CREATE_PERSONS);
+            statement.execute(CREATE_USERS);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static final String INSERT_PERSON = """
-                INSERT INTO persons (username, password, registerDate, phoneNumber, budgetId)
+                INSERT INTO users (username, password, registerDate, phoneNumber, budgetId)
                 VALUES (?, ?, ?, ?, ?);
             """;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public boolean add(Person person) {
+    public boolean insert(User person) {
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
             statement.setString(1, person.getUsername());
@@ -55,21 +52,18 @@ public final class SQLitePersonDAO extends SQLiteDAO implements PersonDAO {
         }
     }
 
-    private static final String FIND_PERSON = """
-                SELECT * FROM persons WHERE personId = ?;
+    private static final String FIND_ONE = """
+                SELECT * FROM users WHERE personId = ?;
             """;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Person find(int id) {
+    public User find(int id) {
         try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_PERSON)) {
+            PreparedStatement statement = connection.prepareStatement(FIND_ONE)) {
             statement.setInt(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
-                    return new Person(
+                    return new User(
                             resultSet.getInt("id"),
                             resultSet.getString("username"),
                             resultSet.getString("password"),
@@ -85,7 +79,7 @@ public final class SQLitePersonDAO extends SQLiteDAO implements PersonDAO {
     }
 
     @Override
-    public List<Person> find(Collection<Integer> ids) {
+    public List<User> find(Collection<Integer> ids) {
         return null;
     }
 }
