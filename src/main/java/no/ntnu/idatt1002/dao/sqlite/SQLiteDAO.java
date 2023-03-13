@@ -1,6 +1,6 @@
-package no.ntnu.idatt1002.demo.dao.sqlite;
+package no.ntnu.idatt1002.dao.sqlite;
 
-import no.ntnu.idatt1002.demo.dao.DAO;
+import no.ntnu.idatt1002.dao.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

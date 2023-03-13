@@ -1,6 +1,6 @@
-package no.ntnu.idatt1002.demo.dao;
+package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.demo.dao.sqlite.SQLiteUserDAO;
+import no.ntnu.idatt1002.dao.sqlite.SQLiteUserDAO;
 
 import java.util.HashMap;
 import java.util.Map;

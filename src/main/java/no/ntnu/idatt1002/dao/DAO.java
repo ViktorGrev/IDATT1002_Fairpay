@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.demo.dao;
+package no.ntnu.idatt1002.dao;
 
 /**
  * The classes derived from this class provides an abstraction layer

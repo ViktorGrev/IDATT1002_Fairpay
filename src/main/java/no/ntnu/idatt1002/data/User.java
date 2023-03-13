@@ -1,6 +1,6 @@
-package no.ntnu.idatt1002.demo.data.user;
+package no.ntnu.idatt1002.data;
 
-import no.ntnu.idatt1002.demo.data.Budget;
+import no.ntnu.idatt1002.data.economy.Budget;
 
 import java.util.Date;
 
