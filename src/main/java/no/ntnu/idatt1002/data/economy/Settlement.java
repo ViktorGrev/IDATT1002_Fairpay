@@ -1,16 +1,16 @@
 package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.data.Member;
+import no.ntnu.idatt1002.data.User;
 
 import java.util.ArrayList;
 
 public class Settlement {
   private final ArrayList<Expense> expenses;
-  private final ArrayList<Member> members;
+  private final ArrayList<User> members;
   private String settlementName;
   private final long settlementId;
 
-  public Settlement(String settlementName, long settlementId, ArrayList<Member> members) {
+  public Settlement(String settlementName, long settlementId, ArrayList<User> members) {
     if(settlementName.isBlank()){
       throw new IllegalArgumentException("The settlement name cannot be blank");
     } if (settlementId < 0){
@@ -61,7 +61,7 @@ public class Settlement {
     return settlementId;
   }
 
-  public ArrayList<Member> getMembers() {
+  public ArrayList<User> getMembers() {
     return members;
   }
 }
