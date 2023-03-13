@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.demo.data;
 
-import no.ntnu.idatt1002.demo.data.person.Member;
+import no.ntnu.idatt1002.demo.data.user.Member;
 
 import java.util.HashMap;
 
@@ -16,17 +16,17 @@ public class Group {
   }
 
   public boolean addMember(Member member) {
-    if (group.containsKey(member.getPersonId())){
+    if (group.containsKey(member.getUserId())){
       return false;
     } else {
-      group.put(member.getPersonId(), member);
+      group.put(member.getUserId(), member);
       return true;
     }
   }
 
   public boolean removeMember(Member member) {
-    if(group.containsKey(member.getPersonId())){
-      group.remove(member.getPersonId());
+    if(group.containsKey(member.getUserId())){
+      group.remove(member.getUserId());
       return true;
     } else {
       return false;
