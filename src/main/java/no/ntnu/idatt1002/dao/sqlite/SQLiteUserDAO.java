@@ -53,18 +53,18 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
     }
 
     private static final String FIND_ONE = """
-                SELECT * FROM users WHERE personId = ?;
+                SELECT * FROM users WHERE userId = ?;
             """;
 
     @Override
-    public User find(int id) {
+    public User find(long id) {
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_ONE)) {
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
                     return new User(
-                            resultSet.getInt("id"),
+                            resultSet.getLong("id"),
                             resultSet.getString("username"),
                             resultSet.getString("password"),
                             resultSet.getDate("date"),
@@ -79,7 +79,7 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
     }
 
     @Override
-    public List<User> find(Collection<Integer> ids) {
+    public List<User> find(Collection<Long> ids) {
         return null;
     }
 }
