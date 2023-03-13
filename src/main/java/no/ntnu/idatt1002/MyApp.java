@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.demo;
+package no.ntnu.idatt1002;
 
 import javafx.application.Application;
 import javafx.scene.Group;

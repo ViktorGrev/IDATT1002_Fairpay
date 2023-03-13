@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.demo.data;
+package no.ntnu.idatt1002.data.economy;
 
 import java.util.ArrayList;
 import java.util.Collections;

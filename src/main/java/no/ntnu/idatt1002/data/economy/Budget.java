@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.demo.data;
+package no.ntnu.idatt1002.data.economy;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

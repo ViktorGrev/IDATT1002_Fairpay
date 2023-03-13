@@ -1,6 +1,4 @@
-package no.ntnu.idatt1002.demo.data;
-
-import no.ntnu.idatt1002.demo.data.user.Member;
+package no.ntnu.idatt1002.data;
 
 import java.util.HashMap;
 

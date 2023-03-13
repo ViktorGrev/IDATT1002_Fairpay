@@ -1,8 +1,8 @@
-package no.ntnu.idatt1002.demo.dao.sqlite;
+package no.ntnu.idatt1002.dao.sqlite;
 
-import no.ntnu.idatt1002.demo.dao.UserDAO;
-import no.ntnu.idatt1002.demo.data.Budget;
-import no.ntnu.idatt1002.demo.data.user.User;
+import no.ntnu.idatt1002.dao.UserDAO;
+import no.ntnu.idatt1002.data.economy.Budget;
+import no.ntnu.idatt1002.data.User;
 
 import java.sql.*;
 import java.util.Collection;

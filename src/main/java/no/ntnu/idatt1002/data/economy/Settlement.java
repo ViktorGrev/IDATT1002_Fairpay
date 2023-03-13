@@ -1,6 +1,6 @@
-package no.ntnu.idatt1002.demo.data;
+package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.demo.data.user.Member;
+import no.ntnu.idatt1002.data.Member;
 
 import java.util.ArrayList;
 
