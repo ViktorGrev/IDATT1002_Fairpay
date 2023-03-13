@@ -19,7 +19,8 @@ class SettlementTest {
     members.add(member1);
     members.add(member2);
     BigDecimal bd = new BigDecimal(250);
-    Expense expense = new Expense(ExpenseType.TYPE3,"expense1",bd);
+    long personId = 123123;
+    Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
     Settlement s = new Settlement("Settlement1",123123, members);
     s.addExpense(expense);
     assertTrue(s.getExpenses().contains(expense));
@@ -33,8 +34,9 @@ class SettlementTest {
     members.add(member1);
     members.add(member2);
     BigDecimal bd = new BigDecimal(250);
-    Expense expense = new Expense(ExpenseType.TYPE3,"expense1",bd);
-    Expense expense2 = new Expense(ExpenseType.TYPE2,"expense2",bd);
+    long personId = 123123;
+    Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
+    Expense expense2 = new Expense(ExpenseType.TYPE2,bd, personId);
     Settlement s = new Settlement("Settlement1",123123, members);
     s.addExpense(expense);
     assertTrue(s.getExpenses().contains(expense));
@@ -51,8 +53,9 @@ class SettlementTest {
     members.add(member1);
     members.add(member2);
     BigDecimal bd = new BigDecimal(250);
-    Expense expense = new Expense(ExpenseType.TYPE3,"expense1",bd);
-    Expense expense2 = new Expense(ExpenseType.TYPE2,"expense2",bd);
+    long personId = 123123;
+    Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
+    Expense expense2 = new Expense(ExpenseType.TYPE2,bd, personId);
     Settlement s = new Settlement("Settlement1",123123, members);
     s.addExpense(expense);
     s.addExpense(expense2);
@@ -113,8 +116,9 @@ class SettlementTest {
     members.add(member2);
     Settlement s = new Settlement("Settlement1",123123, members);
     BigDecimal bd = new BigDecimal(250);
-    Expense e = new Expense(ExpenseType.TYPE6, bd);
-    Expense e2 = new Expense(ExpenseType.TYPE6, bd);
+    long personId = 123123;
+    Expense e = new Expense(ExpenseType.TYPE6, bd, personId);
+    Expense e2 = new Expense(ExpenseType.TYPE6, bd, personId);
     s.addExpense(e);
     s.addExpense(e2);
     assertEquals(2, s.getExpenses().size());
