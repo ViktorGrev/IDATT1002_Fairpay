@@ -13,7 +13,7 @@ public class Settlement {
   public Settlement(String settlementName, long settlementId, ArrayList<Member> members) {
     if(settlementName.isBlank()){
       throw new IllegalArgumentException("The settlement name cannot be blank");
-    } if (settlementId > 0){
+    } if (settlementId < 0){
       throw new IllegalArgumentException("The settlementID cannot be below zero");
     } if (members.isEmpty()){
       throw new IllegalArgumentException("No members are added to the settlement");
