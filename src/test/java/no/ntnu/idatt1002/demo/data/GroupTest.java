@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.demo.data;
 
-import no.ntnu.idatt1002.demo.data.person.Member;
+import no.ntnu.idatt1002.demo.data.user.Member;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
