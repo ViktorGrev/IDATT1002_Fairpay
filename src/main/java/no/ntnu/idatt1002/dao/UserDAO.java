@@ -19,12 +19,12 @@ public interface UserDAO {
      * @param   id the id
      * @return  a user with the given ID or null if no one has the ID
      */
-    User find(int id);
+    User find(long id);
 
     /**
      * Finds a list of users with the given IDs.
      * @param   ids the ids
      * @return  a list of users with the given IDs.
      */
-    List<User> find(Collection<Integer> ids);
+    List<User> find(Collection<Long> ids);
 }
