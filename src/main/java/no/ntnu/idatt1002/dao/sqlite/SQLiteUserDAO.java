@@ -68,8 +68,8 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
                             resultSet.getString("username"),
                             resultSet.getString("password"),
                             resultSet.getDate("date"),
-                            resultSet.getInt("phoneNumber"),
-                            new Budget());
+                            resultSet.getInt("phoneNumber")
+                            );
                 }
             }
         } catch (SQLException e) {
