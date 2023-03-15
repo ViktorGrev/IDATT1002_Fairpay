@@ -6,6 +6,7 @@ import no.ntnu.idatt1002.data.economy.Settlement;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,11 +16,11 @@ class SettlementTest {
 
   @Test
   void addExpenseTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     BigDecimal bd = new BigDecimal(250);
     long personId = 123123;
     Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
@@ -30,11 +31,11 @@ class SettlementTest {
 
   @Test
   void removeExpenseTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     BigDecimal bd = new BigDecimal(250);
     long personId = 123123;
     Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
@@ -49,11 +50,11 @@ class SettlementTest {
 
   @Test
   void getSettlementsTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     BigDecimal bd = new BigDecimal(250);
     long personId = 123123;
     Expense expense = new Expense(ExpenseType.TYPE3,bd, personId);
@@ -66,22 +67,22 @@ class SettlementTest {
 
   @Test
   void getSettlementNameTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     Settlement s = new Settlement("Settlement1",123123, members);
     assertEquals("Settlement1",s.getSettlementName());
   }
 
   @Test
   void setSettlementNameTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     Settlement s = new Settlement("Settlement1",123123, members);
     s.setSettlementName("Settlement2");
     assertEquals("Settlement2",s.getSettlementName());
@@ -89,33 +90,33 @@ class SettlementTest {
 
   @Test
   void getSettlementIdTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     Settlement s = new Settlement("Settlement1",123123, members);
     assertEquals(123123,s.getSettlementId());
   }
 
   @Test
   void getMembersTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     Settlement s = new Settlement("Settlement1",123123, members);
     assertEquals(2, s.getMembers().size());
   }
 
   @Test
   void getExpensesTest() {
-    Member member1 = new Member(123123, new Date(12));
-    Member member2 = new Member(1231234, new Date(11));
-    ArrayList<Member> members = new ArrayList<>();
-    members.add(member1);
-    members.add(member2);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    ArrayList<User> members = new ArrayList<>();
+    members.add(newMember);
+    members.add(newMember2);
     Settlement s = new Settlement("Settlement1",123123, members);
     BigDecimal bd = new BigDecimal(250);
     long personId = 123123;
