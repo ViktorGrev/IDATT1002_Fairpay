@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.data;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The Group class represents a group of members. It maintains a HashMap of Member objects
@@ -8,7 +8,7 @@ import java.util.HashMap;
  * group ID and group name.
  */
 public class Group {
-  HashMap<Long,Member> group = new HashMap<Long,Member>(); //The HashMap of Member objects representing the group
+  ArrayList<User> group = new ArrayList<>(); //The HashMap of Member objects representing the group
   private final int groupId; //The ID of the group
   private String groupName; //The name of the group
 
@@ -26,14 +26,14 @@ public class Group {
   /**
    Adds a member to the group.
    *
-   * @param member the Member object to add to the group
+   * @param user the Member object to add to the group
    * @return true if the member was successfully added, false if the member is already in the group
    */
-  public boolean addMember(Member member) {
-    if (group.containsKey(member.getUserId())){
+  public boolean addMember(User user) {
+    if (memberExists(user.getId())){
       return false;
     } else {
-      group.put(member.getUserId(), member);
+      group.add(user);
       return true;
     }
   }
@@ -41,16 +41,20 @@ public class Group {
   /**
    * Removes a member from the group.
    *
-   * @param member the Member object to remove from the group
+   * @param user the Member object to remove from the group
    * @return true if the member was successfully removed, false if the member is not in the group
    */
-  public boolean removeMember(Member member) {
-    if(group.containsKey(member.getUserId())){
-      group.remove(member.getUserId());
+  public boolean removeMember(User user) {
+    if(group.contains(user)){
+      group.remove(user);
       return true;
     } else {
       return false;
     }
+  }
+
+  public boolean memberExists(Long userId) {
+    return group.stream().anyMatch(user -> user.getId() == userId);
   }
 
   /**
@@ -76,7 +80,7 @@ public class Group {
    *
    * @return the HashMap of Member objects representing the group
    */
-  public HashMap<Long, Member> getGroup() {
+  public ArrayList<User> getGroup() {
     return group;
   }
 
