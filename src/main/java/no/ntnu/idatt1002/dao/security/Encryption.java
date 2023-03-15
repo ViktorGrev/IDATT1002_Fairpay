@@ -9,7 +9,7 @@ public final class Encryption {
     }
 
     public static boolean verify(String password) {
-        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
-        return
+        //BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), bcryptHashString);
+        return false;
     }
 }
