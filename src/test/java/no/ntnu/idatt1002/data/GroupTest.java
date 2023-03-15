@@ -2,6 +2,7 @@ package no.ntnu.idatt1002.data;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,15 +11,17 @@ class GroupTest {
 
   @Test
   void addMemberTest() {
-    Member newMember = new Member(123123,new Date(12-11-1212));
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
     Group group = new Group(123131,"NewGroup");
     group.addMember(newMember);
+    assertFalse(group.addMember(newMember2));
     assertFalse(group.getGroup().isEmpty());
   }
 
   @Test
   void removeMemberTest() {
-    Member newMember = new Member(123123,new Date(12-11-1212));
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
     Group group = new Group(123131,"NewGroup");
     group.addMember(newMember);
     assertFalse(group.getGroup().isEmpty());
