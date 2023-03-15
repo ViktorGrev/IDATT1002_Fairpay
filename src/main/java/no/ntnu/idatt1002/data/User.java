@@ -1,7 +1,5 @@
 package no.ntnu.idatt1002.data;
 
-import no.ntnu.idatt1002.data.economy.Budget;
-
 import java.util.Date;
 
 /**
@@ -14,7 +12,6 @@ public final class User {
     private final String password; // The password of the user
     private final Date registerDate; // The date when the user registered
     private final long phoneNumber; // The phone number of the user
-    private final Budget budget; // The budget of the user
 
     /**
      * Constructs a new User object with the specified id, username, password, register date, phone number and budget.
@@ -24,11 +21,10 @@ public final class User {
      * @param password the password of the user. Cannot be null or blank.
      * @param registerDate the date when the user registered. Cannot be null.
      * @param phoneNumber the phone number of the user. Cannot be negative.
-     * @param budget the budget of the user. Cannot be null.
      * @throws IllegalArgumentException if the username is null or blank, the password is null or blank,
      * the register date is null, the phone number is negative or the budget is null.
      */
-    public User(long id, String username, String password, Date registerDate, long phoneNumber, Budget budget) {
+    public User(long id, String username, String password, Date registerDate, long phoneNumber) {
         if(username == null || username.isBlank())
             throw new IllegalArgumentException("Username cannot be null or blank");
         if(password == null || password.isBlank())
@@ -37,14 +33,11 @@ public final class User {
             throw new IllegalArgumentException("Register date cannot be null");
         if(phoneNumber < 0)
             throw new IllegalArgumentException("Phone number cannot be negative");
-        if(budget == null)
-            throw new IllegalArgumentException("Budget cannot be null");
         this.id = id;
         this.username = username;
         this.password = password;
         this.registerDate = registerDate;
         this.phoneNumber = phoneNumber;
-        this.budget = budget;
     }
 
     /**
@@ -90,14 +83,5 @@ public final class User {
      */
     public long getPhoneNumber() {
         return phoneNumber;
-    }
-
-    /**
-     * Returns the budget of the user.
-     *
-     * @return the budget of the user.
-     */
-    public Budget getBudget() {
-        return budget;
     }
 }
