@@ -1,5 +1,6 @@
 package no.ntnu.idatt1002.dao;
 
+import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.data.User;
 
 import java.util.Collection;
@@ -27,4 +28,13 @@ public interface UserDAO {
      * @return  a list of users with the given IDs.
      */
     List<User> find(Collection<Long> ids);
+
+    /**
+     * Authenticates a user with a given username and password.
+     * @param   username the username
+     * @param   password the password
+     * @return  the id of the user with the specified username and password
+     * @throws  AuthException if the password does not match or the user is not found
+     */
+    long authenticate(String username, String password) throws AuthException;
 }

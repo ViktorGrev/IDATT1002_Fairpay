@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.UserDAO;
+import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.data.economy.Budget;
 import no.ntnu.idatt1002.data.User;
 
@@ -81,5 +82,27 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
     @Override
     public List<User> find(Collection<Long> ids) {
         return null;
+    }
+
+    private static final String USER_AUTH = """
+                SELECT * FROM users WHERE username = ? AND password = ?;
+            """;
+
+    @Override
+    public long authenticate(String username, String password) throws AuthException {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(USER_AUTH)) {
+            String encrypted = "";
+            statement.setString(1, username);
+            statement.setString(2, encrypted);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return resultSet.getLong("userId");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        throw new AuthException("No user found");
     }
 }
