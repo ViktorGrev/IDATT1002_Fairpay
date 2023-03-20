@@ -20,7 +20,7 @@ public interface UserDAO {
      * @param   id the id
      * @return  a user with the given ID or null if no one has the ID
      */
-    User find(long id);
+    User find(long userId);
 
     /**
      * Finds a list of users with the given IDs.
