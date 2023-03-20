@@ -16,7 +16,7 @@ class GroupTest {
     Group group = new Group(123131,"NewGroup");
     group.addMember(newMember);
     assertFalse(group.addMember(newMember2));
-    assertFalse(group.getGroup().isEmpty());
+    assertFalse(group.getMembers().isEmpty());
   }
 
   @Test
@@ -24,27 +24,27 @@ class GroupTest {
     User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
     Group group = new Group(123131,"NewGroup");
     group.addMember(newMember);
-    assertFalse(group.getGroup().isEmpty());
+    assertFalse(group.getMembers().isEmpty());
     group.removeMember(newMember);
-    assertTrue(group.getGroup().isEmpty());
+    assertTrue(group.getMembers().isEmpty());
   }
 
   @Test
   void getGroupIdTest() {
     Group group = new Group(123131,"NewGroup");
-    assertEquals(123131, group.getGroupId());
+    assertEquals(123131, group.getId());
   }
 
   @Test
   void getGroupNameTest() {
     Group group = new Group(123131,"NewGroup");
-    assertEquals("NewGroup", group.getGroupName());
+    assertEquals("NewGroup", group.getName());
   }
 
   @Test
   void setGroupNameTest() {
     Group group = new Group(123131,"NewGroup");
-    group.setGroupName("NewGroup2");
-    assertEquals("NewGroup2", group.getGroupName());
+    group.setName("NewGroup2");
+    assertEquals("NewGroup2", group.getName());
   }
 }

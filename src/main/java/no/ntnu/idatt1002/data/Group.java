@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Group class represents a group of members. It maintains a HashMap of Member objects
@@ -8,9 +9,9 @@ import java.util.ArrayList;
  * group ID and group name.
  */
 public class Group {
-  ArrayList<User> group = new ArrayList<>(); //The HashMap of Member objects representing the group
+  private final List<User> members = new ArrayList<>(); //The HashMap of Member objects representing the group
   private final int groupId; //The ID of the group
-  private String groupName; //The name of the group
+  private String name; //The name of the group
 
   /**
    Constructs a new Group object with the specified group ID and group name.
@@ -18,9 +19,9 @@ public class Group {
    * @param groupId the ID of the group
    * @param groupName the name of the group
    */
-  public Group(int groupId, String groupName) {
+  public Group(int groupId, String name) {
     this.groupId = groupId;
-    this.groupName = groupName;
+    this.name = name;
   }
 
   /**
@@ -30,12 +31,9 @@ public class Group {
    * @return true if the member was successfully added, false if the member is already in the group
    */
   public boolean addMember(User user) {
-    if (memberExists(user.getId())){
-      return false;
-    } else {
-      group.add(user);
-      return true;
-    }
+    if(isMember(user.getId())) return false;
+    members.add(user);
+    return true;
   }
 
   /**
@@ -45,16 +43,11 @@ public class Group {
    * @return true if the member was successfully removed, false if the member is not in the group
    */
   public boolean removeMember(User user) {
-    if(group.contains(user)){
-      group.remove(user);
-      return true;
-    } else {
-      return false;
-    }
+      return members.removeIf(member -> member.getId() == user.getId());
   }
 
-  public boolean memberExists(Long userId) {
-    return group.stream().anyMatch(user -> user.getId() == userId);
+  public boolean isMember(long userId) {
+    return members.stream().anyMatch(user -> user.getId() == userId);
   }
 
   /**
@@ -62,7 +55,7 @@ public class Group {
    *
    * @return the ID of the group
    */
-  public int getGroupId() {
+  public int getId() {
     return groupId;
   }
 
@@ -71,8 +64,8 @@ public class Group {
    *
    * @return the name of the group
    */
-  public String getGroupName() {
-    return groupName;
+  public String getName() {
+    return name;
   }
 
   /**
@@ -80,8 +73,8 @@ public class Group {
    *
    * @return the HashMap of Member objects representing the group
    */
-  public ArrayList<User> getGroup() {
-    return group;
+  public List<User> getMembers() {
+    return members;
   }
 
   /**
@@ -89,7 +82,7 @@ public class Group {
    *
    * @param groupName the new name of the group
    */
-  public void setGroupName(String groupName) {
-    this.groupName = groupName;
+  public void setName(String name) {
+    this.name = name;
   }
 }

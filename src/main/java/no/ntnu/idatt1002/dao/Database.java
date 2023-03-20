@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.dao;
 
 import no.ntnu.idatt1002.dao.sqlite.SQLiteUserDAO;
+import no.ntnu.idatt1002.dao.sqlite.SQLiteGroupDAO;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,10 @@ public final class Database {
         return getDAO(UserDAO.class);
     }
 
+    public static GroupDAO getGroupDAO() {
+        return getDAO(GroupDAO.class);
+    }
+
     private static void registerDAO(Class<?> daoClass, DAO dao) {
         logger.info("Registering implementation " + dao.getClass().getSimpleName() + " for " + daoClass.getSimpleName());
         daoMap.put(daoClass, dao);
@@ -35,6 +40,7 @@ public final class Database {
 
     static {
         registerDAO(UserDAO.class, new SQLiteUserDAO());
+        registerDAO(GroupDAO.class, new SQLiteGroupDAO());
         setup();
     }
 }
