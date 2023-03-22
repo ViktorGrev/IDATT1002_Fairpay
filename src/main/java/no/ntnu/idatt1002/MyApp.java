@@ -20,22 +20,22 @@ public class MyApp extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("JavaFX App");
 
-        /*AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("test.fxml"));
-        Scene scene = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("test.fxml")));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("test.fxml"));
+        Scene scene = new Scene(pane);
 
         primaryStage.setScene(scene);
-        primaryStage.show();*/
+        primaryStage.show();
 
-        try {
-            FXMLLoader loader = SceneSwitcher.getLoader("frontpage");
+        /*try {
+            FXMLLoader loader = SceneSwitcher.getLoader("test");
             SceneSwitcher.setScene(new Scene(loader.load()));
-            SceneSwitcher.setCurrentScene("frontpage");
+            SceneSwitcher.setCurrentScene("test");
             primaryStage.setScene(SceneSwitcher.getScene());
             primaryStage.setTitle("JavaFX App");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         /*try {

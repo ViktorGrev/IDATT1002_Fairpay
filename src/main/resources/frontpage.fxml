@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="592.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.frontpageController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="592.0" styleClass="backgroundColor" stylesheets="@style/stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button alignment="CENTER" layoutX="459.0" layoutY="55.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="20.0" prefWidth="113.0" style="-fx-background-color: #4a4848; -fx-text-fill: #fafafa; -fx-font-size: 15px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-family: Roboto;" text="Log in" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="459.0" layoutY="55.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="113.0" style="-fx-background-color: #793f3f; -fx-text-fill: #fafafa; -fx-font-size: 15px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-family: Roboto;" text="Log in" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="11.0" />
          </font>
          <effect>
-            <DropShadow blurType="GAUSSIAN" />
+            <InnerShadow>
+               <color>
+                  <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+               </color>
+            </InnerShadow>
          </effect>
       </Button>
       <ImageView fitHeight="143.0" fitWidth="293.0" layoutX="158.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">

@@ -1,142 +1,59 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.GroupDAO;
-import no.ntnu.idatt1002.dao.exception.DAOException;
 import no.ntnu.idatt1002.data.Group;
-import no.ntnu.idatt1002.data.User;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
+public final class SQLiteGroupDAO extends SQLiteDAO implements GroupDAO {
 
     private static final String CREATE_GROUPS = """
                 CREATE TABLE IF NOT EXISTS groups (
             	groupId integer PRIMARY KEY AUTOINCREMENT,
-            	groupName text(32) NOT NULL
-            );""";
-
-    private static final String CREATE_GROUP_LINK = """
-                CREATE TABLE IF NOT EXISTS groupUsers (
-                groupId integer NOT NULL,
-            	userId integer NOT NULL,
-            	FOREIGN KEY (groupId) REFERENCES groups(groupId),
-            	FOREIGN KEY (userId) REFERENCES users(userId),
-            	PRIMARY KEY (groupId, userId)
+            	name text(16) UNIQUE NOT NULL,
+            	createdDate integer NOT NULL
             );""";
 
     @Override
     public void setup() {
         try(Connection connection = getConnection();
             Statement statement = connection.createStatement()) {
-            statement.addBatch(CREATE_GROUPS);
-            statement.addBatch(CREATE_GROUP_LINK);
-            statement.executeBatch();
+            statement.execute(CREATE_GROUPS);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private static final String INSERT_GROUP = """
-                INSERT INTO groups (groupName)
-                VALUES (?);
+                INSERT INTO groups (username, password, registerDate, phoneNumber)
+                VALUES (?, ?, ?, ?);
             """;
 
     @Override
-    public Group create(String name) {
+    public boolean insert(Group group) {
         try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERT_GROUP, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, name);
-            statement.execute();
-            try(ResultSet resultSet = statement.getGeneratedKeys()) {
-                if(resultSet.next()) {
-                    long groupId = resultSet.getInt(1);
-                    return new Group(groupId, name);
-                }
-            }
+            PreparedStatement statement = connection.prepareStatement(INSERT_GROUP)) {
+            /*statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setLong(3, user.getRegisterDate().getTime());
+            statement.setLong(4, user.getPhoneNumber());*/
+            return statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Group find(long groupId) {
         return null;
     }
-
-    private static final String ADD_MEMBER = """
-                INSERT INTO groupUsers (groupId, userId)
-                VALUES (?, ?);
-            """;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addMember(long groupId, long userId) {
-        try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(ADD_MEMBER)) {
-            statement.setLong(1, groupId);
-            statement.setLong(2, userId);
-            statement.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static final String FIND_MEMBERS = """
-                    SELECT * FROM groupUsers
-                    JOIN users u on groupUsers.userId = u.userId
-                    WHERE groupId = ?;
-                    """;
-
-    /**
-     * Returns a list of users in the group specified by the group id.
-     * @param   groupId the group id
-     * @return  a list of users in the group specified by the group id
-     */
-    private static List<User> getMembers(long groupId) {
-        List<User> users = new ArrayList<>();
-        try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_MEMBERS)) {
-            statement.setLong(1, groupId);
-            try(ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet.next()) {
-                    User user = SQLiteUserDAO.build(resultSet);
-                    users.add(user);
-                }
-            }
-        } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
-        }
-        return users;
-    }
-
-    private static final String FIND_ONE_BY_USER = """
-                    SELECT * FROM groupUsers
-                    JOIN groups ON groupUsers.groupId = groups.groupId
-                    WHERE userId = ?
-                    LIMIT 1;
-                    """;
 
     @Override
     public Group findByUser(long userId) {
-        try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_USER)) {
-            statement.setLong(1, userId);
-            try(ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet.next()) {
-                    return build(resultSet);
-                }
-            }
-        } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
-        }
-        return null;
-    }
 
-    static Group build(ResultSet resultSet) throws SQLException {
-        long groupId = resultSet.getLong("groupId");
-        Group group = new Group(groupId,
-                resultSet.getString("groupName"));
-        getMembers(groupId).forEach(group::addMember);
-        return group;
+        return null;
     }
 }

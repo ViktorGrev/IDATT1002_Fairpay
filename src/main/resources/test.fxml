@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.TestController">
    <children>
       <Text layoutX="261.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello world!" />
-      <Button layoutX="267.0" layoutY="250.0" mnemonicParsing="false" text="Button" onMouseClicked="#ButtonClicked"/>
+      <Button layoutX="267.0" layoutY="250.0" mnemonicParsing="false" text="Button" />
       <TitledPane animated="false" layoutX="160.0" text="untitled">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

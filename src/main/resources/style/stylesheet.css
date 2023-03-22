@@ -9,11 +9,11 @@
 }
 
 .button:pressed{
-    -fx-background-color: #703939;
+    -fx-background-color: #7156DD;
 }
 
 .button:focused{
-    -fx-background-color: #703939;
+    -fx-background-color: #7D6CC8;
     -fx-border-color: #CDD1D6;
     -fx-border-width: 0px 0px 0px 3px;
 }
@@ -30,11 +30,11 @@
 }
 
 .button2:pressed{
-    -fx-background-color: #703939;
+    -fx-background-color: #6F5CC2;
 }
 
 .button2:focused{
-    -fx-background-color: #703939;
+    -fx-background-color: #6F5CC2;
     -fx-background-radius: 2em;
     -fx-fill-color: #FFFFFF;
     -fx-border-width: 1px 1px 1px 1px;
@@ -47,7 +47,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #000000;
+    -fx-text-fill: #52438F;
     -fx-alignment: CENTER_LEFT;
 }
 
@@ -57,5 +57,9 @@
     -fx-text-fill: #000000;
     -fx-alignment: CENTER_LEFT;
 }
+.backgroundColor {
+    -fx-background-color: linear-gradient(to left, #fafafa, #a3a0a0);
+}
+
 
 
