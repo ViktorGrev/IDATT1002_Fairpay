@@ -27,9 +27,9 @@ public class MyApp extends Application {
         primaryStage.show();*/
 
         try {
-            FXMLLoader loader = SceneSwitcher.getLoader("settlement");
+            FXMLLoader loader = SceneSwitcher.getLoader("frontpage");
             SceneSwitcher.setScene(new Scene(loader.load()));
-            SceneSwitcher.setCurrentScene("settlement");
+            SceneSwitcher.setCurrentScene("frontpage");
             primaryStage.setScene(SceneSwitcher.getScene());
             primaryStage.setTitle("JavaFX App");
             primaryStage.show();
