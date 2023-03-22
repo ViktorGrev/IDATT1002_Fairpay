@@ -8,10 +8,10 @@ import java.io.IOException;
 public class loginController {
 
   public void loginButtonClick(ActionEvent actionEvent) throws IOException {
-    SceneSwitcher.setView("settlement");
+    SceneSwitcher.setView("expense");
   }
 
   public void singUpButtonClick(ActionEvent actionEvent) throws IOException {
-    SceneSwitcher.setView("settlement");
+    SceneSwitcher.setView("expense");
   }
 }

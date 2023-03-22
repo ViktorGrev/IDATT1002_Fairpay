@@ -5,7 +5,7 @@ import no.ntnu.idatt1002.SceneSwitcher;
 
 import java.io.IOException;
 
-public class ExpenceController {
+public class ExpenseController {
 
   public void testButtonClick(MouseEvent mouseEvent) throws IOException {
     SceneSwitcher.setView("test");
