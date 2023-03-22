@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * with SQLite.
  * @see DAO
  */
-public abstract class SQLiteDAO extends DAO {
+public abstract class SQLiteDAO<T> extends DAO {
 
     private static final String URL = "jdbc:sqlite:test.db";
 
@@ -22,7 +22,7 @@ public abstract class SQLiteDAO extends DAO {
      * @throws  SQLException if the access is denied or the URL is invalid
      * @see DriverManager
      */
-    protected final Connection getConnection() throws SQLException {
+    protected static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL);
     }
 }
