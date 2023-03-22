@@ -28,7 +28,7 @@ public class SceneSwitcher {
 
   public static FXMLLoader getLoader(String filename) {
     String path = String.format("%s.fxml", filename);
-    return new FXMLLoader(MyApp.class.getResource(path));
+    return new FXMLLoader(MyApp.class.getClassLoader().getResource(path));
   }
 
   public static void setScene(Scene scene) {
