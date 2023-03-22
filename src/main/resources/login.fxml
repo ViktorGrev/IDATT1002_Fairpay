@@ -10,8 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
- <AnchorPane prefHeight="464.0" prefWidth="614.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="464.0" prefWidth="614.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.loginController">
    <children>
       <Text fill="#793f3f" layoutX="257.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
@@ -37,7 +36,7 @@
          </font>
       </Text>
       <TextField layoutX="223.0" layoutY="269.0" prefHeight="28.0" prefWidth="165.0" promptText="Type your password" style="-fx-background-color: #fafafa; -fx-border-color: #a3a0a0;" />
-      <Button layoutX="201.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="187.0" style="-fx-background-color: #793f3f;" text="Login" textFill="WHITE">
+      <Button layoutX="201.0" layoutY="340.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="26.0" prefWidth="187.0" style="-fx-background-color: #793f3f;" text="Login" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="13.0" />
          </font>
@@ -49,7 +48,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button layoutX="474.0" layoutY="27.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Sign up" textFill="WHITE">
+      <Button layoutX="474.0" layoutY="27.0" mnemonicParsing="false" onAction="#singUpButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Sign up" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="13.0" />
          </font>
