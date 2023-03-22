@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -63,8 +64,16 @@
                </InnerShadow>
             </effect>
          </Button>
-         <FontAwesomeIconView fill="#fffefe" glyphName="USER" layoutX="207.0" layoutY="201.0" stroke="#0d0d0d" />
-         <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="207.0" layoutY="287.0" stroke="BLACK" />
+         <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="200.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../../Downloads/person_FILL0_wght500_GRAD200_opsz48.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="200.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../../../../../../Downloads/lock_FILL0_wght500_GRAD200_opsz48.png" />
+            </image>
+         </ImageView>
       </children></AnchorPane>
    <fill>
       <LinearGradient endX="0.2921615201900237" endY="1.0">
