@@ -19,4 +19,8 @@ public class ExpenseController {
   public void addExpenseClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("addExpense");
   }
+
+  public void statusOnClick(ActionEvent actionEvent) throws IOException {
+    SceneSwitcher.setView("status");
+  }
 }
