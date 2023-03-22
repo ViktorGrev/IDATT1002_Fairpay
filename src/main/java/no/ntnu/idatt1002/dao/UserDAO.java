@@ -11,13 +11,12 @@ public interface UserDAO {
     /**
      * Insert a user.
      * @param   user the person
-     * @return  true if the person was added
      */
-    boolean insert(User user);
+    void insert(User user);
 
     /**
      * Finds a user with the given ID.
-     * @param   id the id
+     * @param   userId the user id
      * @return  a user with the given ID or null if no one has the ID
      */
     User find(long userId);
@@ -33,8 +32,8 @@ public interface UserDAO {
      * Authenticates a user with a given username and password.
      * @param   username the username
      * @param   password the password
-     * @return  the id of the user with the specified username and password
-     * @throws  AuthException if the password does not match or the user is not found
+     * @return  the user with the specified username and password
+     * @throws  AuthException if the password is invalid or the user is not found
      */
-    long authenticate(String username, String password) throws AuthException;
+    User authenticate(String username, String password) throws AuthException;
 }

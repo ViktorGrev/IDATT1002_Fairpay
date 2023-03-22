@@ -1,5 +1,7 @@
 package no.ntnu.idatt1002.data;
 
+import no.ntnu.idatt1002.dao.Database;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  */
 public class Group {
   private final List<User> members = new ArrayList<>(); //The HashMap of Member objects representing the group
-  private final int groupId; //The ID of the group
+  private final long groupId; //The ID of the group
   private String name; //The name of the group
 
   /**
@@ -19,7 +21,7 @@ public class Group {
    * @param groupId the ID of the group
    * @param groupName the name of the group
    */
-  public Group(int groupId, String name) {
+  public Group(long groupId, String name) {
     this.groupId = groupId;
     this.name = name;
   }
@@ -55,7 +57,7 @@ public class Group {
    *
    * @return the ID of the group
    */
-  public int getId() {
+  public long getId() {
     return groupId;
   }
 
