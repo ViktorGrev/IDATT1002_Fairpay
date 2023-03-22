@@ -97,7 +97,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expence">
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expence">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
