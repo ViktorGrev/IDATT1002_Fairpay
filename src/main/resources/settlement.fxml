@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,7 +11,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.Image?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.SettlementController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -20,11 +20,11 @@
                <children>
                   <ImageView fitHeight="61.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Downloads/logo.PNG" />
+                        <Image url="@logo.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="120.0" style="-fx-background-color: gray;" text="Settlement" textFill="WHITE" />
-                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="122.0" style="-fx-background-color: darkgray;" text="Budget" />
+                  <Button mnemonicParsing="false" onMouseClicked="#settlementButtonClicked" prefHeight="61.0" prefWidth="120.0" style="-fx-background-color: gray;" text="Settlement" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onMouseClicked="#settlementButtonClicked" prefHeight="61.0" prefWidth="122.0" style="-fx-background-color: darkgray;" text="Budget" />
                   <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="125.0" style="-fx-background-color: darkred;" text="Status" />
                   <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="125.0" style="-fx-background-color: red;" text="Dorm group" />
                   <Label prefHeight="72.0" prefWidth="70.0" />
@@ -45,7 +45,7 @@
          <left>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: darkred;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="34.0" layoutY="313.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="132.0" text="New settlement">
+                  <Button layoutX="34.0" layoutY="313.0" mnemonicParsing="false" onMouseClicked="#testButtonClick" prefHeight="62.0" prefWidth="132.0" text="New settlement">
                      <font>
                         <Font size="14.0" />
                      </font>
