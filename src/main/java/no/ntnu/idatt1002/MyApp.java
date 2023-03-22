@@ -26,6 +26,17 @@ public class MyApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        /*try {
+            FXMLLoader loader = SceneSwitcher.getLoader("test");
+            SceneSwitcher.setScene(new Scene(loader.load()));
+            SceneSwitcher.setCurrentScene("test");
+            primaryStage.setScene(SceneSwitcher.getScene());
+            primaryStage.setTitle("JavaFX App");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
 
         /*try {
             String username = "username";
