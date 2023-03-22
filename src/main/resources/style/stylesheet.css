@@ -9,11 +9,11 @@
 }
 
 .button:pressed{
-    -fx-background-color: #7156DD;
+    -fx-background-color: #703939;
 }
 
 .button:focused{
-    -fx-background-color: #7D6CC8;
+    -fx-background-color: #703939;
     -fx-border-color: #CDD1D6;
     -fx-border-width: 0px 0px 0px 3px;
 }
@@ -47,7 +47,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #52438F;
+    -fx-text-fill: #000000;
     -fx-alignment: CENTER_LEFT;
 }
 

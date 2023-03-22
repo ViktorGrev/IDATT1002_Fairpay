@@ -18,7 +18,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <HBox prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
             </HBox>
          </top>
          <left>
-            <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #6F5CC2;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f;" BorderPane.alignment="CENTER">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
@@ -88,7 +88,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #52438F;" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="41.0" prefWidth="118.0" text="Expence" textFill="WHITE">
                            <padding>
