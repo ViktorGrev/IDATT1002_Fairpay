@@ -5,18 +5,18 @@ import no.ntnu.idatt1002.data.Group;
 public interface GroupDAO {
 
     /**
-     * Insert a group.
-     * @param   group the group
-     * @return  true if the group was added
+     * Create a new group with the specified name.
+     * @param   name the name of the group
+     * @return  the new group
      */
-    boolean insert(Group group);
+    Group create(String name);
 
     /**
-     * Finds a group with the given ID.
-     * @param   id the id
-     * @return  a group with the given ID
+     * Add a member to a group specified by their IDs.
+     * @param   groupId the group ID
+     * @param   userId the user ID
      */
-    Group find(long groupId);
+    void addMember(long groupId, long userId);
 
     /**
      * Returns the group of this user.
