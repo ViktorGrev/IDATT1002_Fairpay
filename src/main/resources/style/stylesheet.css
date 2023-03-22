@@ -30,11 +30,11 @@
 }
 
 .button2:pressed{
-    -fx-background-color: #6F5CC2;
+    -fx-background-color: #703939;
 }
 
 .button2:focused{
-    -fx-background-color: #6F5CC2;
+    -fx-background-color: #703939;
     -fx-background-radius: 2em;
     -fx-fill-color: #FFFFFF;
     -fx-border-width: 1px 1px 1px 1px;
