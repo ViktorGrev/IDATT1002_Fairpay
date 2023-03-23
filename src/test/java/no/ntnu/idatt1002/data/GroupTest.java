@@ -1,5 +1,7 @@
 package no.ntnu.idatt1002.data;
 
+import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.data.User;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;

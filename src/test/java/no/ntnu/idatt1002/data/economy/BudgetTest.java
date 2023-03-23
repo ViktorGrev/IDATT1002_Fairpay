@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.data;
+package no.ntnu.idatt1002.data.economy;
 
 import no.ntnu.idatt1002.data.economy.Budget;
 import no.ntnu.idatt1002.data.economy.ExpenseType;
