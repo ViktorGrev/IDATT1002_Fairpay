@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.newSettlementController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -97,12 +97,12 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="128.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Remove expense">
+                        <Button layoutX="128.0" layoutY="19.0" mnemonicParsing="false" onAction="#removeExpenseClick" prefHeight="25.0" prefWidth="119.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Remove expense">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
