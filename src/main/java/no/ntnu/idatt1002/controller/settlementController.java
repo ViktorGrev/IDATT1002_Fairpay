@@ -9,4 +9,8 @@ public class settlementController {
   public void newSettlementClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("newSettlement");
   }
+
+  public void groupExpenseClick(ActionEvent actionEvent) throws IOException {
+    SceneSwitcher.setView("expense");
+  }
 }

@@ -38,4 +38,12 @@ public class StatusController implements Initializable {
 
         pieChart.getData().addAll(pieChartData);
     }
+
+    public void groupExpenseClick(ActionEvent actionEvent) throws IOException{
+        SceneSwitcher.setView("expense");
+    }
+
+    public void privateSettlementClick(ActionEvent actionEvent) throws IOException{
+        SceneSwitcher.setView("settlement");
+    }
 }

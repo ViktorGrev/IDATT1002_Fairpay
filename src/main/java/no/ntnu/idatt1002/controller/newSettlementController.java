@@ -12,4 +12,8 @@ public class newSettlementController {
 
   public void removeExpenseClick(ActionEvent actionEvent) {
   }
+
+  public void groupExpenseClick(ActionEvent actionEvent) throws IOException {
+    SceneSwitcher.setView("expense");
+  }
 }
