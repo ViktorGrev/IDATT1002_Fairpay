@@ -23,4 +23,8 @@ public class ExpenseController {
   public void statusOnClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("status");
   }
+
+  public void privateSettlementClick(ActionEvent actionEvent) throws IOException {
+    SceneSwitcher.setView("settlement");
+  }
 }
