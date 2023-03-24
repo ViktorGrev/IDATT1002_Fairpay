@@ -1,6 +1,9 @@
 package no.ntnu.idatt1002.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -9,7 +12,10 @@ import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.data.User;
 
-public class SignupController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SignupController implements Initializable {
 
     private static final UserDAO userDAO = Database.getUserDAO();
 
@@ -38,5 +44,14 @@ public class SignupController {
     @FXML
     private void loginButtonClick() {
         SceneSwitcher.setView("login");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                phoneField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }
