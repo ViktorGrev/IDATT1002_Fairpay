@@ -13,4 +13,8 @@ public class SettlementController {
   public void groupExpenseClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("expense");
   }
+
+  public void statusButtonClicked(ActionEvent actionEvent) throws IOException{
+    SceneSwitcher.setView("status");
+  }
 }
