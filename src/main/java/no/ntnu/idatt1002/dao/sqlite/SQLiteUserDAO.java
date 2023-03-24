@@ -8,7 +8,6 @@ import no.ntnu.idatt1002.data.User;
 
 import java.sql.*;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
@@ -31,7 +30,7 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
             Statement statement = connection.createStatement()) {
             statement.execute(CREATE_USERS);
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            throw new DAOException(ERROR_MSG);
         }
     }
 
@@ -45,21 +44,29 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
      */
     @Override
     public User create(String username, String password, long phoneNumber) {
+        if(username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
+        if(password.isBlank()) throw new IllegalArgumentException("Password cannot be empty");
+        Date date = new Date(System.currentTimeMillis());
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
+            String encryptedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
             statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setLong(3, new Date().getTime());
+            statement.setString(2, encryptedPassword);
+            statement.setDate(3, date);
             statement.setLong(4, phoneNumber);
             statement.execute();
             try(ResultSet resultSet = statement.getGeneratedKeys()) {
                 if(resultSet.next()) {
                     long userId = resultSet.getInt(1);
-                    return new User(userId, username, password, new Date(), phoneNumber);
+                    return new User(userId, username, encryptedPassword, date, phoneNumber);
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            if(e.getErrorCode() == 19) {
+                throw new DAOException("Username is taken");
+            }
+            e.printStackTrace();
+            throw new DAOException(ERROR_MSG);
         }
         return null;
     }
@@ -80,7 +87,7 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            throw new DAOException(ERROR_MSG);
         }
         return null;
     }
@@ -100,6 +107,8 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
      */
     @Override
     public User authenticate(String username, String password) throws AuthException {
+        if(username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
+        if(password.isBlank()) throw new IllegalArgumentException("Password cannot be empty");
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_NAME)) {
             statement.setString(1, username);
@@ -111,7 +120,7 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            throw new DAOException(ERROR_MSG);
         }
         throw new AuthException("User does not exist");
     }
