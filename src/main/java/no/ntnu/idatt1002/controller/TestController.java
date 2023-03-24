@@ -1,7 +1,7 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.scene.input.MouseEvent;
-import no.ntnu.idatt1002.SceneSwitcher;
+import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 

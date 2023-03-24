@@ -1,13 +1,11 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import no.ntnu.idatt1002.SceneSwitcher;
+import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.data.User;

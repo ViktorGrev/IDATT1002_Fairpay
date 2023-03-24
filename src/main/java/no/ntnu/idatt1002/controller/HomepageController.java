@@ -1,11 +1,11 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.event.ActionEvent;
-import no.ntnu.idatt1002.SceneSwitcher;
+import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 
-public class homepageController {
+public class HomepageController {
   public void expenseButtonClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("expense");
   }

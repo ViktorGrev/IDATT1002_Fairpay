@@ -3,10 +3,8 @@ package no.ntnu.idatt1002;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 

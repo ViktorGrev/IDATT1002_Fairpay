@@ -1,6 +1,5 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import no.ntnu.idatt1002.SceneSwitcher;
+import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 import java.net.URL;
