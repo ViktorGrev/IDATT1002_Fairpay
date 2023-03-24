@@ -1,7 +1,6 @@
 .button{
     -fx-background-color:  #793f3f;
     -fx-background-radius: 0em;
-    -fx-effect: #d72e2e
 }
 
 .button:hover{
@@ -68,7 +67,6 @@
     -fx-cell-size: 30;
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: #000000;
-    -fx-alignment: CENTER_LEFT;
 }
 .backgroundColor{
     -fx-background-color: linear-gradient(to left,#fafafa, #a3a0a0);

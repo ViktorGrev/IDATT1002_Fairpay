@@ -1,8 +1,9 @@
 .text-field, .password-field {
-    -fx-background-color: #fafafa;
+    -fx-background-color: none;
     -fx-border-color: #a3a0a0;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-width: 2px;
+    -fx-padding: 0 0 4 0;
 }
 
 .text-field:focused, .password-field:focused {
