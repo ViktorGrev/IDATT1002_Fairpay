@@ -19,8 +19,7 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
             	username text(16) UNIQUE NOT NULL,
             	password text(60) NOT NULL,
             	registerDate integer NOT NULL,
-            	phoneNumber integer NOT NULL,
-            	groupId integer NOT NULL
+            	phoneNumber integer NOT NULL
             );""";
 
     /**
