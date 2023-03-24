@@ -33,7 +33,7 @@ public class SignupController implements Initializable {
                 throw new IllegalArgumentException("Phone number is required");
             long phoneNumber = Long.parseLong(phoneField.getText());
             User user = userDAO.create(username, password, phoneNumber);
-            SceneSwitcher.setView("settlement");
+            SceneSwitcher.setView("homepage");
         } catch (Exception e) {
             signupFeedback.setText(e.getLocalizedMessage());
         }

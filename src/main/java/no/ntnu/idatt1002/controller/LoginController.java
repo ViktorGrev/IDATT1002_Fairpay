@@ -23,7 +23,7 @@ public class LoginController {
         String password = passwordField.getText();
         try {
             User user = userDAO.authenticate(username, password);
-            SceneSwitcher.setView("settlement");
+            SceneSwitcher.setView("homepage");
         } catch (Exception e) {
             loginFeedback.setText(e.getLocalizedMessage());
         }
