@@ -72,7 +72,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE" id="buttonFocus">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

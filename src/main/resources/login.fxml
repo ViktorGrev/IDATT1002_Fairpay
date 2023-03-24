@@ -7,28 +7,18 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
+<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/lock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/user.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
       <VBox prefHeight="474.0" prefWidth="216.0">
          <children>
             <HBox alignment="CENTER" prefHeight="94.0" prefWidth="286.0">
@@ -47,24 +37,55 @@
                   </Text>
                </children>
             </HBox>
+            <HBox prefHeight="62.0" prefWidth="207.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="5.0" left="27.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="191.0" promptText="Type your username" />
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="207.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/user.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="152.0" promptText="Type your username">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+               </children>
+            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="5.0" top="10.0" />
+                  <Insets bottom="5.0" left="27.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="passwordField" promptText="Type your password" />
+            <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="207.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/lock.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <PasswordField fx:id="passwordField" promptText="Type your password">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
+               </children>
+            </HBox>
             <Text fx:id="loginFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
                <font>
                   <Font size="14.0" />
@@ -75,7 +96,7 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Log in" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -96,21 +117,31 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Sign up" textFill="WHITE">
-               <font>
-                  <Font name="Roboto Bold" size="13.0" />
-               </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets right="30.0" top="40.0" />
-               </HBox.margin>
-            </Button>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Sign up" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Roboto Bold" size="13.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </HBox>
    </children>

@@ -1,7 +1,8 @@
-package no.ntnu.idatt1002;
+package no.ntnu.idatt1002.Scenes;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import no.ntnu.idatt1002.MyApp;
 
 import java.io.IOException;
 
