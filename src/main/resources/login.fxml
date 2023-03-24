@@ -43,7 +43,7 @@
                   <Font name="Roboto Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="5.0" left="27.0" />
                </VBox.margin>
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="207.0">
@@ -52,8 +52,14 @@
                      <image>
                         <Image url="@image/user.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="152.0" promptText="Type your username" />
+                  <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="152.0" promptText="Type your username">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
@@ -61,7 +67,7 @@
                   <Font name="Roboto Bold" size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="5.0" top="10.0" />
+                  <Insets bottom="5.0" left="27.0" top="10.0" />
                </VBox.margin>
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="207.0">
@@ -70,8 +76,14 @@
                      <image>
                         <Image url="@image/lock.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
                   </ImageView>
-                  <PasswordField fx:id="passwordField" promptText="Type your password" />
+                  <PasswordField fx:id="passwordField" promptText="Type your password">
+                     <font>
+                        <Font size="14.0" />
+                     </font></PasswordField>
                </children>
             </HBox>
             <Text fx:id="loginFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
