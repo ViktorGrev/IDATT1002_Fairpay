@@ -27,4 +27,12 @@ public class ExpenseController {
   public void privateSettlementClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("settlement");
   }
+
+  public void dormGroupClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("dormGroup");
+  }
+
+  public void budgetClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("budget");
+  }
 }

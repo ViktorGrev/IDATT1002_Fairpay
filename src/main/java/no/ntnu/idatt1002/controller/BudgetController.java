@@ -5,21 +5,14 @@ import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 
-public class AddExpenseController {
-  public void addExpenseClick(ActionEvent actionEvent) throws IOException {
-    SceneSwitcher.setView("expense");
-  }
-
-  public void expenseClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("expense");
-  }
+public class BudgetController {
 
   public void dormGroupClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("dormGroup");
   }
 
-  public void budgetClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("budget");
+  public void expenseClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("expense");
   }
 
   public void settlementClick(ActionEvent actionEvent) {

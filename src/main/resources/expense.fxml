@@ -41,7 +41,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -49,7 +49,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE" id="buttonFocus">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -57,7 +57,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
