@@ -8,6 +8,7 @@ import no.ntnu.idatt1002.data.User;
 
 import java.sql.*;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
@@ -44,17 +45,24 @@ public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
      * {@inheritDoc}
      */
     @Override
-    public void insert(User user) {
+    public User create(String username, String password, long phoneNumber) {
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
-            statement.setLong(3, user.getRegisterDate().getTime());
-            statement.setLong(4, user.getPhoneNumber());
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.setLong(3, new Date().getTime());
+            statement.setLong(4, phoneNumber);
             statement.execute();
+            try(ResultSet resultSet = statement.getGeneratedKeys()) {
+                if(resultSet.next()) {
+                    long userId = resultSet.getInt(1);
+                    return new User(userId, username, password, new Date(), phoneNumber);
+                }
+            }
         } catch (SQLException e) {
             throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
         }
+        return null;
     }
 
     private static final String FIND_ONE_ID = "SELECT * FROM users WHERE userId = ?;";

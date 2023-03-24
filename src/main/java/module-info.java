@@ -7,8 +7,9 @@ module no.ntnu.idatt1002 {
     requires java.sql;
     requires bcrypt;
 
-    opens no.ntnu.idatt1002.data.economy;
     opens no.ntnu.idatt1002.data;
+    opens no.ntnu.idatt1002.controller;
+    opens no.ntnu.idatt1002.data.economy;
 
     exports no.ntnu.idatt1002;
     exports no.ntnu.idatt1002.dao;
