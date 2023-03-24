@@ -13,22 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
+<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/lock.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/user.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
       <VBox prefHeight="474.0" prefWidth="216.0">
          <children>
             <HBox alignment="CENTER" prefHeight="94.0" prefWidth="286.0">
@@ -47,6 +34,7 @@
                   </Text>
                </children>
             </HBox>
+            <HBox prefHeight="62.0" prefWidth="207.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
@@ -55,7 +43,16 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="191.0" promptText="Type your username" />
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="207.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/user.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="152.0" promptText="Type your username" />
+               </children>
+            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
@@ -64,7 +61,16 @@
                   <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <PasswordField fx:id="passwordField" promptText="Type your password" />
+            <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="207.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/lock.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="passwordField" promptText="Type your password" />
+               </children>
+            </HBox>
             <Text fx:id="loginFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
                <font>
                   <Font size="14.0" />
@@ -75,7 +81,7 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Log in" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -96,7 +102,7 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Sign up" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Sign up" textFill="WHITE">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>
