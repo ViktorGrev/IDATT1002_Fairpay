@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="592.0" styleClass="backgroundColor" stylesheets="@style/stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.frontpageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@style/stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.frontpageController">
    <children>
-      <Button alignment="CENTER" layoutX="459.0" layoutY="55.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="20.0" prefWidth="113.0" style="-fx-background-color: #793f3f; -fx-text-fill: #fafafa; -fx-font-size: 15px; -fx-font-weight: bold; -fx-border-width: 2px; -fx-font-family: Roboto;" text="Log in" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="459.0" layoutY="55.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="11.0" />
          </font>
@@ -24,12 +24,12 @@
             </InnerShadow>
          </effect>
       </Button>
-      <ImageView fitHeight="143.0" fitWidth="293.0" layoutX="158.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="143.0" fitWidth="293.0" layoutX="162.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/FairPayLogo.png" />
          </image>
       </ImageView>
-      <Text layoutX="164.0" layoutY="315.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" text="Its never been easier to live together as students ">
+      <Text layoutX="159.0" layoutY="241.0" strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" text="Its never been easier to live together as students ">
          <font>
             <Font name="Roboto" size="13.0" />
          </font>
