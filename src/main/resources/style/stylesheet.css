@@ -12,7 +12,7 @@
     -fx-background-color: #703939;
 }
 
-.button:focused{
+#buttonFocus{
     -fx-background-color: #703939;
     -fx-border-color: #CDD1D6;
     -fx-border-width: 0px 0px 0px 3px;

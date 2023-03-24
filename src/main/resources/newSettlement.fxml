@@ -49,7 +49,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#groupExpenseClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#groupExpenseClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE" id="buttonFocus">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
