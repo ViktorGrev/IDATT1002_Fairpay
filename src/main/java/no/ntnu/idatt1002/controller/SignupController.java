@@ -7,10 +7,11 @@ import javafx.scene.text.Text;
 import no.ntnu.idatt1002.SceneSwitcher;
 import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.UserDAO;
-import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.data.User;
 
 public class SignupController {
+
+    private static final UserDAO userDAO = Database.getUserDAO();
 
     @FXML private TextField usernameField, phoneField;
     @FXML private PasswordField passwordField, confirmPasswordField;
@@ -21,12 +22,15 @@ public class SignupController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
-        long phoneNumber = Long.parseLong(phoneField.getText());
-        UserDAO userDAO = Database.getUserDAO();
         try {
+            if(!password.equals(confirmPassword))
+                throw new IllegalArgumentException("Password does not match");
+            if(phoneField.getText().isBlank())
+                throw new IllegalArgumentException("Phone number is required");
+            long phoneNumber = Long.parseLong(phoneField.getText());
             User user = userDAO.create(username, password, phoneNumber);
             SceneSwitcher.setView("settlement");
-        } catch (AuthException e) {
+        } catch (Exception e) {
             signupFeedback.setText(e.getLocalizedMessage());
         }
     }
