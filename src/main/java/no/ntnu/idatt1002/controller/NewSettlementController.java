@@ -16,4 +16,20 @@ public class NewSettlementController {
   public void groupExpenseClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("expense");
   }
+
+  public void dormGroupClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("dormGroup");
+  }
+
+  public void budgetClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("budget");
+  }
+
+  public void settlementClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("settlement");
+  }
+
+  public void statusClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("status");
+  }
 }

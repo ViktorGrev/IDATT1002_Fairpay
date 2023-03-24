@@ -15,4 +15,8 @@ public class DormGroupController {
   public void statusOnClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("status");
   }
+
+  public void dormGroupClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("dormGroup");
+  }
 }
