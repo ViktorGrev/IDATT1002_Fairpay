@@ -43,15 +43,13 @@
 .startButton{
     -fx-background-color: #703939;
     -fx-background-radius: 0.25em;
-    -fx-fill-color: #793f3f;
     -fx-font-family: ROBOTO;
     -fx-font-size: 15px;
 }
 
 .startButton:hover{
-    -fx-border-width: 0px 0px 0px 1px;
     -fx-border-color: black;
-    -fx-border-width: 3px;
+    -fx-border-width: 1px;
 }
 
 .table-view .column-header,

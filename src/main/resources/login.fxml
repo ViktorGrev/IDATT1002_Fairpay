@@ -7,7 +7,10 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -102,21 +105,31 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Sign up" textFill="WHITE">
-               <font>
-                  <Font name="Roboto Bold" size="13.0" />
-               </font>
-               <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
-                     </color>
-                  </InnerShadow>
-               </effect>
-               <HBox.margin>
-                  <Insets right="30.0" top="40.0" />
-               </HBox.margin>
-            </Button>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Sign up" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Roboto Bold" size="13.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </HBox>
    </children>
