@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
+<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.SignupController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -33,7 +33,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="94.0" prefWidth="286.0">
                <children>
-                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
                      <font>
                         <Font name="Roboto Bold" size="36.0" />
                      </font>
@@ -65,7 +65,25 @@
                </VBox.margin>
             </Text>
             <PasswordField fx:id="passwordField" promptText="Type your password" />
-            <Text fx:id="loginFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm password">
+               <font>
+                  <Font name="Roboto Bold" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <PasswordField fx:id="confirmPasswordField" promptText="Type your password" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+               <font>
+                  <Font name="Roboto Bold" size="13.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="phoneField" prefHeight="28.0" prefWidth="187.0" promptText="Type your phone number" />
+            <Text fx:id="signupFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,7 +93,7 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Log in" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#createAccountButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Create account" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -96,7 +114,7 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Sign up" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Log in" textFill="WHITE">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>

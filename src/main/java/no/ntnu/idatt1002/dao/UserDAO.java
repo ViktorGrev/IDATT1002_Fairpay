@@ -9,10 +9,13 @@ import java.util.List;
 public interface UserDAO {
 
     /**
-     * Insert a user.
-     * @param   user the person
+     *
+     * @param username
+     * @param password
+     * @param phoneNumber
+     * @return
      */
-    void insert(User user);
+    User create(String username, String password, long phoneNumber);
 
     /**
      * Finds a user with the given ID.

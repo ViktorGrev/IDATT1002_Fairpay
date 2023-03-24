@@ -15,14 +15,18 @@ public class SceneSwitcher {
   public SceneSwitcher() {
   }
 
-  public static void setView(String viewFxml) throws IOException {
+  public static void setView(String viewFxml) {
     lastScene = currentScene;
     currentScene = viewFxml;
     FXMLLoader loader = getLoader(viewFxml);
-    scene.setRoot(loader.load());
+    try {
+      scene.setRoot(loader.load());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  public static void goToLastScene() throws IOException {
+  public static void goToLastScene() {
     setView(lastScene);
   }
 
