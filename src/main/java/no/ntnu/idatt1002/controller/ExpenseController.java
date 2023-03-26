@@ -12,10 +12,6 @@ public class ExpenseController {
     SceneSwitcher.setView("test");
   }
 
-  public void settlementButtonClicked(MouseEvent mouseEvent) throws IOException {
-    SceneSwitcher.setView("test");
-  }
-
   public void addExpenseClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("addExpense");
   }
