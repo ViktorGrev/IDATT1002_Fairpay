@@ -33,7 +33,7 @@ public class ExpenseController {
   }
 
   public void homeClick(MouseEvent mouseEvent) {
-    SceneSwitcher.setView("home");
+    SceneSwitcher.setView("homepage");
   }
 
   public void incomeClick(ActionEvent actionEvent) {

@@ -19,7 +19,7 @@ public class IncomeController {
   }
 
   public void groupExpenseClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("groupExpense");
+    SceneSwitcher.setView("expense");
   }
 
   public void incomeClick(ActionEvent actionEvent) {

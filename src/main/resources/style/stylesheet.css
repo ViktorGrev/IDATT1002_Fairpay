@@ -1,6 +1,7 @@
 .button{
     -fx-background-color:  #793f3f;
     -fx-background-radius: 0em;
+
 }
 
 .button:hover{
@@ -20,7 +21,8 @@
 .button2{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 2em;
-    -fx-fill-color: #FFFFFF
+    -fx-fill-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
 .button2:hover{
