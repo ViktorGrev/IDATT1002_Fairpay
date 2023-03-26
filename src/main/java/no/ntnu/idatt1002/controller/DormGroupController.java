@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 public class DormGroupController {
@@ -18,5 +19,17 @@ public class DormGroupController {
 
   public void dormGroupClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("dormGroup");
+  }
+
+  public void homeClick(MouseEvent mouseEvent) {
+    SceneSwitcher.setView("homepage");
+  }
+
+  public void budgetClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("budget");
+  }
+
+  public void incomeClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("income");
   }
 }

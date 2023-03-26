@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.input.MouseEvent;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
@@ -52,5 +53,17 @@ public class StatusController implements Initializable {
 
     public void budgetClick(ActionEvent actionEvent) {
         SceneSwitcher.setView("budget");
+    }
+
+    public void homeClick(MouseEvent mouseEvent) {
+        SceneSwitcher.setView("homepage");
+    }
+
+    public void profileClick(ActionEvent actionEvent) {
+        SceneSwitcher.setView("profile");
+    }
+
+    public void incomeClick(ActionEvent actionEvent) {
+        SceneSwitcher.setView("income");
     }
 }

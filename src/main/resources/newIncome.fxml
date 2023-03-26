@@ -19,7 +19,7 @@
          <top>
             <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="57.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="57.0" fitWidth="128.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/FairPayLogo.png" />
                      </image>
@@ -30,7 +30,7 @@
          <left>
             <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -41,7 +41,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -57,7 +57,15 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#incomeClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Income" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -65,7 +73,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -73,7 +81,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -118,7 +126,7 @@
                         <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
                         <DatePicker />
                         <Label prefHeight="22.0" prefWidth="54.0" />
-                        <Button mnemonicParsing="false" text="New income" />
+                        <Button mnemonicParsing="false" onAction="#newIncomeConfirmClick" text="New income" />
                      </children>
                      <BorderPane.margin>
                         <Insets left="10.0" />

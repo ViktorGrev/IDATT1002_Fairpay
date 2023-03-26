@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
@@ -21,5 +22,13 @@ public class BudgetController {
 
   public void statusClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("status");
+  }
+
+  public void incomeClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("income");
+  }
+
+  public void homeClick(MouseEvent mouseEvent) {
+    SceneSwitcher.setView("homepage");
   }
 }

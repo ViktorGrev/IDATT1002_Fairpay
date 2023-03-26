@@ -19,7 +19,7 @@
          <top>
             <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="57.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="57.0" fitWidth="128.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/FairPayLogo.png" />
                      </image>
@@ -49,7 +49,15 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#incomeClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Income" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

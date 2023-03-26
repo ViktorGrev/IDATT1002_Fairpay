@@ -25,4 +25,8 @@ public class HomepageController {
   public void dormGroupClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("dormGroup");
   }
+
+  public void incomeClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("income");
+  }
 }

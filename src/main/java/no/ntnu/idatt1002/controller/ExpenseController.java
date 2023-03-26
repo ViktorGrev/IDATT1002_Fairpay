@@ -35,4 +35,12 @@ public class ExpenseController {
   public void budgetClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("budget");
   }
+
+  public void homeClick(MouseEvent mouseEvent) {
+    SceneSwitcher.setView("home");
+  }
+
+  public void incomeClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("income");
+  }
 }
