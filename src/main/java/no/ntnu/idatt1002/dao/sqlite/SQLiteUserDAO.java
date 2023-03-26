@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.Collection;
 import java.util.List;
 
-public final class SQLiteUserDAO extends SQLiteDAO<User> implements UserDAO {
+public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
 
     private static final String CREATE_USERS = """
                 CREATE TABLE IF NOT EXISTS users (

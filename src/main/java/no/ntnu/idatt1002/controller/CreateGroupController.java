@@ -19,7 +19,6 @@ public final class CreateGroupController extends Controller {
     private void createGroupButtonClick() {
         try {
             String name = groupNameField.getText();
-            if(name.isBlank()) throw new IllegalArgumentException("Group name cannot be blank");
             Group group = groupDAO.create(name);
             Group.setCurrent(group);
             group.addMember(User.CURRENT);
