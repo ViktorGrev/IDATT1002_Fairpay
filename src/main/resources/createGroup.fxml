@@ -50,7 +50,7 @@
                         <Image url="@image/group.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="191.0" promptText="Type group name" />
+                  <TextField fx:id="groupNameField" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="191.0" promptText="Type group name" />
                </children>
             </HBox>
             <Text fx:id="signupFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
