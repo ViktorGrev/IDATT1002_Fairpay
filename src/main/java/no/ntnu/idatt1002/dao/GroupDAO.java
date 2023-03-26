@@ -19,6 +19,13 @@ public interface GroupDAO {
     void addMember(long groupId, long userId);
 
     /**
+     * Add an invitation to a group for a user with the specified ID.
+     * @param   groupId the group ID
+     * @param   userId the user ID
+     */
+    void addInvite(long groupId, long userId);
+
+    /**
      * Returns the group of this user.
      * @param   id the user id
      * @return  the group of this user

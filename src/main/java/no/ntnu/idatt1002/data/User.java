@@ -3,14 +3,16 @@ package no.ntnu.idatt1002.data;
 import java.util.Date;
 
 /**
- * A class representing a user of a certain system.
+ * This class represents a user of the application.
  */
 public final class User {
 
+    public static User CURRENT; // The current user
+
     private final long id; // The unique id of the user
     private final String username; // The username of the user
-    private final String password; // The password of the user
-    private final Date registerDate; // The date when the user registered
+    private final String password; // The encrypted password of the user
+    private final Date registerDate; // The date when the user was registered
     private final long phoneNumber; // The phone number of the user
 
     /**
@@ -42,8 +44,7 @@ public final class User {
 
     /**
      * Returns the unique id of the user.
-     *
-     * @return the unique id of the user.
+     * @return  the unique id of the user
      */
     public long getId() {
         return id;
@@ -51,26 +52,23 @@ public final class User {
 
     /**
      * Returns the username of the user.
-     *
-     * @return the username of the user.
+     * @return  the username of the user
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * Returns the password of the user.
-     *
-     * @return the password of the user.
+     * Returns the encrypted password of the user.
+     * @return  the password of the user
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * Returns the date when the user registered.
-     *
-     * @return the date when the user registered.
+     * Returns the date when the user was registered.
+     * @return  the date when the user was registered
      */
     public Date getRegisterDate() {
         return registerDate;
@@ -78,10 +76,17 @@ public final class User {
 
     /**
      * Returns the phone number of the user.
-     *
-     * @return the phone number of the user.
+     * @return  the phone number of the user.
      */
     public long getPhoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * Set the current user
+     * @param   user the user
+     */
+    public static void setCurrent(User user) {
+        CURRENT = user;
     }
 }
