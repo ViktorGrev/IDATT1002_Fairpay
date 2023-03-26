@@ -5,32 +5,33 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
-import no.ntnu.idatt1002.dao.Database;
-import no.ntnu.idatt1002.dao.GroupDAO;
-import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
 
-public class LoginController {
-
-    private static final UserDAO userDAO = Database.getUserDAO();
-    private static final GroupDAO groupDAO = Database.getGroupDAO();
+public final class LoginController extends Controller {
 
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Text loginFeedback;
 
+    /**
+     * Attempts to log in a user with the specified username
+     * and password. If the login is successful, and the user is not
+     * in a group, they will be sent to the page for creating a group.
+     * Otherwise they will be sent to the homepage.
+     */
     @FXML
     private void loginButtonClick() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
         try {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
             User user = userDAO.authenticate(username, password);
             User.setCurrent(user);
             Group group = groupDAO.findByUser(user.getId());
             if(group == null) {
                 SceneSwitcher.setView("joincreatepage");
             } else {
+                Group.setCurrent(group);
                 SceneSwitcher.setView("homepage");
             }
         } catch (Exception e) {
@@ -38,6 +39,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Sends the user to the signup page.
+     */
     @FXML
     private void signupButtonClick() {
         SceneSwitcher.setView("signup");
