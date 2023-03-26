@@ -35,6 +35,9 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
             	PRIMARY KEY (groupId, userId)
             );""";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setup() {
         try(Connection connection = getConnection();
@@ -154,6 +157,9 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                     LIMIT 1;
                     """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Group findByUser(long userId) {
         try(Connection connection = getConnection();

@@ -6,21 +6,20 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
-import no.ntnu.idatt1002.dao.Database;
-import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.data.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignupController implements Initializable {
-
-    private static final UserDAO userDAO = Database.getUserDAO();
+public final class SignupController extends Controller implements Initializable {
 
     @FXML private TextField usernameField, phoneField;
     @FXML private PasswordField passwordField, confirmPasswordField;
     @FXML private Text signupFeedback;
 
+    /**
+     * Attempts to create a new user with the given credentials.
+     */
     @FXML
     private void createAccountButtonClick() {
         String username = usernameField.getText();
@@ -33,17 +32,22 @@ public class SignupController implements Initializable {
                 throw new IllegalArgumentException("Phone number is required");
             long phoneNumber = Long.parseLong(phoneField.getText());
             User user = userDAO.create(username, password, phoneNumber);
-            SceneSwitcher.setView("homepage");
+            User.setCurrent(user);
+            SceneSwitcher.setView("joincreatepage");
         } catch (Exception e) {
             signupFeedback.setText(e.getLocalizedMessage());
         }
     }
 
+    /**
+     * Send the user to the login page.
+     */
     @FXML
     private void loginButtonClick() {
         SceneSwitcher.setView("login");
     }
 
+    // Ensures that numbers is the only accepted input for the phone number field.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
