@@ -26,12 +26,22 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
             	PRIMARY KEY (groupId, userId)
             );""";
 
+    private static final String CREATE_GROUP_INVITES = """
+                CREATE TABLE IF NOT EXISTS groupInvites (
+                groupId integer NOT NULL,
+            	userId integer NOT NULL,
+            	FOREIGN KEY (groupId) REFERENCES groups(groupId),
+            	FOREIGN KEY (userId) REFERENCES users(userId),
+            	PRIMARY KEY (groupId, userId)
+            );""";
+
     @Override
     public void setup() {
         try(Connection connection = getConnection();
             Statement statement = connection.createStatement()) {
             statement.addBatch(CREATE_GROUPS);
             statement.addBatch(CREATE_GROUP_LINK);
+            statement.addBatch(CREATE_GROUP_INVITES);
             statement.executeBatch();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -43,6 +53,9 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                 VALUES (?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Group create(String name) {
         try(Connection connection = getConnection();
@@ -56,7 +69,7 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new DAOException(ERROR_MSG);
         }
         return null;
     }
@@ -77,7 +90,32 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
             statement.setLong(2, userId);
             statement.execute();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            if(e.getErrorCode() == 19) throw new DAOException("User is already a member");
+            e.printStackTrace();
+            throw new DAOException(ERROR_MSG);
+        }
+    }
+
+    private static final String ADD_INVITE = """
+                INSERT INTO groupInvites (groupId, userId)
+                VALUES (?, ?);
+            """;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addInvite(long groupId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(ADD_INVITE)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 19) {
+                throw new DAOException("Invite already sent");
+            }
+            throw new DAOException(ERROR_MSG);
         }
     }
 
@@ -104,7 +142,7 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            throw new DAOException(ERROR_MSG);
         }
         return users;
     }
@@ -127,7 +165,7 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG + ": " + e.getLocalizedMessage());
+            throw new DAOException(ERROR_MSG);
         }
         return null;
     }

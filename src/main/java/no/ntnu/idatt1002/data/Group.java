@@ -1,25 +1,25 @@
 package no.ntnu.idatt1002.data;
 
-import no.ntnu.idatt1002.dao.Database;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * The Group class represents a group of members. It maintains a HashMap of Member objects
- * where the key is the member's user ID and the value is the Member object. Each group has a
- * group ID and group name.
+ * This class represents a group of users. Each group has a unique
+ * ID, but not necessarily a unique name.
  */
-public class Group {
-  private final List<User> members = new ArrayList<>(); //The HashMap of Member objects representing the group
-  private final long groupId; //The ID of the group
-  private String name; //The name of the group
+public final class Group {
+
+  public static Group CURRENT; // The current group
+
+  private final long groupId; // The ID of the group
+  private String name; // The name of the group
+  private final List<User> members = new ArrayList<>(); // A list with the users within this group
 
   /**
-   Constructs a new Group object with the specified group ID and group name.
-   *
-   * @param groupId the ID of the group
-   * @param groupName the name of the group
+   Constructs a new group with the specified group ID and group name.
+   * @param   groupId the ID of the group
+   * @param   name the name of the group
    */
   public Group(long groupId, String name) {
     this.groupId = groupId;
@@ -27,10 +27,33 @@ public class Group {
   }
 
   /**
-   Adds a member to the group.
-   *
-   * @param user the Member object to add to the group
-   * @return true if the member was successfully added, false if the member is already in the group
+   * Returns the ID of the group.
+   * @return  the ID of the group
+   */
+  public long getId() {
+    return groupId;
+  }
+
+  /**
+   * Sets the name of the group.
+   * @param   name the new name of the group
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   * Returns the name of the group.
+   * @return  the name of the group
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Adds a member to the group.
+   * @param   user the user to add
+   * @return  true if the member was successfully added, otherwise false
    */
   public boolean addMember(User user) {
     if(isMember(user.getId())) return false;
@@ -40,51 +63,35 @@ public class Group {
 
   /**
    * Removes a member from the group.
-   *
-   * @param user the Member object to remove from the group
-   * @return true if the member was successfully removed, false if the member is not in the group
+   * @param   user the user to remove
+   * @return  true if the member was successfully removed, otherwise false
    */
   public boolean removeMember(User user) {
       return members.removeIf(member -> member.getId() == user.getId());
   }
 
+  /**
+   * Returns true if a member of this group has the specified ID.
+   * @param   userId the ID of the user
+   * @return  true if a member of this group has the specified ID
+   */
   public boolean isMember(long userId) {
     return members.stream().anyMatch(user -> user.getId() == userId);
   }
 
   /**
-   * Returns the ID of the group.
-   *
-   * @return the ID of the group
-   */
-  public long getId() {
-    return groupId;
-  }
-
-  /**
-   * Returns the name of the group.
-   *
-   * @return the name of the group
-   */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Returns the HashMap of Member objects representing the group.
-   *
-   * @return the HashMap of Member objects representing the group
+   * Returns an unmodifiable list of the members of this group.
+   * @return  an unmodifiable list of the members of this group
    */
   public List<User> getMembers() {
-    return members;
+    return Collections.unmodifiableList(members);
   }
 
   /**
-   * Sets the name of the group.
-   *
-   * @param groupName the new name of the group
+   * Set the current group.
+   * @param   group the group
    */
-  public void setName(String name) {
-    this.name = name;
+  public static void setCurrent(Group group) {
+    CURRENT = group;
   }
 }
