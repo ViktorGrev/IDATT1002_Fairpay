@@ -70,6 +70,7 @@
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: #000000;
 }
+
 .backgroundColor{
     -fx-background-color: linear-gradient(to left,#fafafa, #a3a0a0);
 }
