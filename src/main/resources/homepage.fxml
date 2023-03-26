@@ -126,7 +126,7 @@
                               </Tooltip>
                            </tooltip>
                         </Button>
-                        <Text fill="#575050" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
+                        <Text fx:id="welcomeText" fill="#575050" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
                            <font>
                               <Font size="16.0" />
                            </font>
