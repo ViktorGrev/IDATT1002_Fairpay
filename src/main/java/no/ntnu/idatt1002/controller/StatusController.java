@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StatusController implements Initializable {
+public class StatusController extends Controller implements Initializable {
 
     @FXML
     public PieChart pieChart;
@@ -37,33 +37,5 @@ public class StatusController implements Initializable {
         );
 
         pieChart.getData().addAll(pieChartData);
-    }
-
-    public void groupExpenseClick(ActionEvent actionEvent) throws IOException{
-        SceneSwitcher.setView("expense");
-    }
-
-    public void privateSettlementClick(ActionEvent actionEvent) throws IOException{
-        SceneSwitcher.setView("settlement");
-    }
-
-    public void dormGroupClick(ActionEvent actionEvent) {
-        SceneSwitcher.setView("dormGroup");
-    }
-
-    public void budgetClick(ActionEvent actionEvent) {
-        SceneSwitcher.setView("budget");
-    }
-
-    public void homeClick(MouseEvent mouseEvent) {
-        SceneSwitcher.setView("homepage");
-    }
-
-    public void profileClick(ActionEvent actionEvent) {
-        SceneSwitcher.setView("profile");
-    }
-
-    public void incomeClick(ActionEvent actionEvent) {
-        SceneSwitcher.setView("income");
     }
 }
