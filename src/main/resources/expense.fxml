@@ -13,22 +13,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.ExpenseController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.ExpenseController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
             <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="57.0" fitWidth="128.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/FairPayLogo.png" />
-                     </image>
-                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="134.0" styleClass="imageMenu" stylesheets="@style/stylesheet.css">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="110.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true" styleClass="imageMenu">
+                           <image>
+                              <Image url="@image/FairPayLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </HBox>
                </children>
             </HBox>
          </top>
          <left>
-            <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f; -fx-background-radius: 0em 0em 1em 0em;" BorderPane.alignment="CENTER">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
@@ -90,6 +97,12 @@
                      </padding>
                   </Button>
                </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
          </left>
          <center>
@@ -119,7 +132,7 @@
                   </HBox>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <TableView editable="true" prefHeight="265.0" prefWidth="413.0" style="-fx-border-color: white;" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Name" />
                       <TableColumn prefWidth="75.0" text="Category" />
@@ -129,6 +142,9 @@
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
                   </TableView>
                </center>
             </BorderPane>
