@@ -6,32 +6,8 @@ import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
 import java.io.IOException;
 
-public class SettlementController {
+public class SettlementController extends Controller{
   public void newSettlementClick(ActionEvent actionEvent) throws IOException {
     SceneSwitcher.setView("newSettlement");
-  }
-
-  public void groupExpenseClick(ActionEvent actionEvent) throws IOException {
-    SceneSwitcher.setView("expense");
-  }
-
-  public void statusButtonClicked(ActionEvent actionEvent) throws IOException{
-    SceneSwitcher.setView("status");
-  }
-
-  public void budgetClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("budget");
-  }
-
-  public void dormGroupClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("dormGroup");
-  }
-
-  public void homeClick(MouseEvent mouseEvent) {
-    SceneSwitcher.setView("homepage");
-  }
-
-  public void incomeClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("income");
   }
 }
