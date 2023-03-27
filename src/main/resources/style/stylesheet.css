@@ -1,11 +1,11 @@
 .button{
-    -fx-background-color:  #793f3f;
+    -fx-background-color: #793f3f;
     -fx-background-radius: 0em;
 
 }
 
 .button:hover{
-    -fx-background-color: #A89DOA;
+    /*-fx-background-color: #a89doa; Dette er ikke en gyldig fargekode */
 }
 
 .button:pressed{

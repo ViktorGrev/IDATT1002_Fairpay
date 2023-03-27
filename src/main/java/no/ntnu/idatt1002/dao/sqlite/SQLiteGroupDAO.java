@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
+public final class SQLiteGroupDAO extends SQLiteDAO implements GroupDAO {
 
     private static final String CREATE_GROUPS = """
                 CREATE TABLE IF NOT EXISTS groups (
@@ -35,6 +35,9 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
             	PRIMARY KEY (groupId, userId)
             );""";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setup() {
         try(Connection connection = getConnection();
@@ -58,6 +61,7 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
      */
     @Override
     public Group create(String name) {
+        if(name == null || name.isBlank()) throw new IllegalArgumentException("Group name cannot be blank");
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_GROUP, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, name);
@@ -154,6 +158,9 @@ public final class SQLiteGroupDAO extends SQLiteDAO<Group> implements GroupDAO {
                     LIMIT 1;
                     """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Group findByUser(long userId) {
         try(Connection connection = getConnection();
