@@ -98,7 +98,7 @@ public final class DormGroupController extends Controller implements Initializab
   }
 
   // Used as a table object.
-  private static class TableUser {
+  public static class TableUser {
 
     private final SimpleStringProperty username;
     private final SimpleLongProperty phoneNumber;
