@@ -10,6 +10,18 @@ public class Income {
   private final Date date;
 
   public Income(BigDecimal amount, String type, long userId, Date date) {
+    if (userId < 0){
+      throw new IllegalArgumentException("Incorrect user-id");
+    }
+    if (type == null){
+      throw new IllegalArgumentException("The income type can't be null");
+    }
+    if (date == null){
+      throw new IllegalArgumentException("The date can't be null");
+    }
+    if (amount.compareTo(BigDecimal.ZERO) < 0){
+      throw new IllegalArgumentException("The amount cannot be a negative integer");
+    }
     this.Amount = amount;
     this.type = type;
     this.userId = userId;
