@@ -5,7 +5,7 @@
 
 .button:focused{
     -fx-background-color: #572828;
-    -fx-background-radius: 0px 1em 1em 0px;
+    -fx-background-radius: 1em 0em 0em 1em;
 }
 
 #buttonFocus{
@@ -81,6 +81,6 @@
 
 .imageMenu {
     -fx-background-color: white;
-    -fx-background-radius:0em 1em 1em 0em;
+    -fx-background-radius:0em 1em 0em 0em;
 }
 
