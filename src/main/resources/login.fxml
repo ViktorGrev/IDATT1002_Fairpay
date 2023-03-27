@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
@@ -16,16 +17,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/formstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
+<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="font" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" />
-      <VBox prefHeight="474.0" prefWidth="216.0">
+      <VBox prefHeight="474.0" prefWidth="216.0" styleClass="font">
          <children>
             <HBox alignment="CENTER" prefHeight="94.0" prefWidth="286.0">
                <children>
-                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                      <font>
-                        <Font name="Roboto Bold" size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                      <effect>
                         <InnerShadow blurType="GAUSSIAN">
@@ -37,7 +38,14 @@
                   </Text>
                </children>
             </HBox>
-            <HBox prefHeight="62.0" prefWidth="207.0" />
+            <HBox prefHeight="62.0" prefWidth="207.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please sign up if you are not already registered.">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children></HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
@@ -59,7 +67,8 @@
                   <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="152.0" promptText="Type your username">
                      <font>
                         <Font size="14.0" />
-                     </font></TextField>
+                     </font>
+                  </TextField>
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
@@ -83,7 +92,8 @@
                   <PasswordField fx:id="passwordField" promptText="Type your password">
                      <font>
                         <Font size="14.0" />
-                     </font></PasswordField>
+                     </font>
+                  </PasswordField>
                </children>
             </HBox>
             <Text fx:id="loginFeedback" fill="#ee2222" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.0">
@@ -114,8 +124,12 @@
          <HBox.margin>
             <Insets top="40.0" />
          </HBox.margin>
+         <stylesheets>
+            <URL value="@style/stylesheet.css" />
+            <URL value="@style/formstyle.css" />
+         </stylesheets>
       </VBox>
-      <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0" stylesheets="@style/stylesheet.css">
          <children>
             <GridPane>
               <columnConstraints>
@@ -139,10 +153,17 @@
                            </color>
                         </InnerShadow>
                      </effect>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" />
+                     </GridPane.margin>
                   </Button>
                </children>
             </GridPane>
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@style/formstyle.css" />
+      <URL value="@style/stylesheet.css" />
+   </stylesheets>
 </HBox>
