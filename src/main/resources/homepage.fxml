@@ -137,7 +137,19 @@
                <bottom>
                   <Pane prefHeight="134.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane layoutX="14.0" layoutY="-4.0" prefHeight="133.0" prefWidth="161.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" />
+                        <Pane layoutX="14.0" layoutY="-4.0" prefHeight="133.0" prefWidth="161.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;">
+                           <children>
+                              <Text fx:id="dateText" layoutX="23.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="114.13671875">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="weekDayText" layoutX="51.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                           </children></Pane>
                         <Pane layoutX="185.0" layoutY="-4.0" prefHeight="132.0" prefWidth="160.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" />
                         <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="436.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -37,7 +37,7 @@
       </Button>
       <Button layoutX="329.0" layoutY="146.0" mnemonicParsing="false" onAction="#createGroupButton" prefHeight="141.0" prefWidth="183.0" style="-fx-background-color: #793f3f;" text="Create new dorm group" textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold Italic" size="15.0" />
          </font>
          <effect>
             <InnerShadow blurType="GAUSSIAN">
