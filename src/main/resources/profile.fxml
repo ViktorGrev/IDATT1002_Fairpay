@@ -29,7 +29,7 @@
          <left>
             <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f;" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClicked" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
