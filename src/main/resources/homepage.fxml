@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -30,75 +31,155 @@
          <left>
             <VBox prefHeight="344.0" prefWidth="134.0" style="-fx-background-color: #793f3f;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
                      <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                     <opaqueInsets>
                         <Insets left="30.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
                      </padding>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/profile.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/group.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expense" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/expense.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#incomeClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Income" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/income.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/budget.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/settlement.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="20.0" />
                      </padding>
-                  </Button>
-                  <BorderPane prefHeight="117.0" prefWidth="134.0">
-                     <bottom>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="BASELINE_LEFT">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@image/settings.png" />
+                              <Image url="@image/status.png" />
                            </image>
-                           <BorderPane.margin>
-                              <Insets left="10.0" />
-                           </BorderPane.margin>
                         </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Log out" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets left="30.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <BorderPane prefHeight="83.0" prefWidth="134.0" VBox.vgrow="ALWAYS">
+                     <bottom>
+                        <AnchorPane prefHeight="27.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="18.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0">
+                                 <image>
+                                    <Image url="@image/settings.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
                      </bottom>
                   </BorderPane>
                </children>
@@ -107,17 +188,9 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Pane prefHeight="200.0" prefWidth="437.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="37.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane layoutX="181.0" layoutY="30.0" prefHeight="163.0" prefWidth="276.0" style="-fx-border-radius: 10px; -fx-border-color: #a3a0a0;" />
                         <Button layoutX="435.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style/stylesheet.css">
-                           <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/notifications.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <tooltip>
                               <Tooltip style="-fx-background-color: #793f3f;" text="Notifications">
                                  <font>
@@ -134,31 +207,106 @@
                      </children>
                   </Pane>
                </top>
-               <bottom>
-                  <Pane prefHeight="134.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+               <center>
+                  <AnchorPane prefHeight="237.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane layoutX="14.0" layoutY="-4.0" prefHeight="133.0" prefWidth="161.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;">
+                        <AnchorPane layoutX="266.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+                        <VBox prefHeight="306.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Text fx:id="dateText" layoutX="23.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="114.13671875">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="weekDayText" layoutX="51.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Text>
-                           </children></Pane>
-                        <Pane layoutX="185.0" layoutY="-4.0" prefHeight="132.0" prefWidth="160.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" />
-                        <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="436.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane prefHeight="158.0" prefWidth="255.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="152.0" prefWidth="363.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <VBox alignment="CENTER" layoutX="9.0" layoutY="3.0" prefHeight="147.0" prefWidth="216.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="3.0">
+                                                   <children>
+                                                      <Text fx:id="weekDayText1111" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="dateText1111" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
+                                                         <font>
+                                                            <Font size="17.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox prefHeight="154.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane prefHeight="153.0" prefWidth="168.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="118.0" prefWidth="161.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="-21.0" AnchorPane.topAnchor="17.0">
+                                                         <children>
+                                                            <Text fx:id="weekDayText111" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                            </Text>
+                                                            <Text fx:id="dateText111" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
+                                                               <font>
+                                                                  <Font size="17.0" />
+                                                               </font>
+                                                            </Text>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="153.0" prefWidth="257.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <VBox alignment="CENTER" layoutX="35.0" layoutY="18.0" prefHeight="117.0" prefWidth="269.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="18.0">
+                                                   <children>
+                                                      <Text fx:id="weekDayText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Text>
+                                                      <Text fx:id="dateText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
+                                                         <font>
+                                                            <Font size="17.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-30.0">
+                           <image>
+                              <Image url="@image/notifications.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
                            <image>
                               <Image url="@image/help.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-               </bottom>
+                  </AnchorPane>
+               </center>
             </BorderPane>
          </center>
       </BorderPane>
