@@ -3,23 +3,12 @@ package no.ntnu.idatt1002;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import no.ntnu.idatt1002.Scenes.SceneSwitcher;
-import no.ntnu.idatt1002.dao.Database;
-import no.ntnu.idatt1002.dao.GroupDAO;
-import no.ntnu.idatt1002.dao.UserDAO;
-import no.ntnu.idatt1002.data.Invite;
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-public class MyApp extends Application {
+public class FairPay extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -27,20 +16,12 @@ public class MyApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("JavaFX App");
-
-        /*AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("test.fxml"));
-        Scene scene = new Scene(FXMLLoader.load(getClass().getClassLoader().getResource("test.fxml")));
-
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
-
         try {
             FXMLLoader loader = SceneSwitcher.getLoader("frontpage");
             SceneSwitcher.setScene(new Scene(loader.load()));
             SceneSwitcher.setCurrentScene("frontpage");
             primaryStage.setScene(SceneSwitcher.getScene());
-            primaryStage.setTitle("JavaFX App");
+            primaryStage.setTitle("FairPay");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

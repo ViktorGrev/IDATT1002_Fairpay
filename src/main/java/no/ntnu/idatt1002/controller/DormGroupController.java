@@ -2,13 +2,11 @@ package no.ntnu.idatt1002.controller;
 
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
 
