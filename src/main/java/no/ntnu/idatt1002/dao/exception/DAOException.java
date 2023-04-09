@@ -13,4 +13,12 @@ public class DAOException extends RuntimeException {
     public DAOException(String string) {
         super(string);
     }
+
+    /**
+     * Instantiates a new DAOException.
+     * @param   throwable the cause
+     */
+    public DAOException(Throwable throwable) {
+        super(throwable);
+    }
 }

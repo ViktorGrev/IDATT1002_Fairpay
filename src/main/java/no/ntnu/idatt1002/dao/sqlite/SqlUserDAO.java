@@ -7,32 +7,16 @@ import no.ntnu.idatt1002.dao.exception.DAOException;
 import no.ntnu.idatt1002.data.User;
 
 import java.sql.*;
-import java.util.Collection;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
-public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
-
-    private static final String CREATE_USERS = """
-                CREATE TABLE IF NOT EXISTS users (
-            	userId integer PRIMARY KEY AUTOINCREMENT,
-            	username text(16) UNIQUE NOT NULL,
-            	password text(60) NOT NULL,
-            	registerDate integer NOT NULL,
-            	phoneNumber integer NOT NULL
-            );""";
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setup() {
-        try(Connection connection = getConnection();
-            Statement statement = connection.createStatement()) {
-            statement.execute(CREATE_USERS);
-        } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG);
-        }
-    }
+/**
+ * This class is an implementation of the {@link UserDAO} interface, using
+ * SQLite as the underlying data source.
+ * @see SqlDAO
+ * @see UserDAO
+ */
+public final class SqlUserDAO extends SqlDAO implements UserDAO {
 
     private static final String INSERT_PERSON = """
                 INSERT INTO users (username, password, registerDate, phoneNumber)
@@ -66,7 +50,7 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
                 throw new DAOException("Username is taken");
             }
             e.printStackTrace();
-            throw new DAOException(ERROR_MSG);
+            throw new DAOException(e);
         }
         return null;
     }
@@ -77,27 +61,48 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
      * {@inheritDoc}
      */
     @Override
-    public User find(long userId) {
+    public User find(Long filter) {
+        Objects.requireNonNull(filter);
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_ONE_ID)) {
-            statement.setLong(1, userId);
+            statement.setLong(1, filter);
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
                     return build(resultSet);
                 }
             }
+            return null;
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG);
+            throw new DAOException(e);
         }
-        return null;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<User> find(Collection<Long> ids) {
-        return null;
+    public List<User> find(Collection<Long> filter) {
+        Objects.requireNonNull(filter);
+        if(filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
+        String findStatement = buildFindStatement(filter.size());
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(findStatement)) {
+            int i = 1;
+            for(long f : filter) statement.setLong(i++, f);
+            List<User> list = new ArrayList<>();
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    list.add(build(resultSet));
+                }
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private String buildFindStatement(int size) {
+        return "SELECT * FROM users WHERE userId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
     private static final String FIND_ONE_BY_NAME = "SELECT * FROM users WHERE username = ?;";
@@ -120,7 +125,7 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new DAOException(ERROR_MSG);
+            throw new DAOException(e);
         }
         throw new AuthException("User does not exist");
     }
@@ -138,25 +143,38 @@ public final class SQLiteUserDAO extends SQLiteDAO implements UserDAO {
     }
 
     /**
-     * Creates a new User object from a ResultSet.
+     * Creates a user object from a ResultSet.
      * @param   resultSet the ResultSet to retrieve data from
      * @return  a new User object
      * @throws  SQLException if a database access error occurs
      */
-    /*@Override
-    protected User build(ResultSet resultSet) throws SQLException {
-        return new User(resultSet.getLong("userId"),
-                resultSet.getString("username"),
-                resultSet.getString("password"),
-                resultSet.getDate("registerDate"),
-                resultSet.getInt("phoneNumber"));
-    }*/
-
     static User build(ResultSet resultSet) throws SQLException {
         return new User(resultSet.getLong("userId"),
                 resultSet.getString("username"),
                 resultSet.getString("password"),
                 resultSet.getDate("registerDate"),
                 resultSet.getInt("phoneNumber"));
+    }
+
+    private static final String CREATE_USERS = """
+                CREATE TABLE IF NOT EXISTS users (
+            	userId integer PRIMARY KEY AUTOINCREMENT,
+            	username text(16) UNIQUE NOT NULL,
+            	password text(60) NOT NULL,
+            	registerDate integer NOT NULL,
+            	phoneNumber integer NOT NULL
+            );""";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void init() {
+        try(Connection connection = getConnection();
+            Statement statement = connection.createStatement()) {
+            statement.execute(CREATE_USERS);
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 }

@@ -13,8 +13,8 @@ import no.ntnu.idatt1002.dao.UserDAO;
  */
 public abstract class Controller {
 
-    protected static final UserDAO userDAO = Database.getUserDAO();
-    protected static final GroupDAO groupDAO = Database.getGroupDAO();
+    protected static final UserDAO userDAO = Database.getDAO(UserDAO.class);
+    protected static final GroupDAO groupDAO = Database.getDAO(GroupDAO.class);
 
     //General connections
     public void expenseClick(ActionEvent actionEvent) {

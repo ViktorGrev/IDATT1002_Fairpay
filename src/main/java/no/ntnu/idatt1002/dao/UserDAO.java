@@ -3,33 +3,20 @@ package no.ntnu.idatt1002.dao;
 import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.data.User;
 
-import java.util.Collection;
-import java.util.List;
-
-public interface UserDAO {
+/**
+ * This interface defines methods to interact with users and user related tasks.
+ */
+public interface UserDAO extends DAO<User, Long> {
 
     /**
-     *
-     * @param username
-     * @param password
-     * @param phoneNumber
-     * @return
+     * Creates a new user with the specified username, password
+     * and phone number.
+     * @param   username the username
+     * @param   password the password
+     * @param   phoneNumber the phone number
+     * @return  a new user
      */
     User create(String username, String password, long phoneNumber);
-
-    /**
-     * Finds a user with the given ID.
-     * @param   userId the user id
-     * @return  a user with the given ID or null if no one has the ID
-     */
-    User find(long userId);
-
-    /**
-     * Finds a list of users with the given IDs.
-     * @param   ids the ids
-     * @return  a list of users with the given IDs.
-     */
-    List<User> find(Collection<Long> ids);
 
     /**
      * Authenticates a user with a given username and password.
