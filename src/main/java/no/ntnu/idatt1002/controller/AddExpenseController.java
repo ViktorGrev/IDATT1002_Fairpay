@@ -1,13 +1,12 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
-import java.io.IOException;
+public final class AddExpenseController extends MenuController {
 
-public class AddExpenseController extends Controller{
-  public void addExpenseClick(ActionEvent actionEvent) throws IOException {
+  @FXML
+  private void addExpenseClick() {
     SceneSwitcher.setView("expense");
   }
 }

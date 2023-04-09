@@ -2,6 +2,7 @@ package no.ntnu.idatt1002.controller;
 
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -14,66 +15,18 @@ import no.ntnu.idatt1002.data.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class DormGroupController extends Controller implements Initializable {
-
-  // TODO: Make super class for the controllers with the menu to remove duplicate code
+public final class DormGroupController extends MenuController implements Initializable {
 
   @FXML private TableView<TableUser> memberTable;
 
-  /**
-   * Send the user to the expense page.
-   */
-  @FXML
-  private void expenseButtonClick() {
-    SceneSwitcher.setView("expense");
-  }
-
-  /**
-   * Send the user to the settlement page.
-   */
   @FXML
   private void privateSettlementClick() {
-    SceneSwitcher.setView("settlement");
+
   }
 
-  /**
-   * Send the user to the status page.
-   */
   @FXML
   private void statusOnClick() {
-    SceneSwitcher.setView("status");
-  }
 
-  /**
-   * Send the user to the dorm group page.
-   */
-  @FXML
-  private void dormGroupClick() {
-    SceneSwitcher.setView("dormGroup");
-  }
-
-  /**
-   * Send the user to the homepage page.
-   */
-  @FXML
-  private void homeClick() {
-    SceneSwitcher.setView("homepage");
-  }
-
-  /**
-   * Send the user to the budget page.
-   */
-  @FXML
-  private void budgetClick() {
-    SceneSwitcher.setView("budget");
-  }
-
-  /**
-   * Send the user to the income page.
-   */
-  @FXML
-  private void incomeClick() {
-    SceneSwitcher.setView("income");
   }
 
   @Override

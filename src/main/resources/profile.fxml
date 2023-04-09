@@ -48,7 +48,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -72,7 +72,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -80,7 +80,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

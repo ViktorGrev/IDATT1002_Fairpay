@@ -1,12 +1,12 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.event.ActionEvent;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
-public class IncomeController extends Controller{
-  public void newIncomeClick(ActionEvent actionEvent) {
+public final class IncomeController extends MenuController {
+
+  @FXML
+  private void newIncomeClick() {
     SceneSwitcher.setView("newIncome");
   }
 }

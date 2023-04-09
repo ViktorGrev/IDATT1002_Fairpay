@@ -1,8 +1,14 @@
 package no.ntnu.idatt1002.dao;
 
 import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.data.Invite;
 
-public interface GroupDAO {
+import java.util.List;
+
+/**
+ * This interface defines methods to interact with groups and group related tasks.
+ */
+public interface GroupDAO extends DAO<Group, Long> {
 
     /**
      * Create a new group with the specified name.
@@ -21,13 +27,29 @@ public interface GroupDAO {
     /**
      * Add an invitation to a group for a user with the specified ID.
      * @param   groupId the group ID
+     * @param   senderId the sender user ID
+     * @param   targetId the target user ID
+     */
+    void addInvite(long groupId, long senderId, long targetId);
+
+    /**
+     * Removes an invitation from a group.
+     * @param   groupId the group ID
      * @param   userId the user ID
      */
-    void addInvite(long groupId, long userId);
+    void removeInvite(long groupId, long userId);
+
+    /**
+     * Returns an unmodifiable list of invites for a user
+     * with the specified ID.
+     * @param   userId the user ID
+     * @return  an unmodifiable list of invites for a user
+     */
+    List<Invite> getInvites(long userId);
 
     /**
      * Returns the group of this user.
-     * @param   id the user id
+     * @param   userId the user id
      * @return  the group of this user
      */
     Group findByUser(long userId);

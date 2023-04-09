@@ -3,10 +3,21 @@ package no.ntnu.idatt1002;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
+import no.ntnu.idatt1002.dao.Database;
+import no.ntnu.idatt1002.dao.GroupDAO;
+import no.ntnu.idatt1002.dao.UserDAO;
+import no.ntnu.idatt1002.data.Invite;
+import no.ntnu.idatt1002.data.User;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class MyApp extends Application {
 
@@ -36,7 +47,7 @@ public class MyApp extends Application {
         }
 
 
-        /*try {
+        try {
             String username = "username";
             String password = "1234";
 
@@ -45,15 +56,35 @@ public class MyApp extends Application {
             //User user = new User(-1, username, pswd, new Date(), 1);
             //Database.getUserDAO().insert(user);
 
-            long userId = Database.getUserDAO().authenticate(username, password);
-            System.out.println("authenticated: " + userId);
+            //UserDAO userDAO = Database.getUserDAO();
+            //GroupDAO groupDAO = Database.getGroupDAO();
 
-            Group group = Database.getGroupDAO().findByUser(userId);
-            System.out.println("group: " + group);
+            //groupDAO.addInvite(3, 4, 3);
 
-        } catch(AuthException e) {
+            //List<Invite> invites = groupDAO.getInvites(3);
+
+            //List<User> users = userDAO.find(invites.stream().map(Invite::getTargetId).collect(Collectors.toList()));
+
+            /*for(Invite invite : groupDAO.getInvites(3)) {
+                System.out.println("inv: " + invite.getGroupId() + " " + invite.getTargetId());
+            }
+
+            groupDAO.removeInvite(3, 3);
+
+            for(Invite invite : groupDAO.getInvites(3)) {
+                System.out.println("inv: " + invite.getGroupId() + " " + invite.getTargetId());
+            }*/
+
+            //userDAO.find(Long.valueOf(0));
+
+
+            /*for(User user : userDAO.find(Arrays.asList(3L, 3L, null))) {
+                System.out.println("user found: " + user.getUsername());
+            }*/
+
+        } catch(Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }
 
