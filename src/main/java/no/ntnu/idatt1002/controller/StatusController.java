@@ -3,21 +3,17 @@ package no.ntnu.idatt1002.controller;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.input.MouseEvent;
-import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StatusController extends Controller implements Initializable {
+public final class StatusController extends MenuController implements Initializable {
 
     @FXML
-    public PieChart pieChart;
+    private PieChart pieChart;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,12 +1,12 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import no.ntnu.idatt1002.Scenes.SceneSwitcher;
 
-import java.io.IOException;
+public final class FrontpageController {
 
-public class FrontpageController {
-  public void loginButtonClick(ActionEvent actionEvent) throws IOException {
+  @FXML
+  private void loginButtonClick() {
     SceneSwitcher.setView("login");
   }
 }
