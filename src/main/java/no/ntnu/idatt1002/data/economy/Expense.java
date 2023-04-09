@@ -35,7 +35,7 @@ public class Expense {
      * @param userId the ID of the user who made the expense
      */
     public Expense(ExpenseType type, BigDecimal amount, long userId) {
-        this(userId, type, "No description", amount);
+        this(userId, type, null, amount);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Expense {
         if (type == null){
             throw new IllegalArgumentException("The expense type can't be null");
         }
-        if (name.isBlank()){
+        if (name != null && name.isBlank()){
             throw new IllegalArgumentException("The name can't be blank");
         }
         if (amount.compareTo(BigDecimal.ZERO) < 0){

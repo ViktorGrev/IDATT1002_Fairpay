@@ -226,12 +226,12 @@
                                              <children>
                                                 <VBox alignment="CENTER" layoutX="9.0" layoutY="3.0" prefHeight="147.0" prefWidth="216.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="3.0">
                                                    <children>
-                                                      <Text fx:id="weekDayText1111" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                                      <Text fx:id="weekDayText" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
                                                       </Text>
-                                                      <Text fx:id="dateText1111" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
+                                                      <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
                                                          <font>
                                                             <Font size="17.0" />
                                                          </font>
