@@ -7,10 +7,8 @@ import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * This class is an implementation of the {@link GroupDAO} interface, using
@@ -20,14 +18,48 @@ import java.util.List;
  */
 public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
+    private static final String FIND_ONE_ID = "SELECT * FROM groups WHERE groupId = ?;";
+
     @Override
     public Group find(Long filter) {
-        return null;
+        Objects.requireNonNull(filter);
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_ONE_ID)) {
+            statement.setLong(1, filter);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return buildGroup(resultSet);
+                }
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 
     @Override
     public List<Group> find(Collection<Long> filter) {
-        return null;
+        Objects.requireNonNull(filter);
+        if(filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
+        String findStatement = buildFindStatement(filter.size());
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(findStatement)) {
+            int i = 1;
+            for(long f : filter) statement.setLong(i++, f);
+            List<Group> list = new ArrayList<>();
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    list.add(buildGroup(resultSet));
+                }
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private String buildFindStatement(int size) {
+        return "SELECT * FROM groups WHERE groupId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
     private static final String INSERT_GROUP = "INSERT INTO groups (groupName) VALUES (?);";
@@ -115,16 +147,35 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
-    private static final String FIND_INVITES = "SELECT * FROM groupInvites WHERE targetId = ?;";
+    private static final String FIND_INVITES = "SELECT * FROM groupInvites WHERE groupId = ?;";
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<Invite> getInvites(long userId) {
+    public List<Invite> getInvites(long groupId) {
         List<Invite> invites = new ArrayList<>();
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(FIND_INVITES)) {
+            statement.setLong(1, groupId);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    invites.add(buildInvite(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return Collections.unmodifiableList(invites);
+    }
+
+    private static final String FIND_INVITES_BY_USER = "SELECT * FROM groupInvites WHERE targetId = ?;";
+
+    @Override
+    public List<Invite> getInvitesByUser(long userId) {
+        List<Invite> invites = new ArrayList<>();
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_INVITES_BY_USER)) {
             statement.setLong(1, userId);
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
@@ -154,7 +205,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             PreparedStatement statement = connection.prepareStatement(FIND_MEMBERS)) {
             statement.setLong(1, groupId);
             try(ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet.next()) {
+                while(resultSet.next()) {
                     User user = SqlUserDAO.build(resultSet);
                     users.add(user);
                 }
@@ -199,8 +250,8 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
      */
     private static Group buildGroup(ResultSet resultSet) throws SQLException {
         long groupId = resultSet.getLong("groupId");
-        Group group = new Group(groupId,
-                resultSet.getString("groupName"));
+        String groupName = resultSet.getString("groupName");
+        Group group = new Group(groupId, groupName);
         getMembers(groupId).forEach(group::addMember);
         return group;
     }

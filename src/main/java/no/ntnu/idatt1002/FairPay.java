@@ -3,10 +3,13 @@ package no.ntnu.idatt1002;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import no.ntnu.idatt1002.dao.Database;
+import no.ntnu.idatt1002.dao.GroupDAO;
+import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
-
-import java.io.IOException;
 
 public class FairPay extends Application {
 
@@ -15,30 +18,26 @@ public class FairPay extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        try {
-            FXMLLoader loader = SceneSwitcher.getLoader("frontpage");
-            SceneSwitcher.setScene(new Scene(loader.load()));
-            SceneSwitcher.setCurrentScene("frontpage");
-            primaryStage.setScene(SceneSwitcher.getScene());
-            primaryStage.setTitle("FairPay");
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = SceneSwitcher.getLoader("frontpage");
+        SceneSwitcher.setScene(new Scene(loader.load()));
+        SceneSwitcher.setCurrentScene("frontpage");
+        primaryStage.setScene(SceneSwitcher.getScene());
+        primaryStage.setTitle("FairPay");
+        primaryStage.show();
 
         try {
-            String username = "username";
-            String password = "1234";
-
-            // Insert a user:
             //String pswd = BCrypt.withDefaults().hashToString(12, password.toCharArray());
             //User user = new User(-1, username, pswd, new Date(), 1);
             //Database.getUserDAO().insert(user);
 
             //UserDAO userDAO = Database.getUserDAO();
-            //GroupDAO groupDAO = Database.getGroupDAO();
+            /*GroupDAO groupDAO = Database.getDAO(GroupDAO.class);
+
+            Group group = groupDAO.find(3L);
+            for(User user : group.getMembers()) {
+                System.out.println(user.getId() + " " + user.getUsername());
+            }*/
 
             //groupDAO.addInvite(3, 4, 3);
 
@@ -48,19 +47,6 @@ public class FairPay extends Application {
 
             /*for(Invite invite : groupDAO.getInvites(3)) {
                 System.out.println("inv: " + invite.getGroupId() + " " + invite.getTargetId());
-            }
-
-            groupDAO.removeInvite(3, 3);
-
-            for(Invite invite : groupDAO.getInvites(3)) {
-                System.out.println("inv: " + invite.getGroupId() + " " + invite.getTargetId());
-            }*/
-
-            //userDAO.find(Long.valueOf(0));
-
-
-            /*for(User user : userDAO.find(Arrays.asList(3L, 3L, null))) {
-                System.out.println("user found: " + user.getUsername());
             }*/
 
         } catch(Exception e) {
@@ -68,6 +54,3 @@ public class FairPay extends Application {
         }
     }
 }
-
-
-

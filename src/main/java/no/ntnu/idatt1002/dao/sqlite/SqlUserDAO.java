@@ -18,6 +18,26 @@ import java.util.*;
  */
 public final class SqlUserDAO extends SqlDAO implements UserDAO {
 
+    private static final String FIND_ONE_NAME = "SELECT * FROM users WHERE username = ?;";
+
+    @Override
+    public User find(String username) {
+        Objects.requireNonNull(username);
+        if(username.isBlank()) throw new IllegalArgumentException("username cannot be blank");
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_ONE_NAME)) {
+            statement.setString(1, username);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()) {
+                    return build(resultSet);
+                }
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String INSERT_PERSON = """
                 INSERT INTO users (username, password, registerDate, phoneNumber)
                 VALUES (?, ?, ?, ?);

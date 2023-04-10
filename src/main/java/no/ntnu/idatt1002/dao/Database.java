@@ -46,6 +46,8 @@ public final class Database {
     }
 
     static {
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$s] %5$s %n");
+
         // Registering default DAO classes and initializing dependencies
         registerDAO(UserDAO.class, new SqlUserDAO());
         registerDAO(GroupDAO.class, new SqlGroupDAO());
