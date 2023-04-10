@@ -8,6 +8,8 @@ import no.ntnu.idatt1002.data.User;
  */
 public interface UserDAO extends DAO<User, Long> {
 
+    User find(String username);
+
     /**
      * Creates a new user with the specified username, password
      * and phone number.

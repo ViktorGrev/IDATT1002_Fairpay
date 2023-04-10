@@ -1,7 +1,9 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.fxml.FXML;
-import no.ntnu.idatt1002.Scenes.SceneSwitcher;
+import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 abstract class MenuController extends Controller {
 
@@ -64,5 +66,15 @@ abstract class MenuController extends Controller {
     @FXML
     private void incomeClick() {
         SceneSwitcher.setView("income");
+    }
+
+    /**
+     * Send the user to the login page.
+     */
+    @FXML
+    private void logoutButtonClick() {
+        Group.setCurrent(null);
+        User.setCurrent(null);
+        SceneSwitcher.setView("login");
     }
 }

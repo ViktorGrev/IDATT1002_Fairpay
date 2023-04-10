@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="font" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
+<HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" styleClass="font" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.LoginController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" />
       <VBox prefHeight="474.0" prefWidth="216.0" styleClass="font">

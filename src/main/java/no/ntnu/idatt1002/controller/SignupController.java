@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import no.ntnu.idatt1002.Scenes.SceneSwitcher;
+import no.ntnu.idatt1002.scene.SceneSwitcher;
 import no.ntnu.idatt1002.data.User;
 
 import java.net.URL;

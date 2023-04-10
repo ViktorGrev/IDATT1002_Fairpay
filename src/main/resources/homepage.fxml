@@ -154,7 +154,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Log out" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logoutButtonClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Log out" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

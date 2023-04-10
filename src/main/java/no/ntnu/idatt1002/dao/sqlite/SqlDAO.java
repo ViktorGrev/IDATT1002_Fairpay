@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * with SQLite.
  * @see DAO
  */
-public abstract class SqlDAO {
+abstract class SqlDAO {
 
     private static final String URL = "jdbc:sqlite:test.db";
 

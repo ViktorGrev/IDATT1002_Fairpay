@@ -40,12 +40,20 @@ public interface GroupDAO extends DAO<Group, Long> {
     void removeInvite(long groupId, long userId);
 
     /**
+     * Returns an unmodifiable list of invites for a group
+     * with the specified ID.
+     * @param   groupId the group ID
+     * @return  an unmodifiable list of invites for a user
+     */
+    List<Invite> getInvites(long groupId);
+
+    /**
      * Returns an unmodifiable list of invites for a user
      * with the specified ID.
      * @param   userId the user ID
      * @return  an unmodifiable list of invites for a user
      */
-    List<Invite> getInvites(long userId);
+    List<Invite> getInvitesByUser(long userId);
 
     /**
      * Returns the group of this user.
