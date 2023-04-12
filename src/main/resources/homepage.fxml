@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="40.0" prefWidth="136.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
