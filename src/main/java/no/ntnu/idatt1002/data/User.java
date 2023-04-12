@@ -13,6 +13,7 @@ public final class User {
     private final String username; // The username of the user
     private final String password; // The encrypted password of the user
     private final Date registerDate; // The date when the user was registered
+    private final Date lastLogin; // The date of the last login
     private final long phoneNumber; // The phone number of the user
 
     /**
@@ -26,19 +27,22 @@ public final class User {
      * @throws IllegalArgumentException if the username is null or blank, the password is null or blank,
      * the register date is null, the phone number is negative or the budget is null.
      */
-    public User(long id, String username, String password, Date registerDate, long phoneNumber) {
+    public User(long id, String username, String password, Date registerDate, Date lastLogin, long phoneNumber) {
         if(username == null || username.isBlank())
             throw new IllegalArgumentException("Username cannot be null or blank");
         if(password == null || password.isBlank())
             throw new IllegalArgumentException("Password cannot be null or blank");
         if(registerDate == null)
             throw new IllegalArgumentException("Register date cannot be null");
+        if(lastLogin == null)
+            throw new IllegalArgumentException("Last login cannot be null");
         if(phoneNumber < 0)
             throw new IllegalArgumentException("Phone number cannot be negative");
         this.id = id;
         this.username = username;
         this.password = password;
         this.registerDate = registerDate;
+        this.lastLogin = lastLogin;
         this.phoneNumber = phoneNumber;
     }
 
@@ -72,6 +76,14 @@ public final class User {
      */
     public Date getRegisterDate() {
         return registerDate;
+    }
+
+    /**
+     * Returns the date when the user was last logged in.
+     * @return  the last login date
+     */
+    public Date getLastLogin() {
+        return lastLogin;
     }
 
     /**
