@@ -16,17 +16,6 @@
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.AddExpenseController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <top>
-            <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="57.0" fitWidth="128.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/FairPayLogo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </top>
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
@@ -78,7 +67,7 @@
          <left>
             <VBox prefHeight="329.0" prefWidth="154.0" style="-fx-background-color: #793f3f; -fx-background-radius: 0em 0em 1em 0em;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="36.0" prefWidth="253.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeClick" prefHeight="36.0" prefWidth="253.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -225,6 +214,24 @@
                </BorderPane.margin>
             </VBox>
          </left>
+         <top>
+            <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="154.0" styleClass="imageMenu" stylesheets="@style/stylesheet.css">
+                     <children>
+                        <ImageView fitHeight="46.0" fitWidth="89.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true" styleClass="imageMenu">
+                           <image>
+                              <Image url="@image/FairPayLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </StackPane>
