@@ -40,7 +40,7 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#backButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Go back" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#backButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" text="Go back" textFill="WHITE">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>
@@ -51,6 +51,9 @@
                      </color>
                   </InnerShadow>
                </effect>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
             </Button>
          </children></HBox>
    </children>
