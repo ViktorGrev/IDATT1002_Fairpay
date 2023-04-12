@@ -14,8 +14,8 @@ class SettlementTest {
 
   @Test
   void addExpenseTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -29,8 +29,8 @@ class SettlementTest {
 
   @Test
   void removeExpenseTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -48,8 +48,8 @@ class SettlementTest {
 
   @Test
   void getSettlementsTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -65,8 +65,8 @@ class SettlementTest {
 
   @Test
   void getSettlementNameTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -76,8 +76,8 @@ class SettlementTest {
 
   @Test
   void setSettlementNameTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -88,8 +88,8 @@ class SettlementTest {
 
   @Test
   void getSettlementIdTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -99,8 +99,8 @@ class SettlementTest {
 
   @Test
   void getMembersTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
@@ -110,8 +110,8 @@ class SettlementTest {
 
   @Test
   void getExpensesTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), 12312312);
+    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
+    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
     ArrayList<User> members = new ArrayList<>();
     members.add(newMember);
     members.add(newMember2);
