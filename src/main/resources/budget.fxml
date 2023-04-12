@@ -89,7 +89,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -119,7 +119,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="36.0" prefWidth="208.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="36.0" prefWidth="208.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

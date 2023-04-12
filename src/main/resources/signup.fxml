@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.SignupController">
+<HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.SignupController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" />
       <VBox prefHeight="474.0" prefWidth="216.0">
@@ -148,7 +148,7 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#createAccountButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" text="Create account" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#createAccountButtonClick" prefHeight="29.0" prefWidth="122.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Create account" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -169,7 +169,7 @@
       </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0" stylesheets="@style/stylesheet.css">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" text="Log in" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
                <font>
                   <Font name="Roboto Bold" size="13.0" />
                </font>
