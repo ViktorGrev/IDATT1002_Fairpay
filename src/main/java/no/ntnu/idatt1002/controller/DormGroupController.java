@@ -15,10 +15,8 @@ import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public final class DormGroupController extends MenuController implements Initializable {
@@ -29,19 +27,10 @@ public final class DormGroupController extends MenuController implements Initial
   @FXML private TableView<TableInvite> inviteTable;
 
   @FXML
-  private void privateSettlementClick() {
-
-  }
-
-  @FXML
-  private void statusOnClick() {
-
-  }
-
-  @FXML
   private void onSendInvite() {
     String name = inviteNameField.getText();
     if(name == null || name.isBlank()) return;
+    Group group = groupDAO.findByUser(User.CURRENT.getId());
     User user = userDAO.find(name);
     if(user == null) {
       inviteFeedback.setText("That user does not exist");
@@ -50,11 +39,11 @@ public final class DormGroupController extends MenuController implements Initial
       inviteNameField.setText("");
     } else {
       try {
-        if(Group.CURRENT.isMember(user.getId())) {
+        if(group.isMember(user.getId())) {
           inviteFeedback.setText("That user is already a member");
           return;
         }
-        groupDAO.addInvite(Group.CURRENT.getId(), User.CURRENT.getId(), user.getId());
+        groupDAO.addInvite(group.getId(), User.CURRENT.getId(), user.getId());
         inviteTable.getItems().add(new TableInvite(user.getUsername(), user.getId(),
                 User.CURRENT.getUsername()));
         inviteNameField.setText("");
@@ -73,29 +62,34 @@ public final class DormGroupController extends MenuController implements Initial
     TableColumn<TableUser, String> phoneNumberCol = new TableColumn<>("Phone number");
     phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
-    memberTable.getColumns().add(usernameCol);
-    memberTable.getColumns().add(phoneNumberCol);
+    TableColumn<TableUser, String> loginCol = new TableColumn<>("Last login");
+    loginCol.setCellValueFactory(new PropertyValueFactory<>("lastLogin"));
 
-    Group group = Group.CURRENT;
+    TableColumn<TableUser, String> joinCol = new TableColumn<>("Join date");
+    joinCol.setCellValueFactory(new PropertyValueFactory<>("joinDate"));
+
+    memberTable.getColumns().addAll(Arrays.asList(usernameCol, phoneNumberCol, loginCol, joinCol));
+
+    Group group = groupDAO.findByUser(User.CURRENT.getId());
     for(User user : group.getMembers()) {
-      memberTable.getItems().add(new TableUser(user.getUsername(), user.getPhoneNumber()));
+      SimpleDateFormat format = new SimpleDateFormat("E dd MMM yyyy HH:mm");
+      String date = format.format(user.getLastLogin());
+      SimpleDateFormat format1 = new SimpleDateFormat("dd MMM yyyy");
+      String date1 = format1.format(user.getRegisterDate());
+      memberTable.getItems().add(new TableUser(user.getUsername(), user.getPhoneNumber(), date, date1));
     }
 
 
     TableColumn<TableInvite, String> usernameCol1 = new TableColumn<>("Username");
     usernameCol1.setCellValueFactory(new PropertyValueFactory<>("username"));
 
-    TableColumn<TableInvite, String> phoneNumberCol1 = new TableColumn<>("Invited by");
-    phoneNumberCol1.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+    TableColumn<TableInvite, String> invitedByCol = new TableColumn<>("Invited by");
+    invitedByCol.setCellValueFactory(new PropertyValueFactory<>("invitedBy"));
 
     TableColumn<TableInvite, String> buttonCol = new TableColumn<>("");
     buttonCol.setCellValueFactory(new PropertyValueFactory<>("button"));
 
-    inviteTable.getColumns().add(usernameCol1);
-    inviteTable.getColumns().add(phoneNumberCol1);
-    inviteTable.getColumns().add(buttonCol);
-
-    //groupDAO.addInvite(3, 3, 4);
+    inviteTable.getColumns().addAll(Arrays.asList(usernameCol1, invitedByCol, buttonCol));
 
     List<Invite> invites = groupDAO.getInvites(Group.CURRENT.getId());
     if(!invites.isEmpty()) {
@@ -103,8 +97,6 @@ public final class DormGroupController extends MenuController implements Initial
       userIds.addAll(invites.stream().map(Invite::getSenderId).toList());
       List<User> users = userDAO.find(userIds);
       Map<Long, User> userMap = toUserMap(users);
-
-      //userDAO.find(userIds).stream().collect(Collectors.toMap(User::getId, user -> user));
 
       for(Invite invite : invites) {
         inviteTable.getItems().add(new TableInvite(
@@ -120,10 +112,14 @@ public final class DormGroupController extends MenuController implements Initial
 
     private final SimpleStringProperty username;
     private final SimpleLongProperty phoneNumber;
+    private final SimpleStringProperty lastLogin;
+    private final SimpleStringProperty joinDate;
 
-    private TableUser(String username, long phoneNumber) {
+    private TableUser(String username, long phoneNumber, String lastLogin, String joinDate) {
       this.username = new SimpleStringProperty(username);
       this.phoneNumber = new SimpleLongProperty(phoneNumber);
+      this.lastLogin = new SimpleStringProperty(lastLogin);
+      this.joinDate = new SimpleStringProperty(joinDate);
     }
 
     public SimpleStringProperty usernameProperty() {
@@ -133,17 +129,25 @@ public final class DormGroupController extends MenuController implements Initial
     public SimpleLongProperty phoneNumberProperty() {
       return phoneNumber;
     }
+
+    public SimpleStringProperty lastLoginProperty() {
+      return lastLogin;
+    }
+
+    public SimpleStringProperty joinDateProperty() {
+      return joinDate;
+    }
   }
 
   public class TableInvite {
 
     private final SimpleStringProperty username;
-    private final SimpleStringProperty phoneNumber;
+    private final SimpleStringProperty invitedBy;
     private final Button button;
 
     private TableInvite(String username, long targetId, String sender) {
       this.username = new SimpleStringProperty(username);
-      this.phoneNumber = new SimpleStringProperty(sender);
+      this.invitedBy = new SimpleStringProperty(sender);
       this.button = new Button("Cancel invite");
       this.button.setOnMouseClicked(event -> {
         groupDAO.removeInvite(Group.CURRENT.getId(), targetId);
@@ -155,8 +159,8 @@ public final class DormGroupController extends MenuController implements Initial
       return username.get();
     }
 
-    public String getPhoneNumber() {
-      return phoneNumber.get();
+    public String getInvitedBy() {
+      return invitedBy.get();
     }
 
     public Button getButton() {

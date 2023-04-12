@@ -39,8 +39,8 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
     }
 
     private static final String INSERT_PERSON = """
-                INSERT INTO users (username, password, registerDate, phoneNumber)
-                VALUES (?, ?, ?, ?);
+                INSERT INTO users (username, password, registerDate, lastLogin, phoneNumber)
+                VALUES (?, ?, ?, ?, ?);
             """;
 
     /**
@@ -57,12 +57,13 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
             statement.setString(1, username);
             statement.setString(2, encryptedPassword);
             statement.setDate(3, date);
-            statement.setLong(4, phoneNumber);
+            statement.setDate(4, date);
+            statement.setLong(5, phoneNumber);
             statement.execute();
             try(ResultSet resultSet = statement.getGeneratedKeys()) {
                 if(resultSet.next()) {
                     long userId = resultSet.getInt(1);
-                    return new User(userId, username, encryptedPassword, date, phoneNumber);
+                    return new User(userId, username, encryptedPassword, date, date, phoneNumber);
                 }
             }
         } catch (SQLException e) {
@@ -141,6 +142,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
                 if(resultSet.next()) {
                     User user = build(resultSet);
                     verifyPassword(user, password.toCharArray());
+                    updateLastLogin(connection, user.getId());
                     return user;
                 }
             }
@@ -148,6 +150,22 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
             throw new DAOException(e);
         }
         throw new AuthException("User does not exist");
+    }
+
+    private static final String UPDATE_LAST_LOGIN = "UPDATE users SET lastLogin = ? WHERE userId = ?;";
+
+    /**
+     * Updates the last login date for a user with the specified ID.
+     * @param   userId the user ID
+     */
+    private void updateLastLogin(Connection connection, long userId) {
+        try(PreparedStatement statement = connection.prepareStatement(UPDATE_LAST_LOGIN)) {
+            statement.setLong(1, System.currentTimeMillis());
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 
     /**
@@ -173,6 +191,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
                 resultSet.getString("username"),
                 resultSet.getString("password"),
                 resultSet.getDate("registerDate"),
+                resultSet.getDate("lastLogin"),
                 resultSet.getInt("phoneNumber"));
     }
 
@@ -182,6 +201,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
             	username text(16) UNIQUE NOT NULL,
             	password text(60) NOT NULL,
             	registerDate integer NOT NULL,
+            	lastLogin integer NOT NULL,
             	phoneNumber integer NOT NULL
             );""";
 
