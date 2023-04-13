@@ -66,7 +66,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             long userId = User.CURRENT.getId();
 
             this.acceptButton = new Button("Accept");
-            this.acceptButton.setStyle("-fx-background-color: #e1e0e0; -fx-background-radius: 1em; -fx-border-radius: 1em; -fx-border-color: black");
+            this.acceptButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 2em; -fx-fill-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);");
             this.acceptButton.setOnMouseClicked(event -> {
                 groupDAO.removeInvite(groupId, userId);
                 groupDAO.addMember(groupId, userId);
@@ -76,6 +76,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             });
 
             this.denyButton = new Button("Deny");
+            this.denyButton.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 2em; -fx-fill-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);");
             this.denyButton.setOnMouseClicked(event -> {
                 groupDAO.removeInvite(groupId, userId);
                 inviteTable.getItems().removeIf(i -> i.getGroup().equals(group));
