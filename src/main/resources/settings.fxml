@@ -1,150 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.HomepageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.ProfileController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Pane prefHeight="37.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="466.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="435.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style/stylesheet.css">
-                           <tooltip>
-                              <Tooltip style="-fx-background-color: #793f3f;" text="Notifications">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Tooltip>
-                           </tooltip>
-                        </Button>
-                        <Text fx:id="welcomeText" fill="#575050" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
+                        <Label prefHeight="41.0" prefWidth="149.0" text="Settings" textFill="WHITE">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                            <font>
-                              <Font size="16.0" />
+                              <Font size="15.0" />
                            </font>
-                        </Text>
+                        </Label>
                      </children>
-                  </Pane>
+                  </HBox>
                </top>
                <center>
-                  <AnchorPane prefHeight="237.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="283.0" prefWidth="380.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="266.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
-                        <VBox prefHeight="306.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <VBox prefHeight="474.0" prefWidth="216.0">
                                  <children>
-                                    <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                        <children>
-                                          <AnchorPane prefHeight="158.0" prefWidth="255.0" HBox.hgrow="ALWAYS">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                              <children>
-                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0" />
+                                                <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit username or phone number">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <InnerShadow blurType="GAUSSIAN">
+                                                         <color>
+                                                            <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                                                         </color>
+                                                      </InnerShadow>
+                                                   </effect>
+                                                </Text>
                                              </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="152.0" prefWidth="363.0" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="CENTER" layoutX="9.0" layoutY="3.0" prefHeight="147.0" prefWidth="216.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="3.0">
-                                                   <children>
-                                                      <Text fx:id="weekDayText" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
-                                                         <font>
-                                                            <Font size="17.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </AnchorPane>
+                                          </HBox>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                                       <font>
+                                          <Font name="Roboto Bold" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="27.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
+                                       <children>
+                                          <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image/user.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="213.0" stylesheets="@style/formstyle.css">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+                                       <font>
+                                          <Font name="Roboto Bold" size="13.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="27.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="216.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="23.0">
+                                             <image>
+                                                <Image url="@image/phone.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets right="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <TextField fx:id="phoneField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="212.0" stylesheets="@style/formstyle.css">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#settingsClick" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update profile settings" textFill="WHITE">
+                                             <effect>
+                                                <InnerShadow>
+                                                   <color>
+                                                      <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                                                   </color>
+                                                </InnerShadow>
+                                             </effect>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                             </HBox.margin>
+                                          </Button>
                                        </children>
                                     </HBox>
                                  </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <HBox prefHeight="154.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <AnchorPane prefHeight="153.0" prefWidth="168.0" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0">
-                                                   <children>
-                                                      <VBox alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="118.0" prefWidth="161.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="-21.0" AnchorPane.topAnchor="17.0">
-                                                         <children>
-                                                            <Text fx:id="weekDayText111" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                               <font>
-                                                                  <Font size="16.0" />
-                                                               </font>
-                                                            </Text>
-                                                            <Text fx:id="dateText111" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
-                                                               <font>
-                                                                  <Font size="17.0" />
-                                                               </font>
-                                                            </Text>
-                                                         </children>
-                                                      </VBox>
-                                                   </children>
-                                                </AnchorPane>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="153.0" prefWidth="257.0" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="CENTER" layoutX="35.0" layoutY="18.0" prefHeight="117.0" prefWidth="269.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="18.0">
-                                                   <children>
-                                                      <Text fx:id="weekDayText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <Text fx:id="dateText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
-                                                         <font>
-                                                            <Font size="17.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </AnchorPane>
+                                 <HBox.margin>
+                                    <Insets top="40.0" />
+                                 </HBox.margin>
+                              </VBox>
                            </children>
-                        </VBox>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-30.0">
-                           <image>
-                              <Image url="@image/notifications.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" onMouseClicked="#helpClick" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
-                           <image>
-                              <Image url="@image/help.png" />
-                           </image>
-                        </ImageView>
+                           <stylesheets>
+                              <URL value="@style/formstyle.css" />
+                              <URL value="@style/stylesheet.css" />
+                           </stylesheets>
+                        </HBox>
                      </children>
-                  </AnchorPane>
+                  </VBox>
                </center>
             </BorderPane>
          </center>
          <left>
             <VBox prefHeight="329.0" prefWidth="154.0" style="-fx-background-color: #793f3f; -fx-background-radius: 0em 0em 1em 0em;" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="36.0" prefWidth="253.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeClick" prefHeight="36.0" prefWidth="253.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -159,7 +171,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
