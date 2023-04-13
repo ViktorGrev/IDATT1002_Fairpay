@@ -66,6 +66,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             long userId = User.CURRENT.getId();
 
             this.acceptButton = new Button("Accept");
+            this.acceptButton.setStyle("-fx-background-color: #e1e0e0; -fx-background-radius: 1em; -fx-border-radius: 1em; -fx-border-color: black");
             this.acceptButton.setOnMouseClicked(event -> {
                 groupDAO.removeInvite(groupId, userId);
                 groupDAO.addMember(groupId, userId);

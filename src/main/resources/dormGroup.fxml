@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -34,26 +35,59 @@
                   </HBox>
                </top>
                <center>
-                  <TableView fx:id="memberTable" prefHeight="144.0" prefWidth="466.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </center>
-               <bottom>
-                  <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TableView fx:id="inviteTable" prefHeight="100.0" prefWidth="253.0" />
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TextField fx:id="inviteNameField" />
-                              <Button mnemonicParsing="false" onMouseClicked="#onSendInvite" text="Send invite" />
-                              <Text fx:id="inviteFeedback" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <TableView fx:id="memberTable" prefHeight="192.0" prefWidth="446.0" stylesheets="@style/stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="89.0" prefWidth="446.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <HBox layoutY="14.0" prefHeight="68.0" prefWidth="446.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <TableView fx:id="inviteTable" prefHeight="113.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy></TableView>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <VBox alignment="TOP_CENTER" prefHeight="103.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <Text fx:id="inviteFeedback" strokeType="OUTSIDE" strokeWidth="0.0" text="Invite people:" />
+                                                      <TextField fx:id="inviteNameField" promptText="Name of person" style="-fx-border-color: #a3a0a0; -fx-border-style: hidden hidden solid hidden; -fx-border-width: 2px; -fx-background-color: white;">
+                                                         <VBox.margin>
+                                                            <Insets left="5.0" right="5.0" top="5.0" />
+                                                         </VBox.margin>
+                                                      </TextField>
+                                                      <Button mnemonicParsing="false" onMouseClicked="#onSendInvite" styleClass="button2" stylesheets="@style/stylesheet.css" text="Send invite">
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </VBox>
                      </children>
-                  </HBox>
-               </bottom>
+                  </AnchorPane>
+               </center>
             </BorderPane>
          </center>
          <left>
