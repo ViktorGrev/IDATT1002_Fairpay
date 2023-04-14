@@ -12,4 +12,5 @@ abstract class Controller {
     protected static final GroupDAO groupDAO = Database.getDAO(GroupDAO.class);
     protected static final ExpenseDAO expenseDAO = Database.getDAO(ExpenseDAO.class);
     protected static final SettlementDAO settlementDAO = Database.getDAO(SettlementDAO.class);
+    protected static final BudgetDAO budgetDAO = Database.getDAO(BudgetDAO.class);
 }
