@@ -148,7 +148,9 @@ public final class DormGroupController extends MenuController implements Initial
     private TableInvite(String username, long targetId, String sender) {
       this.username = new SimpleStringProperty(username);
       this.invitedBy = new SimpleStringProperty(sender);
-      this.button = new Button("Cancel invite");
+      this.button = new Button("Cancel");
+      this.button.getStylesheets().add("stylesheet");
+      this.button.getStyleClass().add("button2");
       this.button.setOnMouseClicked(event -> {
         groupDAO.removeInvite(Group.CURRENT.getId(), targetId);
         inviteTable.getItems().removeIf(i -> i.getUsername().equals(username));

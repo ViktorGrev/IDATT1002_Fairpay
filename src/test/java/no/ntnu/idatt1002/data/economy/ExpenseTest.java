@@ -1,7 +1,5 @@
 package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.data.economy.Expense;
-import no.ntnu.idatt1002.data.economy.ExpenseType;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

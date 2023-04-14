@@ -1,6 +1,11 @@
 .button{
     -fx-background-color: #793f3f;
     -fx-background-radius: 0em;
+    -fx-cursor: hand;
+}
+
+.button:hover{
+    -fx-background-color: #9c5151;
 }
 
 .button:focused{
@@ -22,10 +27,10 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
-/*.button2:hover{
+.button2:hover{
     -fx-background-color: #a3a8ad;
     -fx-border-width: 1px 1px 1px 1px;
-} */
+}
 
 .button2:pressed{
     -fx-background-color: #a3a8ad;
@@ -58,21 +63,91 @@
     -fx-font-size: 15px;
 }
 
-.table-view .column-header,
-.table-view .column-header-background -filler {
-    -fx-cell: 20;
-    -fx-background-color: #FFFFFF;
+.table-view1 {
+    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-radius: 1em;
 }
 
-.table-view .column-header .label {
-    -fx-text-fill: #000000;
-    -fx-alignment: CENTER_LEFT;
+.table-view1 .column-header-background{
+    -fx-background-color: #793f3f;
+    -fx-background-radius: 1em 1em 0em 0em;
+    -fx-text-fill: white;
+    -fx-border-color: #793f3f;
+    -fx-border-radius: 1em 1em 0em 0em;
 }
 
-.table-view .cell{
-    -fx-cell-size: 30;
+.table-view1 .column-header {
+    -fx-background-color: none;
+}
+
+.table-view1 .column-header .label {
+    -fx-text-fill: white;
     -fx-alignment: CENTER_LEFT;
-    -fx-text-fill: #000000;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.table-view1 .cell{
+    -fx-background-color: white;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 2.5em;
+    -fx-min-height: 35px;
+}
+
+.table-view1 .virtual-flow .scroll-bar:horizontal .thumb{
+    -fx-background-color:  linear-gradient(to right, #703939, #9c5151);
+}
+
+.table-view1 .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #703939, #9c5151);
+}
+
+
+.table-viewOnPage {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-width: 100%;
+
+    -fx-border-collapse: collapse;
+    -fx-border-spacing: 0;
+}
+
+.table-viewOnPage .column-header-background {
+    -fx-text-alignment: left;
+    -fx-text-fill: #272838;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: #703939;
+    -fx-background-color: #F9F8F8;
+}
+
+.table-viewOnPage .column-header {
+    -fx-background-color: none;
+}
+
+.table-viewOnPage .column-header .label {
+    -fx-text-fill: #272838;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.table-viewOnPage .table-row-cell:odd {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(129, 66, 66, 0.2);
+}
+
+.table-viewOnPage .table-row-cell:even {
+    -fx-background-color: white;
+}
+
+.table-viewOnPage .virtual-flow .scroll-bar:horizontal .thumb{
+    -fx-background-color:  linear-gradient(to right, #703939, #9c5151);
+}
+
+.table-viewOnPage .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #703939, #9c5151);
 }
 
 .backgroundColor{
