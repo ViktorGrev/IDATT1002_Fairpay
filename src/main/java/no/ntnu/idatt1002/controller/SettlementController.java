@@ -4,11 +4,11 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.data.economy.Settlement;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
@@ -16,6 +16,7 @@ import no.ntnu.idatt1002.util.DateUtil;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public final class SettlementController extends MenuController implements Initializable {
@@ -26,12 +27,20 @@ public final class SettlementController extends MenuController implements Initia
 
   @FXML
   private void newSettlementClick() {
-    User user = User.CURRENT;
-    Settlement settlement = settlementDAO.create(user.getUsername() + "'s settlement", user.getId());
-    settlement.addMember(user.getId());
-    settlementDAO.addMember(settlement.getId(), user.getId());
-    settlementId = settlement.getId();
-    SceneSwitcher.setView("editSettlement");
+    TextInputDialog inputDialog = new TextInputDialog();
+    inputDialog.setHeaderText("Settlement name");
+    inputDialog.setTitle("Settlement name");
+
+    Optional<String> input = inputDialog.showAndWait();
+    input.ifPresent(s -> {
+      if(s.isBlank()) return;
+      User user = User.CURRENT;
+      Settlement settlement = settlementDAO.create(s, user.getId());
+      settlement.addMember(user.getId());
+      settlementDAO.addMember(settlement.getId(), user.getId());
+      settlementId = settlement.getId();
+      SceneSwitcher.setView("editSettlement");
+    });
   }
 
   @Override
@@ -52,21 +61,22 @@ public final class SettlementController extends MenuController implements Initia
     TableColumn<TableSettlement, String> membersCol = new TableColumn<>("Members");
     membersCol.setCellValueFactory(new PropertyValueFactory<>("members"));
 
-    TableColumn<TableSettlement, Long> priceCol = new TableColumn<>("Price");
-    priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+    TableColumn<TableSettlement, Long> expenseCol = new TableColumn<>("Expenses");
+    expenseCol.setCellValueFactory(new PropertyValueFactory<>("expenses"));
 
     TableColumn<TableSettlement, String> dateCol = new TableColumn<>("Date");
     dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-    settlementTable.getColumns().addAll(userCol, membersCol, priceCol, dateCol);
+    settlementTable.getColumns().addAll(userCol, membersCol, expenseCol, dateCol);
 
     List<Settlement> settlements = settlementDAO.findByUser(User.CURRENT.getId());
+    settlements.removeIf(Settlement::isDeleted);
     for(Settlement settlement : settlements) {
       String name = settlement.getName();
       String members = String.valueOf(settlement.getMembers().size());
-      int price = 10;
+      int expenses = settlement.getExpenses().size();
       String date = DateUtil.format(settlement.getDate().getTime(), "dd MMM yyyy");
-      TableSettlement tableSettlement = new TableSettlement(name, members, price, date, settlement.getId());
+      TableSettlement tableSettlement = new TableSettlement(name, members, expenses, date, settlement.getId());
       settlementTable.getItems().add(tableSettlement);
     }
   }
@@ -75,14 +85,14 @@ public final class SettlementController extends MenuController implements Initia
 
     private final SimpleStringProperty name;
     private final SimpleStringProperty members;
-    private final SimpleLongProperty price;
+    private final SimpleLongProperty expenses;
     private final SimpleStringProperty date;
     private final long settlementId;
 
-    private TableSettlement(String name, String members, long price, String date, long settlementId) {
+    private TableSettlement(String name, String members, long expenses, String date, long settlementId) {
       this.name = new SimpleStringProperty(name);
       this.members = new SimpleStringProperty(members);
-      this.price = new SimpleLongProperty(price);
+      this.expenses = new SimpleLongProperty(expenses);
       this.date = new SimpleStringProperty(date);
       this.settlementId = settlementId;
     }
@@ -95,8 +105,8 @@ public final class SettlementController extends MenuController implements Initia
       return members;
     }
 
-    public SimpleLongProperty priceProperty() {
-      return price;
+    public SimpleLongProperty expensesProperty() {
+      return expenses;
     }
 
     public SimpleStringProperty dateProperty() {

@@ -28,11 +28,26 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#addExpenseClick" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: none;" stylesheets="@style/stylesheet.css" text="Add expense" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/addCart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
+                        <Button mnemonicParsing="false" onAction="#deleteSettlementClick" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: none;" stylesheets="@style/stylesheet.css" text="Delete settlement" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </top>

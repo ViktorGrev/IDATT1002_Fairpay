@@ -5,10 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.data.economy.Expense;
 import no.ntnu.idatt1002.data.economy.Settlement;
@@ -30,14 +33,40 @@ public final class EditSettlementController extends MenuController implements In
     SceneSwitcher.setView("addSettlementExpense");
   }
 
+  @FXML
+  private void deleteSettlementClick() {
+    Settlement settlement = settlementDAO.find(SettlementController.settlementId);
+    settlementDAO.delete(settlement.getId());
+    SceneSwitcher.setView("settlement");
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     Settlement settlement = settlementDAO.find(SettlementController.settlementId);
     nameField.setText(settlement.getName());
 
-    List<User> members = userDAO.find(settlement.getMembers());
-    for(User member : members) {
-      memberBox.getChildren().add(new Label(member.getUsername()));
+    Group group = Group.CURRENT;
+
+    for(User user : group.getMembers()) {
+      RadioButton radioButton = new RadioButton();
+      if(settlement.getMembers().contains(user.getId())) {
+        radioButton.setSelected(true);
+        if(user.getId() == User.CURRENT.getId()) {
+          radioButton.setDisable(true);
+        }
+      }
+      radioButton.setOnMouseClicked(e -> {
+        if(user.getId() == User.CURRENT.getId()) return;
+        if(radioButton.isSelected()) {
+          settlementDAO.addMember(settlement.getId(), user.getId());
+          settlement.addMember(user.getId());
+        } else {
+          settlementDAO.removeMember(settlement.getId(), user.getId());
+          settlement.removeMember(user.getId());
+        }
+      });
+      HBox hBox = new HBox(radioButton, new Label(user.getUsername()));
+      memberBox.getChildren().add(hBox);
     }
 
     TableColumn<TableExpense, String> userCol = new TableColumn<>("Name");
@@ -59,7 +88,7 @@ public final class EditSettlementController extends MenuController implements In
     for(Expense expense : expenses) {
       String name = expense.getName();
       String category = expense.getType().getCategoryName();
-      int price = 10;
+      long price = expense.getAmount().longValue();
       String date = DateUtil.format(expense.getDate().getTime(), "dd MMM yyyy");
       TableExpense tableSettlement = new TableExpense(name, category, price, date);
       expenseTable.getItems().add(tableSettlement);

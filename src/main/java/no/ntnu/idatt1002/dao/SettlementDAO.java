@@ -8,9 +8,13 @@ public interface SettlementDAO extends DAO<Settlement, Long> {
 
     Settlement create(String name, long userId);
 
+    void delete(long settlementId);
+
     List<Settlement> findByUser(long userId);
 
     void addMember(long settlementId, long userId);
+
+    void removeMember(long settlementId, long userId);
 
     void addExpense(long settlementId, long expenseId);
 }
