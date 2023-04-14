@@ -59,9 +59,9 @@
                   </TableView>
                </center>
                <left>
-                  <VBox fx:id="memberBox" prefHeight="287.0" prefWidth="102.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="memberBox" prefHeight="287.0" prefWidth="102.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="116.0" text="Members:" VBox.vgrow="ALWAYS">
+                        <Label prefHeight="38.0" prefWidth="116.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #793f3f; -fx-border-radius: 0em 1em 0em 1em;" text="Members:" textFill="#793f3f" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets left="10.0" />
                            </padding></Label>
