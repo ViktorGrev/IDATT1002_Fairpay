@@ -6,8 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import no.ntnu.idatt1002.dao.*;
 import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.data.economy.Budget;
+import no.ntnu.idatt1002.data.economy.ExpenseType;
 import no.ntnu.idatt1002.data.economy.Settlement;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
+
+import java.math.BigDecimal;
 
 public class FairPay extends Application {
 
@@ -49,6 +53,14 @@ public class FairPay extends Application {
 
             ExpenseDAO expenseDAO = Database.getDAO(ExpenseDAO.class);
             SettlementDAO settlementDAO = Database.getDAO(SettlementDAO.class);
+            BudgetDAO budgetDAO = Database.getDAO(BudgetDAO.class);
+
+            //budgetDAO.addType(5, ExpenseType.CAR, BigDecimal.valueOf(10));
+
+            /*Budget budget = budgetDAO.find(5L);
+            for(ExpenseType type : ExpenseType.values()) {
+                System.out.println("a: " + budget.getAmount(type));
+            }*/
 
             //settlementDAO.create("Hei 2", 1);
 
