@@ -90,6 +90,7 @@
 .table-view1 .cell{
     -fx-background-color: white;
     -fx-alignment: CENTER;
+    -fx-background-radius: 1em;
 }
 
 .table-view1 .virtual-flow .scroll-bar:horizontal .thumb{
