@@ -15,15 +15,15 @@ class ExpenseTest {
   void getTypeTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(ExpenseType.TYPE2, bd, personId);
-    assertEquals(ExpenseType.TYPE2, e.getType());
+    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
+    assertEquals(ExpenseType.INTERNET, e.getType());
   }
 
   @Test
   void getNameTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(personId, ExpenseType.TYPE2, "Expense 1",bd);
+    Expense e = new Expense(personId, ExpenseType.INTERNET, "Expense 1",bd);
     assertEquals("Expense 1", e.getName());
   }
 
@@ -31,8 +31,8 @@ class ExpenseTest {
   void hasNameTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(ExpenseType.TYPE2, bd, personId);
-    Expense e2 = new Expense(personId, ExpenseType.TYPE2,"name", bd);
+    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
+    Expense e2 = new Expense(personId, ExpenseType.INTERNET,"name", bd);
     assertFalse(e.hasName());
     assertTrue(e2.hasName());
   }
@@ -41,7 +41,7 @@ class ExpenseTest {
   void getAmountTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(ExpenseType.TYPE2, bd, personId);
+    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
     assertEquals(BigDecimal.valueOf(123), e.getAmount());
   }
 
@@ -49,7 +49,7 @@ class ExpenseTest {
   void getDateTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(ExpenseType.TYPE2, bd, personId);
+    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
     Date date = new Date();
     assertEquals(date, e.getDate());
   }
