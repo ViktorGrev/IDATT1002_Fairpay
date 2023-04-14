@@ -178,3 +178,10 @@
     -fx-border-radius: 15px;
     -fx-padding: 5px;
 }
+
+
+.chart-bar {
+    -fx-background-color:  linear-gradient(to bottom, #703939, #9c5151);
+    -fx-background-radius: 0;
+    -fx-background-position: left center;
+}
