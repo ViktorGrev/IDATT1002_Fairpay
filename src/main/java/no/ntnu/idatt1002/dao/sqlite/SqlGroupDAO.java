@@ -159,7 +159,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             PreparedStatement statement = connection.prepareStatement(FIND_INVITES)) {
             statement.setLong(1, groupId);
             try(ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet.next()) {
+                while(resultSet.next()) {
                     invites.add(buildInvite(resultSet));
                 }
             }

@@ -1,7 +1,5 @@
 package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.data.economy.Expense;
-import no.ntnu.idatt1002.data.economy.ExpenseType;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -23,7 +21,7 @@ class ExpenseTest {
   void getNameTest() {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
-    Expense e = new Expense(personId, ExpenseType.TYPE2, "Expense 1",bd);
+    Expense e = new Expense(expenseId, personId, ExpenseType.TYPE2, "Expense 1",bd);
     assertEquals("Expense 1", e.getName());
   }
 
@@ -32,7 +30,7 @@ class ExpenseTest {
     BigDecimal bd = new BigDecimal(123);
     long personId = 123;
     Expense e = new Expense(ExpenseType.TYPE2, bd, personId);
-    Expense e2 = new Expense(personId, ExpenseType.TYPE2,"name", bd);
+    Expense e2 = new Expense(expenseId, personId, ExpenseType.TYPE2,"name", bd);
     assertFalse(e.hasName());
     assertTrue(e2.hasName());
   }
