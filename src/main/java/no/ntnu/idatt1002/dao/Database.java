@@ -1,9 +1,6 @@
 package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.dao.sqlite.SqlExpenseDAO;
-import no.ntnu.idatt1002.dao.sqlite.SqlSettlementDAO;
-import no.ntnu.idatt1002.dao.sqlite.SqlUserDAO;
-import no.ntnu.idatt1002.dao.sqlite.SqlGroupDAO;
+import no.ntnu.idatt1002.dao.sqlite.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +52,7 @@ public final class Database {
         registerDAO(GroupDAO.class, new SqlGroupDAO());
         registerDAO(SettlementDAO.class, new SqlSettlementDAO());
         registerDAO(ExpenseDAO.class, new SqlExpenseDAO());
+        registerDAO(BudgetDAO.class, new SqlBudgetDAO());
         init();
     }
 }

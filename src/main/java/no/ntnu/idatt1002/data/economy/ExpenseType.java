@@ -7,14 +7,17 @@ public enum ExpenseType {
     /**
      * Floor laminate expense.
      */
-    TOILET_PAPER(1, "Toilet paper"),
-    TYPE2(2, "Toilet paper"),
-    TYPE3(3, "Toilet paper"),
-    TYPE4(4, "Toilet paper"),
-    TYPE5(5, "Toilet paper"),
-    TYPE6(6, "Toilet paper"),
-    OTHER(7, "OTHER"),
-    ;
+    TOILETRIES(1, "Toiletries"),
+    KITCHEN(2, "Kitchen"),
+    DETERGENTS(3, "Detergents"),
+    FOOD(4, "Food"),
+    CAR(5, "Car"),
+    RENT(6, "Rent"),
+    FURNITURE(7, "Furniture"),
+    ELECTRICITY(8, "Electricity"),
+    INTERNET(9, "Internet"),
+    SERVICES(10, "Services"),
+    OTHER(11, "Other");
 
     /**
      * Defining object variables.
