@@ -65,7 +65,9 @@ public final class EditSettlementController extends MenuController implements In
           settlement.removeMember(user.getId());
         }
       });
-      HBox hBox = new HBox(radioButton, new Label(user.getUsername()));
+      Label label = new Label(user.getUsername());
+      label.setStyle("-fx-border-style: hidden hidden solid hidden; -fx-min-width: 98px; -fx-border-radius: 0em 5px; -fx-border-color:  #793f3f; -fx-text-fill:  #793f3f");
+      HBox hBox = new HBox(radioButton, label);
       memberBox.getChildren().add(hBox);
     }
 

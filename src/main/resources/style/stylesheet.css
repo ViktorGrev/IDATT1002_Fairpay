@@ -159,3 +159,29 @@
     -fx-background-radius:0em 1em 0em 0em;
 }
 
+.settlementMember {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2px;
+    -fx-border-color: #9c5151;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: #9c5151;
+    -fx-background-insets: 0;
+}
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+}
+
+
+.chart-bar {
+    -fx-background-color:  linear-gradient(to bottom, #703939, #9c5151);
+    -fx-background-radius: 0;
+    -fx-background-position: left center;
+}
