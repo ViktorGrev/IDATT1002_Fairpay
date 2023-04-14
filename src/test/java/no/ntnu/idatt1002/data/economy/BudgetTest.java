@@ -14,7 +14,7 @@ class BudgetTest {
   void add() {
     Budget budget = new Budget();
 
-    budget.add(ExpenseType.TYPE6, BigDecimal.valueOf(123));
-    assertEquals(BigDecimal.valueOf(123),budget.getAmount(ExpenseType.TYPE6));
+    budget.add(ExpenseType.INTERNET, BigDecimal.valueOf(123));
+    assertEquals(BigDecimal.valueOf(123),budget.getAmount(ExpenseType.INTERNET));
   }
 }
