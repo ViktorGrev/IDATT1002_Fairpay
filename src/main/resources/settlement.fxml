@@ -46,11 +46,14 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#newSettlementClick" prefHeight="25.0" prefWidth="116.0" styleClass="button2" stylesheets="@style/stylesheet.css" text="New settlement">
+                        <ImageView fitHeight="31.0" fitWidth="34.0" onMouseClicked="#newSettlementClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@image/whiteAddBox.png" />
+                           </image>
                            <HBox.margin>
-                              <Insets left="10.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
-                        </Button>
+                        </ImageView>
                      </children>
                   </HBox>
                </top>

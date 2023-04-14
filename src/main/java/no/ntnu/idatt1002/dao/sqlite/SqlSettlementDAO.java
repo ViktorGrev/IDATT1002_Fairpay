@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
 
-    private static final String INSERT_SETTLEMENT = "INSERT INTO settlements (userId, name, createDate) VALUES (?, ?, ?);";
+    private static final String INSERT_SETTLEMENT = "INSERT INTO settlements (userId, name, createDate, ended, deleted) VALUES (?, ?, ?, ?, ?);";
 
     @Override
     public Settlement create(String name, long userId) {
@@ -22,17 +22,34 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
             statement.setLong(1, userId);
             statement.setString(2, name);
             statement.setLong(3, System.currentTimeMillis());
+            statement.setBoolean(4, false);
+            statement.setBoolean(5, false);
             statement.execute();
             try(ResultSet resultSet = statement.getGeneratedKeys()) {
                 if(resultSet.next()) {
                     long settlementId = resultSet.getInt(1);
-                    return new Settlement(settlementId, userId, name, new Date());
+                    return new Settlement(settlementId, userId, name, new Date(), false, false);
                 }
             }
         } catch (SQLException e) {
             throw new DAOException(e);
         }
         return null;
+    }
+
+    private static final String DELETE_SETTLEMENT = """
+                UPDATE settlements SET deleted = 1 WHERE settlementId = ?;
+            """;
+
+    @Override
+    public void delete(long settlementId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT)) {
+            statement.setLong(1, settlementId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 
     private static final String FIND_BY_USER = """
@@ -58,7 +75,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
         }
     }
 
-    private static final String INSERT_EXPENSE_USER = """
+    private static final String INSERT_SETTLEMENT_USER = """
                 INSERT INTO settlementUsers (settlementId, userId)
                 VALUES (?, ?);
             """;
@@ -66,7 +83,23 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
     @Override
     public void addMember(long settlementId, long userId) {
         try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE_USER)) {
+            PreparedStatement statement = connection.prepareStatement(INSERT_SETTLEMENT_USER)) {
+            statement.setLong(1, settlementId);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String DELETE_SETTLEMENT_USER = """
+                DELETE FROM settlementUsers WHERE settlementId = ? AND userId = ?;
+            """;
+
+    @Override
+    public void removeMember(long settlementId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT_USER)) {
             statement.setLong(1, settlementId);
             statement.setLong(2, userId);
             statement.execute();
@@ -159,8 +192,11 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
         String name = resultSet.getString("name");
         long userId = resultSet.getLong("userId");
         Date date = resultSet.getDate("createDate");
-        Settlement settlement = new Settlement(settlementId, userId, name, date);
+        boolean ended = resultSet.getBoolean("ended");
+        boolean deleted = resultSet.getBoolean("deleted");
+        Settlement settlement = new Settlement(settlementId, userId, name, date, ended, deleted);
         getMembers(settlementId).forEach(settlement::addMember);
+        getExpenses(settlement.getId()).forEach(settlement::addExpense);
         return settlement;
     }
 
@@ -170,6 +206,8 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
             	name text(32) NOT NULL,
             	userId integer NOT NULL,
             	createDate integer NOT NULL,
+            	ended integer NOT NULL,
+            	deleted integer NOT NULL,
             	FOREIGN KEY (userId) REFERENCES users(userId)
             );""";
 
