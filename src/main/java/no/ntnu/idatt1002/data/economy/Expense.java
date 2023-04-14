@@ -10,21 +10,12 @@ import java.util.Date;
  */
 public class Expense {
 
-    // The ID of the user who made the expense
-    private final long userId;
-
-    // The type of the expense
-    private final ExpenseType type;
-
-    // The name of the expense
-    private final String name;
-
-
-    // The amount of the expense
-    private final BigDecimal amount;
-
-    // The date the expense was made
-    private final Date date;
+    private final long expenseId; // The ID of the expense
+    private final long userId; // The ID of the user who made the expense
+    private final ExpenseType type; // The type of the expense
+    private final String name; // The name of the expense
+    private final BigDecimal amount; // The amount of the expense
+    private final Date date; // The date the expense was made
 
     /**
      * Creates a new Expense object with the given expense type, amount, and user ID.
@@ -34,30 +25,29 @@ public class Expense {
      * @param amount the amount of the expense
      * @param userId the ID of the user who made the expense
      */
-    public Expense(ExpenseType type, BigDecimal amount, long userId) {
-        this(userId, type, null, amount);
+    public Expense(long expenseId, ExpenseType type, BigDecimal amount, long userId) {
+        this(expenseId, userId, type, null, amount, new Date());
     }
 
     /**
      * Creates a new Expense object with the given user ID, expense type, name, and amount.
      * The date of the expense is set to the current date.
      *
-     * @param userId the ID of the user who made the expense
-     * @param type the type of the expense
-     * @param name the name of the expense
-     * @param amount the amount of the expense
+     * @param expenseId
+     * @param userId    the ID of the user who made the expense
+     * @param type      the type of the expense
+     * @param name      the name of the expense
+     * @param amount    the amount of the expense
      * @throws IllegalArgumentException if the user ID is negative, the expense type is null,
-     *         the name is blank, or the amount is negative
+     *                                  the name is blank, or the amount is negative
      */
-    public Expense(long userId, ExpenseType type, String name, BigDecimal amount) {
+    public Expense(long expenseId, long userId, ExpenseType type, String name, BigDecimal amount, Date date) {
+        this.expenseId = expenseId;
         if (userId < 0){
             throw new IllegalArgumentException("Incorrect user-id");
         }
         if (type == null){
             throw new IllegalArgumentException("The expense type can't be null");
-        }
-        if (name != null && name.isBlank()){
-            throw new IllegalArgumentException("The name can't be blank");
         }
         if (amount.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("The amount cannot be a negative integer");
@@ -66,7 +56,15 @@ public class Expense {
         this.type = type;
         this.name = name;
         this.amount = amount;
-        this.date = new Date();
+        this.date = date;
+    }
+
+    /**
+     * Returns the ID of the expense.
+     * @return  the ID of the expense
+     */
+    public long getExpenseId() {
+        return expenseId;
     }
 
     /**

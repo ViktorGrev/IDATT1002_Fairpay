@@ -1,85 +1,62 @@
 package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.data.User;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * The Settlement class represents a settlement with a name, a unique ID, and a list of members and expenses.
  */
 public class Settlement {
-  private final ArrayList<Expense> expenses;
-  private final ArrayList<User> members;
+
+  private final long id;
+  private final long userId;
   private String settlementName;
-  private final long settlementId;
+  private final Date date;
+  private final List<Long> expenses;
+  private final List<Long> members;
 
   /**
    * Constructs a new Settlement object with a given name, ID, and list of members.
    *
+   * @param settlementId   the ID of the settlement
+   * @param userId
    * @param settlementName the name of the settlement
-   * @param settlementId the ID of the settlement
-   * @param members the list of members in the settlement
+   * @param date
    * @throws IllegalArgumentException if the settlement name is blank, the settlement ID is negative, or the list of members is empty
    */
-  public Settlement(String settlementName, long settlementId, ArrayList<User> members) {
+  public Settlement(long settlementId, long userId, String settlementName, Date date) {
     if(settlementName.isBlank()){
       throw new IllegalArgumentException("The settlement name cannot be blank");
-    } if (settlementId < 0){
-      throw new IllegalArgumentException("The settlementID cannot be below zero");
-    } if (members.isEmpty()){
-      throw new IllegalArgumentException("No members are added to the settlement");
+    }
+    if(settlementId < 0){
+      throw new IllegalArgumentException("The settlement ID cannot be below zero");
     }
 
     this.settlementName = settlementName;
-    this.settlementId = settlementId;
-    this.members = members;
-    expenses = new ArrayList<>();
+    this.id = settlementId;
+    this.userId = userId;
+    this.members = new ArrayList<>();
+    this.expenses = new ArrayList<>();
+    this.date = date;
   }
 
   /**
-   * Adds an expense to the list of expenses.
+   * Gets the unique ID of the settlement.
    *
-   * @param expense the expense to be added
-   * @return true if the expense was added successfully, false if it was already in the list
+   * @return the unique ID of the settlement
    */
-  public boolean addExpense(Expense expense) {
-    if(expenses.contains(expense)) {
-      return false;
-    } else {
-      return expenses.add(expense);
-    }
+  public long getId() {
+    return id;
   }
 
   /**
-   * Removes an expense from the list of expenses.
-   *
-   * @param expense the expense to be removed
-   * @return true if the expense was removed successfully, false if it was not in the list
+   * Returns the ID of the user who created the settlement.
+   * @return  the ID of the user who created the settlement
    */
-  public boolean removeExpense(Expense expense) {
-    if(expenses.contains(expense)) {
-      return expenses.remove(expense);
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   * Gets the list of expenses in the settlement.
-   *
-   * @return the list of expenses in the settlement
-   */
-  public ArrayList<Expense> getExpenses() {
-    return expenses;
-  }
-
-  /**
-   * Gets the name of the settlement.
-   *
-   * @return the name of the settlement
-   */
-  public String getSettlementName() {
-    return settlementName;
+  public long getUserId() {
+    return userId;
   }
 
   /**
@@ -88,21 +65,54 @@ public class Settlement {
    * @param settlementName the new name of the settlement
    * @throws IllegalArgumentException if the new settlement name is blank
    */
-  public void setSettlementName(String settlementName) {
-    if(!settlementName.isBlank()) {
-      this.settlementName = settlementName;
-    } else {
-      throw new IllegalArgumentException("The settlement name cannot be blank!");
-    }
+  public void setName(String settlementName) {
+    if(settlementName == null || settlementName.isBlank())
+      throw new IllegalArgumentException("The settlement name cannot be null or blank!");
+    this.settlementName = settlementName;
   }
 
   /**
-   * Gets the unique ID of the settlement.
+   * Gets the name of the settlement.
    *
-   * @return the unique ID of the settlement
+   * @return the name of the settlement
    */
-  public long getSettlementId() {
-    return settlementId;
+  public String getName() {
+    return settlementName;
+  }
+
+  /**
+   * Adds an expense to the list of expenses.
+   * @param expenseId the expense ID to be added
+   * @return true if the expense was added successfully, false if it was already in the list
+   */
+  public boolean addExpense(long expenseId) {
+    return expenses.add(expenseId);
+  }
+
+  /**
+   * Removes an expense from the list of expenses.
+   * @param expenseId the expense ID to be removed
+   * @return true if the expense was removed successfully, false if it was not in the list
+   */
+  public boolean removeExpense(long expenseId) {
+    return expenses.remove(expenseId);
+  }
+
+  /**
+   * Gets the list of expenses in the settlement.
+   *
+   * @return the list of expenses in the settlement
+   */
+  public List<Long> getExpenses() {
+    return Collections.unmodifiableList(expenses);
+  }
+
+  /**
+   * Adds a member to this settlement.
+   * @param   userId the ID of the user to add
+   */
+  public void addMember(long userId) {
+    members.add(userId);
   }
 
   /**
@@ -110,7 +120,11 @@ public class Settlement {
    *
    * @return the list of members in the settlement
    */
-  public ArrayList<User> getMembers() {
-    return members;
+  public List<Long> getMembers() {
+    return Collections.unmodifiableList(members);
+  }
+
+  public Date getDate() {
+    return date;
   }
 }
