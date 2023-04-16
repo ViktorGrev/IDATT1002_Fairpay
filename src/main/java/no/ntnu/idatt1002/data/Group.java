@@ -15,6 +15,7 @@ public final class Group {
   private final long groupId; // The ID of the group
   private String name; // The name of the group
   private final List<User> members = new ArrayList<>(); // A list with the users within this group
+  private final List<Long> expenses = new ArrayList<>();
 
   /**
    Constructs a new group with the specified group ID and group name.
@@ -85,6 +86,33 @@ public final class Group {
    */
   public List<User> getMembers() {
     return Collections.unmodifiableList(members);
+  }
+
+  /**
+   * Adds an expense to the list of expenses.
+   * @param expenseId the expense ID to be added
+   * @return true if the expense was added successfully, false if it was already in the list
+   */
+  public boolean addExpense(long expenseId) {
+    return expenses.add(expenseId);
+  }
+
+  /**
+   * Removes an expense from the list of expenses.
+   * @param expenseId the expense ID to be removed
+   * @return true if the expense was removed successfully, false if it was not in the list
+   */
+  public boolean removeExpense(long expenseId) {
+    return expenses.remove(expenseId);
+  }
+
+  /**
+   * Gets the list of expenses in the group.
+   *
+   * @return the list of expenses in the group
+   */
+  public List<Long> getExpenses() {
+    return Collections.unmodifiableList(expenses);
   }
 
   /**

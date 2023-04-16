@@ -22,7 +22,7 @@ import java.util.*;
 public final class BudgetController extends MenuController implements Initializable {
 
     @FXML private TableView<BudgetItem> budgetTable;
-    @FXML private BarChart barChart;
+    @FXML private BarChart<String, Long> barChart;
     @FXML private Text sum;
 
     @Override
@@ -51,16 +51,16 @@ public final class BudgetController extends MenuController implements Initializa
         }
         sum.setText(s + "kr");
 
-        XYChart.Series series1 = new XYChart.Series();
+        XYChart.Series<String, Long> series1 = new XYChart.Series<>();
         series1.setName("Budget");
         for(ExpenseType expense : expenseTypes) {
             long amount = budget.getAmount(expense) != null ? budget.getAmount(expense).longValue() : 0;
-            series1.getData().add(new XYChart.Data(expense.getCategoryName(), amount));
+            series1.getData().add(new XYChart.Data<>(expense.getCategoryName(), amount));
         }
         barChart.getData().addAll(series1);
     }
 
-    public class BudgetItem {
+    public static class BudgetItem {
         private final ExpenseType expense;
         private final TextField acceptButton;
 
@@ -69,7 +69,6 @@ public final class BudgetController extends MenuController implements Initializa
             this.acceptButton = new TextField(String.valueOf(amount));
             this.acceptButton.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.ENTER) {
-                    //sum += Integer.parseInt(acceptButton.getText());
                     budgetDAO.addType(Group.CURRENT.getId(), expense, BigDecimal.valueOf(Long.parseLong(acceptButton.getText())));
                     SceneSwitcher.setView("budget");
                 }
