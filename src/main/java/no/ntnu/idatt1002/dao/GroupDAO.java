@@ -30,7 +30,7 @@ public interface GroupDAO extends DAO<Group, Long> {
      * @param   senderId the sender user ID
      * @param   targetId the target user ID
      */
-    void addInvite(long groupId, long senderId, long targetId);
+    Invite addInvite(long groupId, long senderId, long targetId);
 
     /**
      * Removes an invitation from a group.

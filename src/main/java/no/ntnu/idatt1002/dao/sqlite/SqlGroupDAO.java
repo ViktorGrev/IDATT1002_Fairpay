@@ -114,7 +114,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
      * {@inheritDoc}
      */
     @Override
-    public void addInvite(long groupId, long senderId, long targetId) {
+    public Invite addInvite(long groupId, long senderId, long targetId) {
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(ADD_INVITE)) {
             statement.setLong(1, groupId);
@@ -122,6 +122,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             statement.setLong(3, targetId);
             statement.setLong(4, System.currentTimeMillis());
             statement.execute();
+            return new Invite(groupId, senderId, targetId, new Date(System.currentTimeMillis()));
         } catch (SQLException e) {
             if(e.getErrorCode() == 19) {
                 throw new DAOException("Invite has already been sent");

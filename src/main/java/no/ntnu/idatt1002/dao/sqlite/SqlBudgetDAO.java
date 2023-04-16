@@ -1,16 +1,15 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import no.ntnu.idatt1002.dao.BudgetDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.data.economy.Budget;
-import no.ntnu.idatt1002.data.economy.Expense;
 import no.ntnu.idatt1002.data.economy.ExpenseType;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
 
@@ -56,7 +55,7 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
 
     @Override
     public List<Budget> find(Collection<Long> filter) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     private static final String CREATE_BUDGET = """
