@@ -5,7 +5,7 @@ import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 
-public final class JoinCreateController extends Controller {
+public final class JoinCreateController extends MenuController {
 
     /**
      * Sends the user to the group invites page.
