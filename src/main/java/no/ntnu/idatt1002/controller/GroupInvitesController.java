@@ -66,7 +66,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             long userId = User.CURRENT.getId();
 
             this.acceptButton = new Button("Accept");
-            this.acceptButton.getStylesheets().add("stylesheet");
+            //this.acceptButton.getStylesheets().add("stylesheet");
             this.acceptButton.getStyleClass().add("button2");
             this.acceptButton.setOnMouseClicked(event -> {
                 groupDAO.removeInvite(groupId, userId);
@@ -77,7 +77,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             });
 
             this.denyButton = new Button("Deny");
-            this.denyButton.getStylesheets().add("stylesheet");
+            //this.denyButton.getStylesheets().add("stylesheet");
             this.denyButton.getStyleClass().add("button2");
             this.denyButton.setOnMouseClicked(event -> {
                 groupDAO.removeInvite(groupId, userId);
