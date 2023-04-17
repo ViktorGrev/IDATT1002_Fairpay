@@ -27,7 +27,7 @@ public final class AddSettlementExpenseController extends MenuController impleme
 
   @FXML
   private void addExpenseClick() {
-    ExpenseType type = ExpenseType.valueOf(typeField.getValue());
+    ExpenseType type = ExpenseType.fromName(typeField.getValue());
     String name = nameField.getText();
     BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
     LocalDate localDate = dateField.getValue();
@@ -45,7 +45,7 @@ public final class AddSettlementExpenseController extends MenuController impleme
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     typeField.setOnAction(e -> {
-      if(typeField.getValue().equals("OTHER")) {
+      if(typeField.getValue().equals("Other")) {
         nameText.setVisible(true);
         nameField.setVisible(true);
       } else {
@@ -55,7 +55,11 @@ public final class AddSettlementExpenseController extends MenuController impleme
     });
 
     for(ExpenseType type : ExpenseType.values()) {
-      typeField.getItems().add(type.name());
+      typeField.getItems().add(type.getCategoryName());
     }
+
+    typeField.setValue(ExpenseType.FOOD.getCategoryName());
+
+    dateField.setValue(LocalDate.now());
   }
 }

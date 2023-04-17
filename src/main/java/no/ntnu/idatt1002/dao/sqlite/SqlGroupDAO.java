@@ -119,6 +119,23 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    private static final String INSERT_GROUP_EXPENSE = """
+                INSERT INTO groupExpenses (groupId, expenseId)
+                VALUES (?, ?);
+            """;
+
+    @Override
+    public void addExpense(long groupId, long expenseId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(INSERT_GROUP_EXPENSE)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, expenseId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String ADD_INVITE = """
                 INSERT INTO groupInvites (groupId, senderId, targetId, sendDate)
                 VALUES (?, ?, ?, ?);
@@ -300,6 +317,15 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             	PRIMARY KEY (groupId, userId)
             );""";
 
+    private static final String CREATE_GROUP_EXPENSE_LINK = """
+                CREATE TABLE IF NOT EXISTS groupExpenses (
+                groupId integer NOT NULL,
+            	expenseId integer NOT NULL,
+            	FOREIGN KEY (groupId) REFERENCES groups(groupId),
+            	FOREIGN KEY (expenseId) REFERENCES expenses(expenseId),
+            	PRIMARY KEY (groupId, expenseId)
+            );""";
+
     private static final String CREATE_GROUP_INVITES = """
                 CREATE TABLE IF NOT EXISTS groupInvites (
                 groupId integer NOT NULL,
@@ -321,6 +347,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             Statement statement = connection.createStatement()) {
             statement.addBatch(CREATE_GROUPS);
             statement.addBatch(CREATE_GROUP_LINK);
+            statement.addBatch(CREATE_GROUP_EXPENSE_LINK);
             statement.addBatch(CREATE_GROUP_INVITES);
             statement.executeBatch();
         } catch (SQLException e) {

@@ -59,6 +59,14 @@ public enum ExpenseType {
         return expenseName;
     }
 
+    public static ExpenseType fromName(String name) {
+        for(ExpenseType type : values()) {
+            if(type.expenseName.equalsIgnoreCase(name))
+                return type;
+        }
+        return null;
+    }
+
     /**
      * A method for getting the expense enum.
      * Iterates through all the expense enum values.

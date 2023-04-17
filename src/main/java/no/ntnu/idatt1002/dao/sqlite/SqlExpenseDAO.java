@@ -23,7 +23,7 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
             PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE)) {
             statement.setLong(1, userId);
             statement.setString(2, name);
-            statement.setString(3, type.name());
+            statement.setInt(3, type.getCategoryNumber());
             statement.setLong(4, amount.longValue());
             statement.setLong(5, date.getTime());
             statement.execute();
@@ -72,7 +72,7 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
     private static Expense buildExpense(ResultSet resultSet) throws SQLException {
         long expenseId = resultSet.getLong("expenseId");
         long userId = resultSet.getLong("userId");
-        ExpenseType type = ExpenseType.valueOf(resultSet.getString("type"));
+        ExpenseType type = ExpenseType.getCategoryByCategoryNumber(resultSet.getInt("type"));
         String name = resultSet.getString("name");
         BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
         Date createDate = resultSet.getDate("createDate");
