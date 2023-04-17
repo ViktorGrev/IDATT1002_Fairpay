@@ -26,7 +26,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Common questions" textFill="#793f3f">
+                              <Label text="Common question topics" textFill="#793f3f">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -40,27 +40,27 @@
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Accunt and profile" />
+                                    <Hyperlink onAction="#profileHelpClick" text="Accunt and profile" />
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Dormgroup" />
+                                    <Hyperlink onAction="#dormgroupHelpClick" text="Dormgroup" />
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Policy" />
+                                    <Hyperlink onAction="#expenseHelpClick" text="Group expense and private settlement" />
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Hyperlink" />
+                                    <Hyperlink text="Budget" />
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Hyperlink" />
+                                    <Hyperlink text="Income" />
                                  </graphic>
                               </Label>
                            </children>
@@ -73,7 +73,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="8.0" layoutY="-2.0" prefHeight="121.0" prefWidth="210.0" text="Help for wherever you are on your financiel journey." textFill="#793f3f" wrapText="true">
+                              <Label alignment="CENTER" layoutX="8.0" layoutY="-2.0" prefHeight="121.0" prefWidth="210.0" text="Help for wherever you are on your financial journey." textFill="#793f3f" wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
