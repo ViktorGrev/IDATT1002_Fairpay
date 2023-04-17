@@ -38,7 +38,7 @@
                   </HBox>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <TableView prefHeight="200.0" prefWidth="200.0" styleClass="table-viewOnPage" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn prefWidth="75.0" text="Description" />
                         <TableColumn prefWidth="75.0" text="Price" />
