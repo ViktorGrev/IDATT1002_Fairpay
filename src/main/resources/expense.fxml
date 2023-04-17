@@ -213,7 +213,7 @@
                   </HBox>
                </top>
                <center>
-                  <TableView editable="true" prefHeight="155.0" prefWidth="466.0" style="-fx-border-color: white;" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <TableView editable="true" prefHeight="155.0" prefWidth="466.0" styleClass="table-viewOnPage" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Name" />
                       <TableColumn prefWidth="75.0" text="Category" />
