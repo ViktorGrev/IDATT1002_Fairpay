@@ -105,6 +105,20 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    private static final String REMOVE_MEMBER = "DELETE FROM groupUsers WHERE groupId = ? AND userId = ?;";
+
+    @Override
+    public void removeMember(long groupId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_MEMBER)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String ADD_INVITE = """
                 INSERT INTO groupInvites (groupId, senderId, targetId, sendDate)
                 VALUES (?, ?, ?, ?);

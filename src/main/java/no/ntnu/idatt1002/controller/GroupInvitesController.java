@@ -1,27 +1,21 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public final class GroupInvitesController extends Controller implements Initializable {
 
-    @FXML private TableView<TableInvite> inviteTable;
+    @FXML private TableView<Invite> inviteTable;
 
     @FXML
     private void backButtonClick() {
@@ -30,72 +24,41 @@ public final class GroupInvitesController extends Controller implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn<TableInvite, String> usernameCol1 = new TableColumn<>("Group");
-        usernameCol1.setCellValueFactory(new PropertyValueFactory<>("group"));
-
-        TableColumn<TableInvite, String> acceptCol = new TableColumn<>("");
-        acceptCol.setCellValueFactory(new PropertyValueFactory<>("acceptButton"));
-
-        TableColumn<TableInvite, String> denyCol = new TableColumn<>("");
-        denyCol.setCellValueFactory(new PropertyValueFactory<>("denyButton"));
-
-        inviteTable.getColumns().addAll(Arrays.asList(usernameCol1, acceptCol, denyCol));
+        TableEditor<Invite> inviteTableEditor = new TableEditor<>(inviteTable)
+                .setPlaceholder("No invites")
+                .addColumn("Group", invite -> getGroup(invite.getGroupId()).getName())
+                .addColumn(this::createAcceptButton)
+                .addColumn(this::createDenyButton);
 
         List<Invite> invites = groupDAO.getInvitesByUser(User.CURRENT.getId());
         if(!invites.isEmpty()) {
             List<Long> groupIds = invites.stream().map(Invite::getGroupId).toList();
-            Map<Long, Group> groups = groupDAO.find(groupIds).stream().collect(Collectors.toMap(Group::getId, group -> group));
-            for(Invite invite : invites) {
-                inviteTable.getItems().add(new TableInvite(
-                        groups.get(invite.getGroupId()).getName(),
-                        invite.getGroupId()));
-            }
-        } else {
-            inviteTable.setVisible(false);
+            getGroups(groupIds);
+            inviteTableEditor.addRows(invites);
         }
     }
 
-    public class TableInvite {
+    private Button createAcceptButton(Invite invite) {
+        Button button = new Button("Accept");
+        button.getStyleClass().add("button2");
+        button.setOnMouseClicked(event -> {
+            groupDAO.removeInvite(invite.getGroupId(), invite.getTargetId());
+            groupDAO.addMember(invite.getGroupId(), invite.getTargetId());
+            Group g = groupDAO.find(invite.getGroupId());
+            Group.setCurrent(g);
+            SceneSwitcher.setView("homepage");
+        });
+        return button;
+    }
 
-        private final SimpleStringProperty group;
-        private final Button acceptButton;
-        private final Button denyButton;
-
-        private TableInvite(String group, long groupId) {
-            this.group = new SimpleStringProperty(group);
-            long userId = User.CURRENT.getId();
-
-            this.acceptButton = new Button("Accept");
-            this.acceptButton.getStylesheets().add("stylesheet");
-            this.acceptButton.getStyleClass().add("button2");
-            this.acceptButton.setOnMouseClicked(event -> {
-                groupDAO.removeInvite(groupId, userId);
-                groupDAO.addMember(groupId, userId);
-                Group g = groupDAO.find(groupId);
-                Group.setCurrent(g);
-                SceneSwitcher.setView("homepage");
-            });
-
-            this.denyButton = new Button("Deny");
-            this.denyButton.getStylesheets().add("stylesheet");
-            this.denyButton.getStyleClass().add("button2");
-            this.denyButton.setOnMouseClicked(event -> {
-                groupDAO.removeInvite(groupId, userId);
-                inviteTable.getItems().removeIf(i -> i.getGroup().equals(group));
-                if(inviteTable.getItems().isEmpty()) inviteTable.setVisible(false);
-            });
-        }
-
-        public String getGroup() {
-            return group.get();
-        }
-
-        public Button getAcceptButton() {
-            return acceptButton;
-        }
-
-        public Button getDenyButton() {
-            return denyButton;
-        }
+    private Button createDenyButton(Invite invite) {
+        Button button = new Button("Deny");
+        button.getStyleClass().add("button2");
+        button.setOnMouseClicked(event -> {
+            groupDAO.removeInvite(invite.getGroupId(), invite.getTargetId());
+            inviteTable.getItems().removeIf(i ->
+                    i.getGroupId() == invite.getGroupId() && i.getTargetId() == invite.getTargetId());
+        });
+        return button;
     }
 }
