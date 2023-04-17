@@ -59,7 +59,7 @@ abstract class MenuController extends Controller {
      */
     @FXML
     private void dormGroupClick() {
-        SceneSwitcher.setView("dormGroup");
+        SceneSwitcher.setView("dormgroup");
     }
 
     /**
