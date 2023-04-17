@@ -3,19 +3,17 @@ package no.ntnu.idatt1002.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.scene.SceneSwitcher;
 import no.ntnu.idatt1002.util.DateUtil;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -25,6 +23,13 @@ public final class DormGroupController extends MenuController implements Initial
   @FXML private Text inviteFeedback;
   @FXML private TableView<User> memberTable;
   @FXML private TableView<Invite> inviteTable;
+
+  @FXML
+  private void onLeaveGroup() {
+    groupDAO.removeMember(Group.CURRENT.getId(), User.CURRENT.getId());
+    Group.setCurrent(null);
+    SceneSwitcher.setView("joincreatepage");
+  }
 
   @FXML
   private void onSendInvite() {
@@ -89,12 +94,5 @@ public final class DormGroupController extends MenuController implements Initial
       inviteTable.getItems().removeIf(r -> invite.getTargetId() == r.getTargetId());
     });
     return button;
-  }
-
-  private Map<Long, User> toUserMap(List<User> users) {
-    Map<Long, User> map = new HashMap<>();
-    for(User user : users)
-      map.put(user.getId(), user);
-    return map;
   }
 }

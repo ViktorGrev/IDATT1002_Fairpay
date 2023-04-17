@@ -31,6 +31,8 @@ public interface GroupDAO extends DAO<Group, Long> {
      */
     void removeMember(long groupId, long userId);
 
+    void addExpense(long groupId, long expenseId);
+
     /**
      * Add an invitation to a group for a user with the specified ID.
      * @param   groupId the group ID
