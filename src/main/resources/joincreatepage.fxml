@@ -7,6 +7,7 @@
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -21,11 +22,28 @@
          <top>
             <HBox prefHeight="49.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="57.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/FairPayLogo.png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane prefHeight="57.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@image/FairPayLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="57.0" prefWidth="294.0" stylesheets="@style/stylesheet.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#logoutButtonClick" style="-fx-cursor: hand; -fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log out" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
          </top>
@@ -42,7 +60,7 @@
                   </Text>
                   <HBox alignment="CENTER" prefHeight="158.0" prefWidth="600.0" spacing="15.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="141.0" prefWidth="183.0" style="-fx-background-radius: 10px; -fx-background-color: #793f3f;" textFill="WHITE">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="141.0" prefWidth="183.0" style="-fx-background-radius: 10px; -fx-background-color: #793f3f; -fx-cursor: hand;" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="15.0" />
                            </font>
@@ -82,7 +100,7 @@
                               </VBox>
                            </graphic>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="141.0" prefWidth="183.0" style="-fx-background-color: #793f3f; -fx-background-radius: 10px;" textFill="WHITE">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="141.0" prefWidth="183.0" style="-fx-background-color: #793f3f; -fx-background-radius: 10px; -fx-cursor: hand;" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="15.0" />
                            </font>
