@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -46,14 +47,18 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" onMouseClicked="#newSettlementClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                           <image>
-                              <Image url="@image/whiteAddBox.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </ImageView>
+                        <Button mnemonicParsing="false" onMouseClicked="#newSettlementClick" style="-fx-background-color: none; -fx-cursor: hand;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@image/whiteAddBox.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="New settlement" />
+                           </tooltip>
+                        </Button>
                      </children>
                   </HBox>
                </top>

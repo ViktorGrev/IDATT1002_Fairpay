@@ -29,7 +29,7 @@ public final class AddExpenseController extends MenuController implements Initia
   @FXML
   private void addExpenseClick() {
     ExpenseType type = ExpenseType.fromName(typeField.getValue());
-    String name = nameField.getText();
+    String name = nameField.getText().isBlank() ? null : nameField.getText();
     BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
     LocalDate localDate = dateField.getValue();
     Date date = java.sql.Date.valueOf(localDate);

@@ -83,7 +83,7 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
                 CREATE TABLE IF NOT EXISTS expenses (
             	expenseId integer PRIMARY KEY AUTOINCREMENT,
             	userId integer NOT NULL,
-            	name text(32) NOT NULL,
+            	name text(32),
             	type text(32) NOT NULL,
             	amount integer NOT NULL,
             	createDate integer NOT NULL,

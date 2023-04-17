@@ -26,8 +26,7 @@ public final class ExpenseController extends MenuController implements Initializ
   public void initialize(URL url, ResourceBundle resourceBundle) {
     TableEditor<Expense> expenseTableEditor = new TableEditor<>(expenseTable)
             .setPlaceholder("No expenses")
-            .addColumn("Name", Expense::getName)
-            .addColumn("Category", expense -> expense.getType().getCategoryName())
+            .addColumn("Name", expense -> expense.hasName() ? expense.getName() : expense.getType().getCategoryName())
             .addColumn("Price", Expense::getAmount)
             .addColumn("Date", expense -> DateUtil.format(expense.getDate().getTime(), "dd MMM yyyy"));
 
