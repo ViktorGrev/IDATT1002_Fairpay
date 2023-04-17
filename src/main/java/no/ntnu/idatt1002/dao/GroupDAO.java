@@ -18,11 +18,18 @@ public interface GroupDAO extends DAO<Group, Long> {
     Group create(String name);
 
     /**
-     * Add a member to a group specified by their IDs.
+     * Add a member to a group specified by their ID.
      * @param   groupId the group ID
      * @param   userId the user ID
      */
     void addMember(long groupId, long userId);
+
+    /**
+     * Remove a member to a group specified by their ID.
+     * @param   groupId the group ID
+     * @param   userId the user ID
+     */
+    void removeMember(long groupId, long userId);
 
     /**
      * Add an invitation to a group for a user with the specified ID.
