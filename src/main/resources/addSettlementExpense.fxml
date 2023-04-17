@@ -34,10 +34,10 @@
                   </HBox>
                </top>
                <left>
-                  <VBox prefHeight="301.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="212.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
-                        <ComboBox fx:id="typeField" prefWidth="150.0" />
+                        <ComboBox fx:id="typeField" prefWidth="150.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); -fx-background-color: white; -fx-background-radius: 1em;" VBox.vgrow="ALWAYS" />
                         <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
                         <TextField fx:id="nameField" visible="false">
                            <VBox.margin>
@@ -45,9 +45,12 @@
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):" />
-                        <TextField fx:id="amountField" />
+                        <TextField fx:id="amountField" stylesheets="@style/formstyle.css" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></TextField>
                         <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
-                        <DatePicker fx:id="dateField" />
+                        <DatePicker fx:id="dateField" stylesheets="@style/stylesheet.css" />
                      </children>
                      <BorderPane.margin>
                         <Insets left="10.0" />
@@ -57,12 +60,12 @@
                <bottom>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#goBackClick" text="Go back">
+                        <Button mnemonicParsing="false" onAction="#goBackClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Go back">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#addExpenseClick" text="Add expense">
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
                            </HBox.margin>
