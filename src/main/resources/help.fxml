@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,9 +13,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.HelpController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -24,10 +26,17 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Common questions">
+                              <Label text="Common questions" textFill="#793f3f">
                                  <font>
-                                    <Font size="23.0" />
+                                    <Font size="17.0" />
                                  </font>
+                                 <effect>
+                                    <InnerShadow blurType="GAUSSIAN">
+                                       <color>
+                                          <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Label>
                               <Label>
                                  <graphic>
@@ -60,27 +69,25 @@
                   </VBox>
                </center>
                <top>
-                  <SplitPane dividerPositions="0.48060344827586204" prefHeight="114.0" prefWidth="466.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+                  <SplitPane prefHeight="114.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="8.0" layoutY="-2.0" prefHeight="121.0" prefWidth="210.0" text="Help for wherever you are on your financiel journey." textFill="WHITE" wrapText="true">
+                              <Label alignment="CENTER" layoutX="8.0" layoutY="-2.0" prefHeight="121.0" prefWidth="210.0" text="Help for wherever you are on your financiel journey." textFill="#793f3f" wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
+                                 <effect>
+                                    <InnerShadow>
+                                       <color>
+                                          <Color red="0.843137264251709" green="0.18039216101169586" blue="0.18039216101169586" />
+                                       </color>
+                                    </InnerShadow>
+                                 </effect>
                               </Label>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <ImageView fitHeight="114.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/FairPayLogo.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </AnchorPane>
                     </items>
@@ -243,7 +250,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="44.0" prefWidth="154.0" styleClass="imageMenu" stylesheets="@style/stylesheet.css">
                      <children>
-                        <ImageView fitHeight="46.0" fitWidth="89.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true" styleClass="imageMenu">
+                        <ImageView fitHeight="46.0" fitWidth="89.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand¨;" styleClass="imageMenu">
                            <image>
                               <Image url="@image/FairPayLogo.png" />
                            </image>
