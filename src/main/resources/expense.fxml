@@ -227,7 +227,7 @@
                <bottom>
                   <AnchorPane prefHeight="145.0" prefWidth="466.0" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox layoutX="19.0" layoutY="7.0" prefHeight="135.0" prefWidth="411.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="7.0">
+                        <VBox layoutX="19.0" layoutY="7.0" prefHeight="135.0" prefWidth="411.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="7.0">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                  <children>
@@ -244,13 +244,13 @@
                                              </font>
                                           </Text>
                                           <Label />
-                                          <VBox prefHeight="127.0" prefWidth="182.0" style="-fx-border-color: black;">
+                                          <VBox prefHeight="127.0" prefWidth="182.0">
                                              <children>
                                                 <VBox fx:id="mustPayField" prefHeight="200.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label prefHeight="21.0" prefWidth="188.0" text="Du må betale:">
+                                                      <Label prefHeight="21.0" prefWidth="188.0" text="You have to pay:">
                                                          <font>
-                                                            <Font size="13.0" />
+                                                            <Font size="15.0" />
                                                          </font>
                                                       </Label>
                                                    </children>
@@ -260,6 +260,9 @@
                                        </children>
                                     </HBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </AnchorPane>
                            </children>
                         </VBox>
