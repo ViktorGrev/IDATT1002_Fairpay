@@ -6,24 +6,7 @@ import java.util.Map;
 
 public class Budget {
 
-    //representing the total amount of the budget
-    private BigDecimal total;
-
-    //maps ExpenseType objects to their respective amounts.
     private final Map<ExpenseType, BigDecimal> budget = new HashMap<>();
-
-    /**
-     * Sets the total amount of the budget.
-     *
-     * @param total the total amount of the budget
-     * @throws IllegalArgumentException if the total amount is negative
-     */
-    public void setTotal(BigDecimal total) {
-        if(total.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Total cannot be negative");
-        }
-        this.total = total;
-    }
 
     /**
      * Gets the total amount of the budget.
@@ -31,7 +14,11 @@ public class Budget {
      * @return the total amount of the budget
      */
     public BigDecimal getTotal() {
-        return total;
+        long total = 0;
+        for(ExpenseType expense : ExpenseType.values()) {
+            total += getAmount(expense).longValue();
+        }
+        return BigDecimal.valueOf(total);
     }
 
     /**
@@ -62,6 +49,6 @@ public class Budget {
         if(type == null) {
             throw new IllegalArgumentException("Type cannot be null");
         }
-        return budget.get(type);
+        return budget.getOrDefault(type, BigDecimal.ZERO);
     }
 }

@@ -37,19 +37,17 @@ public final class BudgetController extends MenuController implements Initializa
 
         budgetTable.getColumns().addAll(Arrays.asList(expenseCol1, acceptCol));
 
-        int s = 0;
         List<ExpenseType> expenseTypes = Arrays.asList(ExpenseType.values());
         if(!expenseTypes.isEmpty()) {
             for(ExpenseType expense : expenseTypes) {
-                long amount = budget.getAmount(expense) != null ? budget.getAmount(expense).longValue() : 0;
-                s += amount;
+                long amount = budget.getAmount(expense).longValue();
                 BudgetItem tableInvite = new BudgetItem(expense, amount);
                 budgetTable.getItems().add(tableInvite);
             }
         } else {
             budgetTable.setVisible(false);
         }
-        sum.setText(s + "kr");
+        sum.setText(budget.getTotal() + "kr");
 
         XYChart.Series<String, Long> series1 = new XYChart.Series<>();
         series1.setName("Budget");
