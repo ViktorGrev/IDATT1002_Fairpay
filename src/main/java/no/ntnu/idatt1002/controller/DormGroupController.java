@@ -3,6 +3,7 @@ package no.ntnu.idatt1002.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -21,6 +22,7 @@ public final class DormGroupController extends MenuController implements Initial
 
   @FXML private TextField inviteNameField;
   @FXML private Text inviteFeedback;
+  @FXML private Label groupName;
   @FXML private TableView<User> memberTable;
   @FXML private TableView<Invite> inviteTable;
 
@@ -61,6 +63,7 @@ public final class DormGroupController extends MenuController implements Initial
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     Group group = groupDAO.findByUser(User.CURRENT.getId());
+    groupName.setText(group.getName());
 
     new TableEditor<>(memberTable)
             .addColumn("Username", User::getUsername)
@@ -94,5 +97,10 @@ public final class DormGroupController extends MenuController implements Initial
       inviteTable.getItems().removeIf(r -> invite.getTargetId() == r.getTargetId());
     });
     return button;
+  }
+
+  @FXML
+  public void dormGroupSettingsCliked() {
+    SceneSwitcher.setView("dormgroupsettings");
   }
 }
