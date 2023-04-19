@@ -81,7 +81,8 @@ public final class ExpenseController extends MenuController implements Initializ
     mustPayField.getChildren().removeIf(node -> !(node instanceof Label));
     for(long l : owes.keySet()) {
       HBox hBox = new HBox();
-      hBox.getChildren().addAll(new Label(users.get(l).getUsername() + " "), new Label(owes.get(l) + "kr"));
+      hBox.getChildren().addAll(new Label(users.get(l).getUsername() + ": "), new Label(owes.get(l) + "kr"));
+      mustPayField.setStyle("-fx-font-size: 14");
       mustPayField.getChildren().add(hBox);
     }
   }
