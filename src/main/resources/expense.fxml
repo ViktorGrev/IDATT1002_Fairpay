@@ -238,7 +238,7 @@
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1000kr" wrappingWidth="61.13671875">
+                                          <Text fx:id="totalAmountField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.13671875">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -246,35 +246,15 @@
                                           <Label />
                                           <VBox prefHeight="127.0" prefWidth="182.0" style="-fx-border-color: black;">
                                              <children>
-                                                <Label prefHeight="21.0" prefWidth="188.0" text="Så my skylder du hver person:">
-                                                   <font>
-                                                      <Font size="13.0" />
-                                                   </font>
-                                                </Label>
-                                                <HBox prefHeight="19.0" prefWidth="165.0">
+                                                <VBox fx:id="mustPayField" prefHeight="200.0" prefWidth="100.0">
                                                    <children>
-                                                      <Label text="Malin: " />
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="300kr" />
+                                                      <Label prefHeight="21.0" prefWidth="188.0" text="Du må betale:">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="27.0" prefHeight="19.0" prefWidth="165.0">
-                                                   <children>
-                                                      <Label text="Malin: " />
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="300kr" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="46.0" prefHeight="19.0" prefWidth="165.0">
-                                                   <children>
-                                                      <Label text="Malin: " />
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="300kr" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="65.0" prefHeight="19.0" prefWidth="165.0">
-                                                   <children>
-                                                      <Label text="Malin: " />
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="300kr" />
-                                                   </children>
-                                                </HBox>
+                                                </VBox>
                                              </children>
                                           </VBox>
                                        </children>

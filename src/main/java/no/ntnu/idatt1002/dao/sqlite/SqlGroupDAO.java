@@ -9,6 +9,7 @@ import no.ntnu.idatt1002.data.User;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * This class is an implementation of the {@link GroupDAO} interface, using
@@ -136,6 +137,37 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    private static final String INSERT_PAID_EXPENSE = """
+                INSERT INTO paidExpenses (expenseId, userId)
+                VALUES (?, ?);
+            """;
+
+    @Override
+    public void setPaidExpense(long expenseId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(INSERT_PAID_EXPENSE)) {
+            statement.setLong(1, expenseId);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String REMOVE_PAID_EXPENSE = "DELETE FROM paidExpenses WHERE userId = ? AND expenseId = ?;";
+
+    @Override
+    public void unsetPaidExpense(long expenseId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_PAID_EXPENSE)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, expenseId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String ADD_INVITE = """
                 INSERT INTO groupInvites (groupId, senderId, targetId, sendDate)
                 VALUES (?, ?, ?, ?);
@@ -248,6 +280,33 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         return users;
     }
 
+    private static final String FIND_PAID_EXPENSES = """
+                    SELECT * FROM groupExpenses
+                    JOIN paidExpenses ON paidExpenses.expenseId = groupExpenses.expenseId
+                    WHERE groupId = ?;
+                    """;
+
+    private static Map<Long, List<Long>> getPaidExpenses(long groupId) {
+        Map<Long, List<Long>> expenses = new HashMap<>();
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_PAID_EXPENSES)) {
+            statement.setLong(1, groupId);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    long userId = resultSet.getLong("userId");
+                    long expenseId = resultSet.getLong("expenseId");
+                    if(!expenses.containsKey(expenseId)) {
+                        expenses.put(expenseId, new ArrayList<>());
+                    }
+                    expenses.get(expenseId).add(userId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return expenses;
+    }
+
     private static final String FIND_EXPENSES = "SELECT * FROM groupExpenses WHERE groupId = ?;";
 
     private static List<Long> getExpenses(long groupId) {
@@ -304,6 +363,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         Group group = new Group(groupId, groupName);
         getMembers(groupId).forEach(group::addMember);
         getExpenses(groupId).forEach(group::addExpense);
+        getPaidExpenses(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addPaidExpense(aLong, l)));
         return group;
     }
 
@@ -345,6 +405,15 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             	PRIMARY KEY (groupId, expenseId)
             );""";
 
+    private static final String CREATE_PAID_EXPENSE_LINK = """
+                CREATE TABLE IF NOT EXISTS paidExpenses (
+                userId integer NOT NULL,
+            	expenseId integer NOT NULL,
+            	FOREIGN KEY (userId) REFERENCES users(userId),
+            	FOREIGN KEY (expenseId) REFERENCES expenses(expenseId),
+            	PRIMARY KEY (userId, expenseId)
+            );""";
+
     private static final String CREATE_GROUP_INVITES = """
                 CREATE TABLE IF NOT EXISTS groupInvites (
                 groupId integer NOT NULL,
@@ -366,6 +435,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             Statement statement = connection.createStatement()) {
             statement.addBatch(CREATE_GROUPS);
             statement.addBatch(CREATE_GROUP_LINK);
+            statement.addBatch(CREATE_PAID_EXPENSE_LINK);
             statement.addBatch(CREATE_GROUP_EXPENSE_LINK);
             statement.addBatch(CREATE_GROUP_INVITES);
             statement.executeBatch();
