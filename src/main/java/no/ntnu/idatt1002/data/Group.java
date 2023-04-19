@@ -1,8 +1,6 @@
 package no.ntnu.idatt1002.data;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class represents a group of users. Each group has a unique
@@ -16,6 +14,7 @@ public final class Group {
   private String name; // The name of the group
   private final List<User> members = new ArrayList<>(); // A list with the users within this group
   private final List<Long> expenses = new ArrayList<>();
+  private final Map<Long, List<Long>> paidExpenses = new HashMap<>();
 
   /**
    Constructs a new group with the specified group ID and group name.
@@ -113,6 +112,25 @@ public final class Group {
    */
   public List<Long> getExpenses() {
     return Collections.unmodifiableList(expenses);
+  }
+
+  public void addPaidExpense(long expenseId, long userId) {
+    if(!paidExpenses.containsKey(expenseId))
+      paidExpenses.put(expenseId, new ArrayList<>());
+    paidExpenses.get(expenseId).add(userId);
+  }
+
+  public void removePaidExpense(long expenseId, long userId) {
+    if(!paidExpenses.containsKey(expenseId)) return;
+    paidExpenses.get(expenseId).remove(userId);
+  }
+
+  public boolean isPaid(long expenseId, long userId) {
+    return paidExpenses.getOrDefault(expenseId, new ArrayList<>()).contains(userId);
+  }
+
+  public Map<Long, List<Long>> getPaidExpenses() {
+    return paidExpenses;
   }
 
   /**

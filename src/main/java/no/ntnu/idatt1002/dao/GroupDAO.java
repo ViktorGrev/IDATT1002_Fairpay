@@ -33,6 +33,10 @@ public interface GroupDAO extends DAO<Group, Long> {
 
     void addExpense(long groupId, long expenseId);
 
+    void setPaidExpense(long expenseId, long userId);
+
+    void unsetPaidExpense(long expenseId, long userId);
+
     /**
      * Add an invitation to a group for a user with the specified ID.
      * @param   groupId the group ID
