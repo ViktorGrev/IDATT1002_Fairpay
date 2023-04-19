@@ -90,7 +90,6 @@ public final class DormGroupController extends MenuController implements Initial
 
   private Button createCancelButton(Invite invite) {
     Button button = new Button("Cancel");
-    button.getStylesheets().add("stylesheet");
     button.getStyleClass().add("button2");
     button.setOnMouseClicked(event -> {
       groupDAO.removeInvite(Group.CURRENT.getId(), invite.getTargetId());
