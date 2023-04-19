@@ -26,7 +26,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="41.0" prefWidth="118.0" text="Dorm group" textFill="WHITE">
+                              <Label fx:id="groupName" prefHeight="41.0" prefWidth="118.0" text="Dorm group" textFill="WHITE">
                                  <padding>
                                     <Insets left="30.0" />
                                  </padding>
