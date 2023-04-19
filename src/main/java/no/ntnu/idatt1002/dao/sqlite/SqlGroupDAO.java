@@ -248,6 +248,24 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         return users;
     }
 
+    private static final String FIND_EXPENSES = "SELECT * FROM groupExpenses WHERE groupId = ?;";
+
+    private static List<Long> getExpenses(long groupId) {
+        List<Long> expenses = new ArrayList<>();
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_EXPENSES)) {
+            statement.setLong(1, groupId);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    expenses.add(resultSet.getLong("expenseId"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return expenses;
+    }
+
     private static final String FIND_ONE_BY_USER = """
                     SELECT * FROM groupUsers
                     JOIN groups ON groupUsers.groupId = groups.groupId
@@ -285,6 +303,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         String groupName = resultSet.getString("groupName");
         Group group = new Group(groupId, groupName);
         getMembers(groupId).forEach(group::addMember);
+        getExpenses(groupId).forEach(group::addExpense);
         return group;
     }
 
