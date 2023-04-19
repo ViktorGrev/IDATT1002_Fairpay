@@ -24,26 +24,42 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="118.0" text="Dorm group" textFill="WHITE">
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#onLeaveGroup" style="-fx-background-color: none; -fx-cursor: hand;">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="240.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="groupName" prefHeight="41.0" prefWidth="118.0" text="Dormgroup" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="30.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onMouseClicked="#onLeaveGroup" style="-fx-background-color: none; -fx-cursor: hand;">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/leave.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Leave group" />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="179.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="19.0" onMouseClicked="#dormGroupSettingsCliked" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                                  <image>
-                                    <Image url="@image/leave.png" />
+                                    <Image url="@image/settings2.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
                               </ImageView>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="Leave group" />
-                           </tooltip>
-                        </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </top>

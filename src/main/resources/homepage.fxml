@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tooltip?>
@@ -20,7 +21,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Pane prefHeight="37.0" prefWidth="466.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="37.0" prefWidth="466.0" style="-fx-border-color: #793f3f; -fx-border-style: hidden hidden solid hidden; -fx-border-radius: 0em 0em 1em 0em;" BorderPane.alignment="CENTER">
                      <children>
                         <Button layoutX="435.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@style/stylesheet.css">
                            <tooltip>
@@ -31,9 +32,9 @@
                               </Tooltip>
                            </tooltip>
                         </Button>
-                        <Text fx:id="welcomeText" fill="#575050" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
+                        <Text fx:id="welcomeText" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="22.0" />
                            </font>
                         </Text>
                      </children>
@@ -47,27 +48,81 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <AnchorPane prefHeight="158.0" prefWidth="255.0" HBox.hgrow="ALWAYS">
+                                          <AnchorPane prefHeight="150.0" prefWidth="195.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0" />
+                                                <AnchorPane prefHeight="151.0" prefWidth="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <VBox alignment="CENTER" prefHeight="131.0" prefWidth="189.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="10.0">
+                                                         <children>
+                                                            <Text fx:id="inspirationalText" strokeType="OUTSIDE" strokeWidth="0.0" text="text" textAlignment="CENTER" wrappingWidth="100.0" VBox.vgrow="ALWAYS">
+                                                               <VBox.margin>
+                                                                  <Insets left="10.0" />
+                                                               </VBox.margin>
+                                                               <font>
+                                                                  <Font size="17.0" />
+                                                               </font></Text>
+                                                         </children>
+                                                      </VBox>
+                                                   </children></AnchorPane>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane prefHeight="152.0" prefWidth="363.0" HBox.hgrow="ALWAYS">
+                                          <AnchorPane prefHeight="151.0" prefWidth="205.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <VBox alignment="CENTER" layoutX="9.0" layoutY="3.0" prefHeight="147.0" prefWidth="216.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 10px;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="3.0">
+                                                <VBox alignment="CENTER" layoutX="20.0" layoutY="3.0" prefHeight="131.0" prefWidth="186.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
                                                    <children>
-                                                      <Text fx:id="weekDayText" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
-                                                         <font>
-                                                            <Font size="17.0" />
-                                                         </font>
-                                                      </Text>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shortcuts">
+                                                                     <font>
+                                                                        <Font size="17.0" />
+                                                                     </font>
+                                                                  </Text>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="173.0" prefWidth="188.0">
+                                                         <children>
+                                                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <AnchorPane prefHeight="56.0" prefWidth="227.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <children>
+                                                                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addExpenseClick" styleClass="button3" stylesheets="@style/stylesheet.css" text="Add expense" HBox.hgrow="ALWAYS">
+                                                                                 <HBox.margin>
+                                                                                    <Insets bottom="1.0" />
+                                                                                 </HBox.margin>
+                                                                              </Button>
+                                                                           </children>
+                                                                        </HBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <AnchorPane prefHeight="56.0" prefWidth="222.0" HBox.hgrow="ALWAYS">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                           <children>
+                                                                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createSettlementClick" prefHeight="55.0" prefWidth="112.0" stylesheets="@style/stylesheet.css" text="Shortcut 2" HBox.hgrow="ALWAYS">
+                                                                                 <HBox.margin>
+                                                                                    <Insets bottom="1.0" />
+                                                                                 </HBox.margin>
+                                                                                 <styleClass>
+                                                                                    <String fx:value="button3" />
+                                                                                    <String fx:value="button4" />
+                                                                                 </styleClass>
+                                                                              </Button>
+                                                                           </children>
+                                                                        </HBox>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -76,22 +131,22 @@
                                     </HBox>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                  <children>
                                     <HBox prefHeight="154.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <AnchorPane prefHeight="153.0" prefWidth="168.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <AnchorPane prefHeight="151.0" prefWidth="202.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="0.0">
+                                                <AnchorPane prefHeight="149.0" prefWidth="220.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <VBox alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="118.0" prefWidth="161.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="-21.0" AnchorPane.topAnchor="17.0">
+                                                      <VBox alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="129.0" prefWidth="407.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
                                                          <children>
-                                                            <Text fx:id="weekDayText111" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
+                                                            <Text fx:id="weekDayText" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
                                                                <font>
                                                                   <Font size="16.0" />
                                                                </font>
                                                             </Text>
-                                                            <Text fx:id="dateText111" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
+                                                            <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="90.0">
                                                                <font>
                                                                   <Font size="17.0" />
                                                                </font>
@@ -100,24 +155,6 @@
                                                       </VBox>
                                                    </children>
                                                 </AnchorPane>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="153.0" prefWidth="257.0" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="CENTER" layoutX="35.0" layoutY="18.0" prefHeight="117.0" prefWidth="269.0" spacing="30.0" style="-fx-border-color: #a3a0a0; -fx-border-radius: 2px 30px;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="18.0">
-                                                   <children>
-                                                      <Text fx:id="weekDayText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <Text fx:id="dateText1112" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="85.13671875">
-                                                         <font>
-                                                            <Font size="17.0" />
-                                                         </font>
-                                                      </Text>
-                                                   </children>
-                                                </VBox>
                                              </children>
                                           </AnchorPane>
                                        </children>
@@ -131,7 +168,7 @@
                               <Image url="@image/notifications.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" onMouseClicked="#helpClick" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                        <ImageView fitHeight="18.0" fitWidth="21.0" onMouseClicked="#helpClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
                            <image>
                               <Image url="@image/help.png" />
                            </image>
