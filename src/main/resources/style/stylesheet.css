@@ -204,6 +204,10 @@
     -fx-background-color: black;
 }
 
+.table-viewOnPage .table-row-cell:empty {
+    -fx-background-color: none;
+}
+
 .backgroundColor{
     -fx-background-color: linear-gradient(to left,#fafafa, #a3a0a0);
 }
