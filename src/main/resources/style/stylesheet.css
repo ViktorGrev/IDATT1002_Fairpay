@@ -297,3 +297,10 @@
 .date-picker .arrow-button .arrow {
     -fx-background-color: white;
 }
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+    -fx-cursor: hand;
+}
