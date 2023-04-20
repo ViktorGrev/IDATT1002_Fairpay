@@ -6,10 +6,9 @@ import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
 
-import java.sql.*;
 import java.sql.Date;
+import java.sql.*;
 import java.util.*;
-import java.util.function.BiConsumer;
 
 /**
  * This class is an implementation of the {@link GroupDAO} interface, using
@@ -21,6 +20,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String FIND_ONE_ID = "SELECT * FROM groups WHERE groupId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Group find(Long filter) {
         Objects.requireNonNull(filter);
@@ -38,6 +40,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Group> find(Collection<Long> filter) {
         Objects.requireNonNull(filter);
@@ -108,6 +113,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String REMOVE_MEMBER = "DELETE FROM groupUsers WHERE groupId = ? AND userId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeMember(long groupId, long userId) {
         try(Connection connection = getConnection();
@@ -125,6 +133,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                 VALUES (?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addExpense(long groupId, long expenseId) {
         try(Connection connection = getConnection();
@@ -142,6 +153,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                 VALUES (?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addIncome(long groupId, long incomeId) {
         try(Connection connection = getConnection();
@@ -159,6 +173,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                 VALUES (?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setReceivedIncome(long incomeId, long userId) {
         try(Connection connection = getConnection();
@@ -173,6 +190,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String REMOVE_RECEIVED_INCOME = "DELETE FROM receivedIncome WHERE userId = ? AND incomeId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void unsetReceivedIncome(long incomeId, long userId) {
         try(Connection connection = getConnection();
@@ -190,6 +210,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                 VALUES (?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPaidExpense(long expenseId, long userId) {
         try(Connection connection = getConnection();
@@ -204,6 +227,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String REMOVE_PAID_EXPENSE = "DELETE FROM paidExpenses WHERE userId = ? AND expenseId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void unsetPaidExpense(long expenseId, long userId) {
         try(Connection connection = getConnection();
@@ -283,6 +309,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String FIND_INVITES_BY_USER = "SELECT * FROM groupInvites WHERE targetId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Invite> getInvitesByUser(long userId) {
         List<Invite> invites = new ArrayList<>();
@@ -334,6 +363,11 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                     WHERE groupId = ?;
                     """;
 
+    /**
+     * Returns a map of expenses and the users who have paid them
+     * @param   groupId the group ID
+     * @return  a map of expenses and the users who have paid them
+     */
     private static Map<Long, List<Long>> getPaidExpenses(long groupId) {
         Map<Long, List<Long>> expenses = new HashMap<>();
         try(Connection connection = getConnection();
@@ -361,6 +395,11 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
                     WHERE groupId = ?;
                     """;
 
+    /**
+     * Returns a map of incomes and the users who have received them
+     * @param   groupId the group ID
+     * @return  a map of incomes and the users who have received them
+     */
     private static Map<Long, List<Long>> getReceivedIncome(long groupId) {
         Map<Long, List<Long>> received = new HashMap<>();
         try(Connection connection = getConnection();
@@ -384,6 +423,11 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String FIND_EXPENSES = "SELECT * FROM groupExpenses WHERE groupId = ?;";
 
+    /**
+     * Returns a list of expenses within a group.
+     * @param   groupId the group ID
+     * @return  a list of expenses within a group
+     */
     private static List<Long> getExpenses(long groupId) {
         List<Long> expenses = new ArrayList<>();
         try(Connection connection = getConnection();
@@ -402,6 +446,11 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
 
     private static final String FIND_INCOME = "SELECT * FROM groupIncome WHERE groupId = ?;";
 
+    /**
+     * Returns a list of incomes within a group.
+     * @param   groupId the group ID
+     * @return  a list of incomes within a group
+     */
     private static List<Long> getIncome(long groupId) {
         List<Long> incomeIds = new ArrayList<>();
         try(Connection connection = getConnection();

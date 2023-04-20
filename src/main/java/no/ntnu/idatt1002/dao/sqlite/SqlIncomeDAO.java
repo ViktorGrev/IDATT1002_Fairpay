@@ -9,6 +9,12 @@ import java.sql.*;
 import java.util.Date;
 import java.util.*;
 
+/**
+ * This class is an implementation of the {@link IncomeDAO} interface, using
+ * SQLite as the underlying data source.
+ * @see SqlDAO
+ * @see IncomeDAO
+ */
 public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
 
     private static final String INSERT_INCOME = """
@@ -16,6 +22,9 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
                 VALUES (?, ?, ?, ?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Income create(long userId, String name, BigDecimal amount, Date date, int shares) {
         try(Connection connection = getConnection();
@@ -38,11 +47,17 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Income find(Long filter) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Income> find(Collection<Long> filter) {
         Objects.requireNonNull(filter);
@@ -68,6 +83,12 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
         return "SELECT * FROM income WHERE incomeId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
+    /**
+     * Creates an income object from a ResultSet.
+     * @param   resultSet the ResultSet to retrieve data from
+     * @return  a new Income object
+     * @throws  SQLException if a database access error occurs
+     */
     private static Income buildIncome(ResultSet resultSet) throws SQLException {
         long incomeId = resultSet.getLong("incomeId");
         long userId = resultSet.getLong("userId");
@@ -89,6 +110,9 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
             	FOREIGN KEY (userId) REFERENCES income(userId)
             );""";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         try(Connection connection = getConnection();

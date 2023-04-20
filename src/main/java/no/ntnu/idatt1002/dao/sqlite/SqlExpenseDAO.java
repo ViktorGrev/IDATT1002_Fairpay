@@ -10,6 +10,12 @@ import java.sql.*;
 import java.util.Date;
 import java.util.*;
 
+/**
+ * This class is an implementation of the {@link ExpenseDAO} interface, using
+ * SQLite as the underlying data source.
+ * @see SqlDAO
+ * @see ExpenseDAO
+ */
 public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
 
     private static final String INSERT_EXPENSE = """
@@ -17,6 +23,9 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
                 VALUES (?, ?, ?, ?, ?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
         try(Connection connection = getConnection();
@@ -40,11 +49,17 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Expense find(Long filter) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Expense> find(Collection<Long> filter) {
         Objects.requireNonNull(filter);
@@ -70,6 +85,12 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
         return "SELECT * FROM expenses WHERE expenseId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
+    /**
+     * Creates an expense object from a ResultSet.
+     * @param   resultSet the ResultSet to retrieve data from
+     * @return  a new Expense object
+     * @throws  SQLException if a database access error occurs
+     */
     private static Expense buildExpense(ResultSet resultSet) throws SQLException {
         long expenseId = resultSet.getLong("expenseId");
         long userId = resultSet.getLong("userId");
@@ -93,6 +114,9 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
             	FOREIGN KEY (userId) REFERENCES users(userId)
             );""";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         try(Connection connection = getConnection();

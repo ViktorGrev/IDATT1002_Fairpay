@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * This class holds the DAO classes used within the application.
+ */
 public final class Database {
 
     public static final Logger logger = Logger.getLogger(Database.class.getSimpleName());
