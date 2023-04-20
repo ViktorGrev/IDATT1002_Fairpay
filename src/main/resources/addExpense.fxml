@@ -37,7 +37,7 @@
                   <VBox prefHeight="301.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
-                        <ComboBox fx:id="typeField" prefWidth="150.0" styleClass="button2" stylesheets="@style/stylesheet.css" />
+                        <ComboBox fx:id="typeField" prefWidth="150.0" styleClass="combo-box" stylesheets="@style/stylesheet.css" />
                         <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
                         <TextField fx:id="nameField" visible="false">
                            <VBox.margin>
