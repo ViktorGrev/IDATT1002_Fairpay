@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tooltip?>
@@ -76,7 +75,7 @@
                                                          <children>
                                                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shortcuts">
+                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Common shortcuts">
                                                                      <font>
                                                                         <Font size="17.0" />
                                                                      </font>
@@ -106,14 +105,10 @@
                                                                      <children>
                                                                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                            <children>
-                                                                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createSettlementClick" prefHeight="55.0" prefWidth="112.0" stylesheets="@style/stylesheet.css" text="Shortcut 2" HBox.hgrow="ALWAYS">
+                                                                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addIncomeClick" prefHeight="55.0" prefWidth="112.0" styleClass="button4" stylesheets="@style/stylesheet.css" text="Add income" HBox.hgrow="ALWAYS">
                                                                                  <HBox.margin>
                                                                                     <Insets bottom="1.0" />
                                                                                  </HBox.margin>
-                                                                                 <styleClass>
-                                                                                    <String fx:value="button3" />
-                                                                                    <String fx:value="button4" />
-                                                                                 </styleClass>
                                                                               </Button>
                                                                            </children>
                                                                         </HBox>

@@ -300,3 +300,14 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
     -fx-cursor: hand;
 }
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #9c5151;
+    -fx-border-radius: 5px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #9c5151;
+}

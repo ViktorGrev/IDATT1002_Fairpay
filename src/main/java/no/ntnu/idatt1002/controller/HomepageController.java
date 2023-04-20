@@ -53,8 +53,8 @@ public final class HomepageController extends MenuController implements Initiali
     SceneSwitcher.setView("addExpense");
   }
 
-  public void createSettlementClick(ActionEvent actionEvent) {
-    SceneSwitcher.setView("profile");
+  public void addIncomeClick(ActionEvent actionEvent) {
+    SceneSwitcher.setView("newIncome");
   }
 }
 
