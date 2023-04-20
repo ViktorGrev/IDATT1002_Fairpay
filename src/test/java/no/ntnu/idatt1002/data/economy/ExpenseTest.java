@@ -9,46 +9,39 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExpenseTest {
 
+  private final long time = System.currentTimeMillis();
+  private final Expense expense = new Expense(1, 1, ExpenseType.CAR,
+          "Name", BigDecimal.valueOf(123), new Date(time), 1);
+
   @Test
   void getTypeTest() {
-    BigDecimal bd = new BigDecimal(123);
-    long personId = 123;
-    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
-    assertEquals(ExpenseType.INTERNET, e.getType());
+    assertEquals(ExpenseType.CAR, expense.getType());
   }
 
   @Test
   void getNameTest() {
-    BigDecimal bd = new BigDecimal(123);
-    long personId = 123;
-    Expense e = new Expense(personId, ExpenseType.INTERNET, "Expense 1",bd);
-    assertEquals("Expense 1", e.getName());
+    assertEquals("Name", expense.getName());
   }
 
   @Test
   void hasNameTest() {
-    BigDecimal bd = new BigDecimal(123);
-    long personId = 123;
-    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
-    Expense e2 = new Expense(personId, ExpenseType.INTERNET,"name", bd);
-    assertFalse(e.hasName());
-    assertTrue(e2.hasName());
+    assertTrue(expense.hasName());
+  }
+
+  @Test
+  void hasNoNameTest() {
+    Expense expense = new Expense(1, 1, ExpenseType.CAR, null, BigDecimal.valueOf(1), new Date(), 1);
+    assertFalse(expense.hasName());
   }
 
   @Test
   void getAmountTest() {
-    BigDecimal bd = new BigDecimal(123);
-    long personId = 123;
-    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
-    assertEquals(BigDecimal.valueOf(123), e.getAmount());
+    assertEquals(BigDecimal.valueOf(123), expense.getAmount());
   }
 
   @Test
   void getDateTest() {
-    BigDecimal bd = new BigDecimal(123);
-    long personId = 123;
-    Expense e = new Expense(ExpenseType.INTERNET, bd, personId);
-    Date date = new Date();
-    assertEquals(date, e.getDate());
+    Date date = new Date(time);
+    assertEquals(date, expense.getDate());
   }
 }
