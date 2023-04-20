@@ -39,7 +39,7 @@
                         <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
                         <ComboBox fx:id="typeField" prefWidth="150.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); -fx-background-color: white; -fx-background-radius: 1em;" VBox.vgrow="ALWAYS" />
                         <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
-                        <TextField fx:id="nameField" visible="false">
+                        <TextField fx:id="nameField" stylesheets="@style/formstyle.css" visible="false">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
