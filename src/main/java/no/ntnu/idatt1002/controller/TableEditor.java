@@ -68,6 +68,16 @@ public final class TableEditor<S> {
      * @param   rows the rows to add
      * @return  this builder
      */
+    public TableEditor<S> addRow(S rows) {
+        tableView.getItems().add(rows);
+        return this;
+    }
+
+    /**
+     * Adds a row to the table.
+     * @param   rows the rows to add
+     * @return  this builder
+     */
     public TableEditor<S> addRows(Collection<S> rows) {
         tableView.getItems().addAll(rows);
         return this;
