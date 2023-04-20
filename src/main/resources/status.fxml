@@ -42,7 +42,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="statusField" prefHeight="41.0" prefWidth="189.0" text="Status" textFill="WHITE">
+                        <Label fx:id="statusField" prefHeight="41.0" prefWidth="175.0" text="Status" textFill="WHITE">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -61,6 +61,26 @@
                                  </HBox.margin>
                               </Label>
                               <Text fx:id="spentSum" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="100kr">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="99.0">
+                           <children>
+                              <Label text="Income:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Text fx:id="incomeSum" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="100kr">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

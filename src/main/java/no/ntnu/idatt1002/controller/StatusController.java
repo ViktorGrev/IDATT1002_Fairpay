@@ -10,21 +10,19 @@ import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.economy.Budget;
 import no.ntnu.idatt1002.data.economy.Expense;
 import no.ntnu.idatt1002.data.economy.ExpenseType;
+import no.ntnu.idatt1002.data.economy.Income;
 
 import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.time.format.TextStyle;
 import java.util.*;
-import java.util.function.ToLongFunction;
 
 public final class StatusController extends MenuController implements Initializable {
 
-    @FXML private BarChart barChart;
+    @FXML private BarChart<String, Long> barChart;
     @FXML private Label statusField;
     @FXML private Text spentSum;
+    @FXML private Text incomeSum;
     @FXML private Text budgetSum;
 
     @Override
@@ -35,6 +33,7 @@ public final class StatusController extends MenuController implements Initializa
         statusField.setText("Status " + monthName + " " + calendar.get(Calendar.YEAR));
 
         List<Expense> expenses = getMonthlyExpenses();
+        List<Income> incomeList = getMonthlyIncome();
         Map<ExpenseType, Long> expenseMap = new HashMap<>();
         for(Expense expense : expenses) {
             long amount = expense.getAmount().longValue();
@@ -53,47 +52,41 @@ public final class StatusController extends MenuController implements Initializa
         XYChart.Series<String, Long> budgetSeries = new XYChart.Series<>();
         budgetSeries.setName("Budget");
         for(ExpenseType expense : ExpenseType.values()) {
-            long amount = budget.getAmount(expense) != null ? budget.getAmount(expense).longValue() : 0;
+            long amount = budget.getAmount(expense).longValue();
             budgetSeries.getData().add(new XYChart.Data<>(expense.getCategoryName(), amount));
         }
         barChart.getData().addAll(expenseSeries, budgetSeries);
 
         spentSum.setText(expenses.stream().mapToLong(value -> value.getAmount().longValue()).sum() + "kr");
+        incomeSum.setText(incomeList.stream().mapToLong(value -> value.getAmount().longValue()).sum() + "kr");
         budgetSum.setText(budget.getTotal() + "kr");
-
-        /*ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Malin", 200),
-                new PieChart.Data("Viktor", 100),
-                new PieChart.Data("Sommer", 100),
-                new PieChart.Data("Ina", 220),
-                new PieChart.Data("Henrik", 230));
-
-        pieChartData.forEach(data ->
-            data.nameProperty().bind(
-                    Bindings.concat(
-                            data.getName(), " amount ", data.pieValueProperty()
-                    )
-            )
-        );
-
-        pieChart.getData().addAll(pieChartData);*/
     }
 
     private List<Expense> getMonthlyExpenses() {
         List<Expense> expenses = expenseDAO.find(Group.CURRENT.getExpenses());
         LocalDate localDate = LocalDate.now();
         localDate.withDayOfMonth(1);
-        expenses.removeIf(expense -> {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(expense.getDate());
-
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            return year != currentYear || month != currentMonth;
-        });
+        expenses.removeIf(expense -> isNotThisMonth(expense.getDate()));
         return expenses;
+    }
+
+    private List<Income> getMonthlyIncome() {
+        List<Income> incomeList = incomeDAO.find(Group.CURRENT.getIncome());
+        LocalDate localDate = LocalDate.now();
+        localDate.withDayOfMonth(1);
+        incomeList.removeIf(income -> isNotThisMonth(income.getDate()));
+        return incomeList;
+    }
+
+    private boolean isNotThisMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        return year != currentYear || month != currentMonth;
     }
 }

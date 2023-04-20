@@ -32,7 +32,7 @@ public final class AddSettlementExpenseController extends MenuController impleme
     BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
     LocalDate localDate = dateField.getValue();
     Date date = java.sql.Date.valueOf(localDate);
-    Expense expense = expenseDAO.create(User.CURRENT.getId(), type, name, amount, date);
+    Expense expense = expenseDAO.create(User.CURRENT.getId(), type, name, amount, date, 1);
     settlementDAO.addExpense(SettlementController.settlementId, expense.getExpenseId());
     SceneSwitcher.setView("editSettlement");
   }

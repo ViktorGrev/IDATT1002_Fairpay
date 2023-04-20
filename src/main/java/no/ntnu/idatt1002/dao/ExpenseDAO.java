@@ -8,5 +8,5 @@ import java.util.Date;
 
 public interface ExpenseDAO extends DAO<Expense, Long> {
 
-    Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date);
+    Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares);
 }

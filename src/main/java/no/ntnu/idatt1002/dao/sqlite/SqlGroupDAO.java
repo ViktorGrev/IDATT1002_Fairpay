@@ -137,6 +137,54 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    private static final String INSERT_GROUP_INCOME = """
+                INSERT INTO groupIncome (groupId, incomeId)
+                VALUES (?, ?);
+            """;
+
+    @Override
+    public void addIncome(long groupId, long incomeId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(INSERT_GROUP_INCOME)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, incomeId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String INSERT_RECEIVED_INCOME = """
+                INSERT INTO receivedIncome (incomeId, userId)
+                VALUES (?, ?);
+            """;
+
+    @Override
+    public void setReceivedIncome(long incomeId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(INSERT_RECEIVED_INCOME)) {
+            statement.setLong(1, incomeId);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String REMOVE_RECEIVED_INCOME = "DELETE FROM receivedIncome WHERE userId = ? AND incomeId = ?;";
+
+    @Override
+    public void unsetReceivedIncome(long incomeId, long userId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_RECEIVED_INCOME)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, incomeId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String INSERT_PAID_EXPENSE = """
                 INSERT INTO paidExpenses (expenseId, userId)
                 VALUES (?, ?);
@@ -307,6 +355,33 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         return expenses;
     }
 
+    private static final String FIND_RECEIVED_INCOME = """
+                    SELECT * FROM groupIncome
+                    JOIN receivedIncome ON receivedIncome.incomeId = groupIncome.incomeId
+                    WHERE groupId = ?;
+                    """;
+
+    private static Map<Long, List<Long>> getReceivedIncome(long groupId) {
+        Map<Long, List<Long>> received = new HashMap<>();
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_RECEIVED_INCOME)) {
+            statement.setLong(1, groupId);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    long userId = resultSet.getLong("userId");
+                    long incomeId = resultSet.getLong("incomeId");
+                    if(!received.containsKey(incomeId)) {
+                        received.put(incomeId, new ArrayList<>());
+                    }
+                    received.get(incomeId).add(userId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return received;
+    }
+
     private static final String FIND_EXPENSES = "SELECT * FROM groupExpenses WHERE groupId = ?;";
 
     private static List<Long> getExpenses(long groupId) {
@@ -323,6 +398,24 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             throw new DAOException(e);
         }
         return expenses;
+    }
+
+    private static final String FIND_INCOME = "SELECT * FROM groupIncome WHERE groupId = ?;";
+
+    private static List<Long> getIncome(long groupId) {
+        List<Long> incomeIds = new ArrayList<>();
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_INCOME)) {
+            statement.setLong(1, groupId);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    incomeIds.add(resultSet.getLong("incomeId"));
+                }
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+        return incomeIds;
     }
 
     private static final String FIND_ONE_BY_USER = """
@@ -363,7 +456,9 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         Group group = new Group(groupId, groupName);
         getMembers(groupId).forEach(group::addMember);
         getExpenses(groupId).forEach(group::addExpense);
+        getIncome(groupId).forEach(group::addIncome);
         getPaidExpenses(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addPaidExpense(aLong, l)));
+        getReceivedIncome(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addReceivedIncome(aLong, l)));
         return group;
     }
 
@@ -405,6 +500,24 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             	PRIMARY KEY (groupId, expenseId)
             );""";
 
+    private static final String CREATE_GROUP_INCOME_LINK = """
+                CREATE TABLE IF NOT EXISTS groupIncome (
+                groupId integer NOT NULL,
+            	incomeId integer NOT NULL,
+            	FOREIGN KEY (groupId) REFERENCES groups(groupId),
+            	FOREIGN KEY (incomeId) REFERENCES income(incomeId),
+            	PRIMARY KEY (groupId, incomeId)
+            );""";
+
+    private static final String CREATE_RECEIVED_INCOME_LINK = """
+                CREATE TABLE IF NOT EXISTS receivedIncome (
+                userId integer NOT NULL,
+            	incomeId integer NOT NULL,
+            	FOREIGN KEY (userId) REFERENCES users(userId),
+            	FOREIGN KEY (incomeId) REFERENCES income(incomeId),
+            	PRIMARY KEY (userId, incomeId)
+            );""";
+
     private static final String CREATE_PAID_EXPENSE_LINK = """
                 CREATE TABLE IF NOT EXISTS paidExpenses (
                 userId integer NOT NULL,
@@ -437,6 +550,8 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
             statement.addBatch(CREATE_GROUP_LINK);
             statement.addBatch(CREATE_PAID_EXPENSE_LINK);
             statement.addBatch(CREATE_GROUP_EXPENSE_LINK);
+            statement.addBatch(CREATE_GROUP_INCOME_LINK);
+            statement.addBatch(CREATE_RECEIVED_INCOME_LINK);
             statement.addBatch(CREATE_GROUP_INVITES);
             statement.executeBatch();
         } catch (SQLException e) {

@@ -17,6 +17,7 @@ abstract class Controller {
     protected static final ExpenseDAO expenseDAO = Database.getDAO(ExpenseDAO.class);
     protected static final SettlementDAO settlementDAO = Database.getDAO(SettlementDAO.class);
     protected static final BudgetDAO budgetDAO = Database.getDAO(BudgetDAO.class);
+    protected static final IncomeDAO incomeDAO = Database.getDAO(IncomeDAO.class);
 
     private final Map<Long, User> userCache = new HashMap<>();
     private final Map<Long, Group> groupCache = new HashMap<>();
