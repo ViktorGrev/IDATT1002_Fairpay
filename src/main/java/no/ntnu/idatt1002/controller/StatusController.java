@@ -63,7 +63,9 @@ public final class StatusController extends MenuController implements Initializa
     }
 
     private List<Expense> getMonthlyExpenses() {
-        List<Expense> expenses = expenseDAO.find(Group.CURRENT.getExpenses());
+        List<Long> expenseIds = Group.CURRENT.getExpenses();
+        if(expenseIds.isEmpty()) return new ArrayList<>();
+        List<Expense> expenses = expenseDAO.find(expenseIds);
         LocalDate localDate = LocalDate.now();
         localDate.withDayOfMonth(1);
         expenses.removeIf(expense -> isNotThisMonth(expense.getDate()));
@@ -71,7 +73,9 @@ public final class StatusController extends MenuController implements Initializa
     }
 
     private List<Income> getMonthlyIncome() {
-        List<Income> incomeList = incomeDAO.find(Group.CURRENT.getIncome());
+        List<Long> incomeIds = Group.CURRENT.getIncome();
+        if(incomeIds.isEmpty()) return new ArrayList<>();
+        List<Income> incomeList = incomeDAO.find(incomeIds);
         LocalDate localDate = LocalDate.now();
         localDate.withDayOfMonth(1);
         incomeList.removeIf(income -> isNotThisMonth(income.getDate()));
