@@ -19,7 +19,7 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/FairPayLogo.png" />
+                        <Image url="@../image/FairPayLogo.png" />
                      </image>
                   </ImageView>
                </children>
@@ -42,7 +42,7 @@
                   </HBox>
                </top>
                <center>
-                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../style/stylesheet.css" BorderPane.alignment="CENTER">
                      <columns>
                         <TableColumn prefWidth="75.0" text="Name" />
                         <TableColumn prefWidth="75.0" text="groupID" />

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@style/stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.FrontpageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@../style/stylesheet.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.FrontpageController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -23,7 +23,7 @@
                <children>
                   <ImageView fitHeight="143.0" fitWidth="293.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/FairPayLogo.png" />
+                        <Image url="@../image/FairPayLogo.png" />
                      </image>
                   </ImageView>
                   <Text strokeLineCap="BUTT" strokeType="OUTSIDE" strokeWidth="0.0" text="Its never been easier to live together as students ">
@@ -42,7 +42,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="215.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" styleClass="startButton" stylesheets="@../style/stylesheet.css" text="Log in" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="11.0" />
                            </font>

@@ -58,7 +58,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/user.png" />
+                        <Image url="@../image/user.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="5.0" />
@@ -83,7 +83,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/lock.png" />
+                        <Image url="@../image/lock.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="5.0" />
@@ -106,7 +106,7 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Log in" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@../style/stylesheet.css" text="Log in" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -125,11 +125,11 @@
             <Insets top="40.0" />
          </HBox.margin>
          <stylesheets>
-            <URL value="@style/stylesheet.css" />
-            <URL value="@style/formstyle.css" />
+            <URL value="@../style/stylesheet.css" />
+            <URL value="@../style/formstyle.css" />
          </stylesheets>
       </VBox>
-      <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0" stylesheets="@style/stylesheet.css">
+      <HBox alignment="TOP_RIGHT" prefHeight="474.0" prefWidth="211.0" stylesheets="@../style/stylesheet.css">
          <children>
             <GridPane>
               <columnConstraints>
@@ -142,7 +142,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Sign up" textFill="WHITE" GridPane.columnIndex="1">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#signupButtonClick" prefHeight="27.0" prefWidth="109.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@../style/stylesheet.css" text="Sign up" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font name="Roboto Bold" size="13.0" />
                      </font>
@@ -163,7 +163,7 @@
       </HBox>
    </children>
    <stylesheets>
-      <URL value="@style/formstyle.css" />
-      <URL value="@style/stylesheet.css" />
+      <URL value="@../style/formstyle.css" />
+      <URL value="@../style/stylesheet.css" />
    </stylesheets>
 </HBox>
