@@ -14,7 +14,9 @@ public final class Group {
   private String name; // The name of the group
   private final List<User> members = new ArrayList<>(); // A list with the users within this group
   private final List<Long> expenses = new ArrayList<>();
+  private final List<Long> income = new ArrayList<>();
   private final Map<Long, List<Long>> paidExpenses = new HashMap<>();
+  private final Map<Long, List<Long>> receivedIncome = new HashMap<>();
 
   /**
    Constructs a new group with the specified group ID and group name.
@@ -112,6 +114,38 @@ public final class Group {
    */
   public List<Long> getExpenses() {
     return Collections.unmodifiableList(expenses);
+  }
+
+  /**
+   * Adds an income to the list of incomes.
+   * @param incomeId the income ID to be added
+   * @return true if the income was added successfully, false if it was already in the list
+   */
+  public boolean addIncome(long incomeId) {
+    return income.add(incomeId);
+  }
+
+  /**
+   * Gets the list of income in the group.
+   * @return the list of income in the group
+   */
+  public List<Long> getIncome() {
+    return Collections.unmodifiableList(income);
+  }
+
+  public void addReceivedIncome(long incomeId, long userId) {
+    if(!receivedIncome.containsKey(incomeId))
+      receivedIncome.put(incomeId, new ArrayList<>());
+    receivedIncome.get(incomeId).add(userId);
+  }
+
+  public void removeReceivedIncome(long incomeId, long userId) {
+    if(!receivedIncome.containsKey(incomeId)) return;
+    receivedIncome.get(incomeId).remove(userId);
+  }
+
+  public boolean isIncomeReceived(long incomeId, long userId) {
+    return receivedIncome.getOrDefault(incomeId, new ArrayList<>()).contains(userId);
   }
 
   public void addPaidExpense(long expenseId, long userId) {

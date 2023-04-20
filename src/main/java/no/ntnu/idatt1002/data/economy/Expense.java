@@ -16,6 +16,7 @@ public class Expense {
     private final String name; // The name of the expense
     private final BigDecimal amount; // The amount of the expense
     private final Date date; // The date the expense was made
+    private final int shares;
 
     /**
      * Creates a new Expense object with the given expense type, amount, and user ID.
@@ -26,7 +27,7 @@ public class Expense {
      * @param userId the ID of the user who made the expense
      */
     public Expense(long expenseId, ExpenseType type, BigDecimal amount, long userId) {
-        this(expenseId, userId, type, null, amount, new Date());
+        this(expenseId, userId, type, null, amount, new Date(), 1);
     }
 
     /**
@@ -38,11 +39,13 @@ public class Expense {
      * @param type      the type of the expense
      * @param name      the name of the expense
      * @param amount    the amount of the expense
+     * @param shares
      * @throws IllegalArgumentException if the user ID is negative, the expense type is null,
      *                                  the name is blank, or the amount is negative
      */
-    public Expense(long expenseId, long userId, ExpenseType type, String name, BigDecimal amount, Date date) {
+    public Expense(long expenseId, long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
         this.expenseId = expenseId;
+        this.shares = shares;
         if (userId < 0){
             throw new IllegalArgumentException("Incorrect user-id");
         }
@@ -119,5 +122,9 @@ public class Expense {
      */
     public Date getDate() {
         return date;
+    }
+
+    public int getShares() {
+        return shares;
     }
 }

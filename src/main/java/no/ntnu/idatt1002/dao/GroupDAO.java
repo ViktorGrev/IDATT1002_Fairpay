@@ -33,6 +33,12 @@ public interface GroupDAO extends DAO<Group, Long> {
 
     void addExpense(long groupId, long expenseId);
 
+    void addIncome(long groupId, long incomeId);
+
+    void setReceivedIncome(long incomeId, long userId);
+
+    void unsetReceivedIncome(long incomeId, long userId);
+
     void setPaidExpense(long expenseId, long userId);
 
     void unsetPaidExpense(long expenseId, long userId);

@@ -53,6 +53,7 @@ public final class Database {
         registerDAO(SettlementDAO.class, new SqlSettlementDAO());
         registerDAO(ExpenseDAO.class, new SqlExpenseDAO());
         registerDAO(BudgetDAO.class, new SqlBudgetDAO());
+        registerDAO(IncomeDAO.class, new SqlIncomeDAO());
         init();
     }
 }

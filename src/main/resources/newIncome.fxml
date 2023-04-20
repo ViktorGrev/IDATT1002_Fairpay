@@ -40,15 +40,15 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="25.0" stylesheets="@style/formstyle.css">
+                        <TextField fx:id="nameField" prefHeight="25.0" prefWidth="25.0" stylesheets="@style/formstyle.css">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):" />
-                        <TextField stylesheets="@style/formstyle.css" />
+                        <TextField fx:id="amountField" stylesheets="@style/formstyle.css" />
                         <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
-                        <DatePicker stylesheets="@style/stylesheet.css" />
+                        <DatePicker fx:id="dateField" stylesheets="@style/stylesheet.css" />
                         <Label prefHeight="22.0" prefWidth="54.0" />
                      </children>
                      <BorderPane.margin>

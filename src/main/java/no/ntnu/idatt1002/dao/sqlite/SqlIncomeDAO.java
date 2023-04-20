@@ -1,37 +1,35 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
-import no.ntnu.idatt1002.dao.ExpenseDAO;
+import no.ntnu.idatt1002.dao.IncomeDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.economy.Expense;
-import no.ntnu.idatt1002.data.economy.ExpenseType;
+import no.ntnu.idatt1002.data.economy.Income;
 
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Date;
 import java.util.*;
 
-public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
+public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
 
-    private static final String INSERT_EXPENSE = """
-                INSERT INTO expenses (userId, name, type, amount, createDate, shares)
-                VALUES (?, ?, ?, ?, ?, ?);
+    private static final String INSERT_INCOME = """
+                INSERT INTO income (userId, name, amount, createDate, shares)
+                VALUES (?, ?, ?, ?, ?);
             """;
 
     @Override
-    public Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
+    public Income create(long userId, String name, BigDecimal amount, Date date, int shares) {
         try(Connection connection = getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE)) {
+            PreparedStatement statement = connection.prepareStatement(INSERT_INCOME)) {
             statement.setLong(1, userId);
             statement.setString(2, name);
-            statement.setInt(3, type.getCategoryNumber());
-            statement.setLong(4, amount.longValue());
-            statement.setLong(5, date.getTime());
-            statement.setLong(6, shares);
+            statement.setLong(3, amount.longValue());
+            statement.setLong(4, date.getTime());
+            statement.setInt(5, shares);
             statement.execute();
             try(ResultSet resultSet = statement.getGeneratedKeys()) {
                 if(resultSet.next()) {
-                    long expenseId = resultSet.getInt(1);
-                    return new Expense(expenseId, userId, type, name, amount, date, shares);
+                    long incomeId = resultSet.getInt(1);
+                    return new Income(incomeId, amount, name, userId, date, shares);
                 }
             }
         } catch (SQLException e) {
@@ -41,12 +39,12 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
     }
 
     @Override
-    public Expense find(Long filter) {
+    public Income find(Long filter) {
         return null;
     }
 
     @Override
-    public List<Expense> find(Collection<Long> filter) {
+    public List<Income> find(Collection<Long> filter) {
         Objects.requireNonNull(filter);
         if(filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
         String findStatement = buildFindStatement(filter.size());
@@ -54,10 +52,10 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
             PreparedStatement statement = connection.prepareStatement(findStatement)) {
             int i = 1;
             for(long f : filter) statement.setLong(i++, f);
-            List<Expense> list = new ArrayList<>();
+            List<Income> list = new ArrayList<>();
             try(ResultSet resultSet = statement.executeQuery()) {
                 while(resultSet.next()) {
-                    list.add(buildExpense(resultSet));
+                    list.add(buildIncome(resultSet));
                 }
             }
             return list;
@@ -67,30 +65,28 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
     }
 
     private String buildFindStatement(int size) {
-        return "SELECT * FROM expenses WHERE expenseId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
+        return "SELECT * FROM income WHERE incomeId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
-    private static Expense buildExpense(ResultSet resultSet) throws SQLException {
-        long expenseId = resultSet.getLong("expenseId");
+    private static Income buildIncome(ResultSet resultSet) throws SQLException {
+        long incomeId = resultSet.getLong("incomeId");
         long userId = resultSet.getLong("userId");
-        ExpenseType type = ExpenseType.getCategoryByCategoryNumber(resultSet.getInt("type"));
         String name = resultSet.getString("name");
         BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
         Date createDate = resultSet.getDate("createDate");
         int shares = resultSet.getInt("shares");
-        return new Expense(expenseId, userId, type, name, amount, createDate, shares);
+        return new Income(incomeId, amount, name, userId, createDate, shares);
     }
 
     private static final String CREATE_EXPENSES = """
-                CREATE TABLE IF NOT EXISTS expenses (
-            	expenseId integer PRIMARY KEY AUTOINCREMENT,
+                CREATE TABLE IF NOT EXISTS income (
+            	incomeId integer PRIMARY KEY AUTOINCREMENT,
             	userId integer NOT NULL,
-            	name text(32),
-            	type text(32) NOT NULL,
+            	name text(32) NOT NULL,
             	amount integer NOT NULL,
             	createDate integer NOT NULL,
-            	shares integer NOT NUll,
-            	FOREIGN KEY (userId) REFERENCES users(userId)
+            	shares integer NOT NULL,
+            	FOREIGN KEY (userId) REFERENCES income(userId)
             );""";
 
     @Override

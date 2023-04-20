@@ -41,8 +41,8 @@ public final class ExpenseController extends MenuController implements Initializ
             .setPlaceholder("No expenses")
             .addColumn("Name", expense -> expense.hasName() ? expense.getName() : expense.getType().getCategoryName())
             .addColumn("Added by", expense -> users.get(expense.getUserId()).getUsername())
-            .addColumn("Total amount", Expense::getAmount)
-            .addColumn("Your part", expense -> expense.getAmount().longValue() / group.getMembers().size())
+            .addColumn("Total amount (kr)", Expense::getAmount)
+            .addColumn("Your share (kr)", expense -> expense.getAmount().longValue() / expense.getShares())
             .addColumn("Date", expense -> DateUtil.format(expense.getDate().getTime(), "dd MMM yyyy"))
             .addColumn("Paid", expense -> expense.getUserId() == user.getId() ? null : createPaidBox(expense));
 
@@ -64,15 +64,17 @@ public final class ExpenseController extends MenuController implements Initializ
     Map<Long, Long> owes = new HashMap<>();
 
     List<Long> expenseIds = group.getExpenses();
-    List<Expense> expenses = expenseDAO.find(expenseIds);
-    for(Expense expense : expenses) {
-      long expenseUserId = expense.getUserId();
-      if(expenseUserId == user.getId()) continue;
-      if(!group.isPaid(expense.getExpenseId(), user.getId())) {
-        long amount = expense.getAmount().longValue() / group.getMembers().size();
-        total += amount;
-        if(!owes.containsKey(expenseUserId)) owes.put(expenseUserId, 0L);
-        owes.put(expenseUserId, owes.get(expenseUserId) + amount);
+    if(!expenseIds.isEmpty()) {
+      List<Expense> expenses = expenseDAO.find(expenseIds);
+      for(Expense expense : expenses) {
+        long expenseUserId = expense.getUserId();
+        if(expenseUserId == user.getId()) continue;
+        if(!group.isPaid(expense.getExpenseId(), user.getId())) {
+          long amount = expense.getAmount().longValue() / group.getMembers().size();
+          total += amount;
+          if(!owes.containsKey(expenseUserId)) owes.put(expenseUserId, 0L);
+          owes.put(expenseUserId, owes.get(expenseUserId) + amount);
+        }
       }
     }
     totalAmountField.setText(total + "kr");
