@@ -11,6 +11,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class is an implementation of the {@link BudgetDAO} interface, using
+ * SQLite as the underlying data source.
+ * @see SqlDAO
+ * @see BudgetDAO
+ */
 public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
 
     private static final String INSERT_TYPE = """
@@ -18,6 +24,9 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
                 VALUES (?, ?, ?);
             """;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addType(long groupId, ExpenseType type, BigDecimal amount) {
         try(Connection connection = getConnection();
@@ -33,6 +42,9 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
 
     private static final String FIND_ID = "SELECT * FROM budgets WHERE groupId = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Budget find(Long filter) {
         Objects.requireNonNull(filter);
@@ -53,6 +65,9 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Budget> find(Collection<Long> filter) {
         throw new UnsupportedOperationException();
@@ -67,6 +82,9 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
             	PRIMARY KEY (groupId, type)
             );""";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         try(Connection connection = getConnection();

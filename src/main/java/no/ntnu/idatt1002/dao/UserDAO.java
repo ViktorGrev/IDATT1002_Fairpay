@@ -8,6 +8,11 @@ import no.ntnu.idatt1002.data.User;
  */
 public interface UserDAO extends DAO<User, Long> {
 
+    /**
+     * Finds a user with the specified username.
+     * @param   username the username
+     * @return  a user with the specified username
+     */
     User find(String username);
 
     /**

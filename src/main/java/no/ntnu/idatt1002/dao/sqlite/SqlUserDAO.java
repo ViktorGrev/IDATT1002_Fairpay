@@ -20,6 +20,9 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
 
     private static final String FIND_ONE_NAME = "SELECT * FROM users WHERE username = ?;";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User find(String username) {
         Objects.requireNonNull(username);
