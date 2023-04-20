@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.NewIncomeController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.AddSettlementExpenseController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -21,7 +22,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="148.0" text="New group income" textFill="WHITE">
+                        <Label prefHeight="41.0" prefWidth="199.0" text="Add settlement expence" textFill="WHITE">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -33,23 +34,23 @@
                   </HBox>
                </top>
                <left>
-                  <VBox prefHeight="301.0" prefWidth="174.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="212.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="199.0" text="Income description">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <TextField fx:id="nameField" prefHeight="25.0" prefWidth="25.0" stylesheets="@../style/formstyle.css">
+                        <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
+                        <ComboBox fx:id="typeField" prefWidth="150.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0); -fx-background-color: white; -fx-background-radius: 1em;" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
+                        <TextField fx:id="nameField" stylesheets="@style/formstyle.css" visible="false">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):" />
-                        <TextField fx:id="amountField" stylesheets="@../style/formstyle.css" />
+                        <TextField fx:id="amountField" stylesheets="@style/formstyle.css" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></TextField>
                         <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
-                        <DatePicker fx:id="dateField" stylesheets="@../style/stylesheet.css" />
-                        <Label prefHeight="22.0" prefWidth="54.0" />
+                        <DatePicker fx:id="dateField" stylesheets="@style/stylesheet.css" />
                      </children>
                      <BorderPane.margin>
                         <Insets left="10.0" />
@@ -57,12 +58,18 @@
                   </VBox>
                </left>
                <bottom>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" stylesheets="@../style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#newIncomeConfirmClick" styleClass="button2" stylesheets="@../style/stylesheet.css" text="New income">
+                        <Button mnemonicParsing="false" onAction="#goBackClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Go back">
                            <HBox.margin>
                               <Insets bottom="10.0" right="10.0" />
-                           </HBox.margin></Button>
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </bottom>
@@ -71,7 +78,7 @@
          <left>
             <VBox prefHeight="329.0" prefWidth="154.0" style="-fx-background-color: #793f3f; -fx-background-radius: 0em 0em 1em 0em;" BorderPane.alignment="CENTER">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeClick" prefHeight="36.0" prefWidth="253.0" stylesheets="@../style/stylesheet.css" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#homeClick" prefHeight="36.0" prefWidth="253.0" stylesheets="@style/stylesheet.css" text="Home" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -81,12 +88,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/home.png" />
+                              <Image url="@image/home.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@../style/stylesheet.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#profileClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@style/stylesheet.css" text="Profile" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -99,12 +106,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/profile.png" />
+                              <Image url="@image/profile.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@../style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -114,27 +121,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/group.png" />
+                              <Image url="@image/group.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@../style/stylesheet.css" text="Group expence" textFill="WHITE">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/expense.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#incomeClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@../style/stylesheet.css" text="Income" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -144,12 +136,27 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/income.png" />
+                              <Image url="@image/expense.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="36.0" prefWidth="208.0" stylesheets="@../style/stylesheet.css" text="Budget" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#incomeClick" prefHeight="36.0" prefWidth="172.0" stylesheets="@style/stylesheet.css" text="Income" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/income.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" onAction="#budgetClick" prefHeight="36.0" prefWidth="208.0" stylesheets="@style/stylesheet.css" text="Budget" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -159,12 +166,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/budget.png" />
+                              <Image url="@image/budget.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@../style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -174,12 +181,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/settlement.png" />
+                              <Image url="@image/settlement.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="36.0" prefWidth="239.0" stylesheets="@../style/stylesheet.css" text="Status" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#statusButtonClick" prefHeight="36.0" prefWidth="239.0" stylesheets="@style/stylesheet.css" text="Status" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -189,12 +196,12 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/status.png" />
+                              <Image url="@image/status.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" mnemonicParsing="false" onAction="#logoutButtonClick" prefHeight="36.0" prefWidth="143.0" stylesheets="@../style/stylesheet.css" text="Log out" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" mnemonicParsing="false" onAction="#logoutButtonClick" prefHeight="36.0" prefWidth="143.0" stylesheets="@style/stylesheet.css" text="Log out" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -204,7 +211,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/logout.png" />
+                              <Image url="@image/logout.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -221,11 +228,11 @@
          <top>
             <HBox prefHeight="57.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="154.0" styleClass="imageMenu" stylesheets="@../style/stylesheet.css">
+                  <HBox alignment="CENTER" prefHeight="44.0" prefWidth="154.0" styleClass="imageMenu" stylesheets="@style/stylesheet.css">
                      <children>
                         <ImageView fitHeight="46.0" fitWidth="89.0" onMouseClicked="#homeClick" pickOnBounds="true" preserveRatio="true" styleClass="imageMenu">
                            <image>
-                              <Image url="@../image/FairPayLogo.png" />
+                              <Image url="@image/FairPayLogo.png" />
                            </image>
                         </ImageView>
                      </children>
