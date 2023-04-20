@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"no.ntnu.idatt1002.demo"},{"l":"no.ntnu.idatt1002.demo.data"},{"l":"no.ntnu.idatt1002.demo.repo"},{"l":"no.ntnu.idatt1002.demo.view"}];updateSearchResults();
