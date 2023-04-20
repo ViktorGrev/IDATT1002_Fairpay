@@ -200,10 +200,6 @@
     -fx-background-color: white;
 }
 
-.table-viewOnPage .virtual-flow .scroll-bar:horizontal .increment-button {
-    -fx-background-color: black;
-}
-
 .table-viewOnPage .table-row-cell:empty {
     -fx-background-color: none;
 }
