@@ -199,7 +199,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#addExpenseClick" onMouseClicked="#addExpenseClick" style="-fx-background-color: none; -fx-cursor: hand;">
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" onMouseClicked="#addExpenseClick" style="-fx-background-color: none; -fx-cursor: hand;" text="Add expense" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
