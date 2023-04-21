@@ -24,7 +24,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="466.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="149.0" text="Settings" textFill="WHITE">
+                        <Label prefHeight="41.0" prefWidth="149.0" text="Profile settings" textFill="WHITE">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -44,9 +44,9 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="95.0">
                                              <children>
-                                                <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit username or phone number">
+                                                <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit profile">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -72,6 +72,11 @@
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="27.0" top="10.0" />
                                        </VBox.margin>
+                                    </Text>
+                                    <Text fx:id="nameFeedbackField" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                                       <font>
+                                          <Font name="Roboto Bold" size="13.0" />
+                                       </font>
                                     </Text>
                                     <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                        <children>
@@ -101,6 +106,11 @@
                                           <Insets bottom="5.0" left="27.0" top="10.0" />
                                        </VBox.margin>
                                     </Text>
+                                    <Text fx:id="numberFeedbackField" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                                       <font>
+                                          <Font name="Roboto Bold" size="13.0" />
+                                       </font>
+                                    </Text>
                                     <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="216.0">
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="23.0">
@@ -111,7 +121,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="phoneField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="212.0" stylesheets="@style/formstyle.css">
+                                          <TextField fx:id="numberField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="212.0" stylesheets="@style/formstyle.css">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -120,7 +130,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateProfileClick" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update profile settings" textFill="WHITE">
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateProfileClick" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update" textFill="WHITE">
                                              <effect>
                                                 <InnerShadow>
                                                    <color>

@@ -24,7 +24,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="466.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="149.0" text="Settings" textFill="WHITE">
+                        <Label prefHeight="41.0" prefWidth="149.0" text="Group settings" textFill="WHITE">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -46,7 +46,7 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                              <children>
-                                                <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit groupname">
+                                                <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit group name">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -68,7 +68,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </HBox>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Groupname">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Group name">
                                        <font>
                                           <Font name="Roboto Bold" size="13.0" />
                                        </font>
@@ -86,7 +86,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="213.0" stylesheets="@style/formstyle.css">
+                                          <TextField fx:id="groupNameField" alignment="TOP_LEFT" prefHeight="29.0" prefWidth="213.0" stylesheets="@style/formstyle.css">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -96,10 +96,17 @@
                                           </TextField>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="216.0" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="216.0">
+                                       <children>
+                                          <Text fx:id="feedbackField" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                                             <font>
+                                                <Font name="Roboto Bold" size="13.0" />
+                                             </font>
+                                          </Text>
+                                       </children></HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateDormGroupClick" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update dormgroup settings" textFill="WHITE">
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateDormGroupClick" prefHeight="29.0" prefWidth="203.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update" textFill="WHITE">
                                              <effect>
                                                 <InnerShadow>
                                                    <color>

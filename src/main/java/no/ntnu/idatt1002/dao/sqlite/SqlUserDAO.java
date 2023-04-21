@@ -129,7 +129,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
         return "SELECT * FROM users WHERE userId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
     }
 
-    private static final String FIND_ONE_BY_NAME = "SELECT * FROM users WHERE username = ?;";
+    private static final String FIND_ONE_BY_NAME = "SELECT * FROM users WHERE username = ? COLLATE NOCASE;";
 
     /**
      * {@inheritDoc}
@@ -153,6 +153,40 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
             throw new DAOException(e);
         }
         throw new AuthException("User does not exist");
+    }
+
+    private static final String SET_NAME = "UPDATE users SET username = ? WHERE userId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setName(long userId, String name) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
+            statement.setString(1, name);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String SET_PHONE_NUMBER = "UPDATE users SET phoneNumber = ? WHERE userId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPhoneNumber(long userId, long phoneNumber) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(SET_PHONE_NUMBER)) {
+            statement.setLong(1, phoneNumber);
+            statement.setLong(2, userId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 
     private static final String UPDATE_LAST_LOGIN = "UPDATE users SET lastLogin = ? WHERE userId = ?;";

@@ -92,6 +92,23 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         return null;
     }
 
+    private static final String SET_NAME = "UPDATE groups SET groupName = ? WHERE groupId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setName(long groupId, String name) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
+            statement.setString(1, name);
+            statement.setLong(2, groupId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String ADD_MEMBER = "INSERT INTO groupUsers (groupId, userId) VALUES (?, ?);";
 
     /**

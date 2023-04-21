@@ -18,6 +18,8 @@ public class FairPay extends Application {
         SceneSwitcher.setScene(new Scene(loader.load()));
         primaryStage.setScene(SceneSwitcher.getScene());
         primaryStage.setTitle("FairPay");
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(500);
         primaryStage.show();
     }
 }
