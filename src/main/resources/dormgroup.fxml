@@ -24,7 +24,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox prefHeight="42.0" prefWidth="309.0">
                            <children>
                               <Label fx:id="groupName" prefHeight="41.0" prefWidth="118.0" text="Dorm group" textFill="WHITE">
                                  <padding>
@@ -34,7 +34,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onMouseClicked="#onLeaveGroup" style="-fx-background-color: none; -fx-cursor: hand;">
+                              <Button mnemonicParsing="false" onMouseClicked="#onLeaveGroup" prefHeight="45.0" prefWidth="144.0" style="-fx-background-color: none; -fx-cursor: hand;" text="Leave dorm group" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -54,6 +54,9 @@
                                  <image>
                                     <Image url="@image/settings2.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
                               </ImageView>
                            </children>
                         </HBox>

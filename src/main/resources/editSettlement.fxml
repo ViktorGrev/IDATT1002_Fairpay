@@ -29,7 +29,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#addExpenseClick" style="-fx-background-color: none; -fx-cursor: hand;">
+                        <Button mnemonicParsing="false" onMouseClicked="#addExpenseClick" style="-fx-background-color: none; -fx-cursor: hand;" text="Add expense" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -41,7 +41,7 @@
                               <Tooltip text="Add expense" />
                            </tooltip>
                         </Button>
-                        <Button mnemonicParsing="false" onMouseClicked="#deleteSettlementClick" style="-fx-background-color: none; -fx-cursor: hand;">
+                        <Button mnemonicParsing="false" onMouseClicked="#deleteSettlementClick" style="-fx-background-color: none; -fx-cursor: hand;" text="Delete settlement" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
