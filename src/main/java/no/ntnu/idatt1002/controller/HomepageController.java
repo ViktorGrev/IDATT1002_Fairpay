@@ -36,10 +36,10 @@ public final class HomepageController extends MenuController implements Initiali
     welcomeText.setText("Welcome, " + User.CURRENT.getUsername() + "!");
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     String dateToday = dateFormat.format(new Date());
-    dateText.setText("Today's date: " + dateToday);
+    //dateText.setText("Today's date: " + dateToday);
     Calendar calendar = Calendar.getInstance();
     Date date = calendar.getTime();
-    weekDayText.setText(new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime()));
+    //weekDayText.setText(new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime()));
     Random rn = new Random();
     int number = rn.nextInt(10);
     inspirationalText.setText(inspirationalQuotes[number]);
