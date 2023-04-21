@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -45,7 +46,7 @@
                         <AnchorPane layoutX="266.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
                         <VBox prefHeight="306.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <AnchorPane prefHeight="170.0" prefWidth="446.0" VBox.vgrow="ALWAYS">
                                  <children>
                                     <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -134,18 +135,43 @@
                                              <children>
                                                 <AnchorPane prefHeight="149.0" prefWidth="220.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <VBox alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="129.0" prefWidth="407.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
+                                                      <VBox layoutX="17.0" layoutY="34.0" prefHeight="162.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
                                                          <children>
-                                                            <Text fx:id="weekDayText" strokeType="OUTSIDE" strokeWidth="0.0" text="Torsdag">
-                                                               <font>
-                                                                  <Font size="16.0" />
-                                                               </font>
-                                                            </Text>
-                                                            <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="27.03.2023" wrappingWidth="90.0">
+                                                            <Label text="Notifications:">
                                                                <font>
                                                                   <Font size="17.0" />
                                                                </font>
-                                                            </Text>
+                                                               <padding>
+                                                                  <Insets left="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <VBox prefHeight="200.0" prefWidth="407.0" style="-fx-border-color: rgba(128, 128, 128, 0.63); -fx-border-width: 2px; -fx-border-style: hidden hidden solid hidden;" VBox.vgrow="ALWAYS">
+                                                               <children>
+                                                                  <Label text="Victor" />
+                                                                  <Text fill="#000000a6" strokeType="OUTSIDE" strokeWidth="0.0" text="Added food expense for 100kr" />
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets left="10.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgba(128, 128, 128, 0.63); -fx-border-width: 2px; -fx-border-style: hidden hidden solid hidden;" VBox.vgrow="ALWAYS">
+                                                               <children>
+                                                                  <Label text="Henrik" />
+                                                                  <Text fill="#000000a6" strokeType="OUTSIDE" strokeWidth="0.0" text="Added kitchen expense for 50kr" />
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets left="10.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                                                               <children>
+                                                                  <Label text="Malin" />
+                                                                  <Text fill="#000000a6" strokeType="OUTSIDE" strokeWidth="0.0" text="Added toilet expense for 75kr" />
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets left="10.0" />
+                                                               </padding>
+                                                            </VBox>
                                                          </children>
                                                       </VBox>
                                                    </children>
