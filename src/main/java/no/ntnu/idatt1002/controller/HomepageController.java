@@ -3,7 +3,10 @@ package no.ntnu.idatt1002.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
@@ -51,20 +54,36 @@ public final class HomepageController extends MenuController implements Initiali
     int number = rn.nextInt(10);
     inspirationalText.setText(inspirationalQuotes[number]);
     notifBox.getChildren().clear();
+    ScrollPane scrollPane = new ScrollPane();
+    Label notificationLabel = new Label("Notifications:");
+    notificationLabel.setStyle("-fx-font-size: 17; -fx-padding: 3 0 0 10");
+    notifBox.getChildren().add(notificationLabel);
+    notifBox.getChildren().add(scrollPane);
+    notifBox.setAlignment(Pos.TOP_LEFT);
 
     List<Notification> notifications = getNotifications(User.CURRENT);
     int n = 0;
+    VBox noti = new VBox();
     for(Notification notification : notifications) {
       Label label = new Label(notification.getTitle());
       Text content = new Text(notification.getText());
+      content.setStyle("-fx-opacity: 0.65");
       VBox vBox2 = new VBox();
+      //notifBox.setVgrow(vBox2, Priority.ALWAYS);
+      vBox2.setAlignment(Pos.BOTTOM_LEFT);
+      vBox2.setStyle("-fx-padding: 10 0 5 10;-fx-border-style: hidden hidden solid hidden; -fx-border-color: rgba(128,128,128,0.65); -fx-border-width: 2px; -fx-background-color: white");
+      /*if(n==9) {
+        vBox2.setStyle("-fx-padding: 10 0 5 10;-fx-border-style: hidden; -fx-background-color: white");
+      }*/
       vBox2.getChildren().addAll(label, content);
       vBox2.setOnMouseClicked(e -> {
         System.out.println("send to X");
       });
-      notifBox.getChildren().add(vBox2);
-      if(n++ > 1) break;
+      noti.getChildren().add(vBox2);
+      if(n++ > 8) break;
     }
+    scrollPane.setFitToWidth(true);
+    scrollPane.setContent(noti);
   }
   @FXML
   private void helpClick() {
