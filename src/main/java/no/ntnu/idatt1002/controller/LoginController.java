@@ -26,12 +26,12 @@ public final class LoginController extends Controller {
             String username = usernameField.getText();
             String password = passwordField.getText();
             User user = userDAO.authenticate(username, password);
-            User.setCurrent(user);
+            User.setCurrent(user.getId());
             Group group = groupDAO.findByUser(user.getId());
             if(group == null) {
                 SceneSwitcher.setView("joincreatepage");
             } else {
-                Group.setCurrent(group);
+                Group.setCurrent(group.getId());
                 SceneSwitcher.setView("homepage");
             }
         } catch (Exception e) {

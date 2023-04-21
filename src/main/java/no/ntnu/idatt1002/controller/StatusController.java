@@ -48,7 +48,7 @@ public final class StatusController extends MenuController implements Initializa
             expenseSeries.getData().add(new XYChart.Data<>(expense.getCategoryName(), amount));
         }
 
-        Budget budget = budgetDAO.find(Group.CURRENT.getId());
+        Budget budget = budgetDAO.find(Group.CURRENT);
         XYChart.Series<String, Long> budgetSeries = new XYChart.Series<>();
         budgetSeries.setName("Budget");
         for(ExpenseType expense : ExpenseType.values()) {
@@ -63,7 +63,8 @@ public final class StatusController extends MenuController implements Initializa
     }
 
     private List<Expense> getMonthlyExpenses() {
-        List<Long> expenseIds = Group.CURRENT.getExpenses();
+        Group group = getGroup(Group.CURRENT);
+        List<Long> expenseIds = group.getExpenses();
         if(expenseIds.isEmpty()) return new ArrayList<>();
         List<Expense> expenses = expenseDAO.find(expenseIds);
         LocalDate localDate = LocalDate.now();
@@ -73,7 +74,8 @@ public final class StatusController extends MenuController implements Initializa
     }
 
     private List<Income> getMonthlyIncome() {
-        List<Long> incomeIds = Group.CURRENT.getIncome();
+        Group group = getGroup(Group.CURRENT);
+        List<Long> incomeIds = group.getIncome();
         if(incomeIds.isEmpty()) return new ArrayList<>();
         List<Income> incomeList = incomeDAO.find(incomeIds);
         LocalDate localDate = LocalDate.now();

@@ -21,7 +21,7 @@ public final class ProfileController extends MenuController implements Initializ
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    User user = User.CURRENT;
+    User user = userDAO.find(User.CURRENT);
     nameField.setText(user.getUsername());
     phoneField.setText(String.valueOf(user.getPhoneNumber()));
   }

@@ -33,9 +33,10 @@ public final class AddExpenseController extends MenuController implements Initia
     BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
     LocalDate localDate = dateField.getValue();
     Date date = java.sql.Date.valueOf(localDate);
-    Expense expense = expenseDAO.create(User.CURRENT.getId(), type, name, amount, date, Group.CURRENT.getMembers().size());
-    groupDAO.addExpense(Group.CURRENT.getId(), expense.getExpenseId());
-    Group.CURRENT.addExpense(expense.getExpenseId());
+    Group group = groupDAO.find(Group.CURRENT);
+    Expense expense = expenseDAO.create(User.CURRENT, type, name, amount, date, group.getMembers().size());
+    groupDAO.addExpense(group.getId(), expense.getExpenseId());
+    group.addExpense(expense.getExpenseId());
     SceneSwitcher.setView("expense");
   }
 

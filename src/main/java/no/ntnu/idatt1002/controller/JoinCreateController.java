@@ -22,10 +22,10 @@ public final class JoinCreateController extends MenuController {
      */
     @FXML
     private void createGroupButton() {
-        User user = User.CURRENT;
+        User user = getUser(User.CURRENT);
         String name = user.getUsername() + "'s group";
         Group group = groupDAO.create(name);
-        Group.setCurrent(group);
+        Group.setCurrent(group.getId());
         group.addMember(user);
         groupDAO.addMember(group.getId(), user.getId());
         SceneSwitcher.setView("homepage");

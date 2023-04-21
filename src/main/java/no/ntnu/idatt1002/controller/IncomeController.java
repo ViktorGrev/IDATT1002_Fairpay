@@ -35,8 +35,7 @@ public final class IncomeController extends MenuController implements Initializa
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    User user = User.CURRENT;
-    Group group = Group.CURRENT;
+    Group group = getGroup(Group.CURRENT);
     Map<Long, User> users = UserUtil.toMap(group.getMembers());
 
     TableEditor<Income> incomeTableTableEditor = new TableEditor<>(incomeTable)
@@ -46,7 +45,7 @@ public final class IncomeController extends MenuController implements Initializa
             .addColumn("Amount (kr)", Income::getAmount)
             .addColumn("Your share (kr)", income -> income.getAmount().longValue() / income.getShares())
             .addColumn("Date", income -> DateUtil.format(income.getDate().getTime(), "dd MMM yyyy"))
-            .addColumn("Received", income -> income.getUserId() == user.getId() ? null : createReceivedBox(income));
+            .addColumn("Received", income -> income.getUserId() == User.CURRENT ? null : createReceivedBox(income));
 
     List<Long> incomeIds = group.getIncome();
     if(!incomeIds.isEmpty()) {
@@ -60,8 +59,7 @@ public final class IncomeController extends MenuController implements Initializa
   }
 
   private void calculateTotal() {
-    User user = User.CURRENT;
-    Group group = Group.CURRENT;
+    Group group = getGroup(Group.CURRENT);
     int total = 0;
     Map<Long, Long> owes = new HashMap<>();
 
@@ -69,13 +67,17 @@ public final class IncomeController extends MenuController implements Initializa
     if(!incomeIds.isEmpty()) {
       List<Income> incomes = incomeDAO.find(incomeIds);
       for(Income income : incomes) {
-        long incomeUserId = income.getUserId();
-        if(incomeUserId == user.getId()) continue;
-        if(!group.isIncomeReceived(income.getIncomeId(), user.getId())) {
-          long amount = income.getAmount().longValue() / group.getMembers().size();
-          total += amount;
-          if(!owes.containsKey(incomeUserId)) owes.put(incomeUserId, 0L);
-          owes.put(incomeUserId, owes.get(incomeUserId) + amount);
+        for(User groupUser : group.getMembers()) {
+          long incomeUserId = income.getUserId();
+          long userId = groupUser.getId();
+          if(incomeUserId != User.CURRENT) continue;
+          if(userId == incomeUserId) continue;
+          if(!group.isIncomeReceived(income.getIncomeId(), groupUser.getId())) {
+            long amount = income.getAmount().longValue() / income.getShares();
+            total += amount;
+            if(!owes.containsKey(userId)) owes.put(userId, 0L);
+            owes.put(userId, owes.get(userId) + amount);
+          }
         }
       }
     }
@@ -92,21 +94,22 @@ public final class IncomeController extends MenuController implements Initializa
   }
 
   private CheckBox createReceivedBox(Income income) {
-    long userId = User.CURRENT.getId();
+    Group group = getGroup(Group.CURRENT);
+    long userId = User.CURRENT;
     long incomeId = income.getIncomeId();
 
     CheckBox checkBox = new CheckBox();
-    if(Group.CURRENT.isIncomeReceived(incomeId, userId)) {
+    if(group.isIncomeReceived(incomeId, userId)) {
       checkBox.setSelected(true);
     }
 
     checkBox.setOnAction(e -> {
       if(checkBox.isSelected()) {
         groupDAO.setReceivedIncome(incomeId, userId);
-        Group.CURRENT.addReceivedIncome(incomeId, userId);
+        group.addReceivedIncome(incomeId, userId);
       } else {
         groupDAO.unsetReceivedIncome(incomeId, userId);
-        Group.CURRENT.removeReceivedIncome(incomeId, userId);
+        group.removeReceivedIncome(incomeId, userId);
       }
       calculateTotal();
     });

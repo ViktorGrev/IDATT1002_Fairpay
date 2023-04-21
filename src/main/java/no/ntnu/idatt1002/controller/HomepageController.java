@@ -3,9 +3,14 @@ package no.ntnu.idatt1002.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.data.Notification;
 import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.data.economy.Expense;
+import no.ntnu.idatt1002.data.economy.Income;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 import java.net.URL;
@@ -30,10 +35,12 @@ public final class HomepageController extends MenuController implements Initiali
           "Spread love everywhere you go."
   };
   @FXML private Text inspirationalText;
+  @FXML private VBox notifBox;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    welcomeText.setText("Welcome, " + User.CURRENT.getUsername() + "!");
+    User user = userDAO.find(User.CURRENT);
+    welcomeText.setText("Welcome, " + user.getUsername() + "!");
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     String dateToday = dateFormat.format(new Date());
     //dateText.setText("Today's date: " + dateToday);
@@ -43,6 +50,21 @@ public final class HomepageController extends MenuController implements Initiali
     Random rn = new Random();
     int number = rn.nextInt(10);
     inspirationalText.setText(inspirationalQuotes[number]);
+    notifBox.getChildren().clear();
+
+    List<Notification> notifications = getNotifications(User.CURRENT);
+    int n = 0;
+    for(Notification notification : notifications) {
+      Label label = new Label(notification.getTitle());
+      Text content = new Text(notification.getText());
+      VBox vBox2 = new VBox();
+      vBox2.getChildren().addAll(label, content);
+      vBox2.setOnMouseClicked(e -> {
+        System.out.println("send to X");
+      });
+      notifBox.getChildren().add(vBox2);
+      if(n++ > 1) break;
+    }
   }
   @FXML
   private void helpClick() {
@@ -55,6 +77,36 @@ public final class HomepageController extends MenuController implements Initiali
 
   public void addIncomeClick(ActionEvent actionEvent) {
     SceneSwitcher.setView("newIncome");
+  }
+
+  private List<Notification> getNotifications(long userId) {
+    List<Notification> notifications = new ArrayList<>();
+    Group group = groupDAO.findByUser(userId);
+    if(!group.getExpenses().isEmpty()) {
+      List<Expense> expenses = expenseDAO.find(group.getExpenses());
+      for(Expense expense : expenses) {
+        String name = expense.hasName() ? expense.getName() : expense.getType().getCategoryName();
+        notifications.add(new Notification("User " + expense.getUserId() + " X minutes ago...",
+                "Added new expense " + name, expense.getDate()));
+      }
+    }
+    if(!group.getIncome().isEmpty()) {
+      List<Income> incomes = incomeDAO.find(group.getIncome());
+      for(Income income : incomes) {
+        notifications.add(new Notification("User " + income.getUserId() + " X minutes ago...",
+                "Added a new income " + income.getName(), income.getDate()));
+      }
+    }
+    /*List<Settlement> settlements = settlementDAO.find(Group.CURRENT);
+    if(!group.().isEmpty()) {
+      List<Income> incomes = incomeDAO.find(group.getIncome());
+      for(Income income : incomes) {
+        notifications.add(new Notification("New income", "(name) added a new income", income.getDate()));
+      }
+    }*/
+
+    notifications.sort(Comparator.comparing(Notification::getDate));
+    return notifications;
   }
 }
 

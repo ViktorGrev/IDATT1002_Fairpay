@@ -24,9 +24,10 @@ public final class NewIncomeController extends MenuController {
     BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
     LocalDate localDate = dateField.getValue();
     Date date = java.sql.Date.valueOf(localDate);
-    Income income = incomeDAO.create(User.CURRENT.getId(), name, amount, date, Group.CURRENT.getMembers().size());
-    groupDAO.addIncome(Group.CURRENT.getId(), income.getIncomeId());
-    Group.CURRENT.addIncome(income.getIncomeId());
+    Group group = getGroup(Group.CURRENT);
+    Income income = incomeDAO.create(User.CURRENT, name, amount, date, group.getMembers().size());
+    groupDAO.addIncome(group.getId(), income.getIncomeId());
+    group.addIncome(income.getIncomeId());
     SceneSwitcher.setView("income");
   }
 }
