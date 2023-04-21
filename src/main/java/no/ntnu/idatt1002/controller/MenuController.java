@@ -81,8 +81,8 @@ abstract class MenuController extends Controller {
         alert.setContentText("Do you wish to logout?");
 
         if(alert.showAndWait().get() == ButtonType.OK){
-            Group.setCurrent(null);
-            User.setCurrent(null);
+            Group.setCurrent(-1);
+            User.setCurrent(-1);
             SceneSwitcher.setView("login");
         }
     }

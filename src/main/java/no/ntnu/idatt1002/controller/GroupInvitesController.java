@@ -30,7 +30,7 @@ public final class GroupInvitesController extends Controller implements Initiali
                 .addColumn(this::createAcceptButton)
                 .addColumn(this::createDenyButton);
 
-        List<Invite> invites = groupDAO.getInvitesByUser(User.CURRENT.getId());
+        List<Invite> invites = groupDAO.getInvitesByUser(User.CURRENT);
         if(!invites.isEmpty()) {
             List<Long> groupIds = invites.stream().map(Invite::getGroupId).toList();
             getGroups(groupIds);
@@ -45,7 +45,7 @@ public final class GroupInvitesController extends Controller implements Initiali
             groupDAO.removeInvite(invite.getGroupId(), invite.getTargetId());
             groupDAO.addMember(invite.getGroupId(), invite.getTargetId());
             Group g = groupDAO.find(invite.getGroupId());
-            Group.setCurrent(g);
+            Group.setCurrent(g.getId());
             SceneSwitcher.setView("homepage");
         });
         return button;

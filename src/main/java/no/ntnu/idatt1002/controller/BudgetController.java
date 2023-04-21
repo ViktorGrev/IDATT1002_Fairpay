@@ -25,7 +25,7 @@ public final class BudgetController extends MenuController implements Initializa
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Budget budget = budgetDAO.find(Group.CURRENT.getId());
+        Budget budget = budgetDAO.find(Group.CURRENT);
 
         TableEditor<ExpenseType> budgetTableEditor = new TableEditor<>(budgetTable)
                 .addColumn("Expense type", ExpenseType::getCategoryName)
@@ -48,7 +48,7 @@ public final class BudgetController extends MenuController implements Initializa
         TextField inputField = new TextField(String.valueOf(amount));
         inputField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                budgetDAO.addType(Group.CURRENT.getId(), type,
+                budgetDAO.addType(Group.CURRENT, type,
                         BigDecimal.valueOf(Long.parseLong(inputField.getText())));
                 SceneSwitcher.setView("budget");
             }

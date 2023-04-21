@@ -31,10 +31,9 @@ public final class SettlementController extends MenuController implements Initia
     Optional<String> input = inputDialog.showAndWait();
     input.ifPresent(s -> {
       if(s.isBlank()) return;
-      User user = User.CURRENT;
-      Settlement settlement = settlementDAO.create(s, user.getId());
-      settlement.addMember(user.getId());
-      settlementDAO.addMember(settlement.getId(), user.getId());
+      Settlement settlement = settlementDAO.create(s, User.CURRENT);
+      settlement.addMember(User.CURRENT);
+      settlementDAO.addMember(settlement.getId(), User.CURRENT);
       settlementId = settlement.getId();
       SceneSwitcher.setView("editSettlement");
     });
@@ -52,7 +51,7 @@ public final class SettlementController extends MenuController implements Initia
       }
     });
 
-    List<Settlement> settlements = settlementDAO.findByUser(User.CURRENT.getId());
+    List<Settlement> settlements = settlementDAO.findByUser(User.CURRENT);
     settlements.removeIf(Settlement::isDeleted);
 
     new TableEditor<>(settlementTable)

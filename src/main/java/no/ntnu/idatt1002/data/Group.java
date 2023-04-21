@@ -8,7 +8,7 @@ import java.util.*;
  */
 public final class Group {
 
-  public static Group CURRENT; // The current group
+  public static long CURRENT = -1; // The current group ID
 
   private final long groupId; // The ID of the group
   private String name; // The name of the group
@@ -171,7 +171,7 @@ public final class Group {
    * Set the current group.
    * @param   group the group
    */
-  public static void setCurrent(Group group) {
-    CURRENT = group;
+  public static void setCurrent(long groupId) {
+    CURRENT = groupId;
   }
 }

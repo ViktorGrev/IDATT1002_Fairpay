@@ -32,7 +32,7 @@ public final class SignupController extends Controller implements Initializable 
                 throw new IllegalArgumentException("Phone number is required");
             long phoneNumber = Long.parseLong(phoneField.getText());
             User user = userDAO.create(username, password, phoneNumber);
-            User.setCurrent(user);
+            User.setCurrent(user.getId());
             SceneSwitcher.setView("joincreatepage");
         } catch (Exception e) {
             signupFeedback.setText(e.getLocalizedMessage());

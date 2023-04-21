@@ -22,7 +22,7 @@ public class DormGroupSettingsController extends MenuController implements Initi
       feedbackField.setText("Name cannot be blank");
       return;
     }
-    Group group = Group.CURRENT;
+    Group group = groupDAO.find(Group.CURRENT);
     if(!group.getName().equals(name)) {
       group.setName(name);
       groupDAO.setName(group.getId(), name);
@@ -32,7 +32,7 @@ public class DormGroupSettingsController extends MenuController implements Initi
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    Group group = Group.CURRENT;
+    Group group = groupDAO.find(Group.CURRENT);
     groupNameField.setText(group.getName());
   }
 }

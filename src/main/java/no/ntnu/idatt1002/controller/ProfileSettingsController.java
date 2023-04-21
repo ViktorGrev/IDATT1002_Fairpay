@@ -19,7 +19,7 @@ public class ProfileSettingsController extends MenuController implements Initial
 
   @FXML
   private void updateProfileClick() {
-    User user = User.CURRENT;
+    User user = userDAO.find(User.CURRENT);
 
     String name = usernameField.getText();
     if(name == null || name.isBlank()) {
@@ -49,7 +49,7 @@ public class ProfileSettingsController extends MenuController implements Initial
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    User user = User.CURRENT;
+    User user = userDAO.find(User.CURRENT);
     usernameField.setText(user.getUsername());
     numberField.setText(String.valueOf(user.getPhoneNumber()));
   }

@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public final class User {
 
-    public static User CURRENT; // The current user
+    public static long CURRENT = -1; // The current user ID
 
     private final long id; // The unique id of the user
     private String username; // The username of the user
@@ -112,9 +112,9 @@ public final class User {
 
     /**
      * Set the current user
-     * @param   user the user
+     * @param   userId the user ID
      */
-    public static void setCurrent(User user) {
-        CURRENT = user;
+    public static void setCurrent(long userId) {
+        CURRENT = userId;
     }
 }

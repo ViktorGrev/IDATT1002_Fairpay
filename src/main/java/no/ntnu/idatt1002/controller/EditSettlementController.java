@@ -41,18 +41,18 @@ public final class EditSettlementController extends MenuController implements In
     Settlement settlement = settlementDAO.find(SettlementController.settlementId);
     nameField.setText(settlement.getName());
 
-    Group group = Group.CURRENT;
+    Group group = groupDAO.find(Group.CURRENT);
 
     for(User user : group.getMembers()) {
       RadioButton radioButton = new RadioButton();
       if(settlement.getMembers().contains(user.getId())) {
         radioButton.setSelected(true);
-        if(user.getId() == User.CURRENT.getId()) {
+        if(user.getId() == User.CURRENT) {
           radioButton.setDisable(true);
         }
       }
       radioButton.setOnMouseClicked(e -> {
-        if(user.getId() == User.CURRENT.getId()) return;
+        if(user.getId() == User.CURRENT) return;
         if(radioButton.isSelected()) {
           settlementDAO.addMember(settlement.getId(), user.getId());
           settlement.addMember(user.getId());

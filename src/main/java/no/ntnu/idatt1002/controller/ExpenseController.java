@@ -33,8 +33,7 @@ public final class ExpenseController extends MenuController implements Initializ
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    User user = User.CURRENT;
-    Group group = Group.CURRENT;
+    Group group = getGroup(Group.CURRENT);
     Map<Long, User> users = UserUtil.toMap(group.getMembers());
 
     TableEditor<Expense> expenseTableEditor = new TableEditor<>(expenseTable)
@@ -44,7 +43,7 @@ public final class ExpenseController extends MenuController implements Initializ
             .addColumn("Total amount (kr)", Expense::getAmount)
             .addColumn("Your share (kr)", expense -> expense.getAmount().longValue() / expense.getShares())
             .addColumn("Date", expense -> DateUtil.format(expense.getDate().getTime(), "dd MMM yyyy"))
-            .addColumn("Paid", expense -> expense.getUserId() == user.getId() ? null : createPaidBox(expense));
+            .addColumn("Paid", expense -> expense.getUserId() == User.CURRENT ? null : createPaidBox(expense));
 
     List<Long> expenseIds = group.getExpenses();
     if(!expenseIds.isEmpty()) {
@@ -58,8 +57,7 @@ public final class ExpenseController extends MenuController implements Initializ
   }
 
   private void calculateTotal() {
-    User user = User.CURRENT;
-    Group group = Group.CURRENT;
+    Group group = getGroup(Group.CURRENT);
     int total = 0;
     Map<Long, Long> owes = new HashMap<>();
 
@@ -68,8 +66,8 @@ public final class ExpenseController extends MenuController implements Initializ
       List<Expense> expenses = expenseDAO.find(expenseIds);
       for(Expense expense : expenses) {
         long expenseUserId = expense.getUserId();
-        if(expenseUserId == user.getId()) continue;
-        if(!group.isPaid(expense.getExpenseId(), user.getId())) {
+        if(expenseUserId == User.CURRENT) continue;
+        if(!group.isPaid(expense.getExpenseId(), User.CURRENT)) {
           long amount = expense.getAmount().longValue() / group.getMembers().size();
           total += amount;
           if(!owes.containsKey(expenseUserId)) owes.put(expenseUserId, 0L);
@@ -90,21 +88,22 @@ public final class ExpenseController extends MenuController implements Initializ
   }
 
   private CheckBox createPaidBox(Expense expense) {
-    long userId = User.CURRENT.getId();
+    Group group = getGroup(Group.CURRENT);
+    long userId = User.CURRENT;
     long expenseId = expense.getExpenseId();
 
     CheckBox checkBox = new CheckBox();
-    if(Group.CURRENT.isPaid(expenseId, userId)) {
+    if(group.isPaid(expenseId, userId)) {
       checkBox.setSelected(true);
     }
 
     checkBox.setOnAction(e -> {
       if(checkBox.isSelected()) {
         groupDAO.setPaidExpense(expenseId, userId);
-        Group.CURRENT.addPaidExpense(expenseId, userId);
+        group.addPaidExpense(expenseId, userId);
       } else {
         groupDAO.unsetPaidExpense(expenseId, userId);
-        Group.CURRENT.removePaidExpense(expenseId, userId);
+        group.removePaidExpense(expenseId, userId);
       }
       calculateTotal();
     });

@@ -28,8 +28,8 @@ public final class DormGroupController extends MenuController implements Initial
 
   @FXML
   private void onLeaveGroup() {
-    groupDAO.removeMember(Group.CURRENT.getId(), User.CURRENT.getId());
-    Group.setCurrent(null);
+    groupDAO.removeMember(Group.CURRENT, User.CURRENT);
+    Group.setCurrent(-1);
     SceneSwitcher.setView("joincreatepage");
   }
 
@@ -37,11 +37,11 @@ public final class DormGroupController extends MenuController implements Initial
   private void onSendInvite() {
     String name = inviteNameField.getText();
     if(name == null || name.isBlank()) return;
-    Group group = groupDAO.findByUser(User.CURRENT.getId());
+    Group group = groupDAO.findByUser(User.CURRENT);
     User user = getUser(name);
     if(user == null) {
       inviteFeedback.setText("That user does not exist");
-    } else if(user.getId() == User.CURRENT.getId()) {
+    } else if(user.getId() == User.CURRENT) {
       inviteFeedback.setText("You cannot invite yourself");
       inviteNameField.setText("");
     } else {
@@ -50,7 +50,7 @@ public final class DormGroupController extends MenuController implements Initial
           inviteFeedback.setText("That user is already a member");
           return;
         }
-        Invite invite = groupDAO.addInvite(group.getId(), User.CURRENT.getId(), user.getId());
+        Invite invite = groupDAO.addInvite(group.getId(), User.CURRENT, user.getId());
         inviteTable.getItems().add(invite);
         inviteNameField.setText("");
         inviteFeedback.setText("Invite sent to " + user.getUsername());
@@ -62,7 +62,7 @@ public final class DormGroupController extends MenuController implements Initial
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    Group group = groupDAO.findByUser(User.CURRENT.getId());
+    Group group = groupDAO.findByUser(User.CURRENT);
     groupName.setText(group.getName());
 
     new TableEditor<>(memberTable)
@@ -72,7 +72,7 @@ public final class DormGroupController extends MenuController implements Initial
             .addColumn("Join date", u -> DateUtil.format(u.getRegisterDate().getTime(), "dd MMM yyyy"))
             .addRows(group.getMembers());
 
-    List<Invite> invites = groupDAO.getInvites(Group.CURRENT.getId());
+    List<Invite> invites = groupDAO.getInvites(Group.CURRENT);
 
     TableEditor<Invite> inviteTableEditor = new TableEditor<>(inviteTable)
             .setPlaceholder("No invites")
@@ -92,7 +92,7 @@ public final class DormGroupController extends MenuController implements Initial
     Button button = new Button("Cancel");
     button.getStyleClass().add("button2");
     button.setOnMouseClicked(event -> {
-      groupDAO.removeInvite(Group.CURRENT.getId(), invite.getTargetId());
+      groupDAO.removeInvite(Group.CURRENT, invite.getTargetId());
       inviteTable.getItems().removeIf(r -> invite.getTargetId() == r.getTargetId());
     });
     return button;
