@@ -10,11 +10,11 @@ public final class User {
     public static User CURRENT; // The current user
 
     private final long id; // The unique id of the user
-    private final String username; // The username of the user
+    private String username; // The username of the user
     private final String password; // The encrypted password of the user
     private final Date registerDate; // The date when the user was registered
     private final Date lastLogin; // The date of the last login
-    private final long phoneNumber; // The phone number of the user
+    private long phoneNumber; // The phone number of the user
 
     /**
      * Constructs a new User object with the specified id, username, password, register date, phone number and budget.
@@ -55,6 +55,14 @@ public final class User {
     }
 
     /**
+     * Set the username of the user.
+     * @param   username the username
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
      * Returns the username of the user.
      * @return  the username of the user
      */
@@ -84,6 +92,14 @@ public final class User {
      */
     public Date getLastLogin() {
         return lastLogin;
+    }
+
+    /**
+     * Set the phone number.
+     * @param   phoneNumber the phone number
+     */
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     /**
