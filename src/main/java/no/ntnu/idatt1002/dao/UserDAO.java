@@ -33,4 +33,18 @@ public interface UserDAO extends DAO<User, Long> {
      * @throws  AuthException if the password is invalid or the user is not found
      */
     User authenticate(String username, String password) throws AuthException;
+
+    /**
+     * Set the name of a user.
+     * @param   userId the user ID
+     * @param   name the username
+     */
+    void setName(long userId, String name);
+
+    /**
+     * Set the phone number of a user.
+     * @param   userId the user ID
+     * @param   phoneNumber the phone number
+     */
+    void setPhoneNumber(long userId, long phoneNumber);
 }
