@@ -186,10 +186,12 @@
 
 .table-viewOnPage .virtual-flow .scroll-bar:horizontal .thumb{
     -fx-background-color:  linear-gradient(to right, #703939, #9c5151);
+    -fx-background-radius: 1em;
 }
 
 .table-viewOnPage .virtual-flow .scroll-bar:vertical .thumb{
     -fx-background-color:  linear-gradient(to bottom, #703939, #9c5151);
+    -fx-background-radius: 1em;
 }
 
 .table-viewOnPage .virtual-flow .scroll-bar:vertical {
@@ -310,4 +312,20 @@
 
 .check-box:selected .mark {
     -fx-background-color: #9c5151;
+}
+
+.scroll-pane {
+    -fx-padding: 0 0 11 0;
+    -fx-background-color: white;
+    -fx-background-radius: 1em;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-padding: 0 0 11 5;
+    -fx-background-color: none;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to right, #703939, #9c5151);
+    -fx-background-radius: 1em;
 }
