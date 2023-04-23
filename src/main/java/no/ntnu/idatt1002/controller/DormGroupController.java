@@ -99,7 +99,7 @@ public final class DormGroupController extends MenuController implements Initial
   }
 
   @FXML
-  public void dormGroupSettingsCliked() {
+  public void dormGroupSettingsClick() {
     SceneSwitcher.setView("dormgroupsettings");
   }
 }

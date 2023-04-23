@@ -11,6 +11,7 @@ public class Income {
 
   private final long incomeId; // The ID of the income
   private final long userId; // The user ID associated with the income
+  private final Date addDate; // The date when the expense was added
   private final String name; // The name of the income
   private final BigDecimal amount; // The amount of the income
   private final Date date; // The date the income was added
@@ -23,12 +24,14 @@ public class Income {
    * @param incomeId
    * @param amount   the amount of the income
    * @param userId   the user ID associated with the income
+   * @param addDate
    * @param date     the date the income was received
    * @param shares
    * @throws IllegalArgumentException if the user ID is negative, the income type is null, the date is null, or the amount is negative
    */
-  public Income(long incomeId, BigDecimal amount, String name, long userId, Date date, int shares) {
+  public Income(long incomeId, BigDecimal amount, String name, long userId, Date addDate, Date date, int shares) {
     this.incomeId = incomeId;
+    this.addDate = addDate;
     this.shares = shares;
     if (userId < 0){
       throw new IllegalArgumentException("Incorrect income-id");
@@ -62,6 +65,14 @@ public class Income {
    */
   public long getUserId() {
     return userId;
+  }
+
+  /**
+   * Returns the date when the income was added.
+   * @return  the date when the income was added
+   */
+  public Date getAddDate() {
+    return addDate;
   }
 
   /**

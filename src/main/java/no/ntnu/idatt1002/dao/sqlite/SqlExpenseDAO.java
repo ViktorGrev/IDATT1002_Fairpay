@@ -19,8 +19,8 @@ import java.util.*;
 public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
 
     private static final String INSERT_EXPENSE = """
-                INSERT INTO expenses (userId, name, type, amount, createDate, shares)
-                VALUES (?, ?, ?, ?, ?, ?);
+                INSERT INTO expenses (userId, name, addDate, type, amount, createDate, shares)
+                VALUES (?, ?, ?, ?, ?, ?, ?);
             """;
 
     /**
@@ -28,25 +28,43 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
      */
     @Override
     public Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
+        Date now = new Date();
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE)) {
             statement.setLong(1, userId);
             statement.setString(2, name);
-            statement.setInt(3, type.getCategoryNumber());
-            statement.setLong(4, amount.longValue());
-            statement.setLong(5, date.getTime());
-            statement.setLong(6, shares);
+            statement.setLong(3, now.getTime());
+            statement.setInt(4, type.getCategoryNumber());
+            statement.setLong(5, amount.longValue());
+            statement.setLong(6, date.getTime());
+            statement.setLong(7, shares);
             statement.execute();
             try(ResultSet resultSet = statement.getGeneratedKeys()) {
                 if(resultSet.next()) {
                     long expenseId = resultSet.getInt(1);
-                    return new Expense(expenseId, userId, type, name, amount, date, shares);
+                    return new Expense(expenseId, userId, now, type, name, amount, date, shares);
                 }
             }
         } catch (SQLException e) {
             throw new DAOException(e);
         }
         return null;
+    }
+
+    private static final String REMOVE_EXPENSE = "DELETE FROM expenses WHERE expenseId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void delete(long expenseId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_EXPENSE)) {
+            statement.setLong(1, expenseId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
     }
 
     /**
@@ -94,18 +112,20 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
     private static Expense buildExpense(ResultSet resultSet) throws SQLException {
         long expenseId = resultSet.getLong("expenseId");
         long userId = resultSet.getLong("userId");
+        Date addDate = resultSet.getDate("addDate");
         ExpenseType type = ExpenseType.getCategoryByCategoryNumber(resultSet.getInt("type"));
         String name = resultSet.getString("name");
         BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
         Date createDate = resultSet.getDate("createDate");
         int shares = resultSet.getInt("shares");
-        return new Expense(expenseId, userId, type, name, amount, createDate, shares);
+        return new Expense(expenseId, userId, addDate, type, name, amount, createDate, shares);
     }
 
     private static final String CREATE_EXPENSES = """
                 CREATE TABLE IF NOT EXISTS expenses (
             	expenseId integer PRIMARY KEY AUTOINCREMENT,
             	userId integer NOT NULL,
+            	addDate integer NOT NULL,
             	name text(32),
             	type text(32) NOT NULL,
             	amount integer NOT NULL,

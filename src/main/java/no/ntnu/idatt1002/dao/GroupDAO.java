@@ -41,9 +41,16 @@ public interface GroupDAO extends DAO<Group, Long> {
     /**
      * Add an expense to a group.
      * @param   groupId the group ID
-     * @param   expenseId the user ID
+     * @param   expenseId the expense ID
      */
     void addExpense(long groupId, long expenseId);
+
+    /**
+     * Remove an expense from a group.
+     * @param   groupId the group ID
+     * @param   expenseId the expense ID
+     */
+    void removeExpense(long groupId, long expenseId);
 
     /**
      * Add an income to a group.
@@ -51,6 +58,13 @@ public interface GroupDAO extends DAO<Group, Long> {
      * @param   incomeId the income ID
      */
     void addIncome(long groupId, long incomeId);
+
+    /**
+     * Remove an income from a group.
+     * @param   groupId the group ID
+     * @param   incomeId the income ID
+     */
+    void removeIncome(long groupId, long incomeId);
 
     /**
      * Sets the status of an income to received.

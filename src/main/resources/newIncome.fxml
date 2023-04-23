@@ -5,6 +5,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -22,14 +23,30 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="41.0" prefWidth="148.0" text="New group income" textFill="WHITE">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#goBackClick" stylesheets="@style/topButton.css" text="Go back" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/arrow_left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Go back" />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                </top>
                <left>
@@ -104,7 +121,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Group" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -119,7 +136,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -164,7 +181,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

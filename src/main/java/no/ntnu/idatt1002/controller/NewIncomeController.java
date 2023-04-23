@@ -14,20 +14,25 @@ import java.util.Date;
 
 public final class NewIncomeController extends MenuController {
 
-  @FXML private TextField nameField;
-  @FXML private TextField amountField;
-  @FXML private DatePicker dateField;
+    @FXML private TextField nameField;
+    @FXML private TextField amountField;
+    @FXML private DatePicker dateField;
 
-  @FXML
-  private void newIncomeConfirmClick() {
-    String name = nameField.getText().isBlank() ? null : nameField.getText();
-    BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
-    LocalDate localDate = dateField.getValue();
-    Date date = java.sql.Date.valueOf(localDate);
-    Group group = getGroup(Group.CURRENT);
-    Income income = incomeDAO.create(User.CURRENT, name, amount, date, group.getMembers().size());
-    groupDAO.addIncome(group.getId(), income.getIncomeId());
-    group.addIncome(income.getIncomeId());
-    SceneSwitcher.setView("income");
-  }
+    @FXML
+    private void newIncomeConfirmClick() {
+        String name = nameField.getText().isBlank() ? null : nameField.getText();
+        BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
+        LocalDate localDate = dateField.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        Group group = getGroup(Group.CURRENT);
+        Income income = incomeDAO.create(User.CURRENT, name, amount, date, group.getMembers().size());
+        groupDAO.addIncome(group.getId(), income.getIncomeId());
+        group.addIncome(income.getIncomeId());
+        SceneSwitcher.setView("income");
+    }
+
+    @FXML
+    private void goBackClick() {
+        SceneSwitcher.setView("income");
+    }
 }

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExpenseTest {
 
   private final long time = System.currentTimeMillis();
-  private final Expense expense = new Expense(1, 1, ExpenseType.CAR,
+  private final Expense expense = new Expense(1, 1, addDate, ExpenseType.CAR,
           "Name", BigDecimal.valueOf(123), new Date(time), 1);
 
   @Test
@@ -30,7 +30,7 @@ class ExpenseTest {
 
   @Test
   void hasNoNameTest() {
-    Expense expense = new Expense(1, 1, ExpenseType.CAR, null, BigDecimal.valueOf(1), new Date(), 1);
+    Expense expense = new Expense(1, 1, addDate, ExpenseType.CAR, null, BigDecimal.valueOf(1), new Date(), 1);
     assertFalse(expense.hasName());
   }
 

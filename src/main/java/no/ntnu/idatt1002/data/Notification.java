@@ -5,24 +5,30 @@ import java.util.Date;
 public final class Notification {
 
     private final String title;
-    private final String text;
+    private final String content;
     private final Date date;
+    private final Runnable action;
 
-    public Notification(String title, String text, Date date) {
+    public Notification(String title, String content, Date date, Runnable action) {
         this.title = title;
-        this.text = text;
+        this.content = content;
         this.date = date;
+        this.action = action;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
     public Date getDate() {
         return date;
+    }
+
+    public void runAction() {
+        action.run();
     }
 }

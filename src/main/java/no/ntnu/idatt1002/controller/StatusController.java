@@ -3,8 +3,12 @@ package no.ntnu.idatt1002.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.economy.Budget;
@@ -19,7 +23,12 @@ import java.util.*;
 
 public final class StatusController extends MenuController implements Initializable {
 
+    private static final DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.ENGLISH);
+
+    @FXML private ChoiceBox<String> monthPicker;
+    @FXML private ChoiceBox<Integer> yearPicker;
     @FXML private BarChart<String, Long> barChart;
+    @FXML private LineChart<String, Long> monthlyChart;
     @FXML private Label statusField;
     @FXML private Text spentSum;
     @FXML private Text incomeSum;
@@ -28,9 +37,26 @@ public final class StatusController extends MenuController implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Calendar calendar = Calendar.getInstance();
-        int month = calendar.get(Calendar.MONTH);
-        String monthName = new DateFormatSymbols().getMonths()[month];
-        statusField.setText("Status " + monthName + " " + calendar.get(Calendar.YEAR));
+        String monthName = dateFormatSymbols.getMonths()[calendar.get(Calendar.MONTH)];
+        monthPicker.setValue(monthName);
+        for(int i = 0; i < 12; i++) {
+            String m = dateFormatSymbols.getMonths()[i];
+            monthPicker.getItems().add(m);
+        }
+        monthPicker.setOnAction(e -> showChart());
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        yearPicker.setValue(currentYear);
+        for(int i = currentYear - 3; i <= currentYear; i++) {
+            yearPicker.getItems().add(i);
+        }
+        yearPicker.setOnAction(e -> showChart());
+
+        showChart();
+    }
+
+    private void showChart() {
+        statusField.setText("Status");
 
         List<Expense> expenses = getMonthlyExpenses();
         List<Income> incomeList = getMonthlyIncome();
@@ -40,6 +66,31 @@ public final class StatusController extends MenuController implements Initializa
             if(!expenseMap.containsKey(expense.getType())) expenseMap.put(expense.getType(), 0L);
             expenseMap.put(expense.getType(), expenseMap.get(expense.getType()) + amount);
         }
+
+        XYChart.Series<String, Long> monthExpenseSeries = new XYChart.Series<>();
+        monthExpenseSeries.setName("Expenses");
+        List<Expense> yearlyExpenses = getYearlyExpenses();
+        for(String month : dateFormatSymbols.getMonths()) {
+            long amount = 0;
+            for(Expense expense : yearlyExpenses) {
+                if(expense.getDate().getMonth() == monthNameToIndex(month))
+                    amount += expense.getAmount().longValue();
+            }
+            monthExpenseSeries.getData().add(new XYChart.Data<>(month, amount));
+        }
+        XYChart.Series<String, Long> monthIncomeSeries = new XYChart.Series<>();
+        monthIncomeSeries.setName("Income");
+        List<Income> yearlyIncome = getYearlyIncome();
+        for(String month : dateFormatSymbols.getMonths()) {
+            long amount = 0;
+            for(Income income : yearlyIncome) {
+                if(income.getDate().getMonth() == monthNameToIndex(month))
+                    amount += income.getAmount().longValue();
+            }
+            monthIncomeSeries.getData().add(new XYChart.Data<>(month, amount));
+        }
+        monthlyChart.getData().clear();
+        monthlyChart.getData().addAll(monthExpenseSeries, monthIncomeSeries);
 
         XYChart.Series<String, Long> expenseSeries = new XYChart.Series<>();
         expenseSeries.setName("Expenses");
@@ -55,11 +106,12 @@ public final class StatusController extends MenuController implements Initializa
             long amount = budget.getAmount(expense).longValue();
             budgetSeries.getData().add(new XYChart.Data<>(expense.getCategoryName(), amount));
         }
+        barChart.getData().clear();
         barChart.getData().addAll(expenseSeries, budgetSeries);
 
-        spentSum.setText(expenses.stream().mapToLong(value -> value.getAmount().longValue()).sum() + "kr");
-        incomeSum.setText(incomeList.stream().mapToLong(value -> value.getAmount().longValue()).sum() + "kr");
-        budgetSum.setText(budget.getTotal() + "kr");
+        spentSum.setText(expenses.stream().mapToLong(value -> value.getAmount().longValue()).sum() + " kr");
+        incomeSum.setText(incomeList.stream().mapToLong(value -> value.getAmount().longValue()).sum() + " kr");
+        budgetSum.setText(budget.getTotal() + " kr");
     }
 
     private List<Expense> getMonthlyExpenses() {
@@ -67,10 +119,26 @@ public final class StatusController extends MenuController implements Initializa
         List<Long> expenseIds = group.getExpenses();
         if(expenseIds.isEmpty()) return new ArrayList<>();
         List<Expense> expenses = expenseDAO.find(expenseIds);
-        LocalDate localDate = LocalDate.now();
-        localDate.withDayOfMonth(1);
         expenses.removeIf(expense -> isNotThisMonth(expense.getDate()));
         return expenses;
+    }
+
+    private List<Expense> getYearlyExpenses() {
+        Group group = getGroup(Group.CURRENT);
+        List<Long> expenseIds = group.getExpenses();
+        if(expenseIds.isEmpty()) return new ArrayList<>();
+        List<Expense> expenses = expenseDAO.find(expenseIds);
+        expenses.removeIf(expense -> isNotThisYear(expense.getDate()));
+        return expenses;
+    }
+
+    private List<Income> getYearlyIncome() {
+        Group group = getGroup(Group.CURRENT);
+        List<Long> incomeIds = group.getIncome();
+        if(incomeIds.isEmpty()) return new ArrayList<>();
+        List<Income> incomeList = incomeDAO.find(incomeIds);
+        incomeList.removeIf(income -> isNotThisYear(income.getDate()));
+        return incomeList;
     }
 
     private List<Income> getMonthlyIncome() {
@@ -78,8 +146,6 @@ public final class StatusController extends MenuController implements Initializa
         List<Long> incomeIds = group.getIncome();
         if(incomeIds.isEmpty()) return new ArrayList<>();
         List<Income> incomeList = incomeDAO.find(incomeIds);
-        LocalDate localDate = LocalDate.now();
-        localDate.withDayOfMonth(1);
         incomeList.removeIf(income -> isNotThisMonth(income.getDate()));
         return incomeList;
     }
@@ -88,11 +154,41 @@ public final class StatusController extends MenuController implements Initializa
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentYear = getPickedYear();
+        int currentMonth = getPickedMonth();
 
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         return year != currentYear || month != currentMonth;
+    }
+
+    private boolean isNotThisYear(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        int currentYear = getPickedYear();
+
+        int year = calendar.get(Calendar.YEAR);
+        return year != currentYear;
+    }
+
+    private LocalDate getPickedDate() {
+        return LocalDate.of(2023, getPickedMonth(), 1);
+    }
+
+    private int getPickedMonth() {
+        return monthNameToIndex(monthPicker.getValue());
+    }
+
+    private int monthNameToIndex(String monthName) {
+        for(int i = 0; i < 12; i++) {
+            if(dateFormatSymbols.getMonths()[i].equals(monthName))
+                return i;
+        }
+        return -1;
+    }
+
+    private int getPickedYear() {
+        return yearPicker.getValue();
     }
 }

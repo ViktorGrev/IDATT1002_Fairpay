@@ -52,8 +52,6 @@ public final class SettlementController extends MenuController implements Initia
     });
 
     List<Settlement> settlements = settlementDAO.findByUser(User.CURRENT);
-    settlements.removeIf(Settlement::isDeleted);
-
     new TableEditor<>(settlementTable)
             .setPlaceholder("No settlements")
             .addColumn("Name", Settlement::getName)

@@ -165,6 +165,23 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
         }
     }
 
+    private static final String REMOVE_GROUP_EXPENSE = "DELETE FROM groupExpenses WHERE groupId = ? AND expenseId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeExpense(long groupId, long expenseId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_GROUP_EXPENSE)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, expenseId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String INSERT_GROUP_INCOME = """
                 INSERT INTO groupIncome (groupId, incomeId)
                 VALUES (?, ?);
@@ -177,6 +194,23 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
     public void addIncome(long groupId, long incomeId) {
         try(Connection connection = getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERT_GROUP_INCOME)) {
+            statement.setLong(1, groupId);
+            statement.setLong(2, incomeId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    private static final String REMOVE_GROUP_INCOME = "DELETE FROM groupIncome WHERE groupId = ? AND incomeId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeIncome(long groupId, long incomeId) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(REMOVE_GROUP_INCOME)) {
             statement.setLong(1, groupId);
             statement.setLong(2, incomeId);
             statement.execute();

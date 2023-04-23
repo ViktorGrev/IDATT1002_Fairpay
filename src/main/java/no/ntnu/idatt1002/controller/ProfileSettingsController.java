@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
@@ -13,9 +14,9 @@ import no.ntnu.idatt1002.scene.SceneSwitcher;
 public class ProfileSettingsController extends MenuController implements Initializable {
 
   @FXML private TextField usernameField;
-  @FXML private Text nameFeedbackField;
   @FXML private TextField numberField;
-  @FXML private Text numberFeedbackField;
+  @FXML private Label errorBox;
+  @FXML private Label infoBox;
 
   @FXML
   private void updateProfileClick() {
@@ -23,7 +24,7 @@ public class ProfileSettingsController extends MenuController implements Initial
 
     String name = usernameField.getText();
     if(name == null || name.isBlank()) {
-      nameFeedbackField.setText("Name cannot be blank");
+      displayError("Name cannot be blank");
       return;
     }
 
@@ -34,7 +35,7 @@ public class ProfileSettingsController extends MenuController implements Initial
 
     String numberText = numberField.getText();
     if(numberText == null || numberText.isBlank()) {
-      numberFeedbackField.setText("Phone number cannot be blank");
+      displayError("Phone number cannot be blank");
       return;
     }
 
@@ -44,6 +45,23 @@ public class ProfileSettingsController extends MenuController implements Initial
       userDAO.setPhoneNumber(user.getId(), number);
     }
 
+    displayInfo("Your profile has been updated");
+  }
+
+  private void displayError(String message) {
+    errorBox.setText(message);
+    errorBox.setVisible(true);
+    infoBox.setVisible(false);
+  }
+
+  private void displayInfo(String message) {
+    infoBox.setText(message);
+    infoBox.setVisible(true);
+    errorBox.setVisible(false);
+  }
+
+  @FXML
+  private void goBackClick() {
     SceneSwitcher.setView("profile");
   }
 
@@ -51,6 +69,7 @@ public class ProfileSettingsController extends MenuController implements Initial
   public void initialize(URL url, ResourceBundle resourceBundle) {
     User user = userDAO.find(User.CURRENT);
     usernameField.setText(user.getUsername());
+    usernameField.positionCaret(user.getUsername().length());
     numberField.setText(String.valueOf(user.getPhoneNumber()));
   }
 }

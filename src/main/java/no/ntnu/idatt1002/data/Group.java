@@ -148,6 +148,10 @@ public final class Group {
     return receivedIncome.getOrDefault(incomeId, new ArrayList<>()).contains(userId);
   }
 
+  public Map<Long, List<Long>> getReceivedIncome() {
+    return receivedIncome;
+  }
+
   public void addPaidExpense(long expenseId, long userId) {
     if(!paidExpenses.containsKey(expenseId))
       paidExpenses.put(expenseId, new ArrayList<>());

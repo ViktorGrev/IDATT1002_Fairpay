@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SettlementTest {
 
-  private final Expense expense = new Expense(1, 1, ExpenseType.CAR,
+  private final Expense expense = new Expense(1, 1, addDate, ExpenseType.CAR,
           "Name", BigDecimal.valueOf(123), new Date(), 1);
 
   @Test

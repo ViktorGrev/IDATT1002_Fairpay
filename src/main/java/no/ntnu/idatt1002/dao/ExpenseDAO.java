@@ -22,4 +22,10 @@ public interface ExpenseDAO extends DAO<Expense, Long> {
      * @return  a new expense
      */
     Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares);
+
+    /**
+     * Deletes an expense.
+     * @param   expenseId the expense ID
+     */
+    void delete(long expenseId);
 }
