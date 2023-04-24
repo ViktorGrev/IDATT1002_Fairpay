@@ -9,20 +9,22 @@ import java.sql.SQLException;
 /**
  * This class defines the set of common methods for DAOs interacting
  * with SQLite.
+ *
  * @see DAO
  */
 abstract class SqlDAO {
 
-    private static final String URL = "jdbc:sqlite:test.db";
+  private static final String URL = "jdbc:sqlite:test.db";
 
-    /**
-     * Attempts to establish a connection to the database located
-     * at the specified URL, with an appropriate driver registered by the JDBC.
-     * @return  a connection
-     * @throws  SQLException if the access is denied or the URL is invalid
-     * @see DriverManager
-     */
-    protected static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL);
-    }
+  /**
+   * Attempts to establish a connection to the database located
+   * at the specified URL, with an appropriate driver registered by the JDBC.
+   *
+   * @return  a connection
+   * @throws  SQLException if the access is denied or the URL is invalid
+   * @see DriverManager
+   */
+  protected static Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(URL);
+  }
 }

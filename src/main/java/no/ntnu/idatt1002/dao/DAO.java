@@ -9,24 +9,26 @@ import java.util.List;
  */
 public interface DAO<T, S> {
 
-    /**
-     * Finds the first object in this table whose identifier matches the specified.
-     * @param   filter the specified identifier
-     * @return  an object
-     */
-    T find(S filter);
+  /**
+   * Finds the first object in this table whose identifier matches the specified.
+   *
+   * @param   filter the specified identifier
+   * @return  an object
+   */
+  T find(S filter);
 
-    /**
-     * Finds all objects in this table whose identifier is present
-     * in the specified filter.
-     * @param   filter the filter of object identifiers
-     * @return  a list of objects
-     */
-    List<T> find(Collection<S> filter);
+  /**
+   * Finds all objects in this table whose identifier is present
+   * in the specified filter.
+   *
+   * @param   filter the filter of object identifiers
+   * @return  a list of objects
+   */
+  List<T> find(Collection<S> filter);
 
-    /**
-     * This method is called once per instantiation to prepare the
-     * necessary dependencies.
-     */
-    void init();
+  /**
+   * This method is called once per instantiation to prepare the
+   * necessary dependencies.
+   */
+  void init();
 }

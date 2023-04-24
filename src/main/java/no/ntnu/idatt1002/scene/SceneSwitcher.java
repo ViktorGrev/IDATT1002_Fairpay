@@ -6,12 +6,20 @@ import no.ntnu.idatt1002.FairPay;
 
 import java.io.IOException;
 
+/**
+ * A utility class for switching between JavaFX scenes.
+ */
 public class SceneSwitcher {
 
-  private static Scene scene;
+  private static Scene scene; // The current scene
 
-  public static void setView(String viewFxml) {
-    FXMLLoader loader = getLoader(viewFxml);
+  /**
+   * Set the current scene.
+   *
+   * @param   page the page to show
+   */
+  public static void setView(Page page) {
+    FXMLLoader loader = getLoader(page.getName());
     try {
       scene.setRoot(loader.load());
     } catch (IOException e) {

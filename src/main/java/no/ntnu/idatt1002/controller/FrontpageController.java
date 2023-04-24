@@ -1,12 +1,12 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.fxml.FXML;
-import no.ntnu.idatt1002.scene.SceneSwitcher;
+import no.ntnu.idatt1002.scene.Page;
 
-public final class FrontpageController {
+public final class FrontpageController extends Controller {
 
   @FXML
   private void loginButtonClick() {
-    SceneSwitcher.setView("login");
+    viewPage(Page.LOGIN);
   }
 }

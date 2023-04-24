@@ -6,48 +6,56 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The Settlement class represents a settlement with a name, a unique ID, and a list of members and expenses.
+ * The Settlement class represents a settlement with a name,
+ * a unique ID, and a list of members and expenses.
  */
 public class Settlement {
 
   private final long id;
   private final long userId;
-  private String settlementName;
+  private String name;
   private final Date date;
   private final List<Long> expenses;
   private final List<Long> members;
   private boolean ended;
 
   /**
-   * Constructs a new Settlement object with a given name, ID, and list of members.
+   * Constructs a settlement object with the specified values.
    *
-   * @param settlementId   the ID of the settlement
-   * @param userId
-   * @param settlementName the name of the settlement
-   * @param date
-   * @throws IllegalArgumentException if the settlement name is blank, the settlement ID is negative, or the list of members is empty
+   * @param id      the ID of the settlement
+   * @param userId  the user who created the settlement
+   * @param name    the name of the settlement
+   * @param date    the creation date
+   * @throws IllegalArgumentException if any of the following are true:
+   * <ul>
+   *   <li>id is invalid</li>
+   *   <li>userId is invalid</li>
+   *   <li>blank name</li>
+   *   <li>date is null</li>
+   * </ul>
    */
-  public Settlement(long settlementId, long userId, String settlementName, Date date, boolean ended) {
-    if(settlementName.isBlank()){
-      throw new IllegalArgumentException("The settlement name cannot be blank");
-    }
-    if(settlementId < 0){
-      throw new IllegalArgumentException("The settlement ID cannot be below zero");
-    }
-
-    this.settlementName = settlementName;
-    this.id = settlementId;
+  public Settlement(long id, long userId, String name, Date date, boolean ended) {
+    if (id < 0)
+      throw new IllegalArgumentException("invalid ID");
+    if (userId < 0)
+      throw new IllegalArgumentException("invalid user ID");
+    if (name == null || name.isBlank())
+      throw new IllegalArgumentException("name cannot be blank");
+    if (date == null)
+      throw new IllegalArgumentException("date is null");
+    this.id = id;
     this.userId = userId;
-    this.members = new ArrayList<>();
-    this.expenses = new ArrayList<>();
+    this.name = name;
     this.date = date;
     this.ended = ended;
+    this.members = new ArrayList<>();
+    this.expenses = new ArrayList<>();
   }
 
   /**
-   * Gets the unique ID of the settlement.
+   * Returns the ID of the settlement.
    *
-   * @return the unique ID of the settlement
+   * @return  the ID of the settlement
    */
   public long getId() {
     return id;
@@ -55,6 +63,7 @@ public class Settlement {
 
   /**
    * Returns the ID of the user who created the settlement.
+   *
    * @return  the ID of the user who created the settlement
    */
   public long getUserId() {
@@ -62,30 +71,31 @@ public class Settlement {
   }
 
   /**
-   * Sets the name of the settlement.
+   * Set the name of the settlement.
    *
-   * @param settlementName the new name of the settlement
-   * @throws IllegalArgumentException if the new settlement name is blank
+   * @param   name the new name
+   * @throws  IllegalArgumentException if the new name is blank
    */
-  public void setName(String settlementName) {
-    if(settlementName == null || settlementName.isBlank())
-      throw new IllegalArgumentException("The settlement name cannot be null or blank!");
-    this.settlementName = settlementName;
+  public void setName(String name) {
+    if (name == null || name.isBlank())
+      throw new IllegalArgumentException("name is null or blank");
+    this.name = name;
   }
 
   /**
-   * Gets the name of the settlement.
+   * Returns the name of the settlement.
    *
    * @return the name of the settlement
    */
   public String getName() {
-    return settlementName;
+    return name;
   }
 
   /**
    * Adds an expense to the list of expenses.
-   * @param expenseId the expense ID to be added
-   * @return true if the expense was added successfully, false if it was already in the list
+   *
+   * @param   expenseId the expense ID to be added
+   * @return  true if the expense was added successfully, otherwise false
    */
   public boolean addExpense(long expenseId) {
     return expenses.add(expenseId);
@@ -93,51 +103,73 @@ public class Settlement {
 
   /**
    * Removes an expense from the list of expenses.
-   * @param expenseId the expense ID to be removed
-   * @return true if the expense was removed successfully, false if it was not in the list
+   *
+   * @param   expenseId the expense ID to be removed
+   * @return  true if the expense was removed successfully, false if it was not in the list
    */
   public boolean removeExpense(long expenseId) {
     return expenses.remove(expenseId);
   }
 
   /**
-   * Gets the list of expenses in the settlement.
+   * Return an unmodifiable list of expenses.
    *
-   * @return the list of expenses in the settlement
+   * @return  an unmodifiable list of expenses
    */
   public List<Long> getExpenses() {
     return Collections.unmodifiableList(expenses);
   }
 
   /**
-   * Adds a member to this settlement.
-   * @param   userId the ID of the user to add
+   * Adds a member to the settlement.
+   *
+   * @param   userId the user ID
    */
   public void addMember(long userId) {
     members.add(userId);
   }
 
+  /**
+   * Removes a member from the settlement.
+   *
+   * @param   userId the user ID
+   */
   public void removeMember(long userId) {
     members.remove(userId);
   }
 
   /**
-   * Gets the list of members in the settlement.
+   * Returns an unmodifiable list of members.
    *
-   * @return the list of members in the settlement
+   * @return  an unmodifiable list of members
    */
   public List<Long> getMembers() {
     return Collections.unmodifiableList(members);
   }
 
+  /**
+   * Returns the date when the settlement was created.
+   *
+   * @return  the date when the settlement was created
+   */
   public Date getDate() {
     return date;
   }
 
+  /**
+   * Change the settlement end status.
+   *
+   * @param   ended whether it is ended
+   */
   public void setEnded(boolean ended) {
     this.ended = ended;
   }
 
+  /**
+   * Returns true if the settlement is ended, otherwise false.
+   *
+   * @return  true if the settlement is ended, otherwise false
+   */
   public boolean isEnded() {
     return ended;
   }
