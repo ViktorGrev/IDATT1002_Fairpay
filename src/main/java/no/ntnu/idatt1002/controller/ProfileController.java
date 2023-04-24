@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.User;
-import no.ntnu.idatt1002.scene.SceneSwitcher;
+import no.ntnu.idatt1002.scene.Page;
 import no.ntnu.idatt1002.util.DateUtil;
 
 import java.net.URL;
@@ -18,7 +18,7 @@ public final class ProfileController extends MenuController implements Initializ
 
   @FXML
   private void profileSettingsClick() {
-    SceneSwitcher.setView("profilesettings");
+    viewPage(Page.PROFILE_SETTINGS);
   }
 
   @Override

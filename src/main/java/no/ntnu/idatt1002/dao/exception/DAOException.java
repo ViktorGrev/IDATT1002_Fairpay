@@ -6,19 +6,21 @@ package no.ntnu.idatt1002.dao.exception;
  */
 public class DAOException extends RuntimeException {
 
-    /**
-     * Instantiates a new DAOException.
-     * @param   string the detail message
-     */
-    public DAOException(String string) {
-        super(string);
-    }
+  /**
+   * Constructs a new DAOException.
+   *
+   * @param   string the detail message
+   */
+  public DAOException(String string) {
+    super(string);
+  }
 
-    /**
-     * Instantiates a new DAOException.
-     * @param   throwable the cause
-     */
-    public DAOException(Throwable throwable) {
-        super(throwable);
-    }
+  /**
+   * Constructs a new DAOException.
+   *
+   * @param   throwable the cause
+   */
+  public DAOException(Throwable throwable) {
+    super(throwable);
+  }
 }

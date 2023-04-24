@@ -10,15 +10,16 @@ import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.Invite;
 import no.ntnu.idatt1002.data.User;
-import no.ntnu.idatt1002.scene.SceneSwitcher;
+import no.ntnu.idatt1002.scene.Page;
 import no.ntnu.idatt1002.util.DateUtil;
+import no.ntnu.idatt1002.util.TableEditor;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public final class DormGroupController extends MenuController implements Initializable {
+public final class GroupController extends MenuController implements Initializable {
 
   @FXML private TextField inviteNameField;
   @FXML private Text inviteFeedback;
@@ -30,7 +31,7 @@ public final class DormGroupController extends MenuController implements Initial
   private void onLeaveGroup() {
     groupDAO.removeMember(Group.CURRENT, User.CURRENT);
     Group.setCurrent(-1);
-    SceneSwitcher.setView("joincreatepage");
+    viewPage(Page.JOIN_CREATE);
   }
 
   @FXML
@@ -100,6 +101,6 @@ public final class DormGroupController extends MenuController implements Initial
 
   @FXML
   public void dormGroupSettingsClick() {
-    SceneSwitcher.setView("dormgroupsettings");
+    viewPage(Page.GROUP_SETTINGS);
   }
 }

@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
+import no.ntnu.idatt1002.scene.Page;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DormGroupSettingsController extends MenuController implements Initializable {
+public class GroupSettingsController extends MenuController implements Initializable {
 
   @FXML private TextField groupNameField;
   @FXML private Label errorBox;
@@ -46,7 +46,7 @@ public class DormGroupSettingsController extends MenuController implements Initi
 
   @FXML
   private void goBackClick() {
-    SceneSwitcher.setView("dormgroup");
+    SceneSwitcher.setView(Page.GROUP);
   }
 
   @Override

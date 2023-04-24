@@ -5,85 +5,88 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
-import no.ntnu.idatt1002.scene.SceneSwitcher;
+import no.ntnu.idatt1002.scene.Page;
 
 abstract class MenuController extends Controller {
 
-    @FXML
-    private void homeClick() {
-        SceneSwitcher.setView("homepage");
-    }
+  /**
+   * Send the user to the home page.
+   */
+  @FXML
+  private void homeClick() {
+    viewPage(Page.HOMEPAGE);
+  }
 
-    /**
-     * Send the user to the expense page.
-     */
-    @FXML
-    private void profileClick() {
-        SceneSwitcher.setView("profile");
-    }
+  /**
+   * Send the user to the expense page.
+   */
+  @FXML
+  private void profileClick() {
+    viewPage(Page.PROFILE);
+  }
 
-    /**
-     * Send the user to the expense page.
-     */
-    @FXML
-    private void expenseButtonClick() {
-        SceneSwitcher.setView("expense");
-    }
+  /**
+   * Send the user to the expense page.
+   */
+  @FXML
+  private void expensesClick() {
+    viewPage(Page.EXPENSE);
+  }
 
-    /**
-     * Send the user to the settlement page.
-     */
-    @FXML
-    private void settlementButtonClick() {
-        SceneSwitcher.setView("settlement");
-    }
+  /**
+   * Send the user to the settlement page.
+   */
+  @FXML
+  private void settlementButtonClick() {
+    viewPage(Page.SETTLEMENT);
+  }
 
-    /**
-     * Send the user to the status page.
-     */
-    @FXML
-    private void statusButtonClick() {
-        SceneSwitcher.setView("status");
-    }
+  /**
+   * Send the user to the status page.
+   */
+  @FXML
+  private void statusButtonClick() {
+    viewPage(Page.STATUS);
+  }
 
-    /**
-     * Send the user to the budget page.
-     */
-    @FXML
-    private void budgetClick() {
-        SceneSwitcher.setView("budget");
-    }
+  /**
+   * Send the user to the budget page.
+   */
+  @FXML
+  private void budgetClick() {
+    viewPage(Page.BUDGET);
+  }
 
-    /**
-     * Send the user to the dorm group page.
-     */
-    @FXML
-    private void dormGroupClick() {
-        SceneSwitcher.setView("dormgroup");
-    }
+  /**
+   * Send the user to the group page.
+   */
+  @FXML
+  private void dormGroupClick() {
+    viewPage(Page.GROUP);
+  }
 
-    /**
-     * Send the user to the income page.
-     */
-    @FXML
-    private void incomeClick() {
-        SceneSwitcher.setView("income");
-    }
+  /**
+   * Send the user to the income page.
+   */
+  @FXML
+  private void incomeClick() {
+    viewPage(Page.INCOME);
+  }
 
-    /**
-     * Send the user to the login page.
-     */
-    @FXML
-    private void logoutButtonClick() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You are about to logout!");
-        alert.setContentText("Do you wish to logout?");
+  /**
+   * Send the user to the login page.
+   */
+  @FXML
+  private void logoutButtonClick() {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Logout");
+    alert.setHeaderText("You are about to logout!");
+    alert.setContentText("Do you wish to logout?");
 
-        if(alert.showAndWait().get() == ButtonType.OK){
-            Group.setCurrent(-1);
-            User.setCurrent(-1);
-            SceneSwitcher.setView("login");
-        }
+    if(alert.showAndWait().get() == ButtonType.OK){
+      Group.setCurrent(-1);
+      User.setCurrent(-1);
+      viewPage(Page.LOGIN);
     }
+  }
 }

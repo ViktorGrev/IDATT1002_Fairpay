@@ -18,22 +18,22 @@ class SettlementTest {
   @Test
   void addExpenseTest() {
     Settlement s = new Settlement(1, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getExpenseId());
-    assertTrue(s.getExpenses().contains(expense.getExpenseId()));
+    s.addExpense(expense.getId());
+    assertTrue(s.getExpenses().contains(expense.getId()));
   }
 
   @Test
   void removeExpenseTest() {
     Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getExpenseId());
-    s.removeExpense(expense.getExpenseId());
+    s.addExpense(expense.getId());
+    s.removeExpense(expense.getId());
     assertTrue(s.getExpenses().isEmpty());
   }
 
   @Test
   void getExpensesTest() {
     Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getExpenseId());
+    s.addExpense(expense.getId());
     assertEquals(1, s.getExpenses().size());
   }
 

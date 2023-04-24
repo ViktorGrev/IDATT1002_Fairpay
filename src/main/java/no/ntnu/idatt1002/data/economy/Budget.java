@@ -4,51 +4,49 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The budget class maps multiple expense types to a number.
+ */
 public class Budget {
 
-    private final Map<ExpenseType, BigDecimal> budget = new HashMap<>();
+  private final Map<ExpenseType, BigDecimal> budget = new HashMap<>();
 
-    /**
-     * Gets the total amount of the budget.
-     *
-     * @return the total amount of the budget
-     */
-    public BigDecimal getTotal() {
-        long total = 0;
-        for(ExpenseType expense : ExpenseType.values()) {
-            total += getAmount(expense).longValue();
-        }
-        return BigDecimal.valueOf(total);
-    }
+  /**
+   * Enter a specified amount for an expense type for the budget.
+   *
+   * @param   type the expense type
+   * @param   amount the amount of the expense type
+   * @throws  IllegalArgumentException if the type is null or the amount is negative
+   */
+  public void add(ExpenseType type, BigDecimal amount) {
+    if (type == null) throw new IllegalArgumentException("type is null");
+    if (amount.compareTo(BigDecimal.ZERO) < 0)
+      throw new IllegalArgumentException("amount is negative");
+    budget.put(type, amount);
+  }
 
-    /**
-     * Adds an expense to the budget.
-     *
-     * @param type the type of the expense
-     * @param amount the amount of the expense
-     * @throws IllegalArgumentException if the amount is negative or if the type is null
-     */
-    public void add(ExpenseType type, BigDecimal amount) {
-        if(amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Amount cannot be negative");
-        }
-        if(type == null) {
-            throw new IllegalArgumentException("Type cannot be null");
-        }
-        budget.put(type, amount);
-    }
+  /**
+   * Returns the amount for the specified expense type in the budget.
+   *
+   * @param   type the expense type
+   * @return  the amount for the specified expense type
+   * @throws  IllegalArgumentException if the expense type is null
+   */
+  public BigDecimal getAmount(ExpenseType type) {
+    if (type == null) throw new IllegalArgumentException("type is null");
+    return budget.getOrDefault(type, BigDecimal.ZERO);
+  }
 
-    /**
-     * Gets the amount of an expense type in the budget.
-     *
-     * @param type the type of the expense
-     * @return the amount of the expense
-     * @throws IllegalArgumentException if the type is null
-     */
-    public BigDecimal getAmount(ExpenseType type) {
-        if(type == null) {
-            throw new IllegalArgumentException("Type cannot be null");
-        }
-        return budget.getOrDefault(type, BigDecimal.ZERO);
+  /**
+   * Returns the total amount spendable for the budget.
+   *
+   * @return  the total amount spendable for the budget
+   */
+  public BigDecimal getTotal() {
+    BigDecimal total = BigDecimal.ZERO;
+    for (ExpenseType expense : ExpenseType.values()) {
+      total = total.add(getAmount(expense));
     }
+    return total;
+  }
 }

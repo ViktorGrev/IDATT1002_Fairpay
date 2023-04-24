@@ -11,21 +11,23 @@ import java.util.Date;
  */
 public interface ExpenseDAO extends DAO<Expense, Long> {
 
-    /**
-     * Creates an expense.
-     * @param   userId the ID of the user adding the expense
-     * @param   type the expense type
-     * @param   name the name
-     * @param   amount the amount
-     * @param   date the date
-     * @param   shares the amount of people this expense is shared between
-     * @return  a new expense
-     */
-    Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares);
+  /**
+   * Creates an expense.
+   *
+   * @param   userId the ID of the user adding the expense
+   * @param   type the expense type
+   * @param   name the name
+   * @param   amount the amount
+   * @param   date the date
+   * @param   shares the amount of people this expense is shared between
+   * @return  a new expense
+   */
+  Expense create(long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares);
 
-    /**
-     * Deletes an expense.
-     * @param   expenseId the expense ID
-     */
-    void delete(long expenseId);
+  /**
+   * Deletes an expense.
+   *
+   * @param   expenseId the expense ID
+   */
+  void delete(long expenseId);
 }

@@ -2,70 +2,35 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.EditSettlementController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="no.ntnu.idatt1002.controller.ExpenseAddController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="466.0" style="-fx-background-color: #572828;">
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="nameField" text="Settlement name" textFill="WHITE">
+                        <Label text="Add expence" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button fx:id="endButton" mnemonicParsing="false" onMouseClicked="#endSettlementClick" stylesheets="@style/topButton.css" text="End" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/box.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="End settlement" />
-                                 </tooltip>
-                              </Button>
-                              <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#deleteSettlementClick" stylesheets="@style/topButton.css" text="Delete" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Delete settlement" />
-                                 </tooltip>
-                              </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#addExpenseClick" stylesheets="@style/topButton.css" text="Add expense" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@image/addCart.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <tooltip>
-                                    <Tooltip text="Add expense" />
-                                 </tooltip>
-                              </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#goBackClick" stylesheets="@style/topButton.css" text="Go back" textFill="WHITE">
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#goBackClick" stylesheets="@style/topButton.css" text="Go back" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -74,7 +39,7 @@
                                     </ImageView>
                                  </graphic>
                                  <tooltip>
-                                    <Tooltip text="Delete settlement" />
+                                    <Tooltip text="Go back" />
                                  </tooltip>
                               </Button>
                            </children>
@@ -86,32 +51,37 @@
                   </HBox>
                </top>
                <left>
-                  <VBox fx:id="memberBox" prefHeight="287.0" prefWidth="102.0" stylesheets="@style/stylesheet.css" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="301.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="38.0" prefWidth="116.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #793f3f;" text="Members:" textFill="#793f3f" VBox.vgrow="ALWAYS">
+                        <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
+                        <ComboBox fx:id="typeField" prefWidth="150.0" styleClass="combo-box" stylesheets="@style/stylesheet.css" />
+                        <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
+                        <TextField fx:id="nameField" stylesheets="@style/formstyle.css" visible="false">
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):" />
+                        <TextField fx:id="amountField" stylesheets="@style/formstyle.css" />
+                        <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
+                        <DatePicker fx:id="dateField" stylesheets="@style/stylesheet.css" />
                      </children>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
                   </VBox>
                </left>
-               <center>
-                  <Pane fx:id="paymentsPane" BorderPane.alignment="CENTER">
+               <bottom>
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TableView fx:id="expenseTable" prefHeight="284.0" prefWidth="345.0" styleClass="table-viewOnPage" stylesheets="@style/stylesheet.css">
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
+                        <Button mnemonicParsing="false" onAction="#addExpenseClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
+                           <HBox.margin>
+                              <Insets bottom="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
-                  </Pane>
-               </center>
+                  </HBox>
+               </bottom>
             </BorderPane>
          </center>
          <left>
@@ -165,7 +135,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expensesClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -210,7 +180,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

@@ -18,4 +18,7 @@ module no.ntnu.idatt1002 {
     exports no.ntnu.idatt1002.data.economy;
     exports no.ntnu.idatt1002.controller;
     exports no.ntnu.idatt1002.scene;
+    exports no.ntnu.idatt1002.util;
+    opens no.ntnu.idatt1002.util;
+    opens no.ntnu.idatt1002.scene;
 }
