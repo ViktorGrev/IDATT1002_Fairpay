@@ -159,6 +159,23 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
         }
     }
 
+    private static final String UPDATE_ENDED = "UPDATE settlements SET ended = ? WHERE settlementId = ?;";
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setEnded(long settlementId, boolean ended) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(UPDATE_ENDED)) {
+            statement.setInt(1, ended ? 1 : 0);
+            statement.setLong(2, settlementId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static final String FIND_MEMBERS = "SELECT * FROM settlementUsers WHERE settlementId = ?;";
 
     /**
@@ -218,9 +235,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
             statement.setLong(1, filter);
             try(ResultSet resultSet = statement.executeQuery()) {
                 if(resultSet.next()) {
-                    Settlement settlement = buildSettlement(resultSet);
-                    getExpenses(settlement.getId()).forEach(settlement::addExpense);
-                    return settlement;
+                    return buildSettlement(resultSet);
                 }
             }
             return null;
@@ -251,7 +266,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
         boolean ended = resultSet.getBoolean("ended");
         Settlement settlement = new Settlement(settlementId, userId, name, date, ended);
         getMembers(settlementId).forEach(settlement::addMember);
-        getExpenses(settlement.getId()).forEach(settlement::addExpense);
+        getExpenses(settlementId).forEach(settlement::addExpense);
         return settlement;
     }
 

@@ -28,8 +28,8 @@ public final class BudgetController extends MenuController implements Initializa
         Budget budget = budgetDAO.find(Group.CURRENT);
 
         TableEditor<ExpenseType> budgetTableEditor = new TableEditor<>(budgetTable)
-                .addColumn("Expense type", ExpenseType::getCategoryName)
-                .addColumn("Amount", type -> createInputField(type, budget.getAmount(type).longValue()));
+                .addColumn("Category", ExpenseType::getCategoryName)
+                .addColumn("Amount (kr)", type -> createInputField(type, budget.getAmount(type).longValue()));
         for(ExpenseType type : ExpenseType.values())
             budgetTableEditor.addRow(type);
 
@@ -47,13 +47,16 @@ public final class BudgetController extends MenuController implements Initializa
     private TextField createInputField(ExpenseType type, long amount) {
         TextField inputField = new TextField(String.valueOf(amount));
         inputField.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                budgetDAO.addType(Group.CURRENT, type,
-                        BigDecimal.valueOf(Long.parseLong(inputField.getText())));
+            if(event.getCode() == KeyCode.ENTER) {
+                budgetDAO.addType(Group.CURRENT, type, BigDecimal.valueOf(Long.parseLong(inputField.getText())));
                 SceneSwitcher.setView("budget");
+            }
+        });
+        inputField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                inputField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
         return inputField;
     }
 }
-

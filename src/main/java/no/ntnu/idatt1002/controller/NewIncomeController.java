@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import no.ntnu.idatt1002.data.Group;
@@ -9,10 +10,12 @@ import no.ntnu.idatt1002.data.economy.Income;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 
 import java.math.BigDecimal;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.ResourceBundle;
 
-public final class NewIncomeController extends MenuController {
+public final class NewIncomeController extends MenuController implements Initializable {
 
     @FXML private TextField nameField;
     @FXML private TextField amountField;
@@ -34,5 +37,15 @@ public final class NewIncomeController extends MenuController {
     @FXML
     private void goBackClick() {
         SceneSwitcher.setView("income");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dateField.setValue(LocalDate.now());
+        amountField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                amountField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }

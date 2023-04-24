@@ -50,4 +50,11 @@ public interface SettlementDAO extends DAO<Settlement, Long> {
      * @param   expenseId the expense ID
      */
     void addExpense(long settlementId, long expenseId);
+
+    /**
+     * Set the end status for a settlement
+     * @param   settlementId the settlement ID
+     * @param   ended whether the settlement is ended
+     */
+    void setEnded(long settlementId, boolean ended);
 }

@@ -1,17 +1,13 @@
 package no.ntnu.idatt1002.controller;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.User;
-import no.ntnu.idatt1002.data.economy.Expense;
 import no.ntnu.idatt1002.data.economy.Income;
 import no.ntnu.idatt1002.scene.SceneSwitcher;
 import no.ntnu.idatt1002.util.DateUtil;
@@ -25,7 +21,6 @@ public final class IncomeController extends MenuController implements Initializa
     @FXML private TableView<Income> incomeTable;
     @FXML private Text totalAmountField;
     @FXML private Text totalAmountReceive;
-    //@FXML private VBox mustPayField;
 
     @FXML
     private void newIncomeClick() {
@@ -94,23 +89,6 @@ public final class IncomeController extends MenuController implements Initializa
         totalAmountField.setText(totalPay + " kr");
 
         totalAmountReceive.setText(totalReceive + " kr");
-
-        /*mustPayField.getChildren().clear();
-        if(totalPay != 0) {
-            Map<Long, User> users = UserUtil.toMap(group.getMembers());
-            ScrollPane scrollPane = new ScrollPane();
-            scrollPane.setFitToWidth(true);
-            VBox vBox = new VBox();
-            for(long l : owes.keySet()) {
-                HBox hBox = new HBox();
-                hBox.getChildren().addAll(new Label(users.get(l).getUsername() + ": "), new Label(owes.get(l) + "kr"));
-                hBox.setStyle("-fx-font-size: 14");
-                vBox.getChildren().add(hBox);
-            }
-            scrollPane.setContent(vBox);
-            mustPayField.getChildren().add(new Label("You must pay the following:"));
-            mustPayField.getChildren().add(scrollPane);
-        }*/
     }
 
     private Object createReceivedBox(Income income) {

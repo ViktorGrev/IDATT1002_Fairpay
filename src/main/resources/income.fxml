@@ -58,7 +58,7 @@
                   </TableView>
                </center>
                <bottom>
-                  <AnchorPane style="-fx-border-color: #793f3f; -fx-border-style: solid hidden hidden hidden;" BorderPane.alignment="CENTER">
+                  <AnchorPane style="-fx-border-color: #793f3f; -fx-border-style: solid hidden hidden hidden; -fx-background-color: none;" BorderPane.alignment="CENTER">
                      <children>
                         <VBox>
                            <children>
