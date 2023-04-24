@@ -40,7 +40,7 @@ public final class HomepageController extends MenuController implements Initiali
     private void displayActivity() {
         ScrollPane scrollPane = new ScrollPane();
         Label notificationLabel = new Label("Recent Activity");
-        notificationLabel.setStyle("-fx-font-size: 17; -fx-padding: 3 0 0 10");
+        notificationLabel.setStyle("-fx-font-size: 17; -fx-padding: 3 0 0 10; -fx-text-fill: #9c5151");
         notifBox.getChildren().clear();
         notifBox.getChildren().add(notificationLabel);
         notifBox.getChildren().add(scrollPane);
@@ -64,7 +64,7 @@ public final class HomepageController extends MenuController implements Initiali
                     "-fx-background-color: white;" +
                     "-fx-cursor: hand;");
             if(notifications.indexOf(notification) == notifications.size() - 1) {
-                vBox2.setStyle("-fx-padding: 10 0 5 10;-fx-border-style: hidden; -fx-background-color: white");
+                vBox2.setStyle("-fx-padding: 10 0 5 10;-fx-border-style: hidden; -fx-background-color: white; -fx-cursor: hand");
             }
             vBox2.getChildren().addAll(label, content);
             vBox2.setOnMouseClicked(e -> notification.runAction());
