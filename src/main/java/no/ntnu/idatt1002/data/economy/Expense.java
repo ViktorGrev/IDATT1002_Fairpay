@@ -12,10 +12,11 @@ public class Expense {
 
     private final long expenseId; // The ID of the expense
     private final long userId; // The ID of the user who made the expense
+    private final Date addDate; // The date when the expense was added
     private final ExpenseType type; // The type of the expense
     private final String name; // The name of the expense
     private final BigDecimal amount; // The amount of the expense
-    private final Date date; // The date the expense was made
+    private final Date date; // The date the expense is for
     private final int shares;
 
     /**
@@ -27,7 +28,7 @@ public class Expense {
      * @param userId the ID of the user who made the expense
      */
     public Expense(long expenseId, ExpenseType type, BigDecimal amount, long userId) {
-        this(expenseId, userId, type, null, amount, new Date(), 1);
+        this(expenseId, userId, new Date(), type, null, amount, new Date(), 1);
     }
 
     /**
@@ -36,6 +37,7 @@ public class Expense {
      *
      * @param expenseId
      * @param userId    the ID of the user who made the expense
+     * @param addDate
      * @param type      the type of the expense
      * @param name      the name of the expense
      * @param amount    the amount of the expense
@@ -43,8 +45,9 @@ public class Expense {
      * @throws IllegalArgumentException if the user ID is negative, the expense type is null,
      *                                  the name is blank, or the amount is negative
      */
-    public Expense(long expenseId, long userId, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
+    public Expense(long expenseId, long userId, Date addDate, ExpenseType type, String name, BigDecimal amount, Date date, int shares) {
         this.expenseId = expenseId;
+        this.addDate = addDate;
         this.shares = shares;
         if (userId < 0){
             throw new IllegalArgumentException("Incorrect user-id");
@@ -77,6 +80,14 @@ public class Expense {
      */
     public long getUserId() {
         return userId;
+    }
+
+    /**
+     * Returns the date when the expense was added.
+     * @return  the date when the expense was added
+     */
+    public Date getAddDate() {
+        return addDate;
     }
 
     /**

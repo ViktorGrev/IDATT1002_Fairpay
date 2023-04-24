@@ -24,26 +24,30 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="41.0" prefWidth="121.0" text="Income" textFill="WHITE">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#newIncomeClick" style="-fx-background-color: none; -fx-cursor: hand;" text="Add income" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/payment.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="Add income" />
-                           </tooltip>
-                        </Button>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#newIncomeClick" stylesheets="@style/topButton.css" text="Add income" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/payment.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Add income" />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                </top>
                <center>
@@ -54,46 +58,34 @@
                   </TableView>
                </center>
                <bottom>
-                  <AnchorPane prefHeight="145.0" prefWidth="453.0" BorderPane.alignment="CENTER">
+                  <AnchorPane style="-fx-border-color: #793f3f; -fx-border-style: solid hidden hidden hidden;" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox layoutX="19.0" layoutY="7.0" prefHeight="135.0" prefWidth="411.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="7.0">
+                        <VBox>
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <HBox alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="128.0" prefWidth="403.0" spacing="10.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
-                                       <children>
-                                          <Label text="Total amount: ">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Text fx:id="totalAmountField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.13671875">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Text>
-                                          <Label />
-                                          <VBox prefHeight="127.0" prefWidth="182.0">
-                                             <children>
-                                                <VBox fx:id="mustPayField" prefHeight="200.0" prefWidth="100.0">
-                                                   <children>
-                                                      <Label prefHeight="21.0" prefWidth="188.0" text="You are owed:">
-                                                         <font>
-                                                            <Font size="15.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </AnchorPane>
+                              <Label prefHeight="27.0" prefWidth="178.0" text="Total amount to pay: ">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="totalAmountField" fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 kr" wrappingWidth="113.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Label prefHeight="27.0" prefWidth="202.0" text="Total amount to receive: ">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="totalAmountReceive" fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="1000 kr" wrappingWidth="118.13671875">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Text>
                            </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </AnchorPane>
@@ -136,7 +128,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Group" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -151,7 +143,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -196,7 +188,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

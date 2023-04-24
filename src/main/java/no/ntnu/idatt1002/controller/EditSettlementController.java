@@ -36,6 +36,11 @@ public final class EditSettlementController extends MenuController implements In
     SceneSwitcher.setView("settlement");
   }
 
+  @FXML
+  private void goBackClick() {
+    SceneSwitcher.setView("settlement");
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     Settlement settlement = settlementDAO.find(SettlementController.settlementId);

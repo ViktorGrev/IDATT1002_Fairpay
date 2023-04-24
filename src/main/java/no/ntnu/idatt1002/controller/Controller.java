@@ -72,9 +72,11 @@ abstract class Controller {
                 fetch.add(id);
             }
         }
-        for(User user : userDAO.find(fetch)) {
-            users.add(user);
-            userCache.put(user.getId(), user);
+        if(!fetch.isEmpty()) {
+            for(User user : userDAO.find(fetch)) {
+                users.add(user);
+                userCache.put(user.getId(), user);
+            }
         }
         return users;
     }
@@ -110,9 +112,11 @@ abstract class Controller {
                 fetch.add(id);
             }
         }
-        for(Group group : groupDAO.find(fetch)) {
-            groups.add(group);
-            groupCache.put(group.getId(), group);
+        if(!fetch.isEmpty()) {
+            for(Group group : groupDAO.find(fetch)) {
+                groups.add(group);
+                groupCache.put(group.getId(), group);
+            }
         }
         return groups;
     }

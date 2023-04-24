@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,14 +26,30 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="466.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="41.0" prefWidth="149.0" text="Profile settings" textFill="WHITE">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="289.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#goBackClick" stylesheets="@style/topButton.css" text="Go back" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/arrow_left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Go back" />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                </top>
                <center>
@@ -40,7 +57,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="474.0" prefWidth="659.0">
                            <children>
-                              <VBox prefHeight="474.0" prefWidth="216.0">
+                              <VBox prefHeight="271.0" prefWidth="216.0">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                        <children>
@@ -73,11 +90,6 @@
                                           <Insets bottom="5.0" left="27.0" top="10.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Text fx:id="nameFeedbackField" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
-                                       <font>
-                                          <Font name="Roboto Bold" size="13.0" />
-                                       </font>
-                                    </Text>
                                     <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="216.0">
                                        <children>
                                           <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -106,11 +118,6 @@
                                           <Insets bottom="5.0" left="27.0" top="10.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Text fx:id="numberFeedbackField" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
-                                       <font>
-                                          <Font name="Roboto Bold" size="13.0" />
-                                       </font>
-                                    </Text>
                                     <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="216.0">
                                        <children>
                                           <ImageView fitHeight="24.0" fitWidth="23.0">
@@ -128,6 +135,19 @@
                                           </TextField>
                                        </children>
                                     </HBox>
+                                    <Label fx:id="errorBox" prefHeight="19.0" prefWidth="224.0" style="-fx-background-color: #fcd0ca; -fx-border-color: #ff8878;" visible="false" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="10.0" />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="infoBox" prefHeight="19.0" prefWidth="224.0" style="-fx-background-color: #cce6ff; -fx-border-color: #4ea7fc;" visible="false">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Button alignment="CENTER" mnemonicParsing="false" onAction="#updateProfileClick" prefHeight="29.0" prefWidth="172.0" style="-fx-background-color: #793f3f;" styleClass="startButton" stylesheets="@style/stylesheet.css" text="Update" textFill="WHITE">
@@ -149,7 +169,7 @@
                                     </HBox>
                                  </children>
                                  <HBox.margin>
-                                    <Insets top="40.0" />
+                                    <Insets top="20.0" />
                                  </HBox.margin>
                               </VBox>
                            </children>
@@ -199,7 +219,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Group" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -214,7 +234,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -259,7 +279,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

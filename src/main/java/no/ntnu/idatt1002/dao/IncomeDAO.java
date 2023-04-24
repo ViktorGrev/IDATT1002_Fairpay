@@ -20,4 +20,10 @@ public interface IncomeDAO extends DAO<Income, Long> {
      * @return  a new income
      */
     Income create(long userId, String name, BigDecimal amount, Date date, int shares);
+
+    /**
+     * Deletes an income.
+     * @param   incomeId the income ID
+     */
+    void delete(long incomeId);
 }

@@ -39,27 +39,31 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="135.0" text="Private settlement" textFill="WHITE">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
+                        <Label prefHeight="41.0" prefWidth="135.0" text="Settlements" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" onMouseClicked="#newSettlementClick" style="-fx-background-color: none; -fx-cursor: hand;" text="Add settlement" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/whiteAddBox.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="New settlement" />
-                           </tooltip>
-                        </Button>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" onMouseClicked="#newSettlementClick" stylesheets="@style/topButton.css" text="New settlement" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image/whiteAddBox.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="New settlement" />
+                                 </tooltip>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                </top>
                <center>
@@ -107,7 +111,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Dormgroup" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#dormGroupClick" prefHeight="36.0" prefWidth="185.0" stylesheets="@style/stylesheet.css" text="Group" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>
@@ -122,7 +126,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Group expence" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="50.0" mnemonicParsing="false" onAction="#expenseButtonClick" prefHeight="36.0" prefWidth="201.0" stylesheets="@style/stylesheet.css" text="Expenses" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -167,7 +171,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Private settlement" textFill="WHITE">
+                  <Button id="buttonFocus" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#settlementButtonClick" prefHeight="36.0" prefWidth="186.0" stylesheets="@style/stylesheet.css" text="Settlements" textFill="WHITE">
                      <opaqueInsets>
                         <Insets left="30.0" />
                      </opaqueInsets>

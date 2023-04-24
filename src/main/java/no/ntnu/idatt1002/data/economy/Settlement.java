@@ -17,7 +17,6 @@ public class Settlement {
   private final List<Long> expenses;
   private final List<Long> members;
   private boolean ended;
-  private boolean deleted;
 
   /**
    * Constructs a new Settlement object with a given name, ID, and list of members.
@@ -28,7 +27,7 @@ public class Settlement {
    * @param date
    * @throws IllegalArgumentException if the settlement name is blank, the settlement ID is negative, or the list of members is empty
    */
-  public Settlement(long settlementId, long userId, String settlementName, Date date, boolean ended, boolean deleted) {
+  public Settlement(long settlementId, long userId, String settlementName, Date date, boolean ended) {
     if(settlementName.isBlank()){
       throw new IllegalArgumentException("The settlement name cannot be blank");
     }
@@ -43,7 +42,6 @@ public class Settlement {
     this.expenses = new ArrayList<>();
     this.date = date;
     this.ended = ended;
-    this.deleted = deleted;
   }
 
   /**
@@ -142,13 +140,5 @@ public class Settlement {
 
   public boolean isEnded() {
     return ended;
-  }
-
-  public void setDeleted(boolean deleted) {
-    this.deleted = deleted;
-  }
-
-  public boolean isDeleted() {
-    return deleted;
   }
 }
