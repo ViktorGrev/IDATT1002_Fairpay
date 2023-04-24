@@ -65,5 +65,11 @@ public final class AddExpenseController extends MenuController implements Initia
         typeField.setValue(ExpenseType.FOOD.getCategoryName());
 
         dateField.setValue(LocalDate.now());
+
+        amountField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                amountField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }

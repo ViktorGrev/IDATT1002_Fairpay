@@ -19,47 +19,53 @@ import java.util.ResourceBundle;
 
 public final class AddSettlementExpenseController extends MenuController implements Initializable {
 
-  @FXML private ComboBox<String> typeField;
-  @FXML private Label nameText;
-  @FXML private TextField nameField;
-  @FXML private TextField amountField;
-  @FXML private DatePicker dateField;
+    @FXML private ComboBox<String> typeField;
+    @FXML private Label nameText;
+    @FXML private TextField nameField;
+    @FXML private TextField amountField;
+    @FXML private DatePicker dateField;
 
-  @FXML
-  private void addExpenseClick() {
-    ExpenseType type = ExpenseType.fromName(typeField.getValue());
-    String name = nameField.getText().isBlank() ? null : nameField.getText();
-    BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
-    LocalDate localDate = dateField.getValue();
-    Date date = java.sql.Date.valueOf(localDate);
-    Expense expense = expenseDAO.create(User.CURRENT, type, name, amount, date, 1);
-    settlementDAO.addExpense(SettlementController.settlementId, expense.getExpenseId());
-    SceneSwitcher.setView("editSettlement");
-  }
-
-  @FXML
-  private void goBackClick() {
-    SceneSwitcher.setView("editSettlement");
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle resourceBundle) {
-    typeField.setOnAction(e -> {
-      if(typeField.getValue().equals("Other")) {
-        nameText.setVisible(true);
-        nameField.setVisible(true);
-      } else {
-        nameText.setVisible(false);
-        nameField.setVisible(false);
-      }
-    });
-
-    for(ExpenseType type : ExpenseType.values()) {
-      typeField.getItems().add(type.getCategoryName());
+    @FXML
+    private void addExpenseClick() {
+        ExpenseType type = ExpenseType.fromName(typeField.getValue());
+        String name = nameField.getText().isBlank() ? null : nameField.getText();
+        BigDecimal amount = BigDecimal.valueOf(Long.parseLong(amountField.getText()));
+        LocalDate localDate = dateField.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        Expense expense = expenseDAO.create(User.CURRENT, type, name, amount, date, 1);
+        settlementDAO.addExpense(SettlementController.settlementId, expense.getExpenseId());
+        SceneSwitcher.setView("editSettlement");
     }
 
-    typeField.setValue(ExpenseType.FOOD.getCategoryName());
+    @FXML
+    private void goBackClick() {
+        SceneSwitcher.setView("editSettlement");
+    }
 
-    dateField.setValue(LocalDate.now());
-  }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        typeField.setOnAction(e -> {
+            if(typeField.getValue().equals("Other")) {
+                nameText.setVisible(true);
+                nameField.setVisible(true);
+            } else {
+                nameText.setVisible(false);
+                nameField.setVisible(false);
+            }
+        });
+
+        for(ExpenseType type : ExpenseType.values()) {
+            typeField.getItems().add(type.getCategoryName());
+        }
+
+        typeField.setValue(ExpenseType.FOOD.getCategoryName());
+
+        dateField.setValue(LocalDate.now());
+
+        amountField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                amountField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
 }

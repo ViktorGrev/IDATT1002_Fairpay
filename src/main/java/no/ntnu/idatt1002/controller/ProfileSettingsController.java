@@ -71,5 +71,10 @@ public class ProfileSettingsController extends MenuController implements Initial
     usernameField.setText(user.getUsername());
     usernameField.positionCaret(user.getUsername().length());
     numberField.setText(String.valueOf(user.getPhoneNumber()));
+    numberField.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (!newValue.matches("\\d*")) {
+        numberField.setText(newValue.replaceAll("[^\\d]", ""));
+      }
+    });
   }
 }

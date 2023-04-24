@@ -27,7 +27,6 @@ public final class ExpenseController extends MenuController implements Initializ
     @FXML private TableView<Expense> expenseTable;
     @FXML private Text totalAmountField;
     @FXML private Text totalAmountReceive;
-    //@FXML private VBox mustPayField;
 
     @FXML
     private void addExpenseClick() {
@@ -93,23 +92,6 @@ public final class ExpenseController extends MenuController implements Initializ
         totalAmountField.setText(total + " kr");
 
         totalAmountReceive.setText(totalReceive + " kr");
-
-        /*mustPayField.getChildren().clear();
-        if(total != 0) {
-            Map<Long, User> users = UserUtil.toMap(group.getMembers());
-            ScrollPane scrollPane = new ScrollPane();
-            scrollPane.setFitToWidth(true);
-            VBox vBox = new VBox();
-            for(long l : owes.keySet()) {
-                HBox hBox = new HBox();
-                hBox.getChildren().addAll(new Label(users.get(l).getUsername() + ": "), new Label(owes.get(l) + "kr"));
-                hBox.setStyle("-fx-font-size: 14");
-                vBox.getChildren().add(hBox);
-            }
-            scrollPane.setContent(vBox);
-            mustPayField.getChildren().add(new Label("You must pay the following:"));
-            mustPayField.getChildren().add(scrollPane);
-        }*/
     }
 
     private Object createPaidBox(Expense expense) {
