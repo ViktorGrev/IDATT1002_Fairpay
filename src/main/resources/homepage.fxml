@@ -32,7 +32,7 @@
                               </Tooltip>
                            </tooltip>
                         </Button>
-                        <Text fx:id="welcomeText" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
+                        <Text fx:id="welcomeText" fill="#9c5151" layoutX="14.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, name!">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -56,7 +56,7 @@
                                                    <children>
                                                       <VBox alignment="CENTER" prefHeight="131.0" prefWidth="189.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="10.0">
                                                          <children>
-                                                            <Text fx:id="inspirationalText" strokeType="OUTSIDE" strokeWidth="0.0" text="text" textAlignment="CENTER" wrappingWidth="174.0" VBox.vgrow="ALWAYS">
+                                                            <Text fx:id="inspirationalText" fill="#9c5151" strokeType="OUTSIDE" strokeWidth="0.0" text="text" textAlignment="CENTER" wrappingWidth="174.0" VBox.vgrow="ALWAYS">
                                                                <VBox.margin>
                                                                   <Insets left="10.0" />
                                                                </VBox.margin>
@@ -76,7 +76,7 @@
                                                          <children>
                                                             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Common shortcuts">
+                                                                  <Text fill="#9c5151" strokeType="OUTSIDE" strokeWidth="0.0" text="Common shortcuts">
                                                                      <font>
                                                                         <Font size="17.0" />
                                                                      </font>
@@ -137,7 +137,7 @@
                                                    <children>
                                                       <VBox fx:id="notifBox" layoutX="17.0" layoutY="34.0" prefHeight="162.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" stylesheets="@style/stylesheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
                                                          <children>
-                                                            <Label text="Notifications:">
+                                                            <Label text="Notifications:" textFill="#9c5151">
                                                                <font>
                                                                   <Font size="17.0" />
                                                                </font>
@@ -192,9 +192,6 @@
                      </children>
                   </AnchorPane>
                </center>
-               <left>
-                  <VBox fx:id="test" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-               </left>
             </BorderPane>
          </center>
          <left>
