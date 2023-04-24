@@ -45,39 +45,41 @@
 }
 
 .button3 {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #9c5151;
     -fx-fill-color: #FFFFFF;
     -fx-background-radius: 0em 0em 0em 1em;
+    -fx-text-fill: white;
 }
 
 .button3:hover{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .button3:pressed{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .button3:focused{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .button4 {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #9c5151;
     -fx-fill-color: #FFFFFF;
     -fx-background-radius: 0em 0em 1em 0em;
+    -fx-text-fill: white;
 }
 
 .button4:hover{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .button4:pressed{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .button4:focused{
-    -fx-background-color: #d3d0d0;
+    -fx-background-color: rgba(194, 104, 104, 0.9);
 }
 
 .startButton{
