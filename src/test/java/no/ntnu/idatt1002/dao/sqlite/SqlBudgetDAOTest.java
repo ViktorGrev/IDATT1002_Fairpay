@@ -1,4 +1,4 @@
-package no.ntnu.idatt1002.data.dao.sqlite;
+package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.FairPay;
 import no.ntnu.idatt1002.dao.BudgetDAO;
