@@ -23,7 +23,7 @@ public class SqlSettlementDAOTest {
   static void prepare() throws IOException {
     if(!FairPay.test) {
       FairPay.test = true;
-      Files.delete(Path.of("test.db"));
+      Files.deleteIfExists(Path.of("test.db"));
     }
     settlementDAO = Database.getDAO(SettlementDAO.class);
   }

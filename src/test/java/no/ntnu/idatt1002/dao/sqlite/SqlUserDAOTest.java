@@ -24,7 +24,7 @@ public class SqlUserDAOTest {
   static void prepare() throws IOException {
     if(!FairPay.test) {
       FairPay.test = true;
-      Files.delete(Path.of("test.db"));
+      Files.deleteIfExists(Path.of("test.db"));
     }
     userDAO = Database.getDAO(UserDAO.class);
   }

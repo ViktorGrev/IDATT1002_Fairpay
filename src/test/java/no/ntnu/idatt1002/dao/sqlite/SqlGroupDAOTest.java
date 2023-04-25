@@ -26,7 +26,7 @@ public class SqlGroupDAOTest {
   static void prepare() throws IOException {
     if(!FairPay.test) {
       FairPay.test = true;
-      Files.delete(Path.of("test.db"));
+      Files.deleteIfExists(Path.of("test.db"));
     }
     userDAO = Database.getDAO(UserDAO.class);
     groupDAO = Database.getDAO(GroupDAO.class);
