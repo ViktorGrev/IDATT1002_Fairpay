@@ -241,4 +241,18 @@ public final class Group {
   public static void setCurrent(long groupId) {
     CURRENT = groupId;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Group group = (Group) o;
+    return id == group.id && name.equals(group.name) && members.equals(group.members)
+            && expenses.equals(group.expenses) && income.equals(group.income) && paidExpenses.equals(group.paidExpenses) && receivedIncome.equals(group.receivedIncome);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, members, expenses, income, paidExpenses, receivedIncome);
+  }
 }

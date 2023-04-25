@@ -62,4 +62,18 @@ public final class Invite {
   public Date getDate() {
     return sendDate;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Invite invite = (Invite) o;
+    return groupId == invite.groupId && senderId == invite.senderId && targetId == invite.targetId
+            && Objects.equals(sendDate, invite.sendDate);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(groupId, senderId, targetId, sendDate);
+  }
 }

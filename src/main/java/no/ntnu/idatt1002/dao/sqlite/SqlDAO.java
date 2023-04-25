@@ -1,5 +1,6 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
+import no.ntnu.idatt1002.FairPay;
 import no.ntnu.idatt1002.dao.DAO;
 
 import java.sql.Connection;
@@ -12,19 +13,25 @@ import java.sql.SQLException;
  *
  * @see DAO
  */
-abstract class SqlDAO {
+public abstract class SqlDAO {
 
-  private static final String URL = "jdbc:sqlite:test.db";
+  /**
+   * Returns the URL for this SQL instance.
+   * @return  the URL for this SQL instance
+   */
+  private static String getURL() {
+    return "jdbc:sqlite:" + (FairPay.test ? "test" : "main") + ".db";
+  }
 
   /**
    * Attempts to establish a connection to the database located
    * at the specified URL, with an appropriate driver registered by the JDBC.
    *
-   * @return  a connection
+   * @return  a connection to the URL
    * @throws  SQLException if the access is denied or the URL is invalid
-   * @see DriverManager
+   * @see     DriverManager
    */
   protected static Connection getConnection() throws SQLException {
-    return DriverManager.getConnection(URL);
+    return DriverManager.getConnection(getURL());
   }
 }

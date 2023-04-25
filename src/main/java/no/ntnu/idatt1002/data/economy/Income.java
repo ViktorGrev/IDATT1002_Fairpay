@@ -2,6 +2,7 @@ package no.ntnu.idatt1002.data.economy;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * The Income class represents an income with an amount, a type, a user ID, and a date.
@@ -43,6 +44,8 @@ public class Income {
       throw new IllegalArgumentException("invalid ID");
     if (userId < 0)
       throw new IllegalArgumentException("invalid user ID");
+    if (amount == null)
+      throw new IllegalArgumentException("amount is null");
     if (amount.compareTo(BigDecimal.ZERO) < 0)
       throw new IllegalArgumentException("amount is negative");
     if (name == null)
@@ -121,5 +124,20 @@ public class Income {
    */
   public int getShares() {
     return shares;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Income income = (Income) o;
+    return id == income.id && userId == income.userId && shares == income.shares
+            && Objects.equals(addDate, income.addDate) && Objects.equals(name, income.name)
+            && Objects.equals(amount, income.amount) && Objects.equals(date, income.date);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, userId, addDate, name, amount, date, shares);
   }
 }

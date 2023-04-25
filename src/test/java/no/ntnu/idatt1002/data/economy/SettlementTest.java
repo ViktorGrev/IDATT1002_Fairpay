@@ -1,81 +1,73 @@
 package no.ntnu.idatt1002.data.economy;
 
-import no.ntnu.idatt1002.data.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Settlement test")
 class SettlementTest {
 
-  private final Expense expense = new Expense(1, 1, addDate, ExpenseType.CAR,
+  private final Expense expense = new Expense(1, 1, new Date(), ExpenseType.CAR,
           "Name", BigDecimal.valueOf(123), new Date(), 1);
+  private final Settlement settlement = new Settlement(1, 1, "Settlement1", new Date(), false);
 
   @Test
+  @DisplayName("Invalid expense")
+  void invalidExpenseTest() {
+    assertThrows(IllegalArgumentException.class, () -> new Expense(-1, 1, new Date(),
+            ExpenseType.INTERNET, "Name", BigDecimal.ONE, new Date(), 1));
+  }
+
+  @Test
+  @DisplayName("Add expense")
   void addExpenseTest() {
-    Settlement s = new Settlement(1, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getId());
-    assertTrue(s.getExpenses().contains(expense.getId()));
+    settlement.addExpense(expense.getId());
+    assertTrue(settlement.getExpenses().contains(expense.getId()));
   }
 
   @Test
+  @DisplayName("Remove expense")
   void removeExpenseTest() {
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getId());
-    s.removeExpense(expense.getId());
-    assertTrue(s.getExpenses().isEmpty());
+    settlement.addExpense(expense.getId());
+    settlement.removeExpense(expense.getId());
+    assertTrue(settlement.getExpenses().isEmpty());
   }
 
   @Test
+  @DisplayName("Get expenses")
   void getExpensesTest() {
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.addExpense(expense.getId());
-    assertEquals(1, s.getExpenses().size());
+    settlement.addExpense(expense.getId());
+    assertEquals(1, settlement.getExpenses().size());
   }
 
   @Test
+  @DisplayName("Get name")
   void getSettlementNameTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    ArrayList<User> members = new ArrayList<>();
-    members.add(newMember);
-    members.add(newMember2);
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    assertEquals("Settlement1",s.getName());
+    assertEquals("Settlement1", settlement.getName());
   }
 
   @Test
+  @DisplayName("Set name")
   void setSettlementNameTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    ArrayList<User> members = new ArrayList<>();
-    members.add(newMember);
-    members.add(newMember2);
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.setName("Settlement2");
-    assertEquals("Settlement2",s.getName());
+    settlement.setName("Settlement2");
+    assertEquals("Settlement2", settlement.getName());
   }
 
   @Test
+  @DisplayName("Get ID")
   void getSettlementIdTest() {
-    User newMember = new User(123123, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    User newMember2 = new User(1231233, "newMember", "password", Date.from(Instant.now()), Date.from(Instant.now()), 12312312);
-    ArrayList<User> members = new ArrayList<>();
-    members.add(newMember);
-    members.add(newMember2);
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    assertEquals(123123,s.getId());
+    assertEquals(1, settlement.getId());
   }
 
   @Test
+  @DisplayName("Get members")
   void getMembersTest() {
-    Settlement s = new Settlement(123123, 1, "Settlement1", new Date(), false, false);
-    s.addMember(1);
-    s.addMember(2);
-    assertEquals(2, s.getMembers().size());
+    settlement.addMember(1);
+    settlement.addMember(2);
+    assertEquals(2, settlement.getMembers().size());
   }
 }

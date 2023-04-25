@@ -1,9 +1,6 @@
 package no.ntnu.idatt1002.data.economy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * The Settlement class represents a settlement with a name,
@@ -172,5 +169,20 @@ public class Settlement {
    */
   public boolean isEnded() {
     return ended;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Settlement that = (Settlement) o;
+    return id == that.id && userId == that.userId && ended == that.ended && Objects.equals(name, that.name)
+            && Objects.equals(date, that.date) && Objects.equals(expenses, that.expenses)
+            && Objects.equals(members, that.members);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, userId, name, date, expenses, members, ended);
   }
 }
