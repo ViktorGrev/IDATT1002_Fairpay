@@ -4,6 +4,7 @@
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-width: 2px;
     -fx-padding: 0 0 4 0;
+    -fx-cursor: text;
 }
 
 .text-field:focused, .password-field:focused {
