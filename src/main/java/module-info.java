@@ -16,6 +16,7 @@ module no.ntnu.idatt1002 {
 
     exports no.ntnu.idatt1002;
     exports no.ntnu.idatt1002.dao;
+    exports no.ntnu.idatt1002.dao.sqlite;
     exports no.ntnu.idatt1002.dao.exception;
     exports no.ntnu.idatt1002.data;
     exports no.ntnu.idatt1002.data.economy;
