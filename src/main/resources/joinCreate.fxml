@@ -50,7 +50,7 @@
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose to join a dorm group or create a new one">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose to join a group or create a new one">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -80,7 +80,7 @@
                            <graphic>
                               <VBox alignment="CENTER" onMouseClicked="#groupInvitesButton" prefHeight="143.0" prefWidth="181.0">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Join a dorm group">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Join a group">
                                        <font>
                                           <Font name="System Bold Italic" size="15.0" />
                                        </font>
@@ -120,7 +120,7 @@
                            <graphic>
                               <VBox alignment="CENTER" onMouseClicked="#createGroupButton" prefHeight="143.0" prefWidth="181.0">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new dorm group">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Create new group">
                                        <font>
                                           <Font name="System Bold Italic" size="15.0" />
                                        </font>

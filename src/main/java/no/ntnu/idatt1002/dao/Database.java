@@ -49,16 +49,23 @@ public final class Database {
     return daoClass.cast(daoMap.get(daoClass));
   }
 
-  static {
-    System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$s] %5$s %n");
-
-    // Registering default DAO classes and initializing dependencies
+  /**
+   * Registers the default SQLite DAOs.
+   */
+  private static void registerSQLite() {
     registerDAO(UserDAO.class, new SqlUserDAO());
     registerDAO(GroupDAO.class, new SqlGroupDAO());
     registerDAO(SettlementDAO.class, new SqlSettlementDAO());
     registerDAO(ExpenseDAO.class, new SqlExpenseDAO());
     registerDAO(BudgetDAO.class, new SqlBudgetDAO());
     registerDAO(IncomeDAO.class, new SqlIncomeDAO());
+  }
+
+  static {
+    System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$s] %5$s %n");
+
+    // Registering default DAO classes and initializing them
+    registerSQLite();
     init();
   }
 }

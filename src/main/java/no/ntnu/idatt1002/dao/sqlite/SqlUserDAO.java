@@ -26,13 +26,12 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public User find(String username) {
-    Objects.requireNonNull(username);
-    if(username.isBlank()) throw new IllegalArgumentException("username cannot be blank");
-    try(Connection connection = getConnection();
+    User.validateUsername(username);
+    try (Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(FIND_ONE_NAME)) {
       statement.setString(1, username);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        if(resultSet.next()) {
+      try (ResultSet resultSet = statement.executeQuery()) {
+        if (resultSet.next()) {
           return build(resultSet);
         }
       }
@@ -52,10 +51,12 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public User create(String username, String password, long phoneNumber) {
-    if(username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
-    if(password.isBlank()) throw new IllegalArgumentException("Password cannot be empty");
+    User.validateUsername(username);
+    User.validatePhoneNumber(phoneNumber);
+    if (password == null || password.isBlank())
+      throw new IllegalArgumentException("password is null or blank");
     Date date = new Date(System.currentTimeMillis());
-    try(Connection connection = getConnection();
+    try (Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
       String encryptedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
       statement.setString(1, username);
@@ -137,8 +138,9 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public User authenticate(String username, String password) throws AuthException {
-    if(username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
-    if(password.isBlank()) throw new IllegalArgumentException("Password cannot be empty");
+    User.validateUsername(username);
+    if(password == null || password.isBlank())
+      throw new IllegalArgumentException("password is null or blank");
     try(Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_NAME)) {
       statement.setString(1, username);
@@ -163,6 +165,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public void setName(long userId, String name) {
+    User.validateUsername(name);
     try(Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
       statement.setString(1, name);
@@ -180,6 +183,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public void setPhoneNumber(long userId, long phoneNumber) {
+    User.validatePhoneNumber(phoneNumber);
     try(Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(SET_PHONE_NUMBER)) {
       statement.setLong(1, phoneNumber);

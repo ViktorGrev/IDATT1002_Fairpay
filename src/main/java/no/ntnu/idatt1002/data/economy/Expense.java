@@ -2,6 +2,7 @@ package no.ntnu.idatt1002.data.economy;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * The Expense class represents an expense made by a user in a financial system.
@@ -42,14 +43,15 @@ public class Expense {
    */
   public Expense(long id, long userId, Date addDate, ExpenseType type,
                  String name, BigDecimal amount, Date date, int shares) {
-    if (id < 0)
-      throw new IllegalArgumentException("invalid ID");
+    if (id < 0) throw new IllegalArgumentException("invalid ID");
     if (userId < 0)
       throw new IllegalArgumentException("invalid user ID");
     if (addDate == null)
       throw new IllegalArgumentException("addDate is null");
     if (type == null)
       throw new IllegalArgumentException("expense type is null");
+    if (amount == null)
+      throw new IllegalArgumentException("amount is null");
     if (amount.compareTo(BigDecimal.ZERO) < 0)
       throw new IllegalArgumentException("amount is negative");
     if (date == null)
@@ -145,5 +147,21 @@ public class Expense {
    */
   public int getShares() {
     return shares;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Expense expense = (Expense) o;
+    return id == expense.id && userId == expense.userId && shares == expense.shares
+            && Objects.equals(addDate, expense.addDate) && type == expense.type
+            && Objects.equals(name, expense.name) && Objects.equals(amount, expense.amount)
+            && Objects.equals(date, expense.date);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, userId, addDate, type, name, amount, date, shares);
   }
 }

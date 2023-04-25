@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.data;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * This class represents a user of the application.
@@ -28,16 +29,14 @@ public final class User {
    * the register date is null, the phone number is negative or the budget is null.
    */
   public User(long id, String username, String password, Date registerDate, Date lastLogin, long phoneNumber) {
-    if(username == null || username.isBlank())
-      throw new IllegalArgumentException("Username cannot be null or blank");
-    if(password == null || password.isBlank())
+    validateUsername(username);
+    if (password == null || password.isBlank())
       throw new IllegalArgumentException("Password cannot be null or blank");
-    if(registerDate == null)
+    if (registerDate == null)
       throw new IllegalArgumentException("Register date cannot be null");
-    if(lastLogin == null)
+    if (lastLogin == null)
       throw new IllegalArgumentException("Last login cannot be null");
-    if(phoneNumber < 0)
-      throw new IllegalArgumentException("Phone number cannot be negative");
+    validatePhoneNumber(phoneNumber);
     this.id = id;
     this.username = username;
     this.password = password;
@@ -61,6 +60,7 @@ public final class User {
    * @param   username the username
    */
   public void setUsername(String username) {
+    validateUsername(username);
     this.username = username;
   }
 
@@ -71,6 +71,24 @@ public final class User {
    */
   public String getUsername() {
     return username;
+  }
+
+  /**
+   * Checks if the specified username is valid.
+   *
+   * @param   username the username
+   * @throws  IllegalArgumentException if the username is null,
+   *          blank or outside length bounds
+   */
+  public static void validateUsername(String username) {
+    if(username == null)
+      throw new IllegalArgumentException("username is null");
+    if(username.isBlank())
+      throw new IllegalArgumentException("username is blank");
+    if(username.length() < 3 || username.length() > 16)
+      throw new IllegalArgumentException("username must be between 3-16 characters");
+    if(username.contains(" "))
+      throw new IllegalArgumentException("username cannot contain spaces");
   }
 
   /**
@@ -106,6 +124,7 @@ public final class User {
    * @param   phoneNumber the phone number
    */
   public void setPhoneNumber(long phoneNumber) {
+    validatePhoneNumber(phoneNumber);
     this.phoneNumber = phoneNumber;
   }
 
@@ -119,11 +138,38 @@ public final class User {
   }
 
   /**
+   * Checks if the specified number has 8 digits.
+   *
+   * @param   phoneNumber the number
+   * @throws  IllegalArgumentException if the phone number
+   *          does not have 8 digits
+   */
+  public static void validatePhoneNumber(long phoneNumber) {
+    if(phoneNumber < 10000000 || phoneNumber > 99999999)
+      throw new IllegalArgumentException("phone number is invalid");
+  }
+
+  /**
    * Set the current user
    *
    * @param   userId the user ID
    */
   public static void setCurrent(long userId) {
     CURRENT = userId;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return id == user.id && phoneNumber == user.phoneNumber && Objects.equals(username, user.username)
+            && Objects.equals(password, user.password) && Objects.equals(registerDate, user.registerDate)
+            && Objects.equals(lastLogin, user.lastLogin);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, username, password, registerDate, lastLogin, phoneNumber);
   }
 }

@@ -1,6 +1,7 @@
 package no.ntnu.idatt1002.data;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * This class represents a notification visible in the recent
@@ -60,5 +61,19 @@ public final class Notification {
    */
   public void runAction() {
     action.run();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Notification that = (Notification) o;
+    return Objects.equals(title, that.title) && Objects.equals(content, that.content)
+            && Objects.equals(date, that.date) && Objects.equals(action, that.action);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(title, content, date, action);
   }
 }

@@ -6,6 +6,9 @@ import java.util.List;
 /**
  * The classes derived from this class provides an abstraction layer
  * to an arbitrary persistent storage mechanism.
+ *
+ * @param   <T> the type of the result object
+ * @param   <S> the type of the identifier
  */
 public interface DAO<T, S> {
 
