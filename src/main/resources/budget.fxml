@@ -25,7 +25,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="41.0" prefWidth="118.0" text="Budget" textFill="WHITE">
+                        <Label prefHeight="41.0" prefWidth="118.0" text="Monthly Budget" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -77,7 +77,7 @@
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
-                                              <NumberAxis label="Amount (kr)" prefHeight="136.0" prefWidth="46.0" side="LEFT" />
+                                              <NumberAxis label="Amount (kr)" prefHeight="119.0" prefWidth="80.0" side="LEFT" />
                                             </yAxis>
                                              <padding>
                                                 <Insets left="-10.0" />
