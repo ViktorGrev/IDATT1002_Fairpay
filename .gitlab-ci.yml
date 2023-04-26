@@ -61,19 +61,13 @@ generatepdf:
 # til roten av prosjektet. Ellers vil denne delen feile.
 pages:
   stage: deploy
-  when: manual
   script:
-    - mvn clean package
-    - mvn javadoc:javadoc
-    - ls target/site/
-    - ls target/site/apidocs/
-    - mkdir .public
-    - cd .public
-    - mkdir apidocs
-    - cd ..
-    - cp -rf target/site/apidocs/* .public/apidocs/
-    - cp -rf target/jacoco/* .public
-    - mv -f .public public
+  - mkdir .public
+  - cp -r javadoc/* .public
+  - mv .public public
   artifacts:
     paths:
-      - public
+    - public
+  only:
+  - main
+
