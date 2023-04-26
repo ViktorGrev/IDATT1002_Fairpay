@@ -1,11 +1,12 @@
 package no.ntnu.idatt1002.dao.sqlite;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.dao.exception.DAOException;
 import no.ntnu.idatt1002.data.User;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
@@ -57,8 +58,8 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
       throw new IllegalArgumentException("password is null or blank");
     Date date = new Date(System.currentTimeMillis());
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
-      String encryptedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+         PreparedStatement statement = connection.prepareStatement(INSERT_PERSON)) {
+      String encryptedPassword = encrypt(password);
       statement.setString(1, username);
       statement.setString(2, encryptedPassword);
       statement.setDate(3, date);
@@ -147,7 +148,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
       try(ResultSet resultSet = statement.executeQuery()) {
         if(resultSet.next()) {
           User user = build(resultSet);
-          verifyPassword(user, password.toCharArray());
+          verifyPassword(user, password);
           updateLastLogin(connection, user.getId());
           return user;
         }
@@ -215,13 +216,37 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    * Verifies the password of a user.
    *
    * @param   user the user to verify the password for
-   * @param   charArray the password as an array of characters
+   * @param   password the password
    * @throws  AuthException if the password is invalid
    */
-  private void verifyPassword(User user, char[] charArray) throws AuthException {
-    BCrypt.Result result = BCrypt.verifyer().verify(charArray, user.getPassword());
-    if(!result.verified)
+  private void verifyPassword(User user, String password) throws AuthException {
+    String string = encrypt(password);
+    if(!user.getPassword().equals(string))
       throw new AuthException("Invalid password");
+  }
+
+  /**
+   * Encrypts a string with MD5.
+   *
+   * @param   password the string to encrypt
+   * @return  the encrypted string
+   */
+  public static String encrypt(String password) {
+    try {
+      MessageDigest md = MessageDigest.getInstance("MD5");
+      byte[] passBytes = password.getBytes();
+      md.reset();
+      byte[] digested = md.digest(passBytes);
+      StringBuilder sb = new StringBuilder();
+      for (byte b : digested) {
+        sb.append(Integer.toHexString(0xff & b));
+      }
+      return sb.toString();
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    }
+    return null;
+
   }
 
   /**

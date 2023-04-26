@@ -146,13 +146,6 @@
             <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Label style="-fx-cursor: hand;">
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                           <image>
-                              <Image url="@image/help.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
                      <tooltip>
                         <Tooltip text="This page requires you to either join a dorm group or create a new one." />
                      </tooltip>
