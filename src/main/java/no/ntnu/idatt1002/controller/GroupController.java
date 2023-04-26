@@ -2,10 +2,7 @@ package no.ntnu.idatt1002.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import no.ntnu.idatt1002.data.Group;
 import no.ntnu.idatt1002.data.Invite;
@@ -29,9 +26,16 @@ public final class GroupController extends MenuController implements Initializab
 
   @FXML
   private void onLeaveGroup() {
-    groupDAO.removeMember(Group.CURRENT, User.CURRENT);
-    Group.setCurrent(-1);
-    viewPage(Page.JOIN_CREATE);
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Leave dorm group");
+    alert.setHeaderText("You are about to leave the dorm group!");
+    alert.setContentText("Do you wish to leave the group?");
+
+    if(alert.showAndWait().get() == ButtonType.OK){
+      groupDAO.removeMember(Group.CURRENT, User.CURRENT);
+      Group.setCurrent(-1);
+      viewPage(Page.JOIN_CREATE);
+    }
   }
 
   @FXML
