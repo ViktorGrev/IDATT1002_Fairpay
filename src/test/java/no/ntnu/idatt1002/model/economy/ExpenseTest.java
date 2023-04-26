@@ -16,6 +16,13 @@ class ExpenseTest {
           "Name", BigDecimal.valueOf(123), new Date(time), 1);
 
   @Test
+  @DisplayName("New expense")
+  void newExpenseTest() {
+    assertThrows(IllegalArgumentException.class, () -> new Expense(1, 1, null, ExpenseType.CAR,
+            "Name", BigDecimal.valueOf(123), new Date(time), 1));
+  }
+
+  @Test
   @DisplayName("Get type")
   void getTypeTest() {
     assertEquals(ExpenseType.CAR, expense.getType());
@@ -51,5 +58,37 @@ class ExpenseTest {
   void getDateTest() {
     Date date = new Date(time);
     assertEquals(date, expense.getDate());
+  }
+
+  @Test
+  @DisplayName("Expense type")
+  void expenseType() {
+    ExpenseType type = ExpenseType.CAR;
+    assertEquals(type, ExpenseType.fromName(type.getName()));
+    assertEquals(type, ExpenseType.fromNumber(type.getNumber()));
+  }
+
+  @Test
+  @DisplayName("Expense type name")
+  void expenseTypeName() {
+    assertEquals("Car", ExpenseType.CAR.getName());
+  }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    Date date = new Date();
+    Expense expense1 = new Expense(1, 1, date, ExpenseType.FOOD, null, BigDecimal.ONE, date, 1);
+    Expense expense2 = new Expense(1, 1, date, ExpenseType.FOOD, null, BigDecimal.ONE, date, 1);
+    assertEquals(expense1, expense2);
+  }
+
+  @Test
+  @DisplayName("Hashcode")
+  void hashcodeTest() {
+    Date date = new Date();
+    Expense expense1 = new Expense(1, 1, date, ExpenseType.FOOD, null, BigDecimal.ONE, date, 1);
+    Expense expense2 = new Expense(1, 1, date, ExpenseType.FOOD, null, BigDecimal.ONE, date, 1);
+    assertEquals(expense1.hashCode(), expense2.hashCode());
   }
 }

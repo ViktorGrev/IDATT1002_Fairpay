@@ -45,4 +45,20 @@ class UserTest {
   void getPhoneNumber() {
     assertEquals(12345678, user.getPhoneNumber());
   }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    User user1 = new User(2, "User1", "password", new Date(), new Date(), 12345678);
+    User user2 = new User(2, "User1", "password", new Date(), new Date(), 12345678);
+    assertEquals(user1, user2);
+  }
+
+  @Test
+  @DisplayName("Hashcode")
+  void hashcodeTest() {
+    User user1 = new User(2, "User1", "password", new Date(), new Date(), 12345678);
+    User user2 = new User(2, "User1", "password", new Date(), new Date(), 12345678);
+    assertEquals(user1.hashCode(), user2.hashCode());
+  }
 }

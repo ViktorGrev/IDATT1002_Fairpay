@@ -70,4 +70,22 @@ class SettlementTest {
     settlement.addMember(2);
     assertEquals(2, settlement.getMembers().size());
   }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    Date date = new Date();
+    Settlement settlement1 = new Settlement(1, 1, "Test1", date, false);
+    Settlement settlement2 = new Settlement(1, 1, "Test1", date, false);
+    assertEquals(settlement1, settlement2);
+  }
+
+  @Test
+  @DisplayName("Hashcode")
+  void hashcodeTest() {
+    Date date = new Date();
+    Settlement settlement1 = new Settlement(1, 1, "Test1", date, false);
+    Settlement settlement2 = new Settlement(1, 1, "Test1", date, false);
+    assertEquals(settlement1.hashCode(), settlement2.hashCode());
+  }
 }
