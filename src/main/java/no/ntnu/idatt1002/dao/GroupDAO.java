@@ -1,7 +1,7 @@
 package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.data.Group;
-import no.ntnu.idatt1002.data.Invite;
+import no.ntnu.idatt1002.model.Group;
+import no.ntnu.idatt1002.model.Invite;
 
 import java.util.List;
 

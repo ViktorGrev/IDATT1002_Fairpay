@@ -4,7 +4,7 @@ import no.ntnu.idatt1002.FairPay;
 import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.dao.exception.AuthException;
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.model.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

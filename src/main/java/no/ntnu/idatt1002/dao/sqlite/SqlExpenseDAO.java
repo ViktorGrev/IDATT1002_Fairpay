@@ -2,8 +2,8 @@ package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.ExpenseDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.economy.Expense;
-import no.ntnu.idatt1002.data.economy.ExpenseType;
+import no.ntnu.idatt1002.model.economy.Expense;
+import no.ntnu.idatt1002.model.economy.ExpenseType;
 
 import java.math.BigDecimal;
 import java.sql.*;

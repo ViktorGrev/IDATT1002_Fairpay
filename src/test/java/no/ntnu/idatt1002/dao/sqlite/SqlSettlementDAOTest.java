@@ -3,7 +3,7 @@ package no.ntnu.idatt1002.dao.sqlite;
 import no.ntnu.idatt1002.FairPay;
 import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.SettlementDAO;
-import no.ntnu.idatt1002.data.economy.Settlement;
+import no.ntnu.idatt1002.model.economy.Settlement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
