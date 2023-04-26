@@ -17,13 +17,6 @@
         <javafx.version>17.0.1</javafx.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -88,21 +81,9 @@
         </dependency>
 
         <dependency>
-            <groupId>at.favre.lib</groupId>
-            <artifactId>bcrypt</artifactId>
-            <version>0.10.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.3.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.Dansoftowner</groupId>
-            <artifactId>jSystemThemeDetector</artifactId>
-            <version>3.8</version>
         </dependency>
 
         <dependency>
@@ -157,7 +138,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        no.ntnu.idatt1002.FairPay
+                                        no.ntnu.idatt1002.bootstrap.Bootstrap
                                     </mainClass>
                                 </manifest>
                             </archive>
@@ -177,7 +158,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>no.ntnu.idatt1002.FairPay</mainClass>
+                            <mainClass>no.ntnu.idatt1002.bootstrap.Bootstrap</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
