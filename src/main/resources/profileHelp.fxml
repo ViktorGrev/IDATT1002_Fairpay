@@ -31,9 +31,13 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do i change username and password?" />
-                                                <Label prefHeight="77.0" prefWidth="341.0" text="1. Open the profile page and click on the settings symbol on the top right corner. 2.  Once your in the profile settings, write down the new username or password in the inputfelt. 3. Then click &quot;change&quot; to confirme the changes." wrapText="true" />
-                                                <Label prefHeight="43.0" prefWidth="343.0" wrapText="true" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do i change username and password?">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Text>
+                                                <Label prefHeight="42.0" prefWidth="341.0" text="1. Open the profile page and click on the settings symbol on the top right corner." wrapText="true" />
+                                                <Label prefHeight="43.0" prefWidth="343.0" text="2.  Once your in the profile settings, write down the new username or password in the inputfelt." wrapText="true" />
+                                    <Label layoutX="60.0" layoutY="116.0" prefHeight="21.0" prefWidth="341.0" text="3. Then click &quot;change&quot; to confirme the changes." wrapText="true" />
                                             </children>
                                         </VBox>
                                     </children>
