@@ -38,4 +38,16 @@ class BudgetTest {
     budget.add(type, amount);
     assertEquals(amount, budget.getTotal());
   }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    ExpenseType type = ExpenseType.INTERNET;
+    BigDecimal amount = BigDecimal.valueOf(123);
+    Budget budget1 = new Budget();
+    budget1.add(type, amount);
+    Budget budget2 = new Budget();
+    budget2.add(type, amount);
+    assertEquals(budget1, budget2);
+  }
 }

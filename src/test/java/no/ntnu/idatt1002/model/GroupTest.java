@@ -1,8 +1,11 @@
 package no.ntnu.idatt1002.model;
 
+import no.ntnu.idatt1002.model.economy.Expense;
+import no.ntnu.idatt1002.model.economy.ExpenseType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
 
@@ -49,5 +52,21 @@ class GroupTest {
   void setGroupNameTest() {
     group.setName("New Group");
     assertEquals("New Group", group.getName());
+  }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    Group group1 = new Group(3, "Group1");
+    Group group2 = new Group(3, "Group1");
+    assertEquals(group1, group2);
+  }
+
+  @Test
+  @DisplayName("Hashcode")
+  void hashcodeTest() {
+    Group group1 = new Group(3, "Group1");
+    Group group2 = new Group(3, "Group1");
+    assertEquals(group1.hashCode(), group2.hashCode());
   }
 }
