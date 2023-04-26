@@ -18,30 +18,39 @@
         <BorderPane prefHeight="200.0" prefWidth="200.0">
             <center>
                 <BorderPane prefHeight="217.0" prefWidth="466.0" BorderPane.alignment="CENTER">
-               <center>
+                    <center>
                         <AnchorPane prefHeight="339.0" prefWidth="446.0" BorderPane.alignment="CENTER">
                             <children>
                                 <Button layoutX="334.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackClick" prefHeight="25.0" prefWidth="85.0" style="-fx-cursor: hand;" styleClass="button2" stylesheets="@style/stylesheet.css" text="Go back" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="14.0" />
                                 <VBox alignment="CENTER" layoutX="1.0" layoutY="36.0" prefHeight="297.0" prefWidth="441.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="36.0">
                                     <children>
-                                        <VBox alignment="CENTER" prefHeight="289.0" prefWidth="441.0" spacing="3.0">
+                                        <VBox alignment="CENTER" prefHeight="298.0" prefWidth="441.0" spacing="3.0">
                                             <children>
-                                                <Text layoutX="10.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Common questions about the expense" wrappingWidth="314.17578125">
+                                                <Text layoutX="10.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Common questions about the budget" wrappingWidth="333.17578125">
                                                     <font>
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Text>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How do I add an expense?" />
-                                                <Label prefHeight="89.0" prefWidth="341.0" text="1. Open the expense page and look for the &quot;Add expense&quot; button on top of the page 2. Once your in the add expence page, choose the expense type, price and date when the item was puchesed. 3. Click &quot;Add expense&quot; to add the expense to the list of expenses." wrapText="true" />
-                                                <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="What is the differance between a group expense and a private settlement" />
-                                                <Label prefHeight="115.0" prefWidth="339.0" text="Group expenses are those that are shared by all members of the dorm group. Private settlements, on the other hand, are expenses that are specific to certain individuals within the dorm group. These can include things like personal grocery purchases, individual utility bills, or other expenses that are not shared by the group as a whole." wrapText="true" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="How to change the budget?">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
+                                                <Label prefHeight="19.0" prefWidth="425.0" text="Step 1: Open the Budget Page." wrapText="true" />
+                                    <Label prefHeight="53.0" prefWidth="421.0" text="Step 2: Locate the Input Fields. The input fields are located on the right-hand side of the page. Each input field represents a category in the budget, and the category name is displayed on the left-hand side of the input field." wrapText="true" />
+                                    <Label prefHeight="71.0" prefWidth="417.0" text="Step 3: Enter Your Budget Value. To edit a budget for a particular category, click on the input field for that category. Once you click on the input field, you can type in the value you want to set for the category's budget. Please note that the value you enter must be a valid number." wrapText="true" />
+                                    <Label prefHeight="34.0" prefWidth="420.0" text="Step 4 Save your changes. After you have entered your desired value, press the ENTER key to register the change." wrapText="true" />
+                                                <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Who can edit the budget page?">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Text>
+                                                <Label prefHeight="17.0" prefWidth="418.0" text="Everyone in the dormgroup can edit the page." wrapText="true" />
                                             </children>
                                         </VBox>
                                     </children>
                                 </VBox>
                             </children>
                         </AnchorPane>
-               </center>
+                    </center>
                 </BorderPane>
             </center>
             <left>
