@@ -28,7 +28,7 @@
                            <children>
                               <Label text="Common question topics" textFill="#793f3f">
                                  <font>
-                                    <Font size="17.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <effect>
                                     <InnerShadow blurType="GAUSSIAN">
@@ -40,29 +40,52 @@
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink onAction="#profileHelpClick" text="Accunt and profile" />
+                                    <Hyperlink onAction="#profileHelpClick" text="Accunt and profile">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Hyperlink>
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink onAction="#dormgroupHelpClick" text="Dormgroup" />
+                                    <Hyperlink onAction="#dormgroupHelpClick" text="Dormgroup">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Hyperlink>
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink onAction="#expenseHelpClick" text="Group expense and private settlement" />
+                                    <Hyperlink onAction="#expenseHelpClick" text="Group expense and private settlement">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Hyperlink>
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Budget" />
+                                    <Hyperlink onAction="#budgetHelpClick" text="Budget">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Hyperlink>
                                  </graphic>
                               </Label>
                               <Label>
                                  <graphic>
-                                    <Hyperlink text="Income" />
+                                    <Hyperlink onAction="#incomeHelpClick" text="Income">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></Hyperlink>
                                  </graphic>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
                               </Label>
+                              <Hyperlink onAction="#statusHelpClick" text="Status">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Hyperlink>
                            </children>
                         </VBox>
                      </children>
@@ -75,7 +98,7 @@
                            <children>
                               <Label alignment="CENTER" layoutX="8.0" layoutY="-2.0" prefHeight="121.0" prefWidth="210.0" text="Help for wherever you are on your financial journey." textFill="#793f3f" wrapText="true">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="16.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
