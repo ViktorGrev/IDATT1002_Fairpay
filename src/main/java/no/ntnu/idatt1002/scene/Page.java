@@ -6,6 +6,7 @@ package no.ntnu.idatt1002.scene;
 public enum Page {
 
   BUDGET("budget"),
+  BUDGET_HELP("budgetHelp"),
   EXPENSE("expense"),
   EXPENSE_ADD("expenseAdd"),
   EXPENSE_HELP("expenseHelp"),
@@ -17,6 +18,7 @@ public enum Page {
   HOMEPAGE("homepage"),
   INCOME("income"),
   INCOME_ADD("incomeAdd"),
+  INCOME_HELP("incomeHelp"),
   JOIN_CREATE("joinCreate"),
   LOGIN("login"),
   PROFILE("profile"),
@@ -26,7 +28,8 @@ public enum Page {
   SETTLEMENT_ADD_EXPENSE("settlementAddExpense"),
   SETTLEMENT_EDIT("settlementEdit"),
   SIGNUP("signup"),
-  STATUS("status");
+  STATUS("status"),
+  STATUS_HELP("statusHelp");
 
   private final String name;
 
