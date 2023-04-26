@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - package
+  - deploy
 
 build:
   stage: build
@@ -59,16 +60,20 @@ generatepdf:
 # NB! Javadoc genereres IKKE under bygging av prosjektet. Man må kjøre javadoc lokalt og legge til katalogen (med navnet "javadoc")
 # til roten av prosjektet. Ellers vil denne delen feile.
 pages:
-  stage: package
+  stage: deploy
+  when: manual
   script:
     - mvn clean package
     - mvn javadoc:javadoc
+    - ls target/site/
+    - ls target/site/apidocs/
     - mkdir .public
-    - cp -rf target/site/apidocs/* .public
+    - cd .public
+    - mkdir apidocs
+    - cd ..
+    - cp -rf target/site/apidocs/* .public/apidocs/
     - cp -rf target/jacoco/* .public
     - mv -f .public public
   artifacts:
     paths:
       - public
-  only:
-    - web
