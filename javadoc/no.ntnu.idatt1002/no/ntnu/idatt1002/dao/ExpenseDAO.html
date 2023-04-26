@@ -76,7 +76,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.data.economy">Expense</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
+<dd><code><a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.model.economy">Expense</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
@@ -84,7 +84,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">ExpenseDAO</span><span class="extends-implements">
-extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.data.economy">Expense</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</span></div>
+extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.model.economy">Expense</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</span></div>
 <div class="block">This interface defines methods to interact with expenses and expense related tasks.</div>
 </section>
 <section class="summary">
@@ -100,9 +100,9 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.data.economy">Expense</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.model.economy">Expense</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#create(long,no.ntnu.idatt1002.data.economy.ExpenseType,java.lang.String,java.math.BigDecimal,java.util.Date,int)" class="member-name-link">create</a><wbr>(long&nbsp;userId,
- <a href="../data/economy/ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a>&nbsp;type,
+ <a href="../data/economy/ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;date,
@@ -135,8 +135,8 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <li>
 <section class="detail" id="create(long,no.ntnu.idatt1002.data.economy.ExpenseType,java.lang.String,java.math.BigDecimal,java.util.Date,int)">
 <h3>create</h3>
-<div class="member-signature"><span class="return-type"><a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.data.economy">Expense</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(long&nbsp;userId,
- <a href="../data/economy/ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a>&nbsp;type,
+<div class="member-signature"><span class="return-type"><a href="../data/economy/Expense.html" title="class in no.ntnu.idatt1002.model.economy">Expense</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(long&nbsp;userId,
+ <a href="../data/economy/ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;date,

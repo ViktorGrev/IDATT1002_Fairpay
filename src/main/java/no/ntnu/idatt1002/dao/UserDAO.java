@@ -1,7 +1,7 @@
 package no.ntnu.idatt1002.dao;
 
 import no.ntnu.idatt1002.dao.exception.AuthException;
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.model.User;
 
 /**
  * This interface defines methods to interact with users and user related tasks.

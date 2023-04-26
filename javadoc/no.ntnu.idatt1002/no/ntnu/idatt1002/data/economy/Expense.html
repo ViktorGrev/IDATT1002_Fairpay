@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2023-04-26">
-<meta name="description" content="declaration: module: no.ntnu.idatt1002, package: no.ntnu.idatt1002.data.economy, class: Expense">
+<meta name="description" content="declaration: module: no.ntnu.idatt1002, package: no.ntnu.idatt1002.model.economy, class: Expense">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -70,11 +70,11 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="module-label-in-type">Module</span>&nbsp;<a href="../../../../../module-summary.html">no.ntnu.idatt1002</a></div>
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">no.ntnu.idatt1002.data.economy</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">no.ntnu.idatt1002.model.economy</a></div>
 <h1 title="Class Expense" class="title">Class Expense</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">no.ntnu.idatt1002.data.economy.Expense</div>
+<div class="inheritance">no.ntnu.idatt1002.model.economy.Expense</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -97,7 +97,7 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(long,long,java.util.Date,no.ntnu.idatt1002.data.economy.ExpenseType,java.lang.String,java.math.BigDecimal,java.util.Date,int)" class="member-name-link">Expense</a><wbr>(long&nbsp;id,
  long&nbsp;userId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;addDate,
- <a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a>&nbsp;type,
+ <a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;date,
@@ -152,7 +152,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the amount of people this expense is shared between.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the type of the expense.</div>
@@ -193,7 +193,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Expense</span><wbr><span class="parameters">(long&nbsp;id,
  long&nbsp;userId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;addDate,
- <a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a>&nbsp;type,
+ <a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a>&nbsp;type,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;date,
@@ -266,7 +266,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getType()">
 <h3>getType</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.data.economy">ExpenseType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ExpenseType.html" title="enum class in no.ntnu.idatt1002.model.economy">ExpenseType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
 <div class="block">Returns the type of the expense.</div>
 <dl class="notes">
 <dt>Returns:</dt>

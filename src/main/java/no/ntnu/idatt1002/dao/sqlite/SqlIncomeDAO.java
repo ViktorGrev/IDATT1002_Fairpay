@@ -2,7 +2,7 @@ package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.IncomeDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.economy.Income;
+import no.ntnu.idatt1002.model.economy.Income;
 
 import java.math.BigDecimal;
 import java.sql.*;

@@ -3,7 +3,7 @@ package no.ntnu.idatt1002.dao.sqlite;
 import no.ntnu.idatt1002.dao.UserDAO;
 import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.data.economy.Settlement;
+import no.ntnu.idatt1002.model.economy.Settlement;
 
 import java.util.List;
 
