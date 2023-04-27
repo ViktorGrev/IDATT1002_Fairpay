@@ -2,9 +2,9 @@ package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.GroupDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.Group;
-import no.ntnu.idatt1002.data.Invite;
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.model.Group;
+import no.ntnu.idatt1002.model.Invite;
+import no.ntnu.idatt1002.model.User;
 
 import java.sql.Date;
 import java.sql.*;

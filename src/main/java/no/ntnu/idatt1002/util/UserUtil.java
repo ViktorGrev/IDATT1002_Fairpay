@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.util;
 
-import no.ntnu.idatt1002.data.User;
+import no.ntnu.idatt1002.model.User;
 
 import java.util.List;
 import java.util.Map;

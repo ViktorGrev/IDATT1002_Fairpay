@@ -76,7 +76,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Superinterfaces:</dt>
-<dd><code><a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
+<dd><code><a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
 </dl>
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
@@ -84,7 +84,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">UserDAO</span><span class="extends-implements">
-extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</span></div>
+extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</span></div>
 <div class="block">This interface defines methods to interact with users and user related tasks.</div>
 </section>
 <section class="summary">
@@ -100,13 +100,13 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#authenticate(java.lang.String,java.lang.String)" class="member-name-link">authenticate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;password)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Authenticates a user with a given username and password.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#create(java.lang.String,java.lang.String,long)" class="member-name-link">create</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;password,
  long&nbsp;phoneNumber)</code></div>
@@ -114,7 +114,7 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <div class="block">Creates a new user with the specified username, password
  and phone number.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#find(java.lang.String)" class="member-name-link">find</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Finds a user with the specified username.</div>
@@ -151,7 +151,7 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <li>
 <section class="detail" id="find(java.lang.String)">
 <h3>find</h3>
-<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</span></div>
+<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</span></div>
 <div class="block">Finds a user with the specified username.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -164,7 +164,7 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <li>
 <section class="detail" id="create(java.lang.String,java.lang.String,long)">
 <h3>create</h3>
-<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
+<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;password,
  long&nbsp;phoneNumber)</span></div>
 <div class="block">Creates a new user with the specified username, password
@@ -182,7 +182,7 @@ extends <a href="DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt
 <li>
 <section class="detail" id="authenticate(java.lang.String,java.lang.String)">
 <h3>authenticate</h3>
-<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.data">User</a></span>&nbsp;<span class="element-name">authenticate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
+<div class="member-signature"><span class="return-type"><a href="../data/User.html" title="class in no.ntnu.idatt1002.model">User</a></span>&nbsp;<span class="element-name">authenticate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;password)</span>
            throws <span class="exceptions"><a href="exception/AuthException.html" title="class in no.ntnu.idatt1002.dao.exception">AuthException</a></span></div>
 <div class="block">Authenticates a user with a given username and password.</div>
