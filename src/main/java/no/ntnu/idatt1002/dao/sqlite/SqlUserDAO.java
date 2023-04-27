@@ -5,11 +5,13 @@ import no.ntnu.idatt1002.dao.exception.AuthException;
 import no.ntnu.idatt1002.dao.exception.DAOException;
 import no.ntnu.idatt1002.model.User;
 
+import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * This class is an implementation of the {@link UserDAO} interface, using
@@ -28,18 +30,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
   @Override
   public User find(String username) {
     User.validateUsername(username);
-    try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_ONE_NAME)) {
-      statement.setString(1, username);
-      try (ResultSet resultSet = statement.executeQuery()) {
-        if (resultSet.next()) {
-          return build(resultSet);
-        }
-      }
-      return null;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatement(FIND_ONE_NAME, SqlUserDAO::build, username);
   }
 
   private static final String INSERT_PERSON = """
@@ -90,18 +81,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
   @Override
   public User find(Long filter) {
     Objects.requireNonNull(filter);
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_ONE_ID)) {
-      statement.setLong(1, filter);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        if(resultSet.next()) {
-          return build(resultSet);
-        }
-      }
-      return null;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatement(FIND_ONE_ID, SqlUserDAO::build, filter);
   }
 
   /**
@@ -112,20 +92,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
     Objects.requireNonNull(filter);
     if(filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
     String findStatement = buildFindStatement(filter.size());
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(findStatement)) {
-      int i = 1;
-      for(long f : filter) statement.setLong(i++, f);
-      List<User> list = new ArrayList<>();
-      try(ResultSet resultSet = statement.executeQuery()) {
-        while(resultSet.next()) {
-          list.add(build(resultSet));
-        }
-      }
-      return list;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatementList(findStatement, SqlUserDAO::build, filter.toArray());
   }
 
   private String buildFindStatement(int size) {
@@ -167,14 +134,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
   @Override
   public void setName(long userId, String name) {
     User.validateUsername(name);
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
-      statement.setString(1, name);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(SET_NAME, name, userId);
   }
 
   private static final String SET_PHONE_NUMBER = "UPDATE users SET phoneNumber = ? WHERE userId = ?;";
@@ -185,14 +145,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
   @Override
   public void setPhoneNumber(long userId, long phoneNumber) {
     User.validatePhoneNumber(phoneNumber);
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(SET_PHONE_NUMBER)) {
-      statement.setLong(1, phoneNumber);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(SET_PHONE_NUMBER, phoneNumber, userId);
   }
 
   private static final String UPDATE_LAST_LOGIN = "UPDATE users SET lastLogin = ? WHERE userId = ?;";
@@ -256,13 +209,17 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    * @return  a new User object
    * @throws  SQLException if a database access error occurs
    */
-  static User build(ResultSet resultSet) throws SQLException {
-    return new User(resultSet.getLong("userId"),
-            resultSet.getString("username"),
-            resultSet.getString("password"),
-            resultSet.getDate("registerDate"),
-            resultSet.getDate("lastLogin"),
-            resultSet.getInt("phoneNumber"));
+  static User build(ResultSet resultSet) {
+    try {
+      return new User(resultSet.getLong("userId"),
+              resultSet.getString("username"),
+              resultSet.getString("password"),
+              resultSet.getDate("registerDate"),
+              resultSet.getDate("lastLogin"),
+              resultSet.getInt("phoneNumber"));
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   private static final String CREATE_USERS = """
@@ -280,11 +237,6 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
    */
   @Override
   public void init() {
-    try(Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.execute(CREATE_USERS);
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    execute(CREATE_USERS);
   }
 }

@@ -6,9 +6,14 @@ import no.ntnu.idatt1002.model.economy.Expense;
 import no.ntnu.idatt1002.model.economy.ExpenseType;
 
 import java.math.BigDecimal;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Date;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is an implementation of the {@link ExpenseDAO} interface, using
@@ -32,7 +37,7 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
                         BigDecimal amount, Date date, int shares) {
     Date now = new Date();
     try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE)) {
+         PreparedStatement statement = connection.prepareStatement(INSERT_EXPENSE)) {
       statement.setLong(1, userId);
       statement.setString(2, name);
       statement.setLong(3, now.getTime());
@@ -60,13 +65,7 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
    */
   @Override
   public void delete(long expenseId) {
-    try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(REMOVE_EXPENSE)) {
-      statement.setLong(1, expenseId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_EXPENSE, expenseId);
   }
 
   /**
@@ -85,24 +84,11 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
     Objects.requireNonNull(filter);
     if (filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
     String findStatement = buildFindStatement(filter.size());
-    try (Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(findStatement)) {
-      int i = 1;
-      for (long f : filter) statement.setLong(i++, f);
-      List<Expense> list = new ArrayList<>();
-      try (ResultSet resultSet = statement.executeQuery()) {
-        while (resultSet.next()) {
-          list.add(buildExpense(resultSet));
-        }
-      }
-      return list;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatementList(findStatement, SqlExpenseDAO::buildExpense, filter.toArray());
   }
 
   private String buildFindStatement(int size) {
-    return "SELECT * FROM expenses WHERE expenseId IN (?" + ", ?".repeat(Math.max(0, size)) + ");";
+    return "SELECT * FROM expenses WHERE expenseId IN (?" + ", ?".repeat(Math.max(0, size - 1)) + ");";
   }
 
   /**
@@ -110,18 +96,22 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
    *
    * @param   resultSet the ResultSet to retrieve data from
    * @return  a new Expense object
-   * @throws  SQLException if a database access error occurs
+   * @throws  DAOException if a database access error occurs
    */
-  private static Expense buildExpense(ResultSet resultSet) throws SQLException {
-    long expenseId = resultSet.getLong("expenseId");
-    long userId = resultSet.getLong("userId");
-    Date addDate = resultSet.getDate("addDate");
-    ExpenseType type = ExpenseType.fromNumber(resultSet.getInt("type"));
-    String name = resultSet.getString("name");
-    BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
-    Date createDate = resultSet.getDate("createDate");
-    int shares = resultSet.getInt("shares");
-    return new Expense(expenseId, userId, addDate, type, name, amount, createDate, shares);
+  private static Expense buildExpense(ResultSet resultSet) {
+    try {
+      long expenseId = resultSet.getLong("expenseId");
+      long userId = resultSet.getLong("userId");
+      Date addDate = resultSet.getDate("addDate");
+      ExpenseType type = ExpenseType.fromNumber(resultSet.getInt("type"));
+      String name = resultSet.getString("name");
+      BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
+      Date createDate = resultSet.getDate("createDate");
+      int shares = resultSet.getInt("shares");
+      return new Expense(expenseId, userId, addDate, type, name, amount, createDate, shares);
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   private static final String CREATE_EXPENSES = """
@@ -142,12 +132,6 @@ public final class SqlExpenseDAO extends SqlDAO implements ExpenseDAO {
    */
   @Override
   public void init() {
-    try (Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.addBatch(CREATE_EXPENSES);
-      statement.executeBatch();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    execute(CREATE_EXPENSES);
   }
 }

@@ -30,15 +30,7 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
    */
   @Override
   public void addType(long groupId, ExpenseType type, BigDecimal amount) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(INSERT_TYPE)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, type.getNumber());
-      statement.setLong(3, amount.longValue());
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_TYPE, groupId, type.getNumber(), amount);
   }
 
   private static final String FIND_ID = "SELECT * FROM budgets WHERE groupId = ?;";
@@ -49,6 +41,7 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
   @Override
   public Budget find(Long filter) {
     Objects.requireNonNull(filter);
+
     try(Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(FIND_ID)) {
       statement.setLong(1, filter);
@@ -88,12 +81,6 @@ public final class SqlBudgetDAO extends SqlDAO implements BudgetDAO {
    */
   @Override
   public void init() {
-    try(Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.addBatch(CREATE_BUDGET);
-      statement.executeBatch();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    execute(CREATE_BUDGET);
   }
 }
