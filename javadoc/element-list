@@ -1,10 +1,10 @@
 module:no.ntnu.idatt1002
 no.ntnu.idatt1002
-no.ntnu.idatt1002.controller
+no.ntnu.idatt1002.client.controller
+no.ntnu.idatt1002.client.view
 no.ntnu.idatt1002.dao
 no.ntnu.idatt1002.dao.exception
 no.ntnu.idatt1002.dao.sqlite
 no.ntnu.idatt1002.model
 no.ntnu.idatt1002.model.economy
-no.ntnu.idatt1002.scene
 no.ntnu.idatt1002.util
