@@ -33,6 +33,7 @@ public final class SettlementEditController extends MenuController implements In
   @FXML private VBox memberBox;
   @FXML private Button deleteButton;
   @FXML private Button endButton;
+  @FXML private Button expenseButton;
   @FXML private BorderPane paymentPane;
 
   /**
@@ -141,6 +142,7 @@ public final class SettlementEditController extends MenuController implements In
   private void showPayments(Settlement settlement) {
     expenseTable.setVisible(false);
     memberBox.setDisable(true);
+    expenseButton.setVisible(false);
     if(settlement.getExpenses().isEmpty()) return;
     List<Expense> expenses = expenseDAO.find(settlement.getExpenses());
 

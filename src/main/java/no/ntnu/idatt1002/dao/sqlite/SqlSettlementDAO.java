@@ -52,27 +52,9 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void delete(long settlementId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT)) {
-      statement.setLong(1, settlementId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT_USERS)) {
-      statement.setLong(1, settlementId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT_EXPENSES)) {
-      statement.setLong(1, settlementId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(DELETE_SETTLEMENT, settlementId);
+    executePreparedStatement(DELETE_SETTLEMENT_USERS, settlementId);
+    executePreparedStatement(DELETE_SETTLEMENT_EXPENSES, settlementId);
   }
 
   private static final String FIND_BY_USER = """
@@ -86,19 +68,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public List<Settlement> findByUser(long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_BY_USER)) {
-      statement.setLong(1, userId);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        List<Settlement> list = new ArrayList<>();
-        while(resultSet.next()) {
-          list.add(buildSettlement(resultSet));
-        }
-        return list;
-      }
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatementList(FIND_BY_USER, SqlSettlementDAO::buildSettlement, userId);
   }
 
   private static final String INSERT_SETTLEMENT_USER = """
@@ -111,14 +81,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void addMember(long settlementId, long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(INSERT_SETTLEMENT_USER)) {
-      statement.setLong(1, settlementId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_SETTLEMENT_USER, settlementId, userId);
   }
 
   private static final String DELETE_SETTLEMENT_USER = """
@@ -130,14 +93,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void removeMember(long settlementId, long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(DELETE_SETTLEMENT_USER)) {
-      statement.setLong(1, settlementId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(DELETE_SETTLEMENT_USER, settlementId, userId);
   }
 
   private static final String INSERT_SETTLEMENT_EXPENSE = """
@@ -150,14 +106,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void addExpense(long settlementId, long expenseId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(INSERT_SETTLEMENT_EXPENSE)) {
-      statement.setLong(1, settlementId);
-      statement.setLong(2, expenseId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_SETTLEMENT_EXPENSE, settlementId, expenseId);
   }
 
   private static final String UPDATE_ENDED = "UPDATE settlements SET ended = ? WHERE settlementId = ?;";
@@ -167,14 +116,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void setEnded(long settlementId, boolean ended) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(UPDATE_ENDED)) {
-      statement.setInt(1, ended ? 1 : 0);
-      statement.setLong(2, settlementId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(UPDATE_ENDED, ended ? 1 : 0, settlementId);
   }
 
   private static final String FIND_MEMBERS = "SELECT * FROM settlementUsers WHERE settlementId = ?;";
@@ -233,18 +175,7 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
   @Override
   public Settlement find(Long filter) {
     Objects.requireNonNull(filter);
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_ONE_ID)) {
-      statement.setLong(1, filter);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        if(resultSet.next()) {
-          return buildSettlement(resultSet);
-        }
-      }
-      return null;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatement(FIND_ONE_ID, SqlSettlementDAO::buildSettlement, filter);
   }
 
   /**
@@ -262,16 +193,20 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    * @return  a new Settlement object
    * @throws  SQLException if a database access error occurs
    */
-  private static Settlement buildSettlement(ResultSet resultSet) throws SQLException {
-    long settlementId = resultSet.getLong("settlementId");
-    String name = resultSet.getString("name");
-    long userId = resultSet.getLong("userId");
-    Date date = resultSet.getDate("createDate");
-    boolean ended = resultSet.getBoolean("ended");
-    Settlement settlement = new Settlement(settlementId, userId, name, date, ended);
-    getMembers(settlementId).forEach(settlement::addMember);
-    getExpenses(settlementId).forEach(settlement::addExpense);
-    return settlement;
+  private static Settlement buildSettlement(ResultSet resultSet) {
+    try {
+      long settlementId = resultSet.getLong("settlementId");
+      String name = resultSet.getString("name");
+      long userId = resultSet.getLong("userId");
+      Date date = resultSet.getDate("createDate");
+      boolean ended = resultSet.getBoolean("ended");
+      Settlement settlement = new Settlement(settlementId, userId, name, date, ended);
+      getMembers(settlementId).forEach(settlement::addMember);
+      getExpenses(settlementId).forEach(settlement::addExpense);
+      return settlement;
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   private static final String CREATE_SETTLEMENTS = """
@@ -307,14 +242,6 @@ public final class SqlSettlementDAO extends SqlDAO implements SettlementDAO {
    */
   @Override
   public void init() {
-    try(Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.addBatch(CREATE_SETTLEMENTS);
-      statement.addBatch(CREATE_SETTLEMENT_USER_LINK);
-      statement.addBatch(CREATE_SETTLEMENT_EXPENSE_LINK);
-      statement.executeBatch();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executeBatch(CREATE_SETTLEMENTS, CREATE_SETTLEMENT_USER_LINK, CREATE_SETTLEMENT_EXPENSE_LINK);
   }
 }

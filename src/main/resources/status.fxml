@@ -145,7 +145,7 @@
                                       </yAxis>
                                     </LineChart>
                                  </children></VBox>
-                              <BarChart fx:id="barChart" prefHeight="297.0" prefWidth="445.0" stylesheets="@style/stylesheet.css" title="Monthley spend" HBox.hgrow="ALWAYS">
+                              <BarChart fx:id="barChart" prefHeight="297.0" prefWidth="445.0" stylesheets="@style/stylesheet.css" title="Monthly spend" HBox.hgrow="ALWAYS">
                                  <xAxis>
                                     <CategoryAxis side="BOTTOM" />
                                  </xAxis>

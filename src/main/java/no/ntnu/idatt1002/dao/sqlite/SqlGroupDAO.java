@@ -27,18 +27,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
   @Override
   public Group find(Long filter) {
     Objects.requireNonNull(filter);
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(FIND_ONE_ID)) {
-      statement.setLong(1, filter);
-      try (ResultSet resultSet = statement.executeQuery()) {
-        if (resultSet.next()) {
-          return buildGroup(resultSet);
-        }
-      }
-      return null;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatement(FIND_ONE_ID, SqlGroupDAO::buildGroup, filter);
   }
 
   /**
@@ -49,20 +38,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
     Objects.requireNonNull(filter);
     if (filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
     String findStatement = buildFindStatement(filter.size());
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(findStatement)) {
-      int i = 1;
-      for (long f : filter) statement.setLong(i++, f);
-      List<Group> list = new ArrayList<>();
-      try (ResultSet resultSet = statement.executeQuery()) {
-        while (resultSet.next()) {
-          list.add(buildGroup(resultSet));
-        }
-      }
-      return list;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatementList(findStatement, SqlGroupDAO::buildGroup, filter.toArray());
   }
 
   private String buildFindStatement(int size) {
@@ -100,15 +76,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void setName(long groupId, String name) {
-    Group.validateName(name);
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
-      statement.setString(1, name);
-      statement.setLong(2, groupId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(SET_NAME, name, groupId);
   }
 
   private static final String ADD_MEMBER = "INSERT INTO groupUsers (groupId, userId) VALUES (?, ?);";
@@ -137,14 +105,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void removeMember(long groupId, long userId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(REMOVE_MEMBER)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_MEMBER, groupId, userId);
   }
 
   private static final String INSERT_GROUP_EXPENSE = """
@@ -157,14 +118,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void addExpense(long groupId, long expenseId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(INSERT_GROUP_EXPENSE)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, expenseId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_GROUP_EXPENSE, groupId, expenseId);
   }
 
   private static final String REMOVE_GROUP_EXPENSE = "DELETE FROM groupExpenses WHERE groupId = ? AND expenseId = ?;";
@@ -174,14 +128,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void removeExpense(long groupId, long expenseId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(REMOVE_GROUP_EXPENSE)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, expenseId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_GROUP_EXPENSE, groupId, expenseId);
   }
 
   private static final String INSERT_GROUP_INCOME = """
@@ -194,14 +141,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void addIncome(long groupId, long incomeId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(INSERT_GROUP_INCOME)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, incomeId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_GROUP_INCOME, groupId, incomeId);
   }
 
   private static final String REMOVE_GROUP_INCOME = "DELETE FROM groupIncome WHERE groupId = ? AND incomeId = ?;";
@@ -211,14 +151,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void removeIncome(long groupId, long incomeId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(REMOVE_GROUP_INCOME)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, incomeId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_GROUP_INCOME, groupId, incomeId);
   }
 
   private static final String INSERT_RECEIVED_INCOME = """
@@ -231,14 +164,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void setReceivedIncome(long incomeId, long userId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(INSERT_RECEIVED_INCOME)) {
-      statement.setLong(1, incomeId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_RECEIVED_INCOME, incomeId, userId);
   }
 
   private static final String REMOVE_RECEIVED_INCOME = "DELETE FROM receivedIncome WHERE userId = ? AND incomeId = ?;";
@@ -248,14 +174,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void unsetReceivedIncome(long incomeId, long userId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(REMOVE_RECEIVED_INCOME)) {
-      statement.setLong(1, userId);
-      statement.setLong(2, incomeId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_RECEIVED_INCOME, incomeId, userId);
   }
 
   private static final String INSERT_PAID_EXPENSE = """
@@ -268,14 +187,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void setPaidExpense(long expenseId, long userId) {
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(INSERT_PAID_EXPENSE)) {
-      statement.setLong(1, expenseId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(INSERT_PAID_EXPENSE, expenseId, userId);
   }
 
   private static final String REMOVE_PAID_EXPENSE = "DELETE FROM paidExpenses WHERE userId = ? AND expenseId = ?;";
@@ -285,14 +197,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void unsetPaidExpense(long expenseId, long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(REMOVE_PAID_EXPENSE)) {
-      statement.setLong(1, userId);
-      statement.setLong(2, expenseId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_PAID_EXPENSE, userId, expenseId);
   }
 
   private static final String ADD_INVITE = """
@@ -328,14 +233,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void removeInvite(long groupId, long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(REMOVE_INVITE)) {
-      statement.setLong(1, groupId);
-      statement.setLong(2, userId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_INVITE, groupId, userId);
   }
 
   private static final String FIND_INVITES = "SELECT * FROM groupInvites WHERE groupId = ?;";
@@ -345,19 +243,8 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public List<Invite> getInvites(long groupId) {
-    List<Invite> invites = new ArrayList<>();
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_INVITES)) {
-      statement.setLong(1, groupId);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        while(resultSet.next()) {
-          invites.add(buildInvite(resultSet));
-        }
-      }
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    return Collections.unmodifiableList(invites);
+    return Collections.unmodifiableList(executePreparedStatementList(FIND_INVITES,
+            SqlGroupDAO::buildInvite, groupId));
   }
 
   private static final String FIND_INVITES_BY_USER = "SELECT * FROM groupInvites WHERE targetId = ?;";
@@ -367,19 +254,8 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public List<Invite> getInvitesByUser(long userId) {
-    List<Invite> invites = new ArrayList<>();
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_INVITES_BY_USER)) {
-      statement.setLong(1, userId);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        while(resultSet.next()) {
-          invites.add(buildInvite(resultSet));
-        }
-      }
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    return Collections.unmodifiableList(invites);
+    return Collections.unmodifiableList(executePreparedStatementList(FIND_INVITES_BY_USER,
+            SqlGroupDAO::buildInvite, userId));
   }
 
   private static final String FIND_MEMBERS = """
@@ -394,20 +270,8 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    * @return  a list of users in the group specified by the group id
    */
   private static List<User> getMembers(long groupId) {
-    List<User> users = new ArrayList<>();
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_MEMBERS)) {
-      statement.setLong(1, groupId);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        while(resultSet.next()) {
-          User user = SqlUserDAO.build(resultSet);
-          users.add(user);
-        }
-      }
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    return users;
+    return Collections.unmodifiableList(executePreparedStatementList(FIND_MEMBERS,
+            SqlUserDAO::build, groupId));
   }
 
   private static final String FIND_PAID_EXPENSES = """
@@ -532,18 +396,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public Group findByUser(long userId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(FIND_ONE_BY_USER)) {
-      statement.setLong(1, userId);
-      try(ResultSet resultSet = statement.executeQuery()) {
-        if(resultSet.next()) {
-          return buildGroup(resultSet);
-        }
-      }
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
-    return null;
+    return executePreparedStatement(FIND_ONE_BY_USER, SqlGroupDAO::buildGroup, userId);
   }
 
   /**
@@ -552,16 +405,20 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    * @return  a group object
    * @throws  SQLException if a database error occurs
    */
-  private static Group buildGroup(ResultSet resultSet) throws SQLException {
-    long groupId = resultSet.getLong("groupId");
-    String groupName = resultSet.getString("groupName");
-    Group group = new Group(groupId, groupName);
-    getMembers(groupId).forEach(group::addMember);
-    getExpenses(groupId).forEach(group::addExpense);
-    getIncome(groupId).forEach(group::addIncome);
-    getPaidExpenses(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addPaidExpense(aLong, l)));
-    getReceivedIncome(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addReceivedIncome(aLong, l)));
-    return group;
+  private static Group buildGroup(ResultSet resultSet) {
+    try {
+      long groupId = resultSet.getLong("groupId");
+      String groupName = resultSet.getString("groupName");
+      Group group = new Group(groupId, groupName);
+      getMembers(groupId).forEach(group::addMember);
+      getExpenses(groupId).forEach(group::addExpense);
+      getIncome(groupId).forEach(group::addIncome);
+      getPaidExpenses(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addPaidExpense(aLong, l)));
+      getReceivedIncome(groupId).forEach((aLong, longs) -> longs.forEach(l -> group.addReceivedIncome(aLong, l)));
+      return group;
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   /**
@@ -570,12 +427,16 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    * @return  an invitation object
    * @throws  SQLException if a database error occurs
    */
-  private static Invite buildInvite(ResultSet resultSet) throws SQLException {
-    long groupId = resultSet.getLong("groupId");
-    long senderId = resultSet.getLong("senderId");
-    long targetId = resultSet.getLong("targetId");
-    Date sendDate = resultSet.getDate("sendDate");
-    return new Invite(groupId, senderId, targetId, sendDate);
+  private static Invite buildInvite(ResultSet resultSet) {
+    try {
+      long groupId = resultSet.getLong("groupId");
+      long senderId = resultSet.getLong("senderId");
+      long targetId = resultSet.getLong("targetId");
+      Date sendDate = resultSet.getDate("sendDate");
+      return new Invite(groupId, senderId, targetId, sendDate);
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   private static final String CREATE_GROUPS = """
@@ -646,18 +507,12 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void init() {
-    try(Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.addBatch(CREATE_GROUPS);
-      statement.addBatch(CREATE_GROUP_LINK);
-      statement.addBatch(CREATE_PAID_EXPENSE_LINK);
-      statement.addBatch(CREATE_GROUP_EXPENSE_LINK);
-      statement.addBatch(CREATE_GROUP_INCOME_LINK);
-      statement.addBatch(CREATE_RECEIVED_INCOME_LINK);
-      statement.addBatch(CREATE_GROUP_INVITES);
-      statement.executeBatch();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executeBatch(CREATE_GROUPS,
+            CREATE_GROUP_LINK,
+            CREATE_PAID_EXPENSE_LINK,
+            CREATE_GROUP_EXPENSE_LINK,
+            CREATE_GROUP_INCOME_LINK,
+            CREATE_RECEIVED_INCOME_LINK,
+            CREATE_GROUP_INVITES);
   }
 }

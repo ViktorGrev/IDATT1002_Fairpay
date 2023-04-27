@@ -57,13 +57,7 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
    */
   @Override
   public void delete(long incomeId) {
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(REMOVE_INCOME)) {
-      statement.setLong(1, incomeId);
-      statement.execute();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    executePreparedStatement(REMOVE_INCOME, incomeId);
   }
 
   /**
@@ -82,20 +76,7 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
     Objects.requireNonNull(filter);
     if(filter.isEmpty()) throw new IllegalArgumentException("filter cannot be empty");
     String findStatement = buildFindStatement(filter.size());
-    try(Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(findStatement)) {
-      int i = 1;
-      for(long f : filter) statement.setLong(i++, f);
-      List<Income> list = new ArrayList<>();
-      try(ResultSet resultSet = statement.executeQuery()) {
-        while(resultSet.next()) {
-          list.add(buildIncome(resultSet));
-        }
-      }
-      return list;
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    return executePreparedStatementList(findStatement, SqlIncomeDAO::buildIncome, filter.toArray());
   }
 
   private String buildFindStatement(int size) {
@@ -109,15 +90,19 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
    * @return  a new Income object
    * @throws  SQLException if a database access error occurs
    */
-  private static Income buildIncome(ResultSet resultSet) throws SQLException {
-    long incomeId = resultSet.getLong("incomeId");
-    long userId = resultSet.getLong("userId");
-    Date addDate = resultSet.getDate("addDate");
-    String name = resultSet.getString("name");
-    BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
-    Date createDate = resultSet.getDate("createDate");
-    int shares = resultSet.getInt("shares");
-    return new Income(incomeId, userId, amount, name, addDate, createDate, shares);
+  private static Income buildIncome(ResultSet resultSet) {
+    try {
+      long incomeId = resultSet.getLong("incomeId");
+      long userId = resultSet.getLong("userId");
+      Date addDate = resultSet.getDate("addDate");
+      String name = resultSet.getString("name");
+      BigDecimal amount = new BigDecimal(resultSet.getLong("amount"));
+      Date createDate = resultSet.getDate("createDate");
+      int shares = resultSet.getInt("shares");
+      return new Income(incomeId, userId, amount, name, addDate, createDate, shares);
+    } catch (SQLException e) {
+      throw new DAOException(e);
+    }
   }
 
   private static final String CREATE_EXPENSES = """
@@ -137,12 +122,6 @@ public final class SqlIncomeDAO extends SqlDAO implements IncomeDAO {
    */
   @Override
   public void init() {
-    try(Connection connection = getConnection();
-        Statement statement = connection.createStatement()) {
-      statement.addBatch(CREATE_EXPENSES);
-      statement.executeBatch();
-    } catch (SQLException e) {
-      throw new DAOException(e);
-    }
+    execute(CREATE_EXPENSES);
   }
 }

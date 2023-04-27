@@ -52,7 +52,7 @@
                                     <Tooltip text="Delete settlement" />
                                  </tooltip>
                               </Button>
-                              <Button mnemonicParsing="false" onMouseClicked="#addExpenseClick" stylesheets="@style/topButton.css" text="Add expense" textFill="WHITE">
+                              <Button fx:id="expenseButton" mnemonicParsing="false" onMouseClicked="#addExpenseClick" stylesheets="@style/topButton.css" text="Add expense" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
