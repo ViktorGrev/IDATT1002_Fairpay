@@ -76,6 +76,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void setName(long groupId, String name) {
+    Group.validateName(name);
     executePreparedStatement(SET_NAME, name, groupId);
   }
 
