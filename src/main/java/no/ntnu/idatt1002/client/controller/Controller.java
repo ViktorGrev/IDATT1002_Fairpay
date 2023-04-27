@@ -47,6 +47,7 @@ abstract class Controller {
    * @return  the user
    */
   protected User getUser(String username) {
+    User.validateUsername(username);
     for(User temp : userCache.values()) {
       if(temp.getUsername().equalsIgnoreCase(username))
         return temp;

@@ -59,7 +59,7 @@
                   </InnerShadow>
                </effect>
                <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
+                  <Insets right="30.0" top="40.0" />
                </HBox.margin>
             </Button>
          </children>

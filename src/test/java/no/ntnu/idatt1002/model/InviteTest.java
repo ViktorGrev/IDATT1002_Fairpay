@@ -36,4 +36,18 @@ class InviteTest {
   void getDate() {
     assertEquals(date, invite.getDate());
   }
+
+  @Test
+  @DisplayName("Equals")
+  void equalsTest() {
+    Invite invite1 = new Invite(1, 2, 3, date);
+    assertEquals(invite, invite1);
+  }
+
+  @Test
+  @DisplayName("Hashcode")
+  void hashcodeTest() {
+    Invite invite1 = new Invite(1, 2, 3, date);
+    assertEquals(invite.hashCode(), invite1.hashCode());
+  }
 }

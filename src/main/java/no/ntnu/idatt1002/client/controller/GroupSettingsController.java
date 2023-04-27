@@ -25,17 +25,13 @@ public class GroupSettingsController extends MenuController implements Initializ
    */
   @FXML
   private void updateDormGroupClick() {
-    String name = groupNameField.getText();
-    if(name == null || name.isBlank()) {
-      displayError("Name cannot be blank");
-      return;
+    try {
+      String name = groupNameField.getText();
+      groupDAO.setName(Group.CURRENT, name);
+      displayInfo("Group settings updated");
+    } catch (Exception e) {
+      displayError(e.getLocalizedMessage());
     }
-    Group group = groupDAO.find(Group.CURRENT);
-    if(!group.getName().equals(name)) {
-      group.setName(name);
-      groupDAO.setName(group.getId(), name);
-    }
-    displayInfo("Group settings updated");
   }
 
   /**

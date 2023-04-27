@@ -76,7 +76,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public Group create(String name) {
-    if (name == null || name.isBlank()) throw new IllegalArgumentException("Group name cannot be blank");
+    Group.validateName(name);
     try (Connection connection = getConnection();
          PreparedStatement statement = connection.prepareStatement(INSERT_GROUP, Statement.RETURN_GENERATED_KEYS)) {
       statement.setString(1, name);
@@ -100,6 +100,7 @@ public final class SqlGroupDAO extends SqlDAO implements GroupDAO {
    */
   @Override
   public void setName(long groupId, String name) {
+    Group.validateName(name);
     try (Connection connection = getConnection();
          PreparedStatement statement = connection.prepareStatement(SET_NAME)) {
       statement.setString(1, name);
