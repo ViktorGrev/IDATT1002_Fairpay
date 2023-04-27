@@ -61,10 +61,13 @@ public final class BudgetController extends MenuController implements Initializa
     inputField.setPromptText("0");
     inputField.setOnKeyPressed(event -> {
       if(event.getCode() == KeyCode.ENTER) {
+        if(inputField.getText().isBlank()) return;
         budgetDAO.addType(Group.CURRENT, type, BigDecimal.valueOf(Long.parseLong(inputField.getText())));
         viewPage(Page.BUDGET);
       }
     });
+
+    // Ensure only numbers
     inputField.textProperty().addListener((observable, oldValue, newValue) -> {
       if (!newValue.matches("\\d*")) {
         inputField.setText(newValue.replaceAll("[^\\d]", ""));
