@@ -24,32 +24,26 @@ public class ProfileSettingsController extends MenuController implements Initial
    */
   @FXML
   private void updateProfileClick() {
-    User user = userDAO.find(User.CURRENT);
+    try {
+      User user = userDAO.find(User.CURRENT);
+      String name = usernameField.getText();
+      userDAO.setName(User.CURRENT, name);
 
-    String name = usernameField.getText();
-    if(name == null || name.isBlank()) {
-      displayError("Name cannot be blank");
-      return;
+      String numberText = numberField.getText();
+      if (numberText == null || numberText.isBlank()) {
+        displayError("Phone number cannot be blank");
+        return;
+      }
+
+      long number = Long.parseLong(numberText);
+      if (user.getPhoneNumber() != number) {
+        userDAO.setPhoneNumber(User.CURRENT, number);
+      }
+
+      displayInfo("Your profile has been updated");
+    } catch (Exception e) {
+      displayError(e.getLocalizedMessage());
     }
-
-    if(!user.getUsername().equals(name)) {
-      user.setUsername(name);
-      userDAO.setName(user.getId(), name);
-    }
-
-    String numberText = numberField.getText();
-    if(numberText == null || numberText.isBlank()) {
-      displayError("Phone number cannot be blank");
-      return;
-    }
-
-    long number = Long.parseLong(numberText);
-    if(user.getPhoneNumber() != number) {
-      user.setPhoneNumber(number);
-      userDAO.setPhoneNumber(user.getId(), number);
-    }
-
-    displayInfo("Your profile has been updated");
   }
 
   /**

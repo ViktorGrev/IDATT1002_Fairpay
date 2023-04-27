@@ -23,7 +23,7 @@
                <top>
                   <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #572828;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Add expence" textFill="WHITE">
+                        <Label text="Add group expense" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -53,17 +53,44 @@
                <left>
                   <VBox prefHeight="301.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:" />
-                        <ComboBox fx:id="typeField" prefWidth="150.0" styleClass="combo-box" stylesheets="@style/stylesheet.css" />
-                        <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false" />
+                        <Label prefHeight="30.0" prefWidth="199.0" text="Expense type:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Label>
+                        <ComboBox fx:id="typeField" prefWidth="150.0" styleClass="combo-box" stylesheets="@style/stylesheet.css">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin></ComboBox>
+                        <Label fx:id="nameText" prefHeight="30.0" prefWidth="199.0" text="Expense name:" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding></Label>
                         <TextField fx:id="nameField" stylesheets="@style/formstyle.css" visible="false">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </TextField>
-                        <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):" />
+                        <Label prefHeight="17.0" prefWidth="143.0" text="Amount of money (kr):">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                         <TextField fx:id="amountField" stylesheets="@style/formstyle.css" />
-                        <Label prefHeight="17.0" prefWidth="70.0" text="Date:" />
+                        <Label prefHeight="17.0" prefWidth="70.0" text="Date:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="10.0" />
+                           </VBox.margin></Label>
                         <DatePicker fx:id="dateField" stylesheets="@style/stylesheet.css" />
                      </children>
                      <BorderPane.margin>
@@ -72,11 +99,11 @@
                   </VBox>
                </left>
                <bottom>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="446.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button mnemonicParsing="false" onAction="#addExpenseClick" styleClass="button2" stylesheets="@style/stylesheet.css" text="Add expense">
                            <HBox.margin>
-                              <Insets bottom="10.0" right="10.0" />
+                              <Insets bottom="20.0" right="20.0" />
                            </HBox.margin>
                         </Button>
                      </children>

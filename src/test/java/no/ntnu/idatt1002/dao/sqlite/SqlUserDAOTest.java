@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,6 +37,21 @@ public class SqlUserDAOTest {
     assertNotNull(user);
     assertEquals("Bob", user.getUsername());
     assertEquals(12345678, user.getPhoneNumber());
+  }
+
+  @Test
+  @DisplayName("Find user")
+  void findUser() {
+    User user = userDAO.create("FindBob", "password", 12345678);
+    assertNotNull(userDAO.find(user.getId()));
+  }
+
+  @Test
+  @DisplayName("Find users")
+  void findUsers() {
+    User user1 = userDAO.create("FindBob1", "password", 12345678);
+    User user2 = userDAO.create("FindBob2", "password", 12345678);
+    assertEquals(2, userDAO.find(Arrays.asList(user1.getId(), user2.getId())).size());
   }
 
   @Test

@@ -51,7 +51,12 @@ public final class GroupController extends MenuController implements Initializab
   @FXML
   private void onSendInvite() {
     String name = inviteNameField.getText();
-    if(name == null || name.isBlank()) return;
+    try {
+      User.validateUsername(name);
+    } catch (Exception e) {
+      inviteFeedback.setText(e.getLocalizedMessage());
+      return;
+    }
     Group group = groupDAO.findByUser(User.CURRENT);
     User user = getUser(name);
     if(user == null) {

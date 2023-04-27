@@ -56,7 +56,9 @@ public final class BudgetController extends MenuController implements Initializa
    * @return  a TextField
    */
   private TextField createInputField(ExpenseType type, long amount) {
-    TextField inputField = new TextField(String.valueOf(amount));
+    TextField inputField = new TextField();
+    if(amount != 0) inputField.setText(String.valueOf(amount));
+    inputField.setPromptText("0");
     inputField.setOnKeyPressed(event -> {
       if(event.getCode() == KeyCode.ENTER) {
         budgetDAO.addType(Group.CURRENT, type, BigDecimal.valueOf(Long.parseLong(inputField.getText())));
@@ -67,6 +69,10 @@ public final class BudgetController extends MenuController implements Initializa
       if (!newValue.matches("\\d*")) {
         inputField.setText(newValue.replaceAll("[^\\d]", ""));
       }
+    });
+    inputField.setOnMouseClicked(e -> {
+      String text = inputField.getText();
+      if(text.equals("0")) inputField.setText("");
     });
     return inputField;
   }

@@ -190,6 +190,10 @@
                 <configuration>
                     <excludes>
                         <exclude>no/ntnu/idatt1002/client/controller/*</exclude>
+                        <exclude>no/ntnu/idatt1002/client/view/*</exclude>
+                        <exclude>no/ntnu/idatt1002/util/*</exclude>
+                        <exclude>no/ntnu/idatt1002/dao/exception/</exclude>
+                        <exclude>no/ntnu/idatt1002/bootstrap/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -21,9 +21,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="94.0" prefWidth="286.0">
                <children>
-                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
+                  <Text fill="#793f3f" strokeType="OUTSIDE" strokeWidth="0.0" text="Signup">
                      <font>
-                        <Font name="Roboto Bold" size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                      <effect>
                         <InnerShadow blurType="GAUSSIAN">

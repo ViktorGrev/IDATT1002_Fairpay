@@ -25,8 +25,11 @@ public final class Group {
    *
    * @param   id the group ID
    * @param   name the group name
+   * @throws  IllegalArgumentException if the name is invalid
    */
   public Group(long id, String name) {
+    validateName(name);
+    if(id < 0) throw new IllegalArgumentException("invalid id");
     this.id = id;
     this.name = name;
   }
@@ -46,7 +49,24 @@ public final class Group {
    * @param   name the new name of the group
    */
   public void setName(String name) {
+    validateName(name);
     this.name = name;
+  }
+
+  /**
+   * Checks if the specified name is valid.
+   *
+   * @param   name the name
+   * @throws  IllegalArgumentException if the name is null,
+   *          blank or outside length bounds
+   */
+  public static void validateName(String name) {
+    if(name == null)
+      throw new IllegalArgumentException("name is null");
+    if(name.isBlank())
+      throw new IllegalArgumentException("name is blank");
+    if(name.length() < 3 || name.length() > 20)
+      throw new IllegalArgumentException("name must be between 3-20 characters");
   }
 
   /**
