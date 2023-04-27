@@ -50,9 +50,9 @@
                                  <children>
                                     <HBox prefHeight="152.0" prefWidth="466.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <AnchorPane prefHeight="150.0" prefWidth="195.0" HBox.hgrow="ALWAYS">
+                                          <AnchorPane prefHeight="136.0" prefWidth="98.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <AnchorPane prefHeight="151.0" prefWidth="205.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                                                <AnchorPane prefHeight="136.0" prefWidth="228.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <VBox alignment="CENTER" prefHeight="131.0" prefWidth="189.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="10.0">
                                                          <children>
@@ -68,9 +68,9 @@
                                                    </children></AnchorPane>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane prefHeight="151.0" prefWidth="205.0" HBox.hgrow="ALWAYS">
+                                          <AnchorPane prefHeight="136.0" prefWidth="240.0" HBox.hgrow="ALWAYS">
                                              <children>
-                                                <VBox alignment="CENTER" layoutX="20.0" layoutY="3.0" prefHeight="131.0" prefWidth="186.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
+                                                <VBox alignment="CENTER" layoutX="20.0" layoutY="3.0" prefHeight="131.0" prefWidth="186.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
                                                    <children>
                                                       <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                          <children>
@@ -135,7 +135,7 @@
                                              <children>
                                                 <AnchorPane prefHeight="149.0" prefWidth="220.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <VBox fx:id="notifBox" layoutX="17.0" layoutY="34.0" prefHeight="162.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" stylesheets="@style/stylesheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
+                                                      <VBox fx:id="notifBox" layoutX="17.0" layoutY="34.0" prefHeight="162.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 1em; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);;" stylesheets="@style/stylesheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="10.0">
                                                          <children>
                                                             <Label text="Notifications:" textFill="#874545">
                                                                <font>
@@ -184,7 +184,7 @@
                               </AnchorPane>
                            </children>
                         </VBox>
-                        <ImageView fitHeight="18.0" fitWidth="21.0" onMouseClicked="#helpClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
+                        <ImageView fitHeight="27.0" fitWidth="30.0" onMouseClicked="#helpClick" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="8.0">
                            <image>
                               <Image url="@image/help.png" />
                            </image>
