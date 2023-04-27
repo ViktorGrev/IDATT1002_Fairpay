@@ -2,7 +2,7 @@ package no.ntnu.idatt1002.dao.sqlite;
 
 import no.ntnu.idatt1002.dao.SettlementDAO;
 import no.ntnu.idatt1002.dao.exception.DAOException;
-import no.ntnu.idatt1002.data.economy.Settlement;
+import no.ntnu.idatt1002.model.economy.Settlement;
 
 import java.sql.*;
 import java.util.Date;

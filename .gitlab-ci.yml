@@ -33,32 +33,29 @@ package:
       - target/idatt2002demo-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 generatepdf:
-  image: ubuntu:20.04  # vi kjører dette i en docker container, som kjører Ubuntu Linux
-  stage: package # vi kjører den parallelt med å publisere javadoc til Pages
+  image: ubuntu:20.04
+  stage: package
   script:
-    - apt-get update  # apt-get er en pakkehåndterer som kan laste ned og installere pakker på linux-system
-    - apt-get install -y wget  # installerer et tool som heter "wget", som kan fyre av HTML-requester på kommandolinja
+    - apt-get update
+    - apt-get install -y wget
     - apt-get install -y fontconfig libfreetype6 libjpeg-turbo8 libpng16-16 libx11-6 libxcb1 libxext6 libxrender1 xfonts-75dpi xfonts-base  # installerer en bunsj med libs vi trenger for konverteringen til PDF
     - wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb  # Henter HTML-til-PDF-konverterer fra git. Vi bruker denne spesifikke pakken fordi vi vet at den fungerer i miljøet vi kjører i
-    - dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb  # Installerer pakken vi lastet ned i forrige steg
-    - apt-get -y install nodejs  # installerer nodejs
-    - apt-get -y install npm  # installerer npm, som er en pakkehåndterer (litt likt apt-get) for (hovedsaklig) javascript-biblioteker
-    - npm install -g github-wikito-converter  # installerer wiki-til-html-konverterer via npm 
-    - apt-get -y install git  # installerer git
-    - export my_url="${CI_PROJECT_URL:8}" # Fjerner https:// fra URLen
-    - export final_url="https://gitlab-ci-token:$CI_JOB_TOKEN@$my_url"  # Bruker CI-token for å omgå krav til brukernavn/passord
-    - git clone "$final_url.wiki.git"  # hver eneste gitlab-wiki ligger i et eget repo, og kan klones med git som man kloner andre prosjekter
-    - gwtc $CI_PROJECT_NAME.wiki  # NB! DERSOM DENNE FEILER, ERSTATT MED NAVNET PÅ REPOET (enkelte gitlab-instanser ser ut til å gi denne feil verdi for gruppeprosjekter)
-    - wkhtmltopdf documentation.html wiki.pdf  # Dette konverterer fra HTML til PDF
+    - dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb
+    - apt-get -y install nodejs
+    - apt-get -y install npm
+    - npm install -g github-wikito-converter
+    - apt-get -y install git
+    - export my_url="${CI_PROJECT_URL:8}"
+    - export final_url="https://gitlab-ci-token:$CI_JOB_TOKEN@$my_url"
+    - git clone "$final_url.wiki.git"
+    - gwtc $CI_PROJECT_NAME.wiki
+    - wkhtmltopdf documentation.html wiki.pdf
   artifacts:
     paths:
-     - wiki.pdf  # Vi gjør fila tilgjengelig som en nedlastbar artefakt (CI/CD -> Pipelines, deretter ikon helt til høyre for bygget). Fila kalles wiki.pdf.
+     - wiki.pdf
   only: 
-    - web  # Only web gjør at vi kun kjører denne delen av pipeline når en trykker på knappen "Run pipeline"
+    - web
 
-
-# NB! Javadoc genereres IKKE under bygging av prosjektet. Man må kjøre javadoc lokalt og legge til katalogen (med navnet "javadoc")
-# til roten av prosjektet. Ellers vil denne delen feile.
 pages:
   stage: deploy
   script:

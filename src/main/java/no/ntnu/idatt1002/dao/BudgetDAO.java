@@ -1,7 +1,7 @@
 package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.data.economy.Budget;
-import no.ntnu.idatt1002.data.economy.ExpenseType;
+import no.ntnu.idatt1002.model.economy.Budget;
+import no.ntnu.idatt1002.model.economy.ExpenseType;
 
 import java.math.BigDecimal;
 

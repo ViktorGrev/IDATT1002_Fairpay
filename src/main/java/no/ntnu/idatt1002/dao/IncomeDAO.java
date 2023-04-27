@@ -1,6 +1,6 @@
 package no.ntnu.idatt1002.dao;
 
-import no.ntnu.idatt1002.data.economy.Income;
+import no.ntnu.idatt1002.model.economy.Income;
 
 import java.math.BigDecimal;
 import java.util.Date;

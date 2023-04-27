@@ -3,7 +3,7 @@ package no.ntnu.idatt1002.dao.sqlite;
 import no.ntnu.idatt1002.FairPay;
 import no.ntnu.idatt1002.dao.Database;
 import no.ntnu.idatt1002.dao.SettlementDAO;
-import no.ntnu.idatt1002.data.economy.Settlement;
+import no.ntnu.idatt1002.model.economy.Settlement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,5 +44,39 @@ public class SqlSettlementDAOTest {
     assertNotNull(settlement);
     settlementDAO.delete(settlement.getId());
     assertNull(settlementDAO.find(settlement.getId()));
+  }
+
+  @Test
+  @DisplayName("Members")
+  void memberTest() {
+    Settlement settlement = settlementDAO.create("Settlement 1", 1);
+    settlementDAO.addMember(settlement.getId(), 2);
+    assertTrue(settlementDAO.find(settlement.getId()).getMembers().contains(2L));
+    settlementDAO.removeMember(settlement.getId(), 2);
+    assertFalse(settlementDAO.find(settlement.getId()).getMembers().contains(2L));
+  }
+
+  @Test
+  @DisplayName("Expenses")
+  void expensesTest() {
+    Settlement settlement = settlementDAO.create("Settlement 1", 1);
+    settlementDAO.addExpense(settlement.getId(), 2);
+    assertTrue(settlementDAO.find(settlement.getId()).getExpenses().contains(2L));
+  }
+
+  @Test
+  @DisplayName("Find by user")
+  void findByUser() {
+    Settlement settlement = settlementDAO.create("Settlement 1", 1);
+    settlementDAO.addMember(settlement.getId(), 10);
+    assertTrue(settlementDAO.findByUser(10).stream().anyMatch(s -> s.getId() == settlement.getId()));
+  }
+
+  @Test
+  @DisplayName("Set ended")
+  void end() {
+    Settlement settlement = settlementDAO.create("Settlement 1", 1);
+    settlementDAO.setEnded(settlement.getId(), true);
+    assertTrue(settlementDAO.find(settlement.getId()).isEnded());
   }
 }

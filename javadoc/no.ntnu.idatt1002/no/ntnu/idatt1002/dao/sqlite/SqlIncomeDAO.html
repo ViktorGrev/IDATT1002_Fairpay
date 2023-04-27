@@ -81,7 +81,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code>, <code><a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao">IncomeDAO</a></code></dd>
+<dd><code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code>, <code><a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao">IncomeDAO</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">SqlIncomeDAO</span>
@@ -125,7 +125,7 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#create(long,java.lang.String,java.math.BigDecimal,java.util.Date,int)" class="member-name-link">create</a><wbr>(long&nbsp;userId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
@@ -139,12 +139,12 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Deletes an income.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#find(java.lang.Long)" class="member-name-link">find</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;filter)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Finds the first object in this table whose identifier matches the specified.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>&gt;</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#find(java.util.Collection)" class="member-name-link">find</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;filter)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Finds all objects in this table whose identifier is present
@@ -193,7 +193,7 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
 <li>
 <section class="detail" id="create(long,java.lang.String,java.math.BigDecimal,java.util.Date,int)">
 <h3>create</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(long&nbsp;userId,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a></span>&nbsp;<span class="element-name">create</span><wbr><span class="parameters">(long&nbsp;userId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;amount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Date.html" title="class or interface in java.util" class="external-link">Date</a>&nbsp;date,
@@ -229,11 +229,11 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
 <li>
 <section class="detail" id="find(java.lang.Long)">
 <h3>find</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a></span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;filter)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a></span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;filter)</span></div>
 <div class="block">Finds the first object in this table whose identifier matches the specified.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../DAO.html#find(S)">find</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
+<dd><code><a href="../DAO.html#find(S)">find</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
 <dt>Parameters:</dt>
 <dd><code>filter</code> - the specified identifier</dd>
 <dt>Returns:</dt>
@@ -244,12 +244,12 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
 <li>
 <section class="detail" id="find(java.util.Collection)">
 <h3>find</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>&gt;</span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;filter)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>&gt;</span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;&nbsp;filter)</span></div>
 <div class="block">Finds all objects in this table whose identifier is present
  in the specified filter.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../DAO.html#find(java.util.Collection)">find</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
+<dd><code><a href="../DAO.html#find(java.util.Collection)">find</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
 <dt>Parameters:</dt>
 <dd><code>filter</code> - the filter of object identifiers</dd>
 <dt>Returns:</dt>
@@ -265,7 +265,7 @@ implements <a href="../IncomeDAO.html" title="interface in no.ntnu.idatt1002.dao
  necessary dependencies.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../DAO.html#init()">init</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.data.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
+<dd><code><a href="../DAO.html#init()">init</a></code>&nbsp;in interface&nbsp;<code><a href="../DAO.html" title="interface in no.ntnu.idatt1002.dao">DAO</a>&lt;<a href="../../data/economy/Income.html" title="class in no.ntnu.idatt1002.model.economy">Income</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&gt;</code></dd>
 </dl>
 </section>
 </li>
