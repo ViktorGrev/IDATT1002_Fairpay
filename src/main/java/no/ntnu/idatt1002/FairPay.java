@@ -27,7 +27,7 @@ public class FairPay extends Application {
    * Starts the application by loading the front page and setting
    * title, size and icon for the application window.
    *
-   * @param   primaryStage the primary stage provided by JavaFX
+   * @param   stage the primary stage provided by JavaFX
    * @throws  Exception if an error during startup occurs
    */
   @Override
