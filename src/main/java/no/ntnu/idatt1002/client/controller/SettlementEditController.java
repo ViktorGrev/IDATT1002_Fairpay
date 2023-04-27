@@ -6,9 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import no.ntnu.idatt1002.model.Group;
 import no.ntnu.idatt1002.model.User;
@@ -30,12 +28,12 @@ import java.util.ResourceBundle;
  */
 public final class SettlementEditController extends MenuController implements Initializable {
 
-  @FXML private Pane paymentsPane;
   @FXML private TableView<Expense> expenseTable;
   @FXML private Label nameField;
   @FXML private VBox memberBox;
   @FXML private Button deleteButton;
   @FXML private Button endButton;
+  @FXML private BorderPane paymentPane;
 
   /**
    * Sends the user to the add expense page for settlements.
@@ -177,7 +175,7 @@ public final class SettlementEditController extends MenuController implements In
       label.setStyle("-fx-padding: 10px; -fx-font-size: 16px;");
       vBox.getChildren().add(label);
     }
-    paymentsPane.getChildren().add(vBox);
+    paymentPane.centerProperty().setValue(vBox);
   }
 
   /**
