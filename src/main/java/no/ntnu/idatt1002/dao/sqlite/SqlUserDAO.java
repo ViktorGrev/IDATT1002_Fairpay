@@ -35,7 +35,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
 
   private static final String INSERT_PERSON = """
                 INSERT INTO users (username, password, registerDate, lastLogin, phoneNumber)
-                VALUES (?, ?, ?, ?, ?);
+                VALUES (? COLLATE NOCASE, ?, ?, ?, ?);
             """;
 
   /**
@@ -225,7 +225,7 @@ public final class SqlUserDAO extends SqlDAO implements UserDAO {
   private static final String CREATE_USERS = """
                 CREATE TABLE IF NOT EXISTS users (
             	userId integer PRIMARY KEY AUTOINCREMENT,
-            	username text(16) UNIQUE NOT NULL,
+            	username text(16) UNIQUE COLLATE NOCASE NOT NULL,
             	password text(60) NOT NULL,
             	registerDate integer NOT NULL,
             	lastLogin integer NOT NULL,
