@@ -50,4 +50,4 @@ Test results from Jacoco can be seen in this image.
 
 ![Test coverage from jacoco](https://github.com/ViktorGrev/Fairpay/assets/114399917/cfa85a08-9ba7-469f-8861-f04fbbfa7dc4)
 
-# [Wiki](Home)
+# [Wiki](../../wiki)
